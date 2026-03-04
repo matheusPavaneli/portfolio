@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Fullstack Developer",
+    "tagline": "Building systems that scale. Clean architecture, clear code.",
+    "getInTouch": "Get in touch",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "label": "Message",
+    "headline": "I care about **craft** and **impact**—what we build and how it holds up. Quality code, clear architecture, systems that **scale**.",
+    "body": "I focus on clean architecture, SOLID principles, and maintainable software. TypeScript, React, Node.js—and systems that last. I like to ship, iterate, and leave codebases better than I found them."
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "titleLine1": "Professional",
+    "titleLine2": "Experience",
+    "subtitle": "Where I've worked and what I've shipped.",
+    "promoted": "Promoted"
+  },
+  "education": {
+    "title": "Education & Certifications",
+    "titleLine1": "Education",
+    "titleLine2": "& Certifications",
+    "subtitle": "Academic background and credentials.",
+    "certifications": "Certifications"
+  },
+  "skills": {
+    "title": "Qualifications & Skills",
+    "titleLine1": "Qualifications",
+    "titleLine2": "& Skills",
+    "subtitle": "Tech stack and practices I use to ship quality software.",
+    "languages": "Languages",
+    "frontend": "Frontend",
+    "backend": "Backend & Testing",
+    "databases": "Databases",
+    "devops": "DevOps & Tools",
+    "messaging": "Messaging",
+    "soft": "Soft Skills"
+  },
+  "projects": {
+    "title": "Projects & Open Source",
+    "titleLine1": "Projects",
+    "titleLine2": "& Open Source",
+    "subtitle": "Selected work and repositories. More on GitHub.",
+    "viewAll": "View all on GitHub"
+  },
+  "contact": {
+    "title": "Let's talk.",
+    "titleLine1": "Let's",
+    "titleLine2": "talk.",
+    "subtitle": "Open to the right projects and teams—freelance or full-time. If you care about architecture and quality, we'll get along.",
+    "formTitle": "Send me an email",
+    "formName": "Name",
+    "formEmail": "Email",
+    "formMessage": "Message",
+    "formSend": "Send",
+    "formSending": "Sending…",
+    "formSuccess": "Thanks! I'll get back to you soon.",
+    "formError": "Something went wrong. Try again or email me directly.",
+    "sidebarTitle": "Direct contact",
+    "sidebarDirect": "Prefer email or phone?",
+    "replyTime": "I usually reply within 24 hours."
+  },
+  "minigame": {
+    "label": "Minigame",
+    "title": "Bug Invaders",
+    "subtitle": "Shoot the bugs I fix every day. Collect floating skills for bonus points. One more level.",
+    "play": "Play",
+    "start": "Start",
+    "score": "Score",
+    "gameover": "Game Over",
+    "retry": "Play again",
+    "close": "Close",
+    "controls": "← → or A D move · Space shoot"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+  "locale": {
+    "en": "EN",
+    "pt": "PT"
+  }
+}

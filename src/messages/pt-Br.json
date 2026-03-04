@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "experience": "Experiência",
+    "education": "Formação",
+    "skills": "Habilidades",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "hero": {
+    "title": "Desenvolvedor Fullstack",
+    "tagline": "Sistemas que escalam. Arquitetura limpa, código claro.",
+    "getInTouch": "Fale comigo",
+    "scroll": "Role"
+  },
+  "about": {
+    "label": "Mensagem",
+    "headline": "Me importo com **ofício** e **impacto**—o que construímos e como isso se sustenta. Código de qualidade, arquitetura clara, sistemas que **escalam**.",
+    "body": "Foco em arquitetura limpa, princípios SOLID e software sustentável. TypeScript, React, Node.js—e sistemas que duram. Gosto de entregar, iterar e deixar o código melhor do que encontrei."
+  },
+  "experience": {
+    "title": "Experiência Profissional",
+    "titleLine1": "Experiência",
+    "titleLine2": "Profissional",
+    "subtitle": "Onde trabalhei e o que entreguei.",
+    "promoted": "Promovido"
+  },
+  "education": {
+    "title": "Formação e Certificados",
+    "titleLine1": "Formação",
+    "titleLine2": "e Certificados",
+    "subtitle": "Formação acadêmica e credenciais.",
+    "certifications": "Certificados"
+  },
+  "skills": {
+    "title": "Qualificações e Habilidades",
+    "titleLine1": "Qualificações",
+    "titleLine2": "e Habilidades",
+    "subtitle": "Stack e práticas que uso para entregar software de qualidade.",
+    "languages": "Idiomas",
+    "frontend": "Frontend",
+    "backend": "Backend e Testes",
+    "databases": "Bancos de Dados",
+    "devops": "DevOps e Ferramentas",
+    "messaging": "Mensageria",
+    "soft": "Soft Skills"
+  },
+  "projects": {
+    "title": "Projetos e Open Source",
+    "titleLine1": "Projetos",
+    "titleLine2": "e Open Source",
+    "subtitle": "Trabalhos selecionados e repositórios. Mais no GitHub.",
+    "viewAll": "Ver tudo no GitHub"
+  },
+  "contact": {
+    "title": "Vamos conversar.",
+    "titleLine1": "Vamos",
+    "titleLine2": "conversar.",
+    "subtitle": "Aberto a projetos e times certos—freelance ou CLT. Se você se importa com arquitetura e qualidade, vamos nos dar bem.",
+    "formTitle": "Me envie um email",
+    "formName": "Nome",
+    "formEmail": "Email",
+    "formMessage": "Mensagem",
+    "formSend": "Enviar",
+    "formSending": "Enviando…",
+    "formSuccess": "Obrigado! Respondo em breve.",
+    "formError": "Algo deu errado. Tente de novo ou me envie um email direto.",
+    "sidebarTitle": "Contato direto",
+    "sidebarDirect": "Prefere email ou telefone?",
+    "replyTime": "Geralmente respondo em até 24h."
+  },
+  "minigame": {
+    "label": "Minigame",
+    "title": "Bug Invaders",
+    "subtitle": "Atire nos bugs que eu resolvo todo dia. Colete habilidades para bônus. Mais uma fase.",
+    "play": "Jogar",
+    "start": "Iniciar",
+    "score": "Pontos",
+    "gameover": "Fim de jogo",
+    "retry": "Jogar de novo",
+    "close": "Fechar",
+    "controls": "← → ou A D mover · Espaço atirar"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  },
+  "theme": {
+    "light": "Modo claro",
+    "dark": "Modo escuro"
+  },
+  "locale": {
+    "en": "EN",
+    "pt": "PT"
+  }
+}

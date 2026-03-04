@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light mode: fundo claro, superfícies elevadas mais visíveis, texto escuro */
+:root {
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
+  --surface: #fafaf9;
+  --surface-elevated: #e7e5e4;
+  --fg: #1c1917;
+  --fg-muted: #57534e;
+  --on-accent: #ffffff;
+}
+
+/* Dark mode */
+.dark {
+  --color-accent: #00ff88;
+  --color-accent-hover: #00cc6a;
+  --surface: #0a0a0a;
+  --surface-elevated: #141414;
+  --fg: #fafaf9;
+  --fg-muted: #a8a29e;
+  --on-accent: #0a0a0a;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  overflow-x: hidden;
+  min-width: 280px;
+}
+
+/* Safe area for notched devices (iPhone X+, etc.) */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.safe-left {
+  padding-left: env(safe-area-inset-left, 0);
+}
+.safe-right {
+  padding-right: env(safe-area-inset-right, 0);
+}
+.safe-x {
+  padding-left: max(1rem, env(safe-area-inset-left, 0));
+  padding-right: max(1rem, env(safe-area-inset-right, 0));
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--fg-muted) 30%, transparent);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--fg-muted) 50%, transparent);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  color: var(--fg);
+}
+
+/* Editorial / detail pattern - use with bg-surface or bg-surface-elevated */
+.pattern-grid {
+  background-image:
+    linear-gradient(var(--fg-muted) 0.06px, transparent 0.06px),
+    linear-gradient(90deg, var(--fg-muted) 0.06px, transparent 0.06px);
+  background-size: 48px 48px;
+  background-color: var(--surface);
+}
+.pattern-grid-opacity {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--fg-muted) 8%, transparent) 0.06px, transparent 0.06px),
+    linear-gradient(90deg, color-mix(in srgb, var(--fg-muted) 8%, transparent) 0.06px, transparent 0.06px);
+  background-size: 32px 32px;
+}
+
+/* ---- Efeitos reativos raros ---- */
+
+/* Shine: faixa de luz que varre no hover (botões) */
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
+.hover-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.12) 45%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.12) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-12deg);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .hover-shine:hover::after {
+    transform: translateX(100%) skewX(-12deg);
+  }
+}
+
+/* Bordas que “brilham” no hover (cards) */
+.shine-border-gradient {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 90deg,
+    var(--color-accent) 180deg,
+    transparent 270deg 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.group:hover .shine-border-gradient {
+  opacity: 1;
+  animation: shine-rotate 2.5s linear infinite;
+}
+.shine-border-mask {
+  position: absolute;
+  inset: 1px;
+  border-radius: 14px;
+  background: var(--surface);
+  pointer-events: none;
+}
+@keyframes shine-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Nav: underline que cresce do centro (raro) */
+.nav-link-underline {
+  position: relative;
+}
+.nav-link-underline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1), left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .nav-link-underline:hover::after {
+    left: 0;
+    width: 100%;
+  }
+}
+
+/* Logo: leve letter-spacing no hover */
+.logo-letters {
+  transition: letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .logo-letters:hover {
+    letter-spacing: 0.2em;
+  }
+}
