@@ -27,7 +27,7 @@ export function Contact() {
               {t("contact.title")}
             </span>
             <span className="w-10 h-px bg-accent/35" />
-            <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">06</span>
+            <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">08</span>
           </motion.div>
 
           {/* Giant display heading */}
