@@ -15,7 +15,7 @@ export function LocaleSwitcher() {
     <div
       className="relative flex items-center rounded-full p-1 bg-fg-muted/10 border border-fg-muted/10"
       role="group"
-      aria-label="Select language"
+      aria-label={t("a11y.selectLanguage")}
     >
       {/* Sliding pill behind active */}
       <motion.div

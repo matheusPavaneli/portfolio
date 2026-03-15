@@ -67,16 +67,16 @@ export function ContactForm() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mt-12 p-6 rounded-2xl bg-surface-elevated/80 border border-fg-muted/10"
+        className="p-6 border border-fg-muted/10 bg-surface-elevated/40"
       >
-        <p className="text-fg-muted text-sm mb-4">
-          Configure <code className="text-accent">NEXT_PUBLIC_FORMSPREE_FORM_ID</code> no .env para ativar o formulário.
+        <p className="font-sans text-xs text-fg-muted mb-4 leading-relaxed">
+          {t("contact.formDisabled")}
         </p>
         <a
           href={`mailto:${profile.email}`}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-on-accent font-medium hover:bg-accent-dim transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-on-accent font-sans text-[10px] tracking-[0.2em] uppercase hover:bg-accent-dim transition-colors hover-shine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          {profile.email}
+          {t("contact.formDisabledCta")}
         </a>
       </motion.div>
     );
@@ -88,24 +88,21 @@ export function ContactForm() {
       animate={{ opacity: 1, y: 0 }}
       className="max-w-lg"
     >
-      <h3 className="font-mono text-xs text-accent uppercase tracking-wider mb-4">
+      <h3 className="font-sans text-[11px] tracking-[0.4em] uppercase text-accent mb-6">
         {t("contact.formTitle")}
       </h3>
       {status === "success" ? (
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-accent font-medium py-6"
+          className="font-sans text-sm text-accent py-6 leading-relaxed"
         >
           {t("contact.formSuccess")}
         </motion.p>
       ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4"
-        >
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label htmlFor="contact-name" className="block text-sm font-medium text-fg-muted mb-1.5">
+            <label htmlFor="contact-name" className="block font-sans text-[11px] tracking-[0.3em] uppercase text-fg-muted mb-2">
               {t("contact.formName")}
             </label>
             <input
@@ -117,13 +114,14 @@ export function ContactForm() {
               autoComplete="name"
               value={formData.name}
               onChange={(e) => setFormData((d) => ({ ...d, name: e.target.value }))}
-              className="w-full min-h-[44px] px-4 py-3 rounded-xl bg-surface border border-fg-muted/20 text-fg placeholder:text-fg-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-shadow"
+              aria-describedby={status === "error" ? "contact-form-error" : undefined}
+              className="w-full min-h-[44px] px-4 py-3 bg-surface border border-fg-muted/15 text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors"
               placeholder="John Doe"
               disabled={status === "sending"}
             />
           </div>
           <div>
-            <label htmlFor="contact-email" className="block text-sm font-medium text-fg-muted mb-1.5">
+            <label htmlFor="contact-email" className="block font-sans text-[11px] tracking-[0.3em] uppercase text-fg-muted mb-2">
               {t("contact.formEmail")}
             </label>
             <input
@@ -135,38 +133,39 @@ export function ContactForm() {
               autoComplete="email"
               value={formData.email}
               onChange={(e) => setFormData((d) => ({ ...d, email: e.target.value }))}
-              className="w-full min-h-[44px] px-4 py-3 rounded-xl bg-surface border border-fg-muted/20 text-fg placeholder:text-fg-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-shadow"
+              aria-describedby={status === "error" ? "contact-form-error" : undefined}
+              className="w-full min-h-[44px] px-4 py-3 bg-surface border border-fg-muted/15 text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors"
               placeholder="you@example.com"
               disabled={status === "sending"}
             />
           </div>
           <div>
-            <label htmlFor="contact-message" className="block text-sm font-medium text-fg-muted mb-1.5">
+            <label htmlFor="contact-message" className="block font-sans text-[11px] tracking-[0.3em] uppercase text-fg-muted mb-2">
               {t("contact.formMessage")}
             </label>
             <textarea
               id="contact-message"
               name="message"
               required
-              rows={4}
+              rows={5}
               maxLength={MAX_MESSAGE + 500}
               value={formData.message}
               onChange={(e) => setFormData((d) => ({ ...d, message: e.target.value }))}
-              className="w-full px-4 py-3 rounded-xl bg-surface border border-fg-muted/20 text-fg placeholder:text-fg-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-shadow resize-none"
+              aria-describedby={status === "error" ? "contact-form-error" : undefined}
+              className="w-full px-4 py-3 bg-surface border border-fg-muted/15 text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors resize-none"
               placeholder="Your message…"
               disabled={status === "sending"}
             />
           </div>
           {status === "error" && (
-            <p className="text-red-500 dark:text-red-400 text-sm">
+            <p id="contact-form-error" role="alert" className="font-sans text-xs text-color-error">
               {t("contact.formError")}
             </p>
           )}
           <motion.button
             type="submit"
             disabled={status === "sending"}
-            className="w-full min-h-[44px] px-6 py-3 rounded-xl bg-accent text-on-accent font-medium hover:bg-accent-dim focus:outline-none focus:ring-2 focus:ring-accent/50 disabled:opacity-70 disabled:cursor-not-allowed transition-colors hover-shine relative overflow-hidden"
-            whileHover={status !== "sending" ? { scale: 1.01 } : {}}
+            className="w-full min-h-[44px] px-6 py-3 bg-accent text-on-accent font-sans text-[10px] tracking-[0.2em] uppercase hover:bg-accent-dim disabled:opacity-60 disabled:cursor-not-allowed transition-colors hover-shine relative overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             whileTap={status !== "sending" ? { scale: 0.99 } : {}}
           >
             {status === "sending" ? t("contact.formSending") : t("contact.formSend")}

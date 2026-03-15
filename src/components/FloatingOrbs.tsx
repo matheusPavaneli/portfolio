@@ -13,9 +13,9 @@ const orbs = [
 export function FloatingOrbs() {
   return (
     <div className="pointer-events-none fixed inset-0 overflow-hidden z-0" aria-hidden>
-      {orbs.map((orb, i) => (
+      {orbs.map((orb) => (
         <motion.div
-          key={i}
+          key={`orb-${orb.x}-${orb.y}`}
           className="absolute rounded-full bg-accent/5 dark:bg-accent/10"
           style={{
             width: orb.size,
