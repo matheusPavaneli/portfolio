@@ -43,3 +43,6 @@ coverage/
 CLAUDE.md
 prompts/
 .interface-design/
+.claude/
+.cursor/
+.cursor/**/*

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLocale } from "@/context/LocaleContext";
+import { profile } from "@/data/profile";
 
 function HeadlineWithAccent({ text }: { text: string }) {
   return (
@@ -57,7 +58,7 @@ export function About() {
 
         {/* Body text with left rule */}
         <motion.div
-          className="flex gap-7 sm:gap-10 items-start"
+          className="flex gap-7 sm:gap-10 items-start mb-12 sm:mb-14"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -67,6 +68,25 @@ export function About() {
           <p className="font-sans text-xs sm:text-sm text-fg-muted leading-[2] max-w-2xl">
             {t("about.body")}
           </p>
+        </motion.div>
+
+        {/* Trait chips */}
+        <motion.div
+          className="flex flex-wrap gap-2.5"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.45 }}
+        >
+          {profile.aboutTraitKeys.map((key) => (
+            <span
+              key={key}
+              className="inline-flex items-center gap-2 border border-fg-muted/15 px-3.5 py-1.5 font-sans text-[10px] tracking-[0.25em] uppercase text-fg-muted hover:border-accent/40 hover:text-accent transition-colors duration-300"
+            >
+              <span className="text-accent/50 text-[8px]">◆</span>
+              {t(key)}
+            </span>
+          ))}
         </motion.div>
       </div>
     </section>

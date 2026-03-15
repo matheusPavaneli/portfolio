@@ -16,7 +16,7 @@
   },
   "hero": {
     "title": "Desenvolvedor Fullstack",
-    "tagline": "Sistemas que escalam. Arquitetura limpa, código claro.",
+    "tagline": "Arquitetura que sustenta. Código que vale a pena herdar.",
     "getInTouch": "Fale comigo",
     "scroll": "Rolagem",
     "companies": "empresas",
@@ -24,9 +24,9 @@
     "english": "inglês"
   },
   "about": {
-    "label": "Mensagem",
-    "headline": "Me importo com **ofício** e **impacto**—o que construímos e como isso se sustenta. Código de qualidade, arquitetura clara, sistemas que **escalam**.",
-    "body": "Foco em arquitetura limpa, princípios SOLID e software sustentável. TypeScript, React, Node.js—e sistemas que duram. Gosto de entregar, iterar e deixar o código melhor do que encontrei."
+    "label": "Declaração",
+    "headline": "Me importo com **ofício** e **consequência**—arquitetura clara, tradeoffs honestos e software que se sustenta.",
+    "body": "Arquitetura em primeiro lugar, foco na entrega. Escopo claro, tradeoffs honestos e viés para entregar. Deixo o código melhor do que encontrei."
   },
   "experience": {
     "title": "Experiência Profissional",
@@ -46,7 +46,7 @@
     "title": "Qualificações e Habilidades",
     "titleLine1": "Qualificações",
     "titleLine2": "e Habilidades",
-    "subtitle": "Stack e práticas que uso para entregar software de qualidade.",
+    "subtitle": "Ferramentas e práticas que aplico para entregar com qualidade.",
     "languages": "Idiomas",
     "frontend": "Frontend",
     "backend": "Backend e Testes",
@@ -66,6 +66,22 @@
       "continuousLearning": "Aprendizado contínuo"
     }
   },
+  "freelance": {
+    "label": "Disponível",
+    "title": "Vamos trabalhar juntos.",
+    "titleLine1": "Vamos trabalhar",
+    "titleLine2": "juntos.",
+    "subtitle": "Aberto a projetos freelance. Escopo claro, prazos honestos.",
+    "available": "Disponível para projetos",
+    "cta": "Fale comigo"
+  },
+  "principles": {
+    "label": "Regras",
+    "title": "Como trabalho.",
+    "titleLine1": "Como eu",
+    "titleLine2": "trabalho.",
+    "subtitle": "Princípios que aplico em todo projeto."
+  },
   "projects": {
     "title": "Projetos e Open Source",
     "titleLine1": "Projetos",
@@ -77,7 +93,7 @@
     "title": "Vamos conversar.",
     "titleLine1": "Vamos",
     "titleLine2": "conversar.",
-    "subtitle": "Aberto a projetos e times certos—freelance ou CLT. Se você se importa com arquitetura e qualidade, vamos nos dar bem.",
+    "subtitle": "Aberto a projetos sérios e times com padrão elevado—freelance ou CLT.",
     "formTitle": "Me envie um email",
     "formName": "Nome",
     "formEmail": "Email",
@@ -123,19 +139,19 @@
     "exp0": {
       "role": "Engenheiro de Software",
       "location": "São Paulo, Brasil · Remoto",
-      "h1": "Desenvolvi e mantive aplicações web escaláveis com Laravel, Vue.js e Node.js (NestJS), entregando soluções de alta performance com arquiteturas limpas e modulares pensadas para manutenção a longo prazo.",
-      "h2": "Projetei e integrei APIs RESTful seguras com tratamento e validação avançados de dados, aplicando princípios SOLID, Object Calisthenics e design patterns para garantir sistemas backend robustos e extensíveis.",
-      "h3": "Implementei autenticação JWT e gestão segura de sessões, reforçando a segurança da aplicação e a proteção de dados sensíveis entre serviços.",
-      "h4": "Utilizei TypeScript para construir módulos backend fortemente tipados, reduzindo erros em tempo de execução e melhorando confiabilidade, produtividade e consistência do código.",
+      "h1": "Desenvolvi e mantive aplicações web escaláveis com frameworks full-stack modernos, entregando soluções de alta performance com arquiteturas limpas e modulares pensadas para manutenção a longo prazo.",
+      "h2": "Projetei e integrei APIs RESTful seguras com tratamento e validação avançados de dados, aplicando princípios SOLID e design patterns para garantir sistemas backend robustos e extensíveis.",
+      "h3": "Implementei autenticação baseada em tokens e gestão segura de sessões, reforçando a segurança da aplicação e a proteção de dados sensíveis entre serviços.",
+      "h4": "Utilizei tipagem estática para construir módulos backend robustos, reduzindo erros em tempo de execução e melhorando confiabilidade, produtividade e consistência do código.",
       "h5": "Melhorei a qualidade do código por meio de code reviews entre pares e refatoração sistemática, aumentando performance, legibilidade e manutenibilidade a longo prazo de componentes críticos.",
-      "h6": "Estabeleci práticas de testes automatizados e CI/CD, implementando testes unitários e end-to-end com Jest e Detox e integrando pipelines de deploy para acelerar a entrega e garantir releases estáveis para aplicações web e mobile."
+      "h6": "Estabeleci práticas de testes automatizados e CI/CD, implementando testes unitários e end-to-end e integrando pipelines de deploy para acelerar a entrega e garantir releases estáveis para aplicações web e mobile."
     },
     "exp1": {
       "role": "Desenvolvedor Fullstack (Sênior)",
       "location": "Remoto",
       "h1": "Implementei integração escalável de pagamentos com Stripe, permitindo processamento confiável de transações e aumento da capacidade e da eficiência operacional da aplicação.",
       "h2": "Projetei e entreguei um sistema de autenticação seguro com login por email e provedores externos (Microsoft e Google), reforçando a segurança das contas e a flexibilidade de onboarding.",
-      "h3": "Construí uma camada robusta de identidade e acesso com PostgreSQL, incorporando hashing seguro de senhas, autenticação em dois fatores (2FA) e recuperação de senha para reforçar segurança e conformidade da plataforma.",
+      "h3": "Construí uma camada robusta de identidade e acesso com banco de dados relacional, incorporando hashing seguro de senhas, autenticação em dois fatores (2FA) e recuperação de senha para reforçar segurança e conformidade da plataforma.",
       "h4": "Desenvolvi integração OAuth completa para serviços externos, permitindo autenticação third-party fluida e ampliando a conectividade do ecossistema da plataforma.",
       "h5": "Otimizei a containerização do frontend com multi-stage builds avançados no Docker, reduzindo o tamanho da imagem de 1,9GB para ~210MB e acelerando tempos de build, deploy e eficiência da infraestrutura."
     },
@@ -145,16 +161,16 @@
       "h1": "Arquitetei e lancei a base técnica inicial de uma plataforma de rede social, desenhando uma arquitetura full-stack escalável para suportar crescimento e alta interação de usuários.",
       "h2": "Desenvolvi uma landing page altamente responsiva com animações fluidas, otimizando performance entre dispositivos e melhorando a experiência do usuário e o engajamento no primeiro contato.",
       "h3": "Implementei um algoritmo de recomendação baseado em interações que analisava atividade do usuário e posts curtidos para destacar conteúdo relevante, aumentando engajamento e descoberta de conteúdo.",
-      "h4": "Adotei TypeScript em toda a base de código e apliquei princípios SOLID com injeção de dependência, criando uma arquitetura backend modular e sustentável que acelerou o desenvolvimento de features e reduziu débito técnico.",
-      "h5": "Utilizei Next.js na camada de frontend, melhorando performance, SEO e comunicação segura entre frontend e backend.",
+      "h4": "Adotei tipagem estática em toda a base de código e apliquei princípios SOLID com injeção de dependência, criando uma arquitetura backend modular e sustentável que acelerou o desenvolvimento de features e reduziu débito técnico.",
+      "h5": "Utilizei um framework SSR moderno na camada de frontend, melhorando performance, SEO e comunicação segura entre frontend e backend.",
       "h6": "Exerci liderança técnica em diversos projetos nacionais e internacionais, contribuindo para decisões de arquitetura, mentorando desenvolvedores e coordenando implementações para entregar soluções escaláveis alinhadas aos objetivos de negócio."
     },
     "exp3": {
       "role": "Desenvolvedor Fullstack (Trainee → Júnior)",
       "location": "Paranavaí, Paraná, Brasil · Remoto",
-      "h1": "Liderei a migração de 15 meses de um dashboard legado (Nepal) para React, revitalizando uma base abandonada ao refatorar a arquitetura frontend e estabelecer uma estrutura escalável e sustentável para desenvolvimento a longo prazo.",
-      "h2": "Introduzi TypeScript na base de código para melhorar segurança de tipos e confiabilidade, reduzindo erros em tempo de execução e bugs em produção e aumentando produtividade e manutenibilidade.",
-      "h3": "Modernizei a camada de gerenciamento de estado ao redesenhar actions do Redux e atualizar bibliotecas obsoletas, permitindo adoção de recursos modernos do React e melhorando performance e estabilidade da aplicação.",
+      "h1": "Liderei a migração de 15 meses de um dashboard legado (Nepal) para um framework moderno baseado em componentes, revitalizando uma base abandonada ao refatorar a arquitetura frontend e estabelecer uma estrutura escalável e sustentável para desenvolvimento a longo prazo.",
+      "h2": "Introduzi tipagem estática na base de código para melhorar segurança de tipos e confiabilidade, reduzindo erros em tempo de execução e bugs em produção e aumentando produtividade e manutenibilidade.",
+      "h3": "Modernizei a camada de gerenciamento de estado ao redesenhar as actions principais e atualizar bibliotecas obsoletas, permitindo adoção de recursos modernos do framework e melhorando performance e estabilidade da aplicação.",
       "h4": "Otimizei a containerização ao redesenhar a imagem Docker, reduzindo o tamanho em ~60% e melhorando significativamente a eficiência de build e a velocidade de deploy.",
       "h5": "Implementei pipelines de deploy automatizados com Kubernetes, aumentando a confiabilidade dos ambientes e acelerando o ciclo de releases para entrega mais rápida e consistente."
     },
@@ -173,7 +189,28 @@
       "advancedC1": "Avançado (C1)"
     },
     "project0": {
-      "description": "API de autenticação com implementação AES focada em performance e segurança."
+      "description": "Serviço de autenticação seguro com criptografia simétrica, focado em performance e confiabilidade."
+    },
+    "about": {
+      "t0": "Precisão técnica",
+      "t1": "Pensamento sistêmico",
+      "t2": "Remoto por padrão",
+      "t3": "Artesão do código"
+    },
+    "freelance": {
+      "h1": "Escopo e entregas definidos antes de começar.",
+      "h2": "Estimativas realistas. Sem atrasos imprevistos.",
+      "h3": "Atualizações claras e frequentes. Sempre acessível.",
+      "h4": "Desenvolvimento estruturado — do escopo à entrega.",
+      "h5": "Totalmente remoto. Disponível em qualquer lugar."
+    },
+    "principles": {
+      "p0": { "title": "Código limpo", "desc": "Legível, sustentável. Sem mágica." },
+      "p1": { "title": "Entrega iterativa", "desc": "Software funcionando antes de planos perfeitos." },
+      "p2": { "title": "Comunicação clara", "desc": "Sem surpresas. Status compartilhado antes de ser pedido." },
+      "p3": { "title": "Dono do resultado", "desc": "Não só tarefas — resultados." },
+      "p4": { "title": "Deixe melhor", "desc": "Refatore enquanto desenvolve." },
+      "p5": { "title": "Rigor por padrão", "desc": "Menos ambiguidade. Menos surpresas. Sistemas melhores." }
     }
   }
 }

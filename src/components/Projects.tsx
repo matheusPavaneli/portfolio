@@ -29,7 +29,7 @@ export function Projects() {
             {t("projects.title")}
           </span>
           <span className="w-10 h-px bg-accent/35" />
-          <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">05</span>
+          <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">07</span>
         </motion.div>
 
         <motion.div
