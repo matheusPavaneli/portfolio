@@ -7,7 +7,6 @@ import { profile } from "@/data/profile";
 
 const W = 320;
 const H = 200;
-const SCALE = 2;
 const PLAYER_W = 24;
 const PLAYER_H = 16;
 const BUG_W = 16;
@@ -15,6 +14,7 @@ const BUG_H = 12;
 const BULLET_SPEED = -8;
 const BUG_SPEED_Y = 4;
 const DROP_SPEED = 2;
+const TOUCH_BTN_MIN_SIZE = 44;
 
 const SKILLS_POOL: string[] = [
   ...profile.skills.frontend,
@@ -25,13 +25,17 @@ const SKILLS_POOL: string[] = [
 
 function getThemeColors() {
   if (typeof document === "undefined")
-    return { bg: "#0a0a0a", fg: "#fafaf9", accent: "#00ff88", muted: "#444" };
+    return { bg: "#0a0a0a", fg: "#fafaf9", accent: "#d4a853", muted: "#666" };
   const s = getComputedStyle(document.documentElement);
+  const raw = (key: string, fallback: string) => {
+    const val = s.getPropertyValue(key).trim();
+    return val ? `rgb(${val})` : fallback;
+  };
   return {
-    bg: s.getPropertyValue("--surface").trim() || "#0a0a0a",
-    fg: s.getPropertyValue("--fg").trim() || "#fafaf9",
-    accent: s.getPropertyValue("--color-accent").trim() || "#00ff88",
-    muted: s.getPropertyValue("--fg-muted").trim() || "#666",
+    bg:     raw("--surface",       "#0a0a0a"),
+    fg:     raw("--fg",            "#fafaf9"),
+    accent: raw("--color-accent",  "#d4a853"),
+    muted:  raw("--fg-muted",      "#666"),
   };
 }
 
@@ -47,12 +51,15 @@ export function Minigame() {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const rafRef = useRef<number>(0);
+  const pausedRef = useRef(false);
   const keysRef = useRef<{ left: boolean; right: boolean; fire: boolean }>({
     left: false,
     right: false,
     fire: false,
   });
   const scoreLivesRef = useRef({ score: 0, lives: 3 });
+
+  const gameStateRef = useRef<"idle" | "playing" | "gameover">("idle");
 
   const stateRef = useRef({
     playerX: W / 2 - PLAYER_W / 2,
@@ -83,6 +90,7 @@ export function Minigame() {
   }, []);
 
   const startGame = useCallback(() => {
+    gameStateRef.current = "playing";
     setGameState("playing");
     setScore(0);
     setLives(3);
@@ -102,18 +110,124 @@ export function Minigame() {
 
   useEffect(() => setMounted(true), []);
 
+  // Pause RAF when tab is hidden
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      pausedRef.current = document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+  }, []);
+
+  // Scale canvas to devicePixelRatio for sharp rendering
+  useEffect(() => {
+    if (!mounted) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    const ctx = canvas.getContext("2d");
+    if (ctx) ctx.scale(dpr, dpr);
+  }, [mounted]);
+
+  // Idle screen animation
+  useEffect(() => {
+    if (!mounted || gameState !== "idle") return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Re-apply DPR scale after context re-acquire
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+
+    let frame = 0;
+
+    const drawIdle = () => {
+      if (pausedRef.current) {
+        rafRef.current = requestAnimationFrame(drawIdle);
+        return;
+      }
+      const colors = getThemeColors();
+      ctx.fillStyle = colors.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      const py = H - PLAYER_H - 8;
+      const px = W / 2 - PLAYER_W / 2;
+
+      // Player ship centered
+      ctx.fillStyle = colors.fg;
+      ctx.beginPath();
+      ctx.moveTo(px + PLAYER_W / 2, py + PLAYER_H);
+      ctx.lineTo(px, py + PLAYER_H - 12);
+      ctx.lineTo(px + PLAYER_W / 2, py + 4);
+      ctx.lineTo(px + PLAYER_W, py + PLAYER_H - 12);
+      ctx.closePath();
+      ctx.fill();
+
+      // Engine glow
+      const glowAlpha = 0.3 + 0.3 * Math.sin(frame * 0.08);
+      ctx.fillStyle = colors.accent.replace("rgb(", "rgba(").replace(")", `, ${glowAlpha})`);
+      ctx.beginPath();
+      ctx.arc(px + PLAYER_W / 2, py + PLAYER_H + 3, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Bug formation (static decorative)
+      ctx.fillStyle = colors.accent.replace("rgb(", "rgba(").replace(")", ", 0.25)");
+      const rows = 2, cols = 6;
+      const startX = (W - cols * (BUG_W + 10)) / 2;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const bx = startX + c * (BUG_W + 10);
+          const by = 30 + r * (BUG_H + 8);
+          ctx.fillRect(bx, by, BUG_W, BUG_H);
+        }
+      }
+
+      // Blinking "PRESS START"
+      const blink = Math.floor(frame / 30) % 2 === 0;
+      if (blink) {
+        ctx.font = "bold 10px monospace";
+        ctx.fillStyle = colors.accent;
+        ctx.textAlign = "center";
+        ctx.fillText("PRESS START", W / 2, H / 2 + 10);
+        ctx.textAlign = "left";
+      }
+
+      frame++;
+      rafRef.current = requestAnimationFrame(drawIdle);
+    };
+
+    rafRef.current = requestAnimationFrame(drawIdle);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [mounted, gameState]);
+
   useEffect(() => {
     if (!mounted || gameState !== "playing") return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // Re-apply DPR scale after context re-acquire
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    ctx.scale(dpr, dpr);
 
     let lastTime = performance.now();
 
     const loop = () => {
+      if (pausedRef.current) {
+        rafRef.current = requestAnimationFrame(loop);
+        return;
+      }
+
       const now = performance.now();
       const dt = Math.min((now - lastTime) / 16, 3);
       lastTime = now;
@@ -199,9 +313,9 @@ export function Minigame() {
       state.drops = state.drops.filter((d) => {
         if (d.y + 14 > py && d.y < py + PLAYER_H && d.x + 56 > px && d.x < px + PLAYER_W) {
           setScore((s) => {
-          scoreLivesRef.current.score = s + 50;
-          return s + 50;
-        });
+            scoreLivesRef.current.score = s + 50;
+            return s + 50;
+          });
           return false;
         }
         return true;
@@ -213,7 +327,10 @@ export function Minigame() {
         setLives((l) => {
           const next = l - 1;
           scoreLivesRef.current.lives = next;
-          if (next <= 0) setGameState("gameover");
+          if (next <= 0) {
+            gameStateRef.current = "gameover";
+            setGameState("gameover");
+          }
           return next;
         });
         state.bugs.forEach((b) => (b.alive = false));
@@ -223,9 +340,9 @@ export function Minigame() {
       if (state.bugs.every((b) => !b.alive)) {
         spawnBugs();
         setScore((s) => {
-        scoreLivesRef.current.score = s + 200;
-        return s + 200;
-      });
+          scoreLivesRef.current.score = s + 200;
+          return s + 200;
+        });
       }
 
       // Draw
@@ -284,7 +401,7 @@ export function Minigame() {
       if (e.code === "ArrowLeft" || e.code === "KeyA") keysRef.current.left = true;
       if (e.code === "ArrowRight" || e.code === "KeyD") keysRef.current.right = true;
       if (e.code === "Space") {
-        e.preventDefault();
+        if (gameStateRef.current === "playing") e.preventDefault();
         keysRef.current.fire = true;
       }
     };
@@ -301,47 +418,90 @@ export function Minigame() {
     };
   }, []);
 
+  // Touch handlers for the canvas (swipe to move + tap to fire)
+  const touchStartXRef = useRef<number | null>(null);
+
+  function handleCanvasTouchStart(e: React.TouchEvent<HTMLCanvasElement>) {
+    if (gameStateRef.current !== "playing") return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    touchStartXRef.current = touch.clientX;
+    keysRef.current.fire = true;
+  }
+
+  function handleCanvasTouchMove(e: React.TouchEvent<HTMLCanvasElement>) {
+    if (gameStateRef.current !== "playing") return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    if (touchStartXRef.current === null) return;
+    const deltaX = touch.clientX - touchStartXRef.current;
+    keysRef.current.left = deltaX < -4;
+    keysRef.current.right = deltaX > 4;
+    touchStartXRef.current = touch.clientX;
+  }
+
+  function handleCanvasTouchEnd(e: React.TouchEvent<HTMLCanvasElement>) {
+    e.preventDefault();
+    keysRef.current.left = false;
+    keysRef.current.right = false;
+    keysRef.current.fire = false;
+    touchStartXRef.current = null;
+  }
+
   if (!mounted) return null;
 
   return (
     <section
       id="minigame"
-      className="relative py-20 xs:py-24 sm:py-28 md:py-40 px-4 xs:px-5 sm:px-6 md:px-12 lg:px-20 border-t border-fg-muted/10 bg-surface-elevated/30 pattern-grid-opacity overflow-hidden"
+      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-fg-muted/10 bg-surface-elevated/20 overflow-hidden"
     >
-      <div className="max-w-6xl 2xl:max-w-7xl mx-auto pl-0 md:pl-[clamp(3.5rem,14vw,9rem)] min-w-0">
+      <div className="max-w-5xl 2xl:max-w-6xl">
+        {/* Section marker */}
         <motion.div
-          className="relative rounded-2xl border border-fg-muted/10 bg-surface p-6 md:p-8 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.25)] min-w-0 overflow-hidden"
+          className="flex items-center gap-4 mb-10"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="font-sans text-[11px] tracking-[0.4em] text-accent uppercase">
+            {t("minigame.label")}
+          </span>
+          <span className="w-10 h-px bg-accent/35" />
+        </motion.div>
+
+        <motion.div
+          className="relative border border-fg-muted/10 bg-surface min-w-0 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="absolute top-0 left-0 right-0 h-px rounded-t-2xl bg-accent/40" aria-hidden />
-          <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-10 min-w-0">
-            <div className="shrink-0 lg:min-w-[200px]">
-              <div className="w-8 h-px bg-accent mb-4" aria-hidden />
-              <p className="font-mono text-xs text-accent uppercase tracking-wider mb-2">
-                {t("minigame.label")}
-              </p>
-              <h2 className="font-display text-2xl xs:text-3xl font-bold text-fg mb-3">
+          {/* Top accent rule */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-accent/40" aria-hidden />
+
+          <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 p-7 md:p-9 min-w-0">
+
+            {/* Left: info */}
+            <div className="shrink-0 lg:min-w-[220px]">
+              <h2 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-light text-fg mb-3 leading-tight">
                 {t("minigame.title")}
               </h2>
-              <p className="text-fg-muted text-sm max-w-md mb-4 leading-relaxed">
+              <p className="font-sans text-xs text-fg-muted max-w-xs mb-5 leading-[1.85]">
                 {t("minigame.subtitle")}
               </p>
-              <p className="text-fg-muted/90 text-xs font-mono border-l-2 border-accent/30 pl-3">
+              <p className="font-sans text-[11px] tracking-[0.15em] text-fg-muted/60 border-l border-accent/25 pl-3 hidden sm:block">
                 {t("minigame.controls")}
               </p>
             </div>
+
+            {/* Right: game */}
             <div className="min-w-0 flex-1 flex flex-col items-start w-full max-w-full">
               <div
-                className="relative rounded-xl overflow-hidden border border-fg-muted/15 bg-black w-full max-w-[640px] shadow-inner ring-1 ring-fg-muted/10"
-                style={{
-                  aspectRatio: `${W} / ${H}`,
-                  imageRendering: "pixelated",
-                }}
+                className="relative overflow-hidden border border-fg-muted/12 bg-black w-full max-w-[640px]"
+                style={{ aspectRatio: `${W} / ${H}`, imageRendering: "pixelated" }}
               >
                 <div
-                  className="absolute inset-0 pointer-events-none opacity-[0.06]"
+                  className="absolute inset-0 pointer-events-none opacity-[0.05]"
                   style={{
                     background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)",
                   }}
@@ -353,38 +513,86 @@ export function Minigame() {
                   height={H}
                   className="block w-full h-full object-contain"
                   style={{ imageRendering: "pixelated" }}
+                  onTouchStart={handleCanvasTouchStart}
+                  onTouchMove={handleCanvasTouchMove}
+                  onTouchEnd={handleCanvasTouchEnd}
                 />
               </div>
-              <div className="mt-4 w-full min-w-0 flex flex-wrap items-center gap-3 py-3 px-4 rounded-lg bg-surface-elevated/50 border border-fg-muted/10">
+
+              {/* Controls bar */}
+              <div className="mt-4 w-full max-w-[640px] flex flex-wrap items-center gap-3 py-3 px-4 border border-fg-muted/10 bg-surface-elevated/40">
                 {gameState === "idle" && (
                   <button
                     type="button"
                     onClick={startGame}
-                    className="text-sm font-mono px-5 py-2.5 rounded-lg bg-accent text-on-accent hover:bg-accent-dim transition-colors"
+                    className="font-sans text-[10px] tracking-[0.3em] uppercase px-5 py-2.5 bg-accent text-on-accent hover:bg-accent-dim transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    style={{ minHeight: TOUCH_BTN_MIN_SIZE }}
                   >
                     {t("minigame.start")}
                   </button>
                 )}
                 {gameState === "playing" && (
-                  <span className="text-sm font-mono text-fg-muted">
-                    {t("minigame.score")}: <span className="text-fg font-medium">{score}</span>
+                  <span className="font-sans text-xs text-fg-muted">
+                    {t("minigame.score")}:{" "}
+                    <span className="text-fg">{score}</span>
                   </span>
                 )}
                 {gameState === "gameover" && (
                   <>
-                    <span className="text-sm font-mono text-fg-muted">
-                      {t("minigame.gameover")} — {t("minigame.score")}: <span className="text-fg font-medium">{score}</span>
+                    <span className="font-sans text-xs text-fg-muted">
+                      {t("minigame.gameover")} — {t("minigame.score")}:{" "}
+                      <span className="text-fg">{score}</span>
                     </span>
                     <button
                       type="button"
                       onClick={startGame}
-                      className="text-sm font-mono px-4 py-2 rounded-lg border border-accent/50 text-accent hover:bg-accent/10 transition-colors"
+                      className="font-sans text-[10px] tracking-[0.3em] uppercase px-4 py-2 border border-accent/40 text-accent hover:bg-accent/8 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                      style={{ minHeight: TOUCH_BTN_MIN_SIZE }}
                     >
                       {t("minigame.retry")}
                     </button>
                   </>
                 )}
               </div>
+
+              {/* On-screen touch controls — visible on touch devices during gameplay */}
+              {gameState === "playing" && (
+                <div
+                  className="mt-3 w-full max-w-[640px] flex items-center justify-between gap-2 sm:hidden"
+                  aria-label="Touch controls"
+                >
+                  <button
+                    type="button"
+                    aria-label="Move left"
+                    className="flex-1 flex items-center justify-center bg-fg-muted/10 border border-fg-muted/15 text-fg font-sans text-lg select-none active:bg-accent/20 transition-colors"
+                    style={{ minHeight: TOUCH_BTN_MIN_SIZE }}
+                    onTouchStart={(e) => { e.preventDefault(); keysRef.current.left = true; }}
+                    onTouchEnd={(e) => { e.preventDefault(); keysRef.current.left = false; }}
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Fire"
+                    className="flex-1 flex items-center justify-center bg-accent/20 border border-accent/30 text-accent font-sans text-xs tracking-widest uppercase select-none active:bg-accent/40 transition-colors"
+                    style={{ minHeight: TOUCH_BTN_MIN_SIZE }}
+                    onTouchStart={(e) => { e.preventDefault(); keysRef.current.fire = true; }}
+                    onTouchEnd={(e) => { e.preventDefault(); keysRef.current.fire = false; }}
+                  >
+                    ▲
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Move right"
+                    className="flex-1 flex items-center justify-center bg-fg-muted/10 border border-fg-muted/15 text-fg font-sans text-lg select-none active:bg-accent/20 transition-colors"
+                    style={{ minHeight: TOUCH_BTN_MIN_SIZE }}
+                    onTouchStart={(e) => { e.preventDefault(); keysRef.current.right = true; }}
+                    onTouchEnd={(e) => { e.preventDefault(); keysRef.current.right = false; }}
+                  >
+                    →
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </motion.div>

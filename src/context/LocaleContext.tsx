@@ -29,6 +29,7 @@ const LocaleContext = createContext<{
   locale: Locale;
   setLocale: (l: Locale) => void;
   t: (key: string) => string;
+  isTransitioning: boolean;
 } | null>(null);
 
 const STORAGE_KEY = "portfolio-locale";
@@ -36,6 +37,8 @@ const STORAGE_KEY = "portfolio-locale";
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
   const [mounted, setMounted] = useState(false);
+  // Locale transition: fade out (150ms) → swap locale → fade in (200ms)
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as Locale | null;
@@ -44,8 +47,12 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setLocale = useCallback((l: Locale) => {
-    setLocaleState(l);
-    if (typeof window !== "undefined") localStorage.setItem(STORAGE_KEY, l);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setLocaleState(l);
+      if (typeof window !== "undefined") localStorage.setItem(STORAGE_KEY, l);
+      setTimeout(() => setIsTransitioning(false), 200);
+    }, 150);
   }, []);
 
   const t = useCallback(
@@ -58,14 +65,14 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   if (!mounted) {
     return (
-      <LocaleContext.Provider value={{ locale: "en", setLocale, t }}>
+      <LocaleContext.Provider value={{ locale: "en", setLocale, t, isTransitioning: false }}>
         {children}
       </LocaleContext.Provider>
     );
   }
 
   return (
-    <LocaleContext.Provider value={{ locale, setLocale, t }}>
+    <LocaleContext.Provider value={{ locale, setLocale, t, isTransitioning }}>
       {children}
     </LocaleContext.Provider>
   );

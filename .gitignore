@@ -26,8 +26,20 @@ pnpm-debug.log*
 
 # IDE / OS
 .DS_Store
+Thumbs.db
 *.pem
 .idea/
 .vscode/
 *.swp
 *.swo
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+
+# Claude Code artifacts
+CLAUDE.md
+prompts/
+.interface-design/
