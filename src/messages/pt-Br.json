@@ -1,4 +1,10 @@
 {
+  "a11y": {
+    "skipToContent": "Pular para o conteúdo",
+    "mainNav": "Navegação principal",
+    "menu": "Menu",
+    "selectLanguage": "Selecionar idioma"
+  },
   "nav": {
     "home": "Início",
     "about": "Sobre",
@@ -12,7 +18,10 @@
     "title": "Desenvolvedor Fullstack",
     "tagline": "Sistemas que escalam. Arquitetura limpa, código claro.",
     "getInTouch": "Fale comigo",
-    "scroll": "Role"
+    "scroll": "Rolagem",
+    "companies": "empresas",
+    "basedIn": "baseado em",
+    "english": "inglês"
   },
   "about": {
     "label": "Mensagem",
@@ -44,7 +53,18 @@
     "databases": "Bancos de Dados",
     "devops": "DevOps e Ferramentas",
     "messaging": "Mensageria",
-    "soft": "Soft Skills"
+    "soft": "Soft Skills",
+    "softItems": {
+      "effectiveCommunication": "Comunicação eficaz",
+      "teamwork": "Trabalho em equipe",
+      "technicalLeadership": "Liderança técnica",
+      "systemDesign": "Design de sistemas",
+      "mentorship": "Mentoria",
+      "strategicThinking": "Pensamento estratégico",
+      "problemSolving": "Resolução de problemas",
+      "ownership": "Ownership",
+      "continuousLearning": "Aprendizado contínuo"
+    }
   },
   "projects": {
     "title": "Projetos e Open Source",
@@ -68,12 +88,14 @@
     "formError": "Algo deu errado. Tente de novo ou me envie um email direto.",
     "sidebarTitle": "Contato direto",
     "sidebarDirect": "Prefere email ou telefone?",
-    "replyTime": "Geralmente respondo em até 24h."
+    "replyTime": "Geralmente respondo em até 24h.",
+    "formDisabled": "Configure NEXT_PUBLIC_FORMSPREE_FORM_ID no .env para habilitar o formulário de contato.",
+    "formDisabledCta": "Enviar email direto"
   },
   "minigame": {
     "label": "Minigame",
     "title": "Bug Invaders",
-    "subtitle": "Atire nos bugs que eu resolvo todo dia. Colete habilidades para bônus. Mais uma fase.",
+    "subtitle": "Atire nos bugs que resolvo todo dia. Colete habilidades para bônus. Mais uma fase.",
     "play": "Jogar",
     "start": "Iniciar",
     "score": "Pontos",
@@ -92,5 +114,66 @@
   "locale": {
     "en": "EN",
     "pt": "PT"
+  },
+  "profile": {
+    "periodPresent": "Atual",
+    "typeFullTime": "Tempo integral",
+    "typeFreelance": "Freelance",
+    "typePartTime": "Meio período",
+    "exp0": {
+      "role": "Engenheiro de Software",
+      "location": "São Paulo, Brasil · Remoto",
+      "h1": "Desenvolvi e mantive aplicações web escaláveis com Laravel, Vue.js e Node.js (NestJS), entregando soluções de alta performance com arquiteturas limpas e modulares pensadas para manutenção a longo prazo.",
+      "h2": "Projetei e integrei APIs RESTful seguras com tratamento e validação avançados de dados, aplicando princípios SOLID, Object Calisthenics e design patterns para garantir sistemas backend robustos e extensíveis.",
+      "h3": "Implementei autenticação JWT e gestão segura de sessões, reforçando a segurança da aplicação e a proteção de dados sensíveis entre serviços.",
+      "h4": "Utilizei TypeScript para construir módulos backend fortemente tipados, reduzindo erros em tempo de execução e melhorando confiabilidade, produtividade e consistência do código.",
+      "h5": "Melhorei a qualidade do código por meio de code reviews entre pares e refatoração sistemática, aumentando performance, legibilidade e manutenibilidade a longo prazo de componentes críticos.",
+      "h6": "Estabeleci práticas de testes automatizados e CI/CD, implementando testes unitários e end-to-end com Jest e Detox e integrando pipelines de deploy para acelerar a entrega e garantir releases estáveis para aplicações web e mobile."
+    },
+    "exp1": {
+      "role": "Desenvolvedor Fullstack (Sênior)",
+      "location": "Remoto",
+      "h1": "Implementei integração escalável de pagamentos com Stripe, permitindo processamento confiável de transações e aumento da capacidade e da eficiência operacional da aplicação.",
+      "h2": "Projetei e entreguei um sistema de autenticação seguro com login por email e provedores externos (Microsoft e Google), reforçando a segurança das contas e a flexibilidade de onboarding.",
+      "h3": "Construí uma camada robusta de identidade e acesso com PostgreSQL, incorporando hashing seguro de senhas, autenticação em dois fatores (2FA) e recuperação de senha para reforçar segurança e conformidade da plataforma.",
+      "h4": "Desenvolvi integração OAuth completa para serviços externos, permitindo autenticação third-party fluida e ampliando a conectividade do ecossistema da plataforma.",
+      "h5": "Otimizei a containerização do frontend com multi-stage builds avançados no Docker, reduzindo o tamanho da imagem de 1,9GB para ~210MB e acelerando tempos de build, deploy e eficiência da infraestrutura."
+    },
+    "exp2": {
+      "role": "Desenvolvedor Fullstack (Pleno → Sênior)",
+      "location": "Londrina, Paraná, Brasil · Remoto",
+      "h1": "Arquitetei e lancei a base técnica inicial de uma plataforma de rede social, desenhando uma arquitetura full-stack escalável para suportar crescimento e alta interação de usuários.",
+      "h2": "Desenvolvi uma landing page altamente responsiva com animações fluidas, otimizando performance entre dispositivos e melhorando a experiência do usuário e o engajamento no primeiro contato.",
+      "h3": "Implementei um algoritmo de recomendação baseado em interações que analisava atividade do usuário e posts curtidos para destacar conteúdo relevante, aumentando engajamento e descoberta de conteúdo.",
+      "h4": "Adotei TypeScript em toda a base de código e apliquei princípios SOLID com injeção de dependência, criando uma arquitetura backend modular e sustentável que acelerou o desenvolvimento de features e reduziu débito técnico.",
+      "h5": "Utilizei Next.js na camada de frontend, melhorando performance, SEO e comunicação segura entre frontend e backend.",
+      "h6": "Exerci liderança técnica em diversos projetos nacionais e internacionais, contribuindo para decisões de arquitetura, mentorando desenvolvedores e coordenando implementações para entregar soluções escaláveis alinhadas aos objetivos de negócio."
+    },
+    "exp3": {
+      "role": "Desenvolvedor Fullstack (Trainee → Júnior)",
+      "location": "Paranavaí, Paraná, Brasil · Remoto",
+      "h1": "Liderei a migração de 15 meses de um dashboard legado (Nepal) para React, revitalizando uma base abandonada ao refatorar a arquitetura frontend e estabelecer uma estrutura escalável e sustentável para desenvolvimento a longo prazo.",
+      "h2": "Introduzi TypeScript na base de código para melhorar segurança de tipos e confiabilidade, reduzindo erros em tempo de execução e bugs em produção e aumentando produtividade e manutenibilidade.",
+      "h3": "Modernizei a camada de gerenciamento de estado ao redesenhar actions do Redux e atualizar bibliotecas obsoletas, permitindo adoção de recursos modernos do React e melhorando performance e estabilidade da aplicação.",
+      "h4": "Otimizei a containerização ao redesenhar a imagem Docker, reduzindo o tamanho em ~60% e melhorando significativamente a eficiência de build e a velocidade de deploy.",
+      "h5": "Implementei pipelines de deploy automatizados com Kubernetes, aumentando a confiabilidade dos ambientes e acelerando o ciclo de releases para entrega mais rápida e consistente."
+    },
+    "edu0": {
+      "degree": "Bacharelado em Engenharia",
+      "field": "Engenharia de Software"
+    },
+    "cert0": {
+      "name": "Certificado de Inglês (C1)",
+      "issuer": "Babbel"
+    },
+    "languages": {
+      "portuguese": "Português",
+      "native": "Nativo",
+      "english": "Inglês",
+      "advancedC1": "Avançado (C1)"
+    },
+    "project0": {
+      "description": "API de autenticação com implementação AES focada em performance e segurança."
+    }
   }
 }

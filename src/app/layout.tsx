@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Syne, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MouseGlow } from "@/components/MouseGlow";
-import { FloatingOrbs } from "@/components/FloatingOrbs";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { LangSync } from "@/components/LangSync";
+import { SkipLink } from "@/components/SkipLink";
+import { LocaleTransition } from "@/components/LocaleTransition";
 
-const syne = Syne({
+const cormorant = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: ["300"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -20,12 +25,25 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_PATH
+      ? `https://matheusPavaneli.github.io${process.env.NEXT_PUBLIC_BASE_PATH}`
+      : "http://localhost:3000"
+  ),
   title: "Matheus Pavaneli — Fullstack Developer",
   description:
     "Software Engineer. Fullstack developer specializing in React, Next.js, Node.js, and scalable architecture.",
   openGraph: {
     title: "Matheus Pavaneli — Fullstack Developer",
     description: "Software Engineer. Building scalable systems and clean code.",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Matheus Pavaneli — Fullstack Developer",
+    description: "Software Engineer. Building scalable systems and clean code.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -42,14 +60,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans min-h-screen">
         <Providers>
+          <LangSync />
+          <SkipLink />
+          <ScrollProgress />
           <MouseGlow />
-          <FloatingOrbs />
           <div className="relative z-10">
             <Header />
-            <main>{children}</main>
+            <main id="main-content">
+              <LocaleTransition>{children}</LocaleTransition>
+            </main>
             <Footer />
           </div>
         </Providers>

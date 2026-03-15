@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useLocale } from "@/context/LocaleContext";
-import { SectionLabel } from "@/components/SectionLabel";
 
 function RoleWithHighlight({ role }: { role: string }) {
   if (!role.includes("→")) return <>{role}</>;
@@ -11,7 +10,7 @@ function RoleWithHighlight({ role }: { role: string }) {
   return (
     <>
       {before}
-      <span className="text-accent font-semibold px-0.5">→</span>
+      <span className="text-accent">→</span>
       {after}
     </>
   );
@@ -20,87 +19,102 @@ function RoleWithHighlight({ role }: { role: string }) {
 export function Experience() {
   const { t } = useLocale();
 
-  const PromotedBadge = () => (
-    <span className="inline-flex items-center gap-1.5 text-xs text-accent font-mono mt-1">
-      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" aria-hidden />
-      {t("experience.promoted")}
-    </span>
-  );
-
   return (
     <section
       id="experience"
-      className="relative py-20 xs:py-24 sm:py-28 md:py-40 px-4 xs:px-5 sm:px-6 md:px-12 lg:px-20 bg-surface-elevated/40 border-t border-fg-muted/10 pattern-grid-opacity"
+      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-fg-muted/10"
     >
-      <div className="max-w-6xl 2xl:max-w-7xl mx-auto flex items-baseline gap-0">
-        <div className="w-[clamp(3.5rem,14vw,9rem)] shrink-0">
-          <SectionLabel number="02" />
-        </div>
-        <div className="min-w-0 flex-1">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <h2 className="font-display text-2xl xs:text-3xl md:text-4xl font-bold text-fg mb-2">
-              {t("experience.titleLine1")}{" "}
-              <span className="text-accent">{t("experience.titleLine2")}</span>
-            </h2>
-            <p className="text-fg-muted font-mono text-sm">{t("experience.subtitle")}</p>
-          </motion.div>
+      <div className="max-w-5xl 2xl:max-w-6xl">
 
-          <div className="relative">
-            {/* Thick accent line - full height of timeline */}
-            <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent/30 rounded-full" />
-            <ul className="space-y-16">
-              {profile.experiences.map((exp, i) => (
-                <motion.li
-                  key={exp.company}
-                  initial={{ opacity: 0, x: -24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="relative pl-10 md:pl-12 group"
-                >
-                  <span
-                    className={`absolute left-0 top-1 w-3 h-3 rounded-full bg-accent border-2 border-surface -translate-x-[5px] ${
-                      exp.role.includes("→") ? "ring-4 ring-accent/25" : ""
-                    }`}
-                    aria-hidden
-                  />
-                  <div className="flex flex-wrap items-baseline gap-2 mb-1">
-                    <span className="font-display text-xl md:text-2xl font-semibold text-fg group-hover:text-accent transition-colors">
-                      {exp.company}
+        {/* Section marker */}
+        <motion.div
+          className="flex items-center gap-4 mb-10"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="font-sans text-[9px] tracking-[0.4em] text-accent uppercase">
+            {t("experience.title")}
+          </span>
+          <span className="w-10 h-px bg-accent/35" />
+          <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">02</span>
+        </motion.div>
+
+        <motion.div
+          className="mb-14 sm:mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-display text-[clamp(2rem,5.5vw,4.5rem)] font-light text-fg leading-[1.05]">
+            {t("experience.titleLine1")}{" "}
+            <em className="not-italic text-accent">{t("experience.titleLine2")}</em>
+          </h2>
+          <p className="mt-3 font-sans text-[9px] tracking-[0.3em] text-fg-muted/60 uppercase">
+            {t("experience.subtitle")}
+          </p>
+        </motion.div>
+
+        {/* Ruled rows */}
+        <ul>
+          {profile.experiences.map((exp, i) => (
+            <motion.li
+              key={exp.company}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
+              className="ruled-row py-9 sm:py-11 group"
+            >
+              {/* Company + period */}
+              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                <span className="font-display text-[clamp(1.5rem,3.5vw,2.6rem)] font-light text-fg group-hover:text-accent transition-colors duration-300 tracking-tight">
+                  {exp.company}
+                </span>
+                <div className="flex items-center gap-3 shrink-0">
+                  {"typeKey" in exp && exp.typeKey && (
+                    <span className="font-sans text-[8px] tracking-[0.35em] uppercase text-accent border border-accent/25 px-2 py-0.5">
+                      {t(exp.typeKey)}
                     </span>
-                    {exp.type && (
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-accent/20 text-accent font-mono">
-                        {exp.type}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-accent font-mono text-sm mb-1">
-                    <RoleWithHighlight role={exp.role} />
-                  </p>
-                  {exp.role.includes("→") && <PromotedBadge />}
-                  <p className="text-fg-muted text-sm mt-1">{exp.period}</p>
-                  {"location" in exp && exp.location && (
-                    <p className="text-fg-muted/80 text-xs mt-0.5 mb-4">{exp.location}</p>
                   )}
-                  {(!("location" in exp) || !exp.location) && <div className="mb-4" />}
-                  <ul className="space-y-2 text-fg-muted text-sm md:text-base leading-relaxed">
-                    {exp.highlights.map((h, j) => (
-                      <li key={j} className="flex gap-2">
-                        <span className="text-accent mt-1.5 shrink-0">—</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-        </div>
+                  <span className="font-sans text-[10px] text-fg-muted/60 tabular-nums">
+                    {exp.period.replace("Present", t("profile.periodPresent"))}
+                  </span>
+                </div>
+              </div>
+
+              {/* Role + location */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-5">
+                <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-fg-muted">
+                  <RoleWithHighlight role={t(exp.roleKey)} />
+                </p>
+                {t(exp.roleKey).includes("→") && (
+                  <span className="font-sans text-[8px] tracking-[0.25em] uppercase text-accent/70">
+                    ↑ {t("experience.promoted")}
+                  </span>
+                )}
+                {"locationKey" in exp && exp.locationKey && (
+                  <span className="font-sans text-[9px] tracking-[0.15em] uppercase text-fg-muted/40">
+                    {t(exp.locationKey)}
+                  </span>
+                )}
+              </div>
+
+              {/* Highlights */}
+              <ul className="space-y-2.5">
+                {exp.highlightKeys.map((key) => (
+                  <li key={key} className="flex gap-3 items-start">
+                    <span className="text-accent/50 mt-[0.4rem] shrink-0 text-[9px]">◆</span>
+                    <span className="font-sans text-xs sm:text-sm text-fg-muted leading-[1.85]">
+                      {t(key)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.li>
+          ))}
+        </ul>
       </div>
     </section>
   );
