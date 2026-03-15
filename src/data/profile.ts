@@ -1,16 +1,16 @@
 export const profile = {
   name: "Matheus Pavaneli",
   title: "Fullstack Developer",
-  tagline: "Building systems that scale. Clean architecture, clear code.",
-  email: "matheus.pavaneli@gmail.com",
+  tagline: "Architecture that holds. Code worth inheriting.",
+  email: "matheuspavaneli@proton.me",
   phone: "+55 (44) 9775-2680",
   github: "https://github.com/matheusPavaneli",
   linkedin: "https://www.linkedin.com/in/matheuspavaneli/",
   location: "Maringá, Brazil",
   headline:
-    "I care about **craft** and **impact**—what we build and how it holds up. Quality code, clear architecture, systems that **scale**.",
+    "I care about **craft** and **consequence**—clear architecture, honest tradeoffs, and software that holds up.",
   about:
-    "I focus on clean architecture, SOLID principles, and maintainable software. TypeScript, React, Node.js—and systems that last. I like to ship, iterate, and leave codebases better than I found them.",
+    "Architecture-first, delivery-focused. I work with clear scope, honest tradeoffs, and a bias toward shipping. I leave codebases better than I found them.",
   experiences: [
     {
       company: "Bernoulli Educação",
@@ -130,5 +130,29 @@ export const profile = {
   languages: [
     { nameKey: "profile.languages.portuguese", levelKey: "profile.languages.native" },
     { nameKey: "profile.languages.english", levelKey: "profile.languages.advancedC1" },
+  ],
+  aboutTraitKeys: [
+    "profile.about.t0",
+    "profile.about.t1",
+    "profile.about.t2",
+    "profile.about.t3",
+  ],
+  freelance: {
+    available: true,
+    highlightKeys: [
+      "profile.freelance.h1",
+      "profile.freelance.h2",
+      "profile.freelance.h3",
+      "profile.freelance.h4",
+      "profile.freelance.h5",
+    ],
+  },
+  principles: [
+    { titleKey: "profile.principles.p0.title", descKey: "profile.principles.p0.desc" },
+    { titleKey: "profile.principles.p1.title", descKey: "profile.principles.p1.desc" },
+    { titleKey: "profile.principles.p2.title", descKey: "profile.principles.p2.desc" },
+    { titleKey: "profile.principles.p3.title", descKey: "profile.principles.p3.desc" },
+    { titleKey: "profile.principles.p4.title", descKey: "profile.principles.p4.desc" },
+    { titleKey: "profile.principles.p5.title", descKey: "profile.principles.p5.desc" },
   ],
 } as const;

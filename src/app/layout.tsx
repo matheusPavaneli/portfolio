@@ -32,17 +32,17 @@ export const metadata: Metadata = {
   ),
   title: "Matheus Pavaneli — Fullstack Developer",
   description:
-    "Software Engineer. Fullstack developer specializing in React, Next.js, Node.js, and scalable architecture.",
+    "Software Engineer. Clean architecture, clear scope, systems built to last.",
   openGraph: {
     title: "Matheus Pavaneli — Fullstack Developer",
-    description: "Software Engineer. Building scalable systems and clean code.",
+    description: "Software Engineer. Clean architecture, honest tradeoffs, durable systems.",
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Matheus Pavaneli — Fullstack Developer",
-    description: "Software Engineer. Building scalable systems and clean code.",
+    description: "Software Engineer. Clean architecture, honest tradeoffs, durable systems.",
     images: ["/og-image.png"],
   },
 };
