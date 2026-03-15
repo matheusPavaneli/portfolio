@@ -1,4 +1,10 @@
 {
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "mainNav": "Main navigation",
+    "menu": "Menu",
+    "selectLanguage": "Select language"
+  },
   "nav": {
     "home": "Home",
     "about": "About",
@@ -12,7 +18,10 @@
     "title": "Fullstack Developer",
     "tagline": "Building systems that scale. Clean architecture, clear code.",
     "getInTouch": "Get in touch",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "companies": "companies",
+    "basedIn": "based in",
+    "english": "English"
   },
   "about": {
     "label": "Message",
@@ -44,7 +53,18 @@
     "databases": "Databases",
     "devops": "DevOps & Tools",
     "messaging": "Messaging",
-    "soft": "Soft Skills"
+    "soft": "Soft Skills",
+    "softItems": {
+      "effectiveCommunication": "Effective communication",
+      "teamwork": "Teamwork",
+      "technicalLeadership": "Technical leadership",
+      "systemDesign": "System design",
+      "mentorship": "Mentorship",
+      "strategicThinking": "Strategic thinking",
+      "problemSolving": "Problem solving",
+      "ownership": "Ownership",
+      "continuousLearning": "Continuous learning"
+    }
   },
   "projects": {
     "title": "Projects & Open Source",
@@ -68,7 +88,9 @@
     "formError": "Something went wrong. Try again or email me directly.",
     "sidebarTitle": "Direct contact",
     "sidebarDirect": "Prefer email or phone?",
-    "replyTime": "I usually reply within 24 hours."
+    "replyTime": "I usually reply within 24 hours.",
+    "formDisabled": "Set NEXT_PUBLIC_FORMSPREE_FORM_ID in your .env to enable the contact form.",
+    "formDisabledCta": "Send email directly"
   },
   "minigame": {
     "label": "Minigame",
@@ -92,5 +114,66 @@
   "locale": {
     "en": "EN",
     "pt": "PT"
+  },
+  "profile": {
+    "periodPresent": "Present",
+    "typeFullTime": "Full-time",
+    "typeFreelance": "Freelance",
+    "typePartTime": "Part-time",
+    "exp0": {
+      "role": "Software Engineer",
+      "location": "São Paulo, Brazil · Remote",
+      "h1": "Developed and maintained scalable web applications using Laravel, Vue.js, and Node.js (NestJS), delivering high-performance solutions with clean, modular architectures designed for long-term maintainability.",
+      "h2": "Designed and integrated secure RESTful APIs with advanced data handling and validation, applying SOLID principles, Object Calisthenics, and design patterns to ensure robust and extensible backend systems.",
+      "h3": "Implemented JWT-based authentication and secure session management, strengthening application security and protecting sensitive user data across services.",
+      "h4": "Leveraged TypeScript to build strongly typed backend modules, reducing runtime errors and improving system reliability, developer productivity, and code consistency.",
+      "h5": "Improved code quality through peer code reviews and systematic refactoring, enhancing performance, readability, and long-term maintainability of critical components.",
+      "h6": "Established automated testing and CI/CD practices, implementing unit and end-to-end tests with Jest and Detox and integrating deployment pipelines to accelerate delivery and ensure stable releases for web and mobile applications."
+    },
+    "exp1": {
+      "role": "Fullstack Developer (Senior)",
+      "location": "Remote",
+      "h1": "Implemented a scalable Stripe payment integration, enabling reliable transaction processing and increasing the application's payment throughput and operational efficiency.",
+      "h2": "Designed and delivered a secure authentication system supporting email login and third-party providers (Microsoft and Google), strengthening account security and improving user onboarding flexibility.",
+      "h3": "Built a robust identity and access layer using PostgreSQL, incorporating secure password hashing, two-factor authentication (2FA), and password recovery mechanisms to enhance platform security and compliance.",
+      "h4": "Developed full OAuth integration for external services, enabling seamless third-party authentication and expanding the platform's ecosystem connectivity.",
+      "h5": "Optimized frontend containerization using advanced multi-stage Docker builds, reducing image size from 1.9GB to ~210MB, significantly accelerating build times, deployment speed, and infrastructure efficiency."
+    },
+    "exp2": {
+      "role": "Fullstack Developer (Mid-level → Senior)",
+      "location": "Londrina, Paraná, Brazil · Remote",
+      "h1": "Architected and launched the initial technical foundation of a social networking platform, designing a scalable full-stack architecture to support future growth and high user interaction.",
+      "h2": "Developed a highly responsive landing page with fluid animations, optimizing cross-device performance and significantly improving user experience and first-touch engagement.",
+      "h3": "Implemented an interaction-based recommendation algorithm that analyzed user activity and liked posts to surface relevant content, increasing user engagement and content discovery.",
+      "h4": "Enforced TypeScript across the entire codebase and applied SOLID principles with dependency injection, creating a modular, maintainable backend architecture that accelerated feature development and reduced technical debt.",
+      "h5": "Leveraged Next.js for the frontend layer, improving performance, SEO readiness, and secure communication between frontend and backend services.",
+      "h6": "Provided technical leadership across multiple national and international projects, contributing to architecture decisions, mentoring developers, and coordinating implementations to deliver scalable solutions aligned with business objectives."
+    },
+    "exp3": {
+      "role": "Fullstack Developer (Trainee → Junior)",
+      "location": "Paranavaí, Paraná, Brazil · Remote",
+      "h1": "Led the 15-month migration of a legacy dashboard (Nepal) to React, revitalizing an abandoned codebase by refactoring the frontend architecture and establishing a scalable, maintainable structure for long-term development.",
+      "h2": "Introduced TypeScript across the codebase to improve type safety and reliability, reducing runtime errors and production bugs while improving developer productivity and maintainability.",
+      "h3": "Modernized the state management layer by redesigning Redux actions and updating deprecated libraries, enabling adoption of modern React features and improving overall application performance and stability.",
+      "h4": "Optimized containerization by redesigning the Docker image, reducing image size by ~60% and significantly improving build efficiency and deployment speed.",
+      "h5": "Implemented automated deployment pipelines using Kubernetes, increasing environment reliability and accelerating the release cycle for faster and more consistent delivery."
+    },
+    "edu0": {
+      "degree": "Bachelor's degree in Engineering",
+      "field": "Computer Software Engineering"
+    },
+    "cert0": {
+      "name": "English Certificate (C1)",
+      "issuer": "Babbel"
+    },
+    "languages": {
+      "portuguese": "Portuguese",
+      "native": "Native",
+      "english": "English",
+      "advancedC1": "Advanced (C1)"
+    },
+    "project0": {
+      "description": "Authentication API with AES implementation focused on performance and security."
+    }
   }
 }

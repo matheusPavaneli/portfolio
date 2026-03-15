@@ -2,102 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light mode: fundo claro, superfícies elevadas mais visíveis, texto escuro */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   THE CRAFTSMAN'S CODE — Design System
+   RGB channels for Tailwind opacity modifiers
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Light mode — all values as space-separated RGB channels */
 :root {
-  --color-accent: #059669;
-  --color-accent-hover: #047857;
-  --surface: #fafaf9;
-  --surface-elevated: #e7e5e4;
-  --fg: #1c1917;
-  --fg-muted: #57534e;
-  --on-accent: #ffffff;
+  --color-accent: 184 137 42;
+  --color-accent-hover: 212 165 64;
+  --surface: 245 241 234;
+  --surface-elevated: 237 233 225;
+  --fg: 24 22 14;
+  --fg-muted: 122 112 96;
+  --on-accent: 245 241 234;
+  --color-error: 220 38 38;
+  --color-success: 22 163 74;
+  --color-warning: 202 138 4;
 }
 
 /* Dark mode */
 .dark {
-  --color-accent: #00ff88;
-  --color-accent-hover: #00cc6a;
-  --surface: #0a0a0a;
-  --surface-elevated: #141414;
-  --fg: #fafaf9;
-  --fg-muted: #a8a29e;
-  --on-accent: #0a0a0a;
+  --color-accent: 212 168 83;
+  --color-accent-hover: 226 187 106;
+  --surface: 11 10 9;
+  --surface-elevated: 20 18 16;
+  --fg: 240 235 226;
+  --fg-muted: 138 127 110;
+  --on-accent: 11 10 9;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Theme transition: smooth dark↔light via CSS variable recomputation on body */
+  transition:
+    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 body {
-  background-color: var(--surface);
-  color: var(--fg);
+  background-color: rgb(var(--surface));
+  color: rgb(var(--fg));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: "rlig" 1, "calt" 1;
+  font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
   overflow-x: hidden;
   min-width: 280px;
+  transition:
+    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Safe area for notched devices (iPhone X+, etc.) */
-.safe-top {
-  padding-top: env(safe-area-inset-top, 0);
+/* ━━━ Focus visible — WCAG 2.1 SC 2.4.7 ━━━ */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-accent));
+  outline-offset: 2px;
 }
-.safe-bottom {
-  padding-bottom: env(safe-area-inset-bottom, 0);
+:focus:not(:focus-visible) {
+  outline: none;
 }
-.safe-left {
-  padding-left: env(safe-area-inset-left, 0);
-}
-.safe-right {
-  padding-right: env(safe-area-inset-right, 0);
-}
+
+/* ━━━ Safe areas ━━━ */
+.safe-top    { padding-top:    env(safe-area-inset-top,    0); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
+.safe-left   { padding-left:   env(safe-area-inset-left,   0); }
+.safe-right  { padding-right:  env(safe-area-inset-right,  0); }
 .safe-x {
-  padding-left: max(1rem, env(safe-area-inset-left, 0));
+  padding-left:  max(1rem, env(safe-area-inset-left,  0));
   padding-right: max(1rem, env(safe-area-inset-right, 0));
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--surface);
-}
-
+/* ━━━ Scrollbar ━━━ */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: rgb(var(--surface)); }
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--fg-muted) 30%, transparent);
-  border-radius: 9999px;
+  background: color-mix(in srgb, rgb(var(--color-accent)) 40%, transparent);
+  border-radius: 0;
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in srgb, var(--fg-muted) 50%, transparent);
-}
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-accent)); }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-accent) 40%, transparent);
-  color: var(--fg);
+  background: color-mix(in srgb, rgb(var(--color-accent)) 28%, transparent);
+  color: rgb(var(--fg));
 }
 
-/* Editorial / detail pattern - use with bg-surface or bg-surface-elevated */
-.pattern-grid {
+/* ━━━ Background patterns ━━━ */
+.pattern-dot {
+  background-image: radial-gradient(
+    color-mix(in srgb, rgb(var(--fg-muted)) 18%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+.pattern-cross {
   background-image:
-    linear-gradient(var(--fg-muted) 0.06px, transparent 0.06px),
-    linear-gradient(90deg, var(--fg-muted) 0.06px, transparent 0.06px);
-  background-size: 48px 48px;
-  background-color: var(--surface);
-}
-.pattern-grid-opacity {
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--fg-muted) 8%, transparent) 0.06px, transparent 0.06px),
-    linear-gradient(90deg, color-mix(in srgb, var(--fg-muted) 8%, transparent) 0.06px, transparent 0.06px);
-  background-size: 32px 32px;
+    linear-gradient(color-mix(in srgb, rgb(var(--fg-muted)) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, rgb(var(--fg-muted)) 7%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
 
-/* ---- Efeitos reativos raros ---- */
+/* ━━━ Section rule lines ━━━ */
+.ruled-row {
+  border-top: 1px solid color-mix(in srgb, rgb(var(--fg-muted)) 14%, transparent);
+}
+.ruled-row:last-of-type {
+  border-bottom: 1px solid color-mix(in srgb, rgb(var(--fg-muted)) 14%, transparent);
+}
 
-/* Shine: faixa de luz que varre no hover (botões) */
+/* ━━━ Shine sweep on buttons ━━━ */
 .hover-shine {
   position: relative;
   overflow: hidden;
@@ -110,14 +124,14 @@ body {
     105deg,
     transparent 0%,
     transparent 40%,
-    rgba(255, 255, 255, 0.12) 45%,
-    rgba(255, 255, 255, 0.18) 50%,
-    rgba(255, 255, 255, 0.12) 55%,
+    rgba(255,255,255,0.10) 45%,
+    rgba(255,255,255,0.15) 50%,
+    rgba(255,255,255,0.10) 55%,
     transparent 60%,
     transparent 100%
   );
   transform: translateX(-100%) skewX(-12deg);
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
 }
 @media (hover: hover) {
@@ -126,7 +140,7 @@ body {
   }
 }
 
-/* Bordas que “brilham” no hover (cards) */
+/* ━━━ Card shine border (conic) ━━━ */
 .shine-border-gradient {
   position: absolute;
   inset: 0;
@@ -135,7 +149,7 @@ body {
   background: conic-gradient(
     from 0deg,
     transparent 0deg 90deg,
-    var(--color-accent) 180deg,
+    rgb(var(--color-accent)) 180deg,
     transparent 270deg 360deg
   );
   opacity: 0;
@@ -148,17 +162,15 @@ body {
 .shine-border-mask {
   position: absolute;
   inset: 1px;
-  border-radius: 14px;
-  background: var(--surface);
+  border-radius: inherit;
+  background: rgb(var(--surface));
   pointer-events: none;
 }
 @keyframes shine-rotate {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
-/* Nav: underline que cresce do centro (raro) */
+/* ━━━ Nav underline grow from center ━━━ */
 .nav-link-underline {
   position: relative;
 }
@@ -166,11 +178,13 @@ body {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -4px;
+  bottom: -3px;
   width: 0;
   height: 1px;
-  background: var(--color-accent);
-  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1), left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  background: rgb(var(--color-accent));
+  transition:
+    width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    left  0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 @media (hover: hover) {
   .nav-link-underline:hover::after {
@@ -179,12 +193,33 @@ body {
   }
 }
 
-/* Logo: leve letter-spacing no hover */
+/* ━━━ Logo letter-spacing on hover ━━━ */
 .logo-letters {
   transition: letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 @media (hover: hover) {
   .logo-letters:hover {
-    letter-spacing: 0.2em;
+    letter-spacing: 0.28em;
+  }
+}
+
+/* ━━━ Hero name reveal (CSS animation for LCP) ━━━ */
+@keyframes hero-reveal {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+
+/* ━━━ Cormorant Garamond — optical sizing ━━━ */
+.font-display {
+  font-optical-sizing: auto;
+}
+
+/* ━━━ Reduced motion ━━━ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

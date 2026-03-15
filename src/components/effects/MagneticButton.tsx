@@ -7,13 +7,13 @@ const STIFFNESS = 200;
 const DAMPING = 20;
 const MAX_OFFSET = 12;
 
-type Props = {
-  children: React.ReactNode;
-  className?: string;
-  as?: "a" | "button";
-  href?: string;
-  [key: string]: unknown;
-};
+type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    children: React.ReactNode;
+    className?: string;
+    as?: "a" | "button";
+    href?: string;
+  };
 
 /**
  * Botão/link que segue suavemente o cursor (efeito magnético) — raro e refinado.
@@ -67,7 +67,10 @@ export function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <Component className={`cursor-pointer ${className}`} {...rest}>
+      <Component
+        className={`cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${className}`}
+        {...rest}
+      >
         {children}
       </Component>
     </motion.div>

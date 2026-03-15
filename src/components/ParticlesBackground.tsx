@@ -20,15 +20,18 @@ export function ParticlesBackground() {
 
   useEffect(() => {
     let cancelled = false;
-    import("@tsparticles/react").then(({ initParticlesEngine }) => {
-      import("@tsparticles/slim").then(({ loadSlim }) => {
-        initParticlesEngine(async (engine) => {
+    (async () => {
+      try {
+        const { initParticlesEngine } = await import("@tsparticles/react");
+        const { loadSlim } = await import("@tsparticles/slim");
+        await initParticlesEngine(async (engine) => {
           await loadSlim(engine);
-        }).then(() => {
-          if (!cancelled) setReady(true);
         });
-      });
-    });
+        if (!cancelled) setReady(true);
+      } catch {
+        // particles are decorative — silently skip on load failure
+      }
+    })();
     return () => {
       cancelled = true;
     };

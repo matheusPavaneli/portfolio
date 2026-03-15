@@ -2,16 +2,15 @@
 
 import { motion } from "framer-motion";
 import { useLocale } from "@/context/LocaleContext";
-import { SectionLabel } from "@/components/SectionLabel";
 
 function HeadlineWithAccent({ text }: { text: string }) {
   return (
     <>
       {text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
         part.startsWith("**") && part.endsWith("**") ? (
-          <span key={i} className="text-accent">
+          <em key={i} className="not-italic text-accent">
             {part.slice(2, -2)}
-          </span>
+          </em>
         ) : (
           part
         )
@@ -26,30 +25,49 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative py-20 xs:py-24 sm:py-28 md:py-40 px-4 xs:px-5 sm:px-6 md:px-12 lg:px-20 border-t border-fg-muted/10 overflow-hidden"
+      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-fg-muted/10 overflow-hidden"
     >
-      <div className="max-w-6xl 2xl:max-w-7xl mx-auto flex items-baseline gap-0">
-        <div className="w-[clamp(3.5rem,14vw,9rem)] shrink-0 pt-7">
-          <SectionLabel number="01" />
-        </div>
-        <div className="min-w-0 flex-1">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="font-mono text-accent text-xs tracking-[0.2em] uppercase mb-2">
-              {t("about.label")}
-            </p>
-            <h2 className="font-display text-2xl xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-fg mb-8 leading-[1.1] tracking-tight">
-              <HeadlineWithAccent text={t("about.headline")} />
-            </h2>
-            <p className="text-base xs:text-lg md:text-xl text-fg-muted leading-relaxed max-w-2xl">
-              {t("about.body")}
-            </p>
-          </motion.div>
-        </div>
+      <div className="max-w-5xl 2xl:max-w-6xl">
+
+        {/* Section marker */}
+        <motion.div
+          className="flex items-center gap-4 mb-14 sm:mb-20"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="font-sans text-[9px] tracking-[0.4em] text-accent uppercase">
+            {t("about.label")}
+          </span>
+          <span className="w-10 h-px bg-accent/35" />
+          <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">01</span>
+        </motion.div>
+
+        {/* Pull-quote headline */}
+        <motion.h2
+          className="font-display text-[clamp(2.1rem,5.8vw,4.8rem)] font-light text-fg leading-[1.08] tracking-tight mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <HeadlineWithAccent text={t("about.headline")} />
+        </motion.h2>
+
+        {/* Body text with left rule */}
+        <motion.div
+          className="flex gap-7 sm:gap-10 items-start"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className="hidden sm:block w-px self-stretch bg-accent/22 shrink-0" />
+          <p className="font-sans text-xs sm:text-sm text-fg-muted leading-[2] max-w-2xl">
+            {t("about.body")}
+          </p>
+        </motion.div>
       </div>
     </section>
   );

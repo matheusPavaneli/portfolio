@@ -3,15 +3,14 @@
 import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useLocale } from "@/context/LocaleContext";
-import { SectionLabel } from "@/components/SectionLabel";
 
-const categoryKeys: { key: keyof typeof profile.skills; msgKey: string }[] = [
-  { key: "frontend", msgKey: "skills.frontend" },
-  { key: "backend", msgKey: "skills.backend" },
+const categoryKeys: { key: Exclude<keyof typeof profile.skills, "softKeys"> | "soft"; msgKey: string }[] = [
+  { key: "frontend",  msgKey: "skills.frontend"  },
+  { key: "backend",   msgKey: "skills.backend"   },
   { key: "databases", msgKey: "skills.databases" },
-  { key: "devops", msgKey: "skills.devops" },
+  { key: "devops",    msgKey: "skills.devops"    },
   { key: "messaging", msgKey: "skills.messaging" },
-  { key: "soft", msgKey: "skills.soft" },
+  { key: "soft",      msgKey: "skills.soft"      },
 ];
 
 export function Skills() {
@@ -20,70 +19,92 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="relative py-20 xs:py-24 sm:py-28 md:py-40 px-4 xs:px-5 sm:px-6 md:px-12 lg:px-20 bg-surface-elevated/30 border-t border-fg-muted/10"
+      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-fg-muted/10"
     >
-      <div className="max-w-6xl 2xl:max-w-7xl mx-auto flex items-baseline gap-0">
-        <div className="w-[clamp(3.5rem,14vw,9rem)] shrink-0">
-          <SectionLabel number="04" />
-        </div>
-        <div className="min-w-0 flex-1">
-          <motion.h2
-            className="font-display text-2xl xs:text-3xl md:text-4xl font-bold text-fg mb-2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+      <div className="max-w-5xl 2xl:max-w-6xl">
+
+        {/* Section marker */}
+        <motion.div
+          className="flex items-center gap-4 mb-10"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="font-sans text-[9px] tracking-[0.4em] text-accent uppercase">
+            {t("skills.title")}
+          </span>
+          <span className="w-10 h-px bg-accent/35" />
+          <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">04</span>
+        </motion.div>
+
+        <motion.div
+          className="mb-14 sm:mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-display text-[clamp(2rem,5.5vw,4.5rem)] font-light text-fg leading-[1.05]">
             {t("skills.titleLine1")}{" "}
-            <span className="text-accent">{t("skills.titleLine2")}</span>
-          </motion.h2>
-          <p className="text-fg-muted font-mono text-sm mb-12 max-w-xl">
+            <em className="not-italic text-accent">{t("skills.titleLine2")}</em>
+          </h2>
+          <p className="mt-3 font-sans text-[9px] tracking-[0.3em] text-fg-muted/60 uppercase">
             {t("skills.subtitle")}
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categoryKeys.map((cat, i) => (
-              <motion.div
-                key={cat.key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                whileHover={{ y: -5, transition: { type: "spring", stiffness: 400, damping: 25 } }}
-                className="group p-6 rounded-2xl bg-surface border border-fg-muted/10 hover:border-accent/25 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)] transition-all duration-300"
-              >
-                <h3 className="font-mono text-xs text-accent uppercase tracking-wider mb-4">
-                  {t(cat.msgKey)}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {profile.skills[cat.key].map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 text-sm rounded-lg bg-fg-muted/10 text-fg border border-transparent group-hover:border-fg-muted/20 transition-all duration-300 group-hover:scale-[1.02]"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 pt-8 border-t border-fg-muted/10"
-          >
-            <h3 className="font-mono text-xs text-accent uppercase tracking-wider mb-4">
-              {t("skills.languages")}
-            </h3>
-            <div className="flex flex-wrap gap-4 text-fg-muted">
-              {profile.languages.map((lang) => (
-                <span key={lang.name}>
-                  {lang.name} <span className="text-fg-muted/70">—</span> {lang.level}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+        </motion.div>
+
+        {/* Newspaper column grid — gap-px bg trick for clean column lines */}
+        <motion.div
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-fg-muted/12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          {categoryKeys.map((cat, i) => (
+            <motion.div
+              key={cat.key}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: i * 0.06 }}
+              className="p-5 sm:p-6 bg-surface group"
+            >
+              <h3 className="font-sans text-[8px] tracking-[0.4em] uppercase text-accent mb-5">
+                {t(cat.msgKey)}
+              </h3>
+              <ul className="space-y-2.5">
+                {(cat.key === "soft" ? profile.skills.softKeys : profile.skills[cat.key]).map((skill) => (
+                  <li
+                    key={typeof skill === "string" ? skill : skill}
+                    className="font-sans text-[11px] text-fg-muted group-hover:text-fg transition-colors duration-300 leading-relaxed"
+                  >
+                    {cat.key === "soft" ? t(skill) : skill}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Languages row */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-2"
+        >
+          <span className="font-sans text-[8px] tracking-[0.4em] uppercase text-fg-muted/50">
+            {t("skills.languages")}
+          </span>
+          {profile.languages.map((lang) => (
+            <span key={lang.nameKey} className="font-sans text-xs text-fg-muted">
+              {t(lang.nameKey)}{" "}
+              <span className="text-fg-muted/40">·</span>{" "}
+              {t(lang.levelKey)}
+            </span>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
