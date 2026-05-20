@@ -191,6 +191,9 @@
     "project0": {
       "description": "Serviço de autenticação seguro com criptografia simétrica, focado em performance e confiabilidade."
     },
+    "project1": {
+      "description": "Plataforma SaaS que detecta churn de clientes com 6–10 semanas de antecedência. Pontua sinais de saúde do Google Ads e Meta Ads, executa motor de aprendizado de pesos por cliente e gera briefs semanais com IA via Claude. Construído com RLS multi-tenant, billing gates via Stripe e observabilidade completa."
+    },
     "about": {
       "t0": "Precisão técnica",
       "t1": "Pensamento sistêmico",

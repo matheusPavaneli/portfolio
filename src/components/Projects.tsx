@@ -5,6 +5,7 @@ import { profile } from "@/data/profile";
 import { useLocale } from "@/context/LocaleContext";
 import { TiltCard } from "@/components/effects/TiltCard";
 import { ShineBorder } from "@/components/effects/ShineBorder";
+import { FeaturedAnchorCard } from "@/components/FeaturedAnchorCard";
 
 export function Projects() {
   const { t } = useLocale();
@@ -46,6 +47,9 @@ export function Projects() {
             {t("projects.subtitle")}
           </p>
         </motion.div>
+
+        {/* Featured project — Anchor */}
+        <FeaturedAnchorCard />
 
         {/* Grid — gap-px for sharp column lines */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-fg-muted/12">

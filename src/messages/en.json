@@ -191,6 +191,9 @@
     "project0": {
       "description": "Secure authentication service with symmetric encryption, focused on performance and reliability."
     },
+    "project1": {
+      "description": "SaaS platform that detects client churn 6–10 weeks in advance. Scores health signals from Google Ads and Meta Ads, runs a weight-learning engine per client, and generates AI-powered weekly briefs via Claude. Built with multi-tenant RLS, Stripe billing gates, and full observability."
+    },
     "about": {
       "t0": "Precision-driven",
       "t1": "Systems thinker",

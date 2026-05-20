@@ -121,6 +121,12 @@ export const profile = {
   },
   projects: [
     {
+      name: "Anchor",
+      descriptionKey: "profile.project1.description",
+      url: "https://getanchor.com.br",
+      stack: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Stripe", "Claude AI", "Vercel"],
+    },
+    {
       name: "Azthorize-Auth",
       descriptionKey: "profile.project0.description",
       url: "https://github.com/matheusPavaneli/Azthorize-Auth",
