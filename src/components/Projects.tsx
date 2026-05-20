@@ -52,7 +52,7 @@ export function Projects() {
         <FeaturedAnchorCard />
 
         {/* Grid — gap-px for sharp column lines */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-fg-muted/12">
+        {projects.length > 0 && <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-fg-muted/12">
           {projects.map((project, i) => {
             const cardContent = (
               <motion.a
@@ -107,7 +107,7 @@ export function Projects() {
               </TiltCard>
             );
           })}
-        </div>
+        </div>}
 
         <motion.div
           initial={{ opacity: 0 }}

@@ -119,20 +119,7 @@ export const profile = {
       "skills.softItems.continuousLearning",
     ],
   },
-  projects: [
-    {
-      name: "Anchor",
-      descriptionKey: "profile.project1.description",
-      url: "https://getanchor.com.br",
-      stack: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Stripe", "Claude AI", "Vercel"],
-    },
-    {
-      name: "Azthorize-Auth",
-      descriptionKey: "profile.project0.description",
-      url: "https://github.com/matheusPavaneli/Azthorize-Auth",
-      stack: ["TypeScript", "Node.js", "Security"],
-    },
-  ],
+  projects: [],
   languages: [
     { nameKey: "profile.languages.portuguese", levelKey: "profile.languages.native" },
     { nameKey: "profile.languages.english", levelKey: "profile.languages.advancedC1" },
