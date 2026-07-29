@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useLocale } from "@/context/LocaleContext";
 import { FeaturedAnchorCard } from "@/components/FeaturedAnchorCard";
+import { FeaturedSealCard } from "@/components/FeaturedSealCard";
+import { ProjectList } from "@/components/ProjectList";
 
 export function Projects() {
   const { t } = useLocale();
@@ -45,15 +47,23 @@ export function Projects() {
           </p>
         </motion.div>
 
-        {/* Featured project — Anchor */}
-        <FeaturedAnchorCard />
+        {/* Featured rail */}
+        <FeaturedMarker index="01" label={t("projects.featuredLabel")} />
+        <FeaturedSealCard />
 
+        <div className="mt-14 sm:mt-16">
+          <FeaturedMarker index="02" label={t("projects.featuredLabel")} />
+          <FeaturedAnchorCard />
+        </div>
+
+        {/* Remaining repositories */}
+        <ProjectList />
 
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-8"
+          className="mt-10"
         >
           <a
             href={profile.github}
@@ -69,5 +79,25 @@ export function Projects() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function FeaturedMarker({ index, label }: { index: string; label: string }) {
+  return (
+    <motion.div
+      className="flex items-center gap-3 mb-4"
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+    >
+      <span className="font-sans text-[8px] tracking-[0.3em] text-accent/50 tabular-nums">
+        {index}
+      </span>
+      <span className="w-6 h-px bg-accent/25" />
+      <span className="font-sans text-[8px] tracking-[0.45em] uppercase text-fg-muted/40">
+        {label}
+      </span>
+    </motion.div>
   );
 }

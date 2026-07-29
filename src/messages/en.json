@@ -87,7 +87,14 @@
     "titleLine1": "Projects",
     "titleLine2": "& Open Source",
     "subtitle": "Selected work and repositories. More on GitHub.",
-    "viewAll": "View all on GitHub"
+    "viewAll": "View all on GitHub",
+    "featuredLabel": "Featured project",
+    "moreLabel": "Other repositories",
+    "side": {
+      "depguard": "CLI for preventive npm dependency risk scoring: registry metadata, lifecycle scripts, OSV advisories and typosquatting heuristics.",
+      "envValidator": "Validates process.env at startup against a typed schema. Collects every error at once, with TypeScript inference and zero dependencies.",
+      "azthorize": "Authentication API with AES encryption, focused on performance and security."
+    }
   },
   "contact": {
     "title": "Let's talk.",
@@ -193,6 +200,9 @@
     },
     "project1": {
       "description": "SaaS platform that detects client churn 6–10 weeks in advance. Scores health signals from Google Ads and Meta Ads, runs a weight-learning engine per client, and generates AI-powered weekly briefs via Claude. Built with multi-tenant RLS, Stripe billing gates, and full observability."
+    },
+    "project2": {
+      "description": "Approval gateway for AI agents: an API and MCP proxy that pauses risky tool calls until a human approves — declarative policy, approval by exception, and a hash-chained audit trail that verifies offline. Open-core: the local mode ships under Apache-2.0 on npm, the cloud adds multi-reviewer review, Slack and hosted audit."
     },
     "about": {
       "t0": "Precision-driven",

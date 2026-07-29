@@ -87,7 +87,14 @@
     "titleLine1": "Projetos",
     "titleLine2": "e Open Source",
     "subtitle": "Trabalhos selecionados e repositórios. Mais no GitHub.",
-    "viewAll": "Ver tudo no GitHub"
+    "viewAll": "Ver tudo no GitHub",
+    "featuredLabel": "Projeto em destaque",
+    "moreLabel": "Outros repositórios",
+    "side": {
+      "depguard": "CLI de scoring preventivo de risco em dependências npm: metadados do registry, lifecycle scripts, advisories OSV e heurísticas de typosquatting.",
+      "envValidator": "Valida process.env na inicialização com schema tipado. Coleta todos os erros de uma vez, com inferência de TypeScript e zero dependências.",
+      "azthorize": "API de autenticação com criptografia AES, focada em performance e segurança."
+    }
   },
   "contact": {
     "title": "Vamos conversar.",
@@ -193,6 +200,9 @@
     },
     "project1": {
       "description": "Plataforma SaaS que detecta churn de clientes com 6–10 semanas de antecedência. Pontua sinais de saúde do Google Ads e Meta Ads, executa motor de aprendizado de pesos por cliente e gera briefs semanais com IA via Claude. Construído com RLS multi-tenant, billing gates via Stripe e observabilidade completa."
+    },
+    "project2": {
+      "description": "Gateway de aprovação para agentes de IA: uma API e um proxy MCP que pausam tool calls de risco até um humano aprovar — política declarativa, aprovação por exceção e trilha de auditoria em hash chain verificável offline. Open-core: o modo local é Apache-2.0 publicado no npm, a nuvem adiciona revisão multiusuário, Slack e auditoria hospedada."
     },
     "about": {
       "t0": "Precisão técnica",
