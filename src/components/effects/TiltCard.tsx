@@ -13,9 +13,6 @@ type Props = {
   intensity?: number;
 };
 
-/**
- * Card com tilt 3D suave baseado na posição do mouse — sensação de profundidade rara na web.
- */
 export function TiltCard({
   children,
   className = "",

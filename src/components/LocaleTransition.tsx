@@ -1,8 +1,5 @@
 "use client";
 
-// Locale transition strategy: fade out (150ms) → swap locale → fade in (200ms).
-// Opacity is driven by `isTransitioning` from LocaleContext.
-// prefers-reduced-motion is handled globally in globals.css (transition-duration: 0.01ms).
 import { motion } from "framer-motion";
 import { useLocale } from "@/context/LocaleContext";
 import type { ReactNode } from "react";

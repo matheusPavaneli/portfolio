@@ -6,26 +6,21 @@ import { useLocale } from "@/context/LocaleContext";
 import { SectionMarker } from "@/components/SectionMarker";
 
 const STEP_ICONS = [
-  // Scope — target circle
   <svg key="scope" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
     <circle cx="9" cy="9" r="7.5" stroke="currentColor" strokeWidth="1" />
     <circle cx="9" cy="9" r="3.5" stroke="currentColor" strokeWidth="1" />
     <circle cx="9" cy="9" r="1" fill="currentColor" />
   </svg>,
-  // Estimates — clock
   <svg key="clock" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
     <circle cx="9" cy="9" r="7.5" stroke="currentColor" strokeWidth="1" />
     <path d="M9 5v4.5l3 2" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
   </svg>,
-  // Async — speech
   <svg key="msg" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
     <path d="M2.5 3.5h13a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5H5.5L2 15.5V4a.5.5 0 0 1 .5-.5Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" />
   </svg>,
-  // Stack — code brackets
   <svg key="code" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
     <path d="M6 5 2 9l4 4M12 5l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
-  // Remote — globe
   <svg key="globe" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
     <circle cx="9" cy="9" r="7.5" stroke="currentColor" strokeWidth="1" />
     <path d="M9 1.5C9 1.5 6 5 6 9s3 7.5 3 7.5M9 1.5C9 1.5 12 5 12 9s-3 7.5-3 7.5M1.5 9h15" stroke="currentColor" strokeWidth="1" />
@@ -48,8 +43,7 @@ export function Freelancer() {
           className="mb-10"
         />
 
-        {/* Heading + availability */}
-        <motion.div
+                <motion.div
           className="mb-14 sm:mb-16"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,8 +72,7 @@ export function Freelancer() {
           </p>
         </motion.div>
 
-        {/* How-I-work cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line mb-12">
           {profile.freelance.highlightKeys.map((key, i) => (
             <motion.div
               key={key}
@@ -99,8 +92,7 @@ export function Freelancer() {
           ))}
         </div>
 
-        {/* CTA */}
-        <motion.div
+                <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

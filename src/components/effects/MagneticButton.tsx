@@ -15,10 +15,6 @@ type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> &
     href?: string;
   };
 
-/**
- * Botão/link que segue suavemente o cursor (efeito magnético) — raro e refinado.
- * Só aplica em viewports com hover (evita jank em touch).
- */
 export function MagneticButton({
   children,
   className = "",

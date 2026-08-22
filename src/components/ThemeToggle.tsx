@@ -38,8 +38,7 @@ export function ThemeToggle() {
         }}
         transition={{ duration: 0.3 }}
       >
-        {/* Sun */}
-        <svg
+                <svg
           className="w-4 h-4 text-accent"
           fill="none"
           viewBox="0 0 24 24"
@@ -63,8 +62,7 @@ export function ThemeToggle() {
         }}
         transition={{ duration: 0.3 }}
       >
-        {/* Moon */}
-        <svg
+                <svg
           className="w-4 h-4 text-accent"
           fill="none"
           viewBox="0 0 24 24"

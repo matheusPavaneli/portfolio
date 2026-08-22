@@ -29,7 +29,6 @@ const PRACTICES = [
   "Zod at every boundary · no any · no floating promises",
 ] as const;
 
-/** Fases do gate: chamada → retida → selada → liberada. */
 const PHASES = [
   { key: "call", ms: 1150 },
   { key: "held", ms: 1400 },
@@ -47,7 +46,6 @@ export function FeaturedSealCard() {
   const [phase, setPhase] = useState(0);
   const [chain, setChain] = useState(1);
 
-  // Loop do gate — só roda quando o card está visível e o usuário aceita movimento.
   useEffect(() => {
     if (!isInView || reduceMotion) return;
     const id = window.setTimeout(() => {
@@ -75,8 +73,7 @@ export function FeaturedSealCard() {
       transition={{ duration: 0.5 }}
     >
       <TiltCard className="overflow-hidden bg-surface relative" intensity={0.22}>
-        {/* Animated accent top bar */}
-        <motion.div
+                <motion.div
           className="absolute top-0 left-0 h-[1.5px] bg-accent z-10"
           initial={{ width: 0 }}
           animate={isInView ? { width: "100%" } : { width: 0 }}
@@ -85,8 +82,7 @@ export function FeaturedSealCard() {
         />
 
         <div className="p-8 sm:p-10 md:p-12">
-          {/* Top meta row */}
-          <div className="flex items-center justify-between gap-4 mb-7">
+                    <div className="flex items-center justify-between gap-4 mb-7">
             <div className="flex items-center gap-3 flex-wrap">
               <span className="relative flex h-[7px] w-[7px]" aria-hidden>
                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent/50 animate-ping" />
@@ -109,8 +105,7 @@ export function FeaturedSealCard() {
             </a>
           </div>
 
-          {/* Identity */}
-          <a
+                    <a
             href={LINKS.site}
             target="_blank"
             rel="noopener noreferrer"
@@ -127,8 +122,7 @@ export function FeaturedSealCard() {
             {t("profile.project2.description")}
           </p>
 
-          {/* ━━━ The gate — signature visual ━━━ */}
-          <div
+                    <div
             className="relative border border-line bg-surface-elevated/40 px-4 sm:px-7 py-7 sm:py-8 mb-9"
             aria-hidden
           >
@@ -144,8 +138,7 @@ export function FeaturedSealCard() {
 
               <Track active={current === "call"} reduceMotion={!!reduceMotion} />
 
-              {/* Gate + wax seal */}
-              <div className="relative flex flex-col items-center">
+                            <div className="relative flex flex-col items-center">
                 <motion.div
                   className="relative w-11 h-11 sm:w-14 sm:h-14 border border-accent/40 flex items-center justify-center rotate-45"
                   animate={{
@@ -156,8 +149,7 @@ export function FeaturedSealCard() {
                   }}
                   transition={{ duration: 0.35 }}
                 >
-                  {/* Gate bars — fecham quando retido, abrem ao liberar */}
-                  <motion.span
+                                    <motion.span
                     className="absolute left-1/2 top-0 w-px bg-accent/60"
                     animate={{ height: gateOpen ? "0%" : "100%" }}
                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -172,8 +164,7 @@ export function FeaturedSealCard() {
                   )}
                 </motion.div>
 
-                {/* Wax seal stamp */}
-                <motion.div
+                                <motion.div
                   className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-accent flex items-center justify-center"
                   initial={{ scale: 0, rotate: -28, opacity: 0 }}
                   animate={
@@ -198,8 +189,7 @@ export function FeaturedSealCard() {
               <GateNode label="MCP" />
             </div>
 
-            {/* Hash chain — cresce a cada ciclo aprovado */}
-            <div className="flex items-center gap-1.5 mt-7 pt-4 border-t border-line flex-wrap">
+                        <div className="flex items-center gap-1.5 mt-7 pt-4 border-t border-line flex-wrap">
               <span className="font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30 mr-1">
                 audit
               </span>
@@ -220,8 +210,7 @@ export function FeaturedSealCard() {
             </div>
           </div>
 
-          {/* Practices */}
-          <div className="space-y-2 mb-8">
+                    <div className="space-y-2 mb-8">
             {PRACTICES.map((practice, i) => (
               <motion.div
                 key={practice}
@@ -238,8 +227,7 @@ export function FeaturedSealCard() {
             ))}
           </div>
 
-          {/* Stack chips */}
-          <div className="border-t border-line pt-6 space-y-2.5">
+                    <div className="border-t border-line pt-6 space-y-2.5">
             {STACK_GROUPS.map((group, gi) => (
               <div key={group.label} className="flex items-baseline gap-3 flex-wrap">
                 <span className="font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30 w-7 shrink-0">
@@ -262,8 +250,7 @@ export function FeaturedSealCard() {
             ))}
           </div>
 
-          {/* Links */}
-          <div className="border-t border-line mt-6 pt-5 flex flex-wrap gap-x-7 gap-y-2">
+                    <div className="border-t border-line mt-6 pt-5 flex flex-wrap gap-x-7 gap-y-2">
             <CardLink href={LINKS.site} label="useseal.dev" />
             <CardLink href={LINKS.repo} label="useseal/seal" />
             <CardLink href={LINKS.npm} label="npm @seal-dev/sdk" />

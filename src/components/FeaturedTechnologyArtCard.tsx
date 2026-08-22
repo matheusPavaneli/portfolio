@@ -17,7 +17,6 @@ const LINKS = {
   repo: "https://github.com/matheusPavaneli/art",
 } as const;
 
-/** As oito eras da peça: intervalo até ela, e o acento que ela carrega. */
 const ERAS = [
   { ordinal: "01", label: "Lomekwi", date: "~3.3 Ma", accent: "#FF3D00", gap: 0 },
   { ordinal: "02", label: "Fire", date: "~400 ka", accent: "#FFAE00", gap: 2_900_000 },
@@ -29,8 +28,6 @@ const ERAS = [
   { ordinal: "08", label: "Inference", date: "2012", accent: "#FF2D8F", gap: 65 },
 ] as const;
 
-// A mesma escala logarítmica que o site usa para transformar um intervalo em
-// altura de página: o rail abaixo é o mapa do scroll real, não uma ilustração.
 const MIN_VH = 62;
 const MAX_VH = 190;
 const CHAPTER_VH = 300;
@@ -89,9 +86,6 @@ export function FeaturedTechnologyArtCard() {
   const isInView = useInView(containerRef, { once: true, margin: "-80px" });
   const reduceMotion = useReducedMotion();
 
-  // The marker walks on a transform, never on `left`: animating a layout
-  // property would put the browser through layout on every frame of a loop
-  // that runs for as long as the card is on screen.
   const railRef = useRef<HTMLDivElement>(null);
   const [railWidth, setRailWidth] = useState(0);
   const walk = useMotionValue(0);
@@ -139,8 +133,7 @@ export function FeaturedTechnologyArtCard() {
       transition={{ duration: 0.5 }}
     >
       <TiltCard className="overflow-hidden bg-surface relative" intensity={0.22}>
-        {/* Animated accent top bar */}
-        <motion.div
+                <motion.div
           className="absolute top-0 left-0 h-[1.5px] bg-accent z-10"
           initial={{ width: 0 }}
           animate={isInView ? { width: "100%" } : { width: 0 }}
@@ -149,8 +142,7 @@ export function FeaturedTechnologyArtCard() {
         />
 
         <div className="p-8 sm:p-10 md:p-12">
-          {/* Top meta row */}
-          <div className="flex items-center justify-between gap-4 mb-7">
+                    <div className="flex items-center justify-between gap-4 mb-7">
             <div className="flex items-center gap-3 flex-wrap">
               <span className="relative flex h-[7px] w-[7px]" aria-hidden>
                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent/50 animate-ping" />
@@ -173,8 +165,7 @@ export function FeaturedTechnologyArtCard() {
             </a>
           </div>
 
-          {/* Identity */}
-          <a
+                    <a
             href={LINKS.site}
             target="_blank"
             rel="noopener noreferrer"
@@ -187,8 +178,7 @@ export function FeaturedTechnologyArtCard() {
           <p className="font-sans text-[8px] tracking-[0.38em] uppercase text-accent/60 mb-5 leading-relaxed">
             Technology is older than we are — eight artefacts, 3.3 million years
           </p>
-          {/* Description left, Lighthouse readout right */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] xl:grid-cols-[1fr_220px] gap-8 lg:gap-14 mb-9">
+                    <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] xl:grid-cols-[1fr_220px] gap-8 lg:gap-14 mb-9">
             <p className="font-sans text-xs sm:text-sm text-fg-muted leading-[1.9] max-w-[56ch]">
               {t("profile.project3.description")}
             </p>
@@ -218,8 +208,7 @@ export function FeaturedTechnologyArtCard() {
             </div>
           </div>
 
-          {/* ━━━ The deep-time rail — signature visual ━━━ */}
-          <div
+                    <div
             className="relative border border-line bg-surface-elevated/40 px-5 sm:px-8 pt-7 pb-9 mb-9"
             aria-hidden
           >
@@ -231,8 +220,7 @@ export function FeaturedTechnologyArtCard() {
             </span>
 
             <div ref={railRef} className="relative mt-6 h-14">
-              {/* The rail itself */}
-              <motion.span
+                            <motion.span
                 className="absolute left-0 top-4 h-px bg-line origin-left"
                 style={{ width: "100%" }}
                 initial={{ scaleX: 0 }}
@@ -240,8 +228,7 @@ export function FeaturedTechnologyArtCard() {
                 transition={{ duration: 1.3, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               />
 
-              {/* One tick per era, placed by the interval that precedes it */}
-              {ERAS.map((era, i) => (
+                            {ERAS.map((era, i) => (
                 <motion.span
                   key={era.ordinal}
                   className="absolute top-0 flex flex-col items-center"
@@ -250,10 +237,7 @@ export function FeaturedTechnologyArtCard() {
                   animate={isInView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.3, delay: 0.5 + i * 0.09 }}
                 >
-                  {/* The era hues are the site's own. On the light ground they
-                      are darkened rather than swapped, so the spectrum survives
-                      the theme. */}
-                  <span
+                                    <span
                     className="w-px h-8 -translate-x-1/2 [filter:brightness(0.68)_saturate(1.25)] dark:[filter:none]"
                     style={{ background: era.accent, opacity: 0.9 }}
                   />
@@ -263,8 +247,7 @@ export function FeaturedTechnologyArtCard() {
                 </motion.span>
               ))}
 
-              {/* The accent walking the spectrum, the way the page does */}
-              {!reduceMotion && railWidth > 0 && (
+                            {!reduceMotion && railWidth > 0 && (
                 <motion.span
                   className="absolute left-0 top-[13px] w-[5px] h-[5px] rounded-full [filter:brightness(0.68)_saturate(1.25)] dark:[filter:none]"
                   style={{
@@ -279,8 +262,7 @@ export function FeaturedTechnologyArtCard() {
               )}
             </div>
 
-            {/* Ends of the span, named */}
-            <div className="flex items-baseline justify-between mt-1">
+                        <div className="flex items-baseline justify-between mt-1">
               <span className="font-sans text-[7px] tracking-[0.3em] uppercase text-fg-muted/40">
                 Lomekwi core
               </span>
@@ -297,8 +279,7 @@ export function FeaturedTechnologyArtCard() {
             </p>
           </div>
 
-          {/* Practices — terminal-style monospace list */}
-          <div className="space-y-2 mb-9">
+                    <div className="space-y-2 mb-9">
             {PRACTICES.map((practice, i) => (
               <motion.div
                 key={practice}
@@ -315,8 +296,7 @@ export function FeaturedTechnologyArtCard() {
             ))}
           </div>
 
-          {/* Stack chips — grouped by category */}
-          <div className="border-t border-line pt-6 space-y-2.5">
+                    <div className="border-t border-line pt-6 space-y-2.5">
             {STACK_GROUPS.map((group, gi) => (
               <div key={group.label} className="flex items-baseline gap-3 flex-wrap">
                 <span className="font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30 w-7 shrink-0">
@@ -339,8 +319,7 @@ export function FeaturedTechnologyArtCard() {
             ))}
           </div>
 
-          {/* Links */}
-          <div className="border-t border-line mt-6 pt-5 flex flex-wrap gap-x-7 gap-y-2">
+                    <div className="border-t border-line mt-6 pt-5 flex flex-wrap gap-x-7 gap-y-2">
             <CardLink href={LINKS.site} label="matheuspavaneli.github.io/art" />
             <CardLink href={LINKS.repo} label="matheusPavaneli/art" />
           </div>

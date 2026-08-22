@@ -25,11 +25,9 @@ export function Hero() {
       id="hero"
       className="relative min-h-[100dvh] flex flex-col justify-between px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden safe-x"
     >
-      {/* Dot grid backdrop */}
-      <div className="absolute inset-0 pattern-dot opacity-60 pointer-events-none" aria-hidden />
+            <div className="absolute inset-0 pattern-dot opacity-60 pointer-events-none" aria-hidden />
 
-      {/* Vertical architectural lines */}
-      <div
+            <div
         className="absolute top-0 right-[18%] w-px h-full bg-line/70 hidden lg:block pointer-events-none"
         aria-hidden
       />
@@ -38,14 +36,12 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* Fade to surface at bottom */}
-      <div
+            <div
         className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-surface to-transparent pointer-events-none"
         aria-hidden
       />
 
-      {/* ── Top bar ── */}
-      <motion.div
+            <motion.div
         className="relative z-10 flex items-center justify-between pt-24 sm:pt-28 max-w-5xl"
         initial={prefersReduced ? {} : { opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -59,8 +55,7 @@ export function Hero() {
         </span>
       </motion.div>
 
-      {/* ── Main name block ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center py-10 sm:py-14 max-w-5xl">
+            <div className="relative z-10 flex-1 flex flex-col justify-center py-10 sm:py-14 max-w-5xl">
         <div className="mb-6 sm:mb-8">
           {profile.name.split(" ").map((word, i) => (
             <div key={word} className="overflow-hidden">
@@ -80,8 +75,7 @@ export function Hero() {
           ))}
         </div>
 
-        {/* Gold accent rule */}
-        <motion.div
+                <motion.div
           className="w-14 h-px bg-accent mb-7 sm:mb-9"
           initial={prefersReduced ? {} : { scaleX: 0 }}
           animate={{ scaleX: 1 }}
@@ -89,9 +83,7 @@ export function Hero() {
           style={{ transformOrigin: "left" }}
         />
 
-        {/* The stack, in the first screen: it is the first thing a recruiter
-            scans for and the last thing they should have to hunt for. */}
-        <motion.p
+                <motion.p
           className="font-sans text-[10px] sm:text-[11px] tracking-[0.18em] text-fg-muted/70 leading-relaxed mb-8 sm:mb-10 max-w-3xl"
           initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,8 +92,7 @@ export function Hero() {
           {t("hero.stack")}
         </motion.p>
 
-        {/* Tagline + CTAs */}
-        <div className="flex flex-col sm:flex-row sm:items-end gap-7 sm:gap-16 lg:gap-24">
+                <div className="flex flex-col sm:flex-row sm:items-end gap-7 sm:gap-16 lg:gap-24">
           <motion.p
             className="font-sans text-xs sm:text-sm text-fg-muted leading-[1.85] max-w-[22rem]"
             initial={prefersReduced ? {} : { opacity: 0, y: 14 }}
@@ -146,8 +137,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Bottom stats bar ── */}
-      <motion.div
+            <motion.div
         className="relative z-10 border-t border-line py-5 sm:py-6 max-w-5xl"
         initial={prefersReduced ? {} : { opacity: 0 }}
         animate={{ opacity: 1 }}

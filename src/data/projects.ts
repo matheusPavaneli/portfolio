@@ -6,7 +6,6 @@ type SideProject = {
   meta?: string;
 };
 
-/** Repositórios menores — renderizados como lista abaixo dos destaques. */
 export const sideProjects: readonly SideProject[] = [
   {
     name: "depguard",

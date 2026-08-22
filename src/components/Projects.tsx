@@ -40,8 +40,7 @@ export function Projects() {
           </p>
         </motion.div>
 
-        {/* Featured rail */}
-        <FeaturedMarker index="01" label={t("projects.featuredLabel")} />
+                <FeaturedMarker index="01" label={t("projects.featuredLabel")} />
         <FeaturedSealCard />
 
         <div className="mt-14 sm:mt-16">
@@ -54,8 +53,7 @@ export function Projects() {
           <FeaturedTechnologyArtCard />
         </div>
 
-        {/* Remaining repositories */}
-        <ProjectList />
+                <ProjectList />
 
         <motion.div
           initial={{ opacity: 0 }}

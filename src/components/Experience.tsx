@@ -48,8 +48,7 @@ export function Experience() {
           </p>
         </motion.div>
 
-        {/* Ruled rows */}
-        <ul>
+                <ul>
           {profile.experiences.map((exp, i) => (
             <motion.li
               key={exp.company}
@@ -59,8 +58,7 @@ export function Experience() {
               transition={{ duration: 0.5, delay: i * 0.07 }}
               className="ruled-row py-9 sm:py-11 group"
             >
-              {/* Company + period */}
-              <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
                 <span className="font-display text-[clamp(1.5rem,3.5vw,2.6rem)] font-light text-fg group-hover:text-accent transition-colors duration-300 tracking-tight">
                   {exp.company}
                 </span>
@@ -82,8 +80,7 @@ export function Experience() {
                 </p>
               )}
 
-              {/* Role + location */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-5">
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-5">
                 <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-fg-muted">
                   <RoleWithHighlight role={t(exp.roleKey)} />
                 </p>
@@ -99,8 +96,7 @@ export function Experience() {
                 )}
               </div>
 
-              {/* Highlights */}
-              <ul className="space-y-2.5 max-w-[78ch]">
+                            <ul className="space-y-2.5 max-w-[78ch]">
                 {exp.highlightKeys.map((key) => (
                   <li key={key} className="flex gap-3 items-start">
                     <span className="text-accent/50 mt-[0.4rem] shrink-0 text-[9px]">◆</span>

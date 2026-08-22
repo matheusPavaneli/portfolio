@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   THE CRAFTSMAN'S CODE — Design System
-   RGB channels for Tailwind opacity modifiers
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-/* Light mode — all values as space-separated RGB channels */
 :root {
   --color-accent: 184 137 42;
   --color-accent-hover: 212 165 64;
@@ -15,8 +9,6 @@
   --surface-elevated: 237 233 225;
   --fg: 24 22 14;
   --fg-muted: 122 112 96;
-  /* Hairlines get their own value per theme: the same alpha over ink reads
-     as a firm rule on the dark ground and as nothing at all on the light one. */
   --line: 214 206 192;
   --pattern-alpha: 0.4;
   --on-accent: 245 241 234;
@@ -25,7 +17,6 @@
   --color-warning: 202 138 4;
 }
 
-/* Dark mode */
 .dark {
   --color-accent: 212 168 83;
   --color-accent-hover: 226 187 106;
@@ -41,7 +32,6 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  /* Theme transition: smooth dark↔light via CSS variable recomputation on body */
   transition:
     background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
     color 300ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -60,7 +50,6 @@ body {
     color 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ━━━ Focus visible — WCAG 2.1 SC 2.4.7 ━━━ */
 :focus-visible {
   outline: 2px solid rgb(var(--color-accent));
   outline-offset: 2px;
@@ -69,7 +58,6 @@ body {
   outline: none;
 }
 
-/* ━━━ Safe areas ━━━ */
 .safe-top    { padding-top:    env(safe-area-inset-top,    0); }
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
 .safe-x {
@@ -77,7 +65,6 @@ body {
   padding-right: max(1rem, env(safe-area-inset-right, 0));
 }
 
-/* ━━━ Scrollbar ━━━ */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: rgb(var(--surface)); }
 ::-webkit-scrollbar-thumb {
@@ -91,7 +78,6 @@ body {
   color: rgb(var(--fg));
 }
 
-/* ━━━ Background patterns ━━━ */
 .pattern-dot {
   background-image: radial-gradient(
     rgb(var(--line) / var(--pattern-alpha)) 1px,
@@ -107,7 +93,6 @@ body {
   background-size: 44px 44px;
 }
 
-/* ━━━ Section rule lines ━━━ */
 .ruled-row {
   border-top: 1px solid rgb(var(--line));
 }
@@ -115,7 +100,6 @@ body {
   border-bottom: 1px solid rgb(var(--line));
 }
 
-/* ━━━ Shine sweep on buttons ━━━ */
 .hover-shine {
   position: relative;
   overflow: hidden;
@@ -144,7 +128,6 @@ body {
   }
 }
 
-/* ━━━ Nav underline grow from center ━━━ */
 .nav-link-underline {
   position: relative;
 }
@@ -167,7 +150,6 @@ body {
   }
 }
 
-/* ━━━ Logo letter-spacing on hover ━━━ */
 .logo-letters {
   transition: letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -177,18 +159,15 @@ body {
   }
 }
 
-/* ━━━ Hero name reveal (CSS animation for LCP) ━━━ */
 @keyframes hero-reveal {
   from { transform: translateY(105%); }
   to   { transform: translateY(0); }
 }
 
-/* ━━━ Cormorant Garamond — optical sizing ━━━ */
 .font-display {
   font-optical-sizing: auto;
 }
 
-/* ━━━ Reduced motion ━━━ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

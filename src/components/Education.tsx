@@ -36,8 +36,7 @@ export function Education() {
           </p>
         </motion.div>
 
-        {/* Education rows */}
-        <ul>
+                <ul>
           {profile.education.map((edu, i) => (
             <motion.li
               key={edu.institution}
@@ -62,8 +61,7 @@ export function Education() {
           ))}
         </ul>
 
-        {/* Certifications */}
-        <motion.div
+                <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

@@ -6,33 +6,27 @@ import { useLocale } from "@/context/LocaleContext";
 import { SectionMarker } from "@/components/SectionMarker";
 
 const PRINCIPLE_ICONS = [
-  // Clean code — sparkle
   <svg key="clean" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
     <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.42 1.42M11.53 11.53l1.42 1.42M3.05 12.95l1.42-1.42M11.53 4.47l1.42-1.42" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
     <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="1.25" />
   </svg>,
-  // Ship iteratively — rocket
   <svg key="rocket" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
     <path d="M8 2C8 2 11 4 11 8c0 2-1 3-1 3H6s-1-1-1-3c0-4 3-6 3-6Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" />
     <path d="M6 11 5 14h6l-1-3" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" />
     <circle cx="8" cy="7" r="1" fill="currentColor" />
   </svg>,
-  // Clear communication — speech bubble
   <svg key="speech" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
     <path d="M2.5 2.5h11a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H5l-3 2.5V3a.5.5 0 0 1 .5-.5Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" />
   </svg>,
-  // Own the outcome — aim
   <svg key="aim" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
     <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.25" />
     <circle cx="8" cy="8" r="2.5" stroke="currentColor" strokeWidth="1.25" />
     <circle cx="8" cy="8" r="0.75" fill="currentColor" />
   </svg>,
-  // Leave it better — upward arrow loop
   <svg key="up" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
     <path d="M8 13V4M4 7l4-4 4 4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
     <path d="M5 13h6" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeOpacity="0.4" />
   </svg>,
-  // Type everything — code
   <svg key="type" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
     <path d="M5 4 1.5 8 5 12M11 4l3.5 4-3.5 4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
     <path d="M9.5 3l-3 10" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeOpacity="0.6" />
@@ -55,8 +49,7 @@ export function Principles() {
           className="mb-10"
         />
 
-        {/* Heading */}
-        <motion.div
+                <motion.div
           className="mb-14 sm:mb-16"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -71,8 +64,7 @@ export function Principles() {
           </p>
         </motion.div>
 
-        {/* Principles grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line">
           {profile.principles.map((p, i) => (
             <motion.div
               key={p.titleKey}

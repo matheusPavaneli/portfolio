@@ -17,8 +17,7 @@ export function LocaleSwitcher() {
       role="group"
       aria-label={t("a11y.selectLanguage")}
     >
-      {/* Sliding pill behind active */}
-      <motion.div
+            <motion.div
         className="absolute top-1 bottom-1 rounded-full bg-accent shadow-sm"
         layout
         transition={{ type: "spring", stiffness: 400, damping: 30 }}

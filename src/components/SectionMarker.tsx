@@ -3,18 +3,11 @@
 import { motion } from "framer-motion";
 
 type Props = {
-  /** The section's own name, already translated. */
   label: string;
-  /** Where the section sits in the read, zero-padded. */
   index: string;
-  /** Space below the marker — sections set their own rhythm. */
   className?: string;
 };
 
-/**
- * The eyebrow every section opens with: its name, a rule, and its position in
- * the sequence. One component so the eight of them cannot drift apart.
- */
 export function SectionMarker({ label, index, className = "mb-10" }: Props) {
   return (
     <motion.div

@@ -111,7 +111,6 @@ export function Minigame() {
 
   useEffect(() => setMounted(true), []);
 
-  // Pause RAF when tab is hidden
   useEffect(() => {
     const onVisibilityChange = () => {
       pausedRef.current = document.hidden;
@@ -120,7 +119,6 @@ export function Minigame() {
     return () => document.removeEventListener("visibilitychange", onVisibilityChange);
   }, []);
 
-  // Scale canvas to devicePixelRatio for sharp rendering
   useEffect(() => {
     if (!mounted) return;
     const canvas = canvasRef.current;
@@ -132,7 +130,6 @@ export function Minigame() {
     if (ctx) ctx.scale(dpr, dpr);
   }, [mounted]);
 
-  // Idle screen animation
   useEffect(() => {
     if (!mounted || gameState !== "idle") return;
     const canvas = canvasRef.current;
@@ -140,7 +137,6 @@ export function Minigame() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Re-apply DPR scale after context re-acquire
     const dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr;
     canvas.height = H * dpr;
@@ -160,7 +156,6 @@ export function Minigame() {
       const py = H - PLAYER_H - 8;
       const px = W / 2 - PLAYER_W / 2;
 
-      // Player ship centered
       ctx.fillStyle = colors.fg;
       ctx.beginPath();
       ctx.moveTo(px + PLAYER_W / 2, py + PLAYER_H);
@@ -170,14 +165,12 @@ export function Minigame() {
       ctx.closePath();
       ctx.fill();
 
-      // Engine glow
       const glowAlpha = 0.3 + 0.3 * Math.sin(frame * 0.08);
       ctx.fillStyle = colors.accent.replace("rgb(", "rgba(").replace(")", `, ${glowAlpha})`);
       ctx.beginPath();
       ctx.arc(px + PLAYER_W / 2, py + PLAYER_H + 3, 4, 0, Math.PI * 2);
       ctx.fill();
 
-      // Bug formation (static decorative)
       ctx.fillStyle = colors.accent.replace("rgb(", "rgba(").replace(")", ", 0.25)");
       const rows = 2, cols = 6;
       const startX = (W - cols * (BUG_W + 10)) / 2;
@@ -189,7 +182,6 @@ export function Minigame() {
         }
       }
 
-      // Blinking "PRESS START"
       const blink = Math.floor(frame / 30) % 2 === 0;
       if (blink) {
         ctx.font = "bold 10px monospace";
@@ -213,7 +205,6 @@ export function Minigame() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Re-apply DPR scale after context re-acquire
     const dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr;
     canvas.height = H * dpr;
@@ -236,12 +227,10 @@ export function Minigame() {
       const state = stateRef.current;
       const keys = keysRef.current;
 
-      // Player movement
       const speed = 4 * dt;
       if (keys.left) state.playerX = Math.max(0, state.playerX - speed);
       if (keys.right) state.playerX = Math.min(W - PLAYER_W, state.playerX + speed);
 
-      // Fire
       if (state.fireCooldown > 0) state.fireCooldown--;
       if (keys.fire && state.fireCooldown <= 0) {
         state.bullets.push({
@@ -251,14 +240,12 @@ export function Minigame() {
         state.fireCooldown = 12;
       }
 
-      // Bullets
       state.bullets = state.bullets.filter((b) => {
         b.y += BULLET_SPEED * dt;
         if (b.y < -4) return false;
         return true;
       });
 
-      // Bugs move
       state.bugTick += dt * 0.5;
       if (state.bugTick >= 1) {
         state.bugTick = 0;
@@ -274,7 +261,6 @@ export function Minigame() {
         }
       }
 
-      // Collision: bullet vs bug
       for (const bullet of state.bullets) {
         for (const bug of state.bugs) {
           if (!bug.alive) continue;
@@ -302,13 +288,11 @@ export function Minigame() {
         }
       }
 
-      // Drops fall
       for (const d of state.drops) {
         d.y += DROP_SPEED * dt;
       }
       state.drops = state.drops.filter((d) => d.y < H + 20);
 
-      // Collect drops (player)
       const px = state.playerX;
       const py = H - PLAYER_H;
       state.drops = state.drops.filter((d) => {
@@ -322,7 +306,6 @@ export function Minigame() {
         return true;
       });
 
-      // Bug reached bottom = lose life
       const reachedBottom = state.bugs.some((b) => b.alive && b.y + BUG_H >= py - 2);
       if (reachedBottom) {
         setLives((l) => {
@@ -337,7 +320,6 @@ export function Minigame() {
         state.bugs.forEach((b) => (b.alive = false));
       }
 
-      // All bugs dead = next wave
       if (state.bugs.every((b) => !b.alive)) {
         spawnBugs();
         setScore((s) => {
@@ -346,7 +328,6 @@ export function Minigame() {
         });
       }
 
-      // Draw
       const colors = getThemeColors();
       ctx.fillStyle = colors.bg;
       ctx.fillRect(0, 0, W, H);
@@ -419,7 +400,6 @@ export function Minigame() {
     };
   }, []);
 
-  // Touch handlers for the canvas (swipe to move + tap to fire)
   const touchStartXRef = useRef<number | null>(null);
 
   function handleCanvasTouchStart(e: React.TouchEvent<HTMLCanvasElement>) {
@@ -468,13 +448,11 @@ export function Minigame() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          {/* Top accent rule */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-accent/40" aria-hidden />
+                    <div className="absolute top-0 left-0 right-0 h-px bg-accent/40" aria-hidden />
 
           <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 p-7 md:p-9 min-w-0">
 
-            {/* Left: info */}
-            <div className="shrink-0 lg:min-w-[220px]">
+                        <div className="shrink-0 lg:min-w-[220px]">
               <h2 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-light text-fg mb-3 leading-tight">
                 {t("minigame.title")}
               </h2>
@@ -486,8 +464,7 @@ export function Minigame() {
               </p>
             </div>
 
-            {/* Right: game */}
-            <div className="min-w-0 flex-1 flex flex-col items-start w-full max-w-full">
+                        <div className="min-w-0 flex-1 flex flex-col items-start w-full max-w-full">
               <div
                 className="relative overflow-hidden border border-line bg-black w-full max-w-[640px]"
                 style={{ aspectRatio: `${W} / ${H}`, imageRendering: "pixelated" }}
@@ -511,8 +488,7 @@ export function Minigame() {
                 />
               </div>
 
-              {/* Controls bar */}
-              <div className="mt-4 w-full max-w-[640px] flex flex-wrap items-center gap-3 py-3 px-4 border border-line bg-surface-elevated/40">
+                            <div className="mt-4 w-full max-w-[640px] flex flex-wrap items-center gap-3 py-3 px-4 border border-line bg-surface-elevated/40">
                 {gameState === "idle" && (
                   <button
                     type="button"
@@ -547,8 +523,7 @@ export function Minigame() {
                 )}
               </div>
 
-              {/* On-screen touch controls — visible on touch devices during gameplay */}
-              {gameState === "playing" && (
+                            {gameState === "playing" && (
                 <div
                   className="mt-3 w-full max-w-[640px] flex items-center justify-between gap-2 sm:hidden"
                   aria-label="Touch controls"

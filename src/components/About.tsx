@@ -37,8 +37,7 @@ export function About() {
           className="mb-14 sm:mb-20"
         />
 
-        {/* Pull-quote headline */}
-        <motion.h2
+                <motion.h2
           className="font-display text-[clamp(2.1rem,5.8vw,4.8rem)] font-light text-fg leading-[1.08] tracking-tight mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,8 +47,7 @@ export function About() {
           <HeadlineWithAccent text={t("about.headline")} />
         </motion.h2>
 
-        {/* Body text with left rule */}
-        <motion.div
+                <motion.div
           className="flex gap-7 sm:gap-10 items-start mb-12 sm:mb-14"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -62,8 +60,7 @@ export function About() {
           </p>
         </motion.div>
 
-        {/* Trait chips */}
-        <motion.div
+                <motion.div
           className="flex flex-wrap gap-2.5"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}

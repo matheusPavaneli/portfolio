@@ -37,7 +37,6 @@ const STORAGE_KEY = "portfolio-locale";
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
   const [mounted, setMounted] = useState(false);
-  // Locale transition: fade out (150ms) → swap locale → fade in (200ms)
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {

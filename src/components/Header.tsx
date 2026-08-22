@@ -30,7 +30,6 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // D1 — Active section indicator
   useEffect(() => {
     const ids = navKeys.map((n) => n.href.slice(1));
     observerRef.current = new IntersectionObserver(
@@ -60,8 +59,7 @@ export function Header() {
     >
       <div className="flex items-center justify-between px-6 sm:px-10 md:px-16 lg:px-20 py-4 xs:py-5 max-w-5xl mx-auto">
 
-        {/* Logo — initials */}
-        <Link
+                <Link
           href="#hero"
           aria-label={t("nav.home")}
           className="logo-letters font-sans text-[10px] tracking-[0.4em] text-fg-muted hover:text-accent transition-colors uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
@@ -69,8 +67,7 @@ export function Header() {
           {profile.name.split(" ").map((n) => n[0]).join("")}
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label={t("a11y.mainNav")}>
+                <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label={t("a11y.mainNav")}>
           {navKeys.map((item) => {
             const isActive = activeSection === item.href.slice(1);
             return (
@@ -91,13 +88,11 @@ export function Header() {
           })}
         </nav>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4">
           <LocaleSwitcher />
           <ThemeToggle />
 
-          {/* Mobile hamburger */}
-          <button
+                    <button
             type="button"
             onClick={() => setOpen((o) => !o)}
             className="lg:hidden min-w-[44px] min-h-[44px] w-11 h-11 flex flex-col justify-center items-center gap-[5px] text-fg-muted hover:text-fg -mr-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -123,8 +118,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
+            <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, y: -6 }}

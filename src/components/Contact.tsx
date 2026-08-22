@@ -12,8 +12,7 @@ export function Contact() {
   return (
     <section id="contact" className="relative border-t border-line">
 
-      {/* ── Big CTA block ── */}
-      <div className="py-24 sm:py-36 md:py-52 px-6 sm:px-10 md:px-16 lg:px-20 pattern-dot">
+            <div className="py-24 sm:py-36 md:py-52 px-6 sm:px-10 md:px-16 lg:px-20 pattern-dot">
         <div className="max-w-5xl 2xl:max-w-6xl">
 
           <SectionMarker
@@ -22,8 +21,7 @@ export function Contact() {
             className="mb-12"
           />
 
-          {/* Giant display heading */}
-          <div className="overflow-hidden mb-8">
+                    <div className="overflow-hidden mb-8">
             <motion.h2
               className="font-display text-[clamp(4rem,13vw,11rem)] font-light italic text-fg leading-[0.88] tracking-tight"
               initial={{ y: "60%", opacity: 0 }}
@@ -82,8 +80,7 @@ export function Contact() {
         </div>
       </div>
 
-      {/* ── Form block ── */}
-      <div className="py-16 sm:py-20 md:py-24 px-6 sm:px-10 md:px-16 lg:px-20 bg-surface border-t border-line">
+            <div className="py-16 sm:py-20 md:py-24 px-6 sm:px-10 md:px-16 lg:px-20 bg-surface border-t border-line">
         <div className="max-w-5xl 2xl:max-w-6xl">
           <div className="grid md:grid-cols-[1fr,minmax(220px,300px)] gap-14 lg:gap-24 items-start">
             <ContactForm />

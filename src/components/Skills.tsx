@@ -45,8 +45,7 @@ export function Skills() {
           </p>
         </motion.div>
 
-        {/* Newspaper column grid — gap-px bg trick for clean column lines */}
-        <motion.div
+                <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -79,8 +78,7 @@ export function Skills() {
           ))}
         </motion.div>
 
-        {/* Languages row */}
-        <motion.div
+                <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

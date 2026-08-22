@@ -190,7 +190,7 @@
       "advancedC1": "Advanced (C1)"
     },
     "project1": {
-      "description": "SaaS platform that detects client churn 6–10 weeks in advance. Scores health signals from Google Ads and Meta Ads, runs a weight-learning engine per client, and generates AI-powered weekly briefs via Claude. Built with multi-tenant RLS, Stripe billing gates, and full observability."
+      "description": "SaaS platform that detects client churn 6–10 weeks in advance. Scores health signals from Google Ads and Meta Ads, runs a weight-learning engine per client, and generates AI-powered weekly briefs. Built with multi-tenant RLS, Stripe billing gates, and full observability."
     },
     "project2": {
       "description": "Approval gateway for AI agents: an API and MCP proxy that pauses risky tool calls until a human approves — declarative policy, approval by exception, and a hash-chained audit trail that verifies offline. Open-core: the local mode ships under Apache-2.0 on npm, the cloud adds multi-reviewer review, Slack and hosted audit."

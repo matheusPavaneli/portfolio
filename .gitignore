@@ -39,11 +39,10 @@ Thumbs.db
 # Test coverage
 coverage/
 
-# Claude Code artifacts
-CLAUDE.md
+# Local agent and editor artifacts
+*.md.local
 prompts/
 .interface-design/
-.claude/
 .cursor/
 .cursor/**/*
 
