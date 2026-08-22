@@ -9,7 +9,7 @@ show first.
 
 ## What is on it
 
-One route, ten sections, read top to bottom:
+One route, ten sections, numbered in the order they are read:
 
 | Section | What it holds |
 |---|---|
@@ -67,9 +67,15 @@ persists in `localStorage` and the switch fades out and back in — 150 ms out,
 route duplication, no library, and both languages ship in the same bundle.
 
 **Colours are channel triples, not hex.** Every token is stored as
-`--fg: 250 250 249` and consumed as `rgb(var(--fg) / <alpha-value>)`, so every
+`--fg: 24 22 14` and consumed as `rgb(var(--fg) / <alpha-value>)`, so every
 Tailwind opacity modifier works on every token. That is what lets the whole
 page render in one accent at whatever strength each element needs.
+
+**Hairlines have their own token.** Rules, grid gaps and input borders read
+from `--line` rather than from the text colour at some guessed alpha, because
+the same alpha over ink is a firm rule on the dark ground and nothing at all on
+the cream one. The background patterns carry a second variable,
+`--pattern-alpha`, for the same reason.
 
 **The minigame reads the theme rather than hardcoding it.** It is a canvas
 game, so it cannot use classes; instead it reads the same CSS custom
@@ -91,7 +97,8 @@ per component.
 
 ## Running it
 
-Requires Node 18+ and pnpm.
+Requires Node 18+ and pnpm — the version is pinned by the `packageManager`
+field, so CI and your machine run the same one.
 
 ```bash
 pnpm install

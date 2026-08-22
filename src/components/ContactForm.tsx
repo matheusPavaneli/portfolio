@@ -67,7 +67,7 @@ export function ContactForm() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="p-6 border border-fg-muted/10 bg-surface-elevated/40"
+        className="p-6 border border-line bg-surface-elevated/40"
       >
         <p className="font-sans text-xs text-fg-muted mb-4 leading-relaxed">
           {t("contact.formDisabled")}
@@ -115,8 +115,8 @@ export function ContactForm() {
               value={formData.name}
               onChange={(e) => setFormData((d) => ({ ...d, name: e.target.value }))}
               aria-describedby={status === "error" ? "contact-form-error" : undefined}
-              className="w-full min-h-[44px] px-4 py-3 bg-surface border border-fg-muted/15 text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors"
-              placeholder="John Doe"
+              className="w-full min-h-[44px] px-4 py-3 bg-surface border border-line text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors"
+              placeholder={t("contact.formNamePlaceholder")}
               disabled={status === "sending"}
             />
           </div>
@@ -134,8 +134,8 @@ export function ContactForm() {
               value={formData.email}
               onChange={(e) => setFormData((d) => ({ ...d, email: e.target.value }))}
               aria-describedby={status === "error" ? "contact-form-error" : undefined}
-              className="w-full min-h-[44px] px-4 py-3 bg-surface border border-fg-muted/15 text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors"
-              placeholder="you@example.com"
+              className="w-full min-h-[44px] px-4 py-3 bg-surface border border-line text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors"
+              placeholder={t("contact.formEmailPlaceholder")}
               disabled={status === "sending"}
             />
           </div>
@@ -152,8 +152,8 @@ export function ContactForm() {
               value={formData.message}
               onChange={(e) => setFormData((d) => ({ ...d, message: e.target.value }))}
               aria-describedby={status === "error" ? "contact-form-error" : undefined}
-              className="w-full px-4 py-3 bg-surface border border-fg-muted/15 text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors resize-none"
-              placeholder="Your message…"
+              className="w-full px-4 py-3 bg-surface border border-line text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors resize-none"
+              placeholder={t("contact.formMessagePlaceholder")}
               disabled={status === "sending"}
             />
           </div>

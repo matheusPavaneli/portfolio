@@ -19,7 +19,7 @@ export function ProjectList() {
         <span className="font-sans text-[8px] tracking-[0.45em] uppercase text-fg-muted/40">
           {t("projects.moreLabel")}
         </span>
-        <span className="flex-1 h-px bg-fg-muted/10" />
+        <span className="flex-1 h-px bg-line" />
       </motion.div>
 
       <div>
@@ -58,7 +58,7 @@ export function ProjectList() {
                 {project.stack.map((item) => (
                   <span
                     key={item}
-                    className="font-sans text-[7px] tracking-[0.28em] uppercase text-fg-muted/40 border border-fg-muted/12 px-2 py-[3px] group-hover:border-accent/25 group-hover:text-accent/60 transition-colors duration-300"
+                    className="font-sans text-[7px] tracking-[0.28em] uppercase text-fg-muted/40 border border-line px-2 py-[3px] group-hover:border-accent/25 group-hover:text-accent/60 transition-colors duration-300"
                   >
                     {item}
                   </span>

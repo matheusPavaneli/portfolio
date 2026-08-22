@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useLocale } from "@/context/LocaleContext";
+import { SectionMarker } from "@/components/SectionMarker";
 
 function RoleWithHighlight({ role }: { role: string }) {
   if (!role.includes("→")) return <>{role}</>;
@@ -22,24 +23,15 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-fg-muted/10"
+      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-line"
     >
       <div className="max-w-5xl 2xl:max-w-6xl">
 
-        {/* Section marker */}
-        <motion.div
-          className="flex items-center gap-4 mb-10"
-          initial={{ opacity: 0, x: -16 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="font-sans text-[9px] tracking-[0.4em] text-accent uppercase">
-            {t("experience.title")}
-          </span>
-          <span className="w-10 h-px bg-accent/35" />
-          <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">02</span>
-        </motion.div>
+        <SectionMarker
+          label={t("experience.title")}
+          index="02"
+          className="mb-10"
+        />
 
         <motion.div
           className="mb-14 sm:mb-16"
@@ -102,7 +94,7 @@ export function Experience() {
               </div>
 
               {/* Highlights */}
-              <ul className="space-y-2.5">
+              <ul className="space-y-2.5 max-w-[78ch]">
                 {exp.highlightKeys.map((key) => (
                   <li key={key} className="flex gap-3 items-start">
                     <span className="text-accent/50 mt-[0.4rem] shrink-0 text-[9px]">◆</span>

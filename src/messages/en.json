@@ -68,7 +68,6 @@
   },
   "freelance": {
     "label": "Available",
-    "title": "Let's work together.",
     "titleLine1": "Let's work",
     "titleLine2": "together.",
     "subtitle": "Open to freelance projects. Clear scope, honest timelines.",
@@ -77,7 +76,6 @@
   },
   "principles": {
     "label": "Rules",
-    "title": "How I work.",
     "titleLine1": "How I",
     "titleLine2": "work.",
     "subtitle": "Principles I apply on every project."
@@ -89,6 +87,11 @@
     "subtitle": "Selected work and repositories. More on GitHub.",
     "viewAll": "View all on GitHub",
     "featuredLabel": "Featured project",
+    "statusProduction": "Production",
+    "statusOpenSource": "Open Source",
+    "statusLive": "Live",
+    "kindEssay": "Essay",
+    "readIt": "read it",
     "moreLabel": "Other repositories",
     "side": {
       "depguard": "CLI for preventive npm dependency risk scoring: registry metadata, lifecycle scripts, OSV advisories and typosquatting heuristics.",
@@ -105,6 +108,9 @@
     "formName": "Name",
     "formEmail": "Email",
     "formMessage": "Message",
+    "formNamePlaceholder": "Your name",
+    "formEmailPlaceholder": "you@example.com",
+    "formMessagePlaceholder": "What are you building?",
     "formSend": "Send",
     "formSending": "Sending…",
     "formSuccess": "Thanks! I'll get back to you soon.",
@@ -112,19 +118,17 @@
     "sidebarTitle": "Direct contact",
     "sidebarDirect": "Prefer email or phone?",
     "replyTime": "I usually reply within 24 hours.",
-    "formDisabled": "Set NEXT_PUBLIC_FORMSPREE_FORM_ID in your .env to enable the contact form.",
+    "formDisabled": "The form is not available right now. Email me directly and I will reply the same way.",
     "formDisabledCta": "Send email directly"
   },
   "minigame": {
     "label": "Minigame",
     "title": "Bug Invaders",
     "subtitle": "Shoot the bugs I fix every day. Collect floating skills for bonus points. One more level.",
-    "play": "Play",
     "start": "Start",
     "score": "Score",
     "gameover": "Game Over",
     "retry": "Play again",
-    "close": "Close",
     "controls": "← → or A D move · Space shoot"
   },
   "footer": {
@@ -194,9 +198,6 @@
       "native": "Native",
       "english": "English",
       "advancedC1": "Advanced (C1)"
-    },
-    "project0": {
-      "description": "Secure authentication service with symmetric encryption, focused on performance and reliability."
     },
     "project1": {
       "description": "SaaS platform that detects client churn 6–10 weeks in advance. Scores health signals from Google Ads and Meta Ads, runs a weight-learning engine per client, and generates AI-powered weekly briefs via Claude. Built with multi-tenant RLS, Stripe billing gates, and full observability."

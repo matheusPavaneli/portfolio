@@ -15,6 +15,10 @@
   --surface-elevated: 237 233 225;
   --fg: 24 22 14;
   --fg-muted: 122 112 96;
+  /* Hairlines get their own value per theme: the same alpha over ink reads
+     as a firm rule on the dark ground and as nothing at all on the light one. */
+  --line: 214 206 192;
+  --pattern-alpha: 0.4;
   --on-accent: 245 241 234;
   --color-error: 220 38 38;
   --color-success: 22 163 74;
@@ -29,6 +33,8 @@
   --surface-elevated: 20 18 16;
   --fg: 240 235 226;
   --fg-muted: 138 127 110;
+  --line: 43 39 34;
+  --pattern-alpha: 0.85;
   --on-accent: 11 10 9;
 }
 
@@ -66,8 +72,6 @@ body {
 /* ━━━ Safe areas ━━━ */
 .safe-top    { padding-top:    env(safe-area-inset-top,    0); }
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
-.safe-left   { padding-left:   env(safe-area-inset-left,   0); }
-.safe-right  { padding-right:  env(safe-area-inset-right,  0); }
 .safe-x {
   padding-left:  max(1rem, env(safe-area-inset-left,  0));
   padding-right: max(1rem, env(safe-area-inset-right, 0));
@@ -90,7 +94,7 @@ body {
 /* ━━━ Background patterns ━━━ */
 .pattern-dot {
   background-image: radial-gradient(
-    color-mix(in srgb, rgb(var(--fg-muted)) 18%, transparent) 1px,
+    rgb(var(--line) / var(--pattern-alpha)) 1px,
     transparent 1px
   );
   background-size: 24px 24px;
@@ -98,17 +102,17 @@ body {
 
 .pattern-cross {
   background-image:
-    linear-gradient(color-mix(in srgb, rgb(var(--fg-muted)) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, rgb(var(--fg-muted)) 7%, transparent) 1px, transparent 1px);
+    linear-gradient(rgb(var(--line) / var(--pattern-alpha)) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--line) / var(--pattern-alpha)) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
 /* ━━━ Section rule lines ━━━ */
 .ruled-row {
-  border-top: 1px solid color-mix(in srgb, rgb(var(--fg-muted)) 14%, transparent);
+  border-top: 1px solid rgb(var(--line));
 }
 .ruled-row:last-of-type {
-  border-bottom: 1px solid color-mix(in srgb, rgb(var(--fg-muted)) 14%, transparent);
+  border-bottom: 1px solid rgb(var(--line));
 }
 
 /* ━━━ Shine sweep on buttons ━━━ */
@@ -138,36 +142,6 @@ body {
   .hover-shine:hover::after {
     transform: translateX(100%) skewX(-12deg);
   }
-}
-
-/* ━━━ Card shine border (conic) ━━━ */
-.shine-border-gradient {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg 90deg,
-    rgb(var(--color-accent)) 180deg,
-    transparent 270deg 360deg
-  );
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-.group:hover .shine-border-gradient {
-  opacity: 1;
-  animation: shine-rotate 2.5s linear infinite;
-}
-.shine-border-mask {
-  position: absolute;
-  inset: 1px;
-  border-radius: inherit;
-  background: rgb(var(--surface));
-  pointer-events: none;
-}
-@keyframes shine-rotate {
-  to { transform: rotate(360deg); }
 }
 
 /* ━━━ Nav underline grow from center ━━━ */

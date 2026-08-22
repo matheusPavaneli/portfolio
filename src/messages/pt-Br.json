@@ -62,13 +62,12 @@
       "mentorship": "Mentoria",
       "strategicThinking": "Pensamento estratégico",
       "problemSolving": "Resolução de problemas",
-      "ownership": "Ownership",
+      "ownership": "Senso de dono",
       "continuousLearning": "Aprendizado contínuo"
     }
   },
   "freelance": {
     "label": "Disponível",
-    "title": "Vamos trabalhar juntos.",
     "titleLine1": "Vamos trabalhar",
     "titleLine2": "juntos.",
     "subtitle": "Aberto a projetos freelance. Escopo claro, prazos honestos.",
@@ -77,7 +76,6 @@
   },
   "principles": {
     "label": "Regras",
-    "title": "Como trabalho.",
     "titleLine1": "Como eu",
     "titleLine2": "trabalho.",
     "subtitle": "Princípios que aplico em todo projeto."
@@ -89,6 +87,11 @@
     "subtitle": "Trabalhos selecionados e repositórios. Mais no GitHub.",
     "viewAll": "Ver tudo no GitHub",
     "featuredLabel": "Projeto em destaque",
+    "statusProduction": "Produção",
+    "statusOpenSource": "Open Source",
+    "statusLive": "No ar",
+    "kindEssay": "Ensaio",
+    "readIt": "ler",
     "moreLabel": "Outros repositórios",
     "side": {
       "depguard": "CLI de scoring preventivo de risco em dependências npm: metadados do registry, lifecycle scripts, advisories OSV e heurísticas de typosquatting.",
@@ -105,6 +108,9 @@
     "formName": "Nome",
     "formEmail": "Email",
     "formMessage": "Mensagem",
+    "formNamePlaceholder": "Seu nome",
+    "formEmailPlaceholder": "voce@exemplo.com",
+    "formMessagePlaceholder": "O que você está construindo?",
     "formSend": "Enviar",
     "formSending": "Enviando…",
     "formSuccess": "Obrigado! Respondo em breve.",
@@ -112,19 +118,17 @@
     "sidebarTitle": "Contato direto",
     "sidebarDirect": "Prefere email ou telefone?",
     "replyTime": "Geralmente respondo em até 24h.",
-    "formDisabled": "Configure NEXT_PUBLIC_FORMSPREE_FORM_ID no .env para habilitar o formulário de contato.",
+    "formDisabled": "O formulário está indisponível no momento. Escreva direto para o meu e-mail que respondo por lá.",
     "formDisabledCta": "Enviar email direto"
   },
   "minigame": {
     "label": "Minigame",
     "title": "Bug Invaders",
     "subtitle": "Atire nos bugs que resolvo todo dia. Colete habilidades para bônus. Mais uma fase.",
-    "play": "Jogar",
     "start": "Iniciar",
     "score": "Pontos",
     "gameover": "Fim de jogo",
     "retry": "Jogar de novo",
-    "close": "Fechar",
     "controls": "← → ou A D mover · Espaço atirar"
   },
   "footer": {
@@ -194,9 +198,6 @@
       "native": "Nativo",
       "english": "Inglês",
       "advancedC1": "Avançado (C1)"
-    },
-    "project0": {
-      "description": "Serviço de autenticação seguro com criptografia simétrica, focado em performance e confiabilidade."
     },
     "project1": {
       "description": "Plataforma SaaS que detecta churn de clientes com 6–10 semanas de antecedência. Pontua sinais de saúde do Google Ads e Meta Ads, executa motor de aprendizado de pesos por cliente e gera briefs semanais com IA via Claude. Construído com RLS multi-tenant, billing gates via Stripe e observabilidade completa."

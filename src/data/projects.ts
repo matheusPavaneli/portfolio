@@ -1,4 +1,4 @@
-export type SideProject = {
+type SideProject = {
   name: string;
   href: string;
   descKey: string;

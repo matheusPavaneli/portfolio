@@ -11,7 +11,7 @@ import { Contact } from "@/components/Contact";
 
 const Minigame = dynamic(() => import("@/components/Minigame").then((m) => ({ default: m.Minigame })), {
   ssr: false,
-  loading: () => <div className="py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-fg-muted/10" />,
+  loading: () => <div className="py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-line" />,
 });
 
 export default function Home() {

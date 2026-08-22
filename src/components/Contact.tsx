@@ -4,31 +4,23 @@ import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { useLocale } from "@/context/LocaleContext";
 import { ContactForm } from "@/components/ContactForm";
+import { SectionMarker } from "@/components/SectionMarker";
 
 export function Contact() {
   const { t } = useLocale();
 
   return (
-    <section id="contact" className="relative border-t border-fg-muted/10">
+    <section id="contact" className="relative border-t border-line">
 
       {/* ── Big CTA block ── */}
       <div className="py-24 sm:py-36 md:py-52 px-6 sm:px-10 md:px-16 lg:px-20 pattern-dot">
         <div className="max-w-5xl 2xl:max-w-6xl">
 
-          {/* Section marker */}
-          <motion.div
-            className="flex items-center gap-4 mb-12"
-            initial={{ opacity: 0, x: -16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="font-sans text-[9px] tracking-[0.4em] text-accent uppercase">
-              {t("contact.title")}
-            </span>
-            <span className="w-10 h-px bg-accent/35" />
-            <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">08</span>
-          </motion.div>
+          <SectionMarker
+            label={t("contact.title")}
+            index="09"
+            className="mb-12"
+          />
 
           {/* Giant display heading */}
           <div className="overflow-hidden mb-8">
@@ -91,7 +83,7 @@ export function Contact() {
       </div>
 
       {/* ── Form block ── */}
-      <div className="py-16 sm:py-20 md:py-24 px-6 sm:px-10 md:px-16 lg:px-20 bg-surface border-t border-fg-muted/8">
+      <div className="py-16 sm:py-20 md:py-24 px-6 sm:px-10 md:px-16 lg:px-20 bg-surface border-t border-line">
         <div className="max-w-5xl 2xl:max-w-6xl">
           <div className="grid md:grid-cols-[1fr,minmax(220px,300px)] gap-14 lg:gap-24 items-start">
             <ContactForm />
@@ -100,7 +92,7 @@ export function Contact() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="border border-fg-muted/10 p-6 lg:p-8"
+              className="border border-line p-6 lg:p-8"
             >
               <h3 className="font-sans text-[8px] tracking-[0.45em] uppercase text-accent mb-5">
                 {t("contact.sidebarTitle")}
@@ -146,7 +138,7 @@ export function Contact() {
                   </a>
                 </li>
               </ul>
-              <p className="mt-6 pt-6 border-t border-fg-muted/10 font-sans text-[9px] text-fg-muted/50 leading-relaxed">
+              <p className="mt-6 pt-6 border-t border-line font-sans text-[9px] text-fg-muted/50 leading-relaxed">
                 {t("contact.replyTime")}
               </p>
             </motion.aside>

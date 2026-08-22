@@ -11,6 +11,7 @@ import { profile } from "@/data/profile";
 const navKeys = [
   { href: "#about",      key: "nav.about" },
   { href: "#experience", key: "nav.experience" },
+  { href: "#education",  key: "nav.education" },
   { href: "#skills",     key: "nav.skills" },
   { href: "#projects",   key: "nav.projects" },
   { href: "#contact",    key: "nav.contact" },
@@ -53,7 +54,7 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto safe-top ${
         scrolled
-          ? "bg-surface/88 backdrop-blur-md border-b border-fg-muted/10"
+          ? "bg-surface/88 backdrop-blur-md border-b border-line"
           : ""
       }`}
     >
@@ -62,13 +63,14 @@ export function Header() {
         {/* Logo — initials */}
         <Link
           href="#hero"
+          aria-label={t("nav.home")}
           className="logo-letters font-sans text-[10px] tracking-[0.4em] text-fg-muted hover:text-accent transition-colors uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
           {profile.name.split(" ").map((n) => n[0]).join("")}
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-10" aria-label={t("a11y.mainNav")}>
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label={t("a11y.mainNav")}>
           {navKeys.map((item) => {
             const isActive = activeSection === item.href.slice(1);
             return (
@@ -98,7 +100,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="md:hidden min-w-[44px] min-h-[44px] w-11 h-11 flex flex-col justify-center items-center gap-[5px] text-fg-muted hover:text-fg -mr-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="lg:hidden min-w-[44px] min-h-[44px] w-11 h-11 flex flex-col justify-center items-center gap-[5px] text-fg-muted hover:text-fg -mr-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             aria-label={t("a11y.menu")}
             aria-expanded={open}
           >
@@ -129,7 +131,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.18 }}
-            className="md:hidden bg-surface border-t border-fg-muted/10 px-6 pb-8 pt-2 safe-bottom safe-x"
+            className="lg:hidden bg-surface border-t border-line px-6 pb-8 pt-2 safe-bottom safe-x"
           >
             {navKeys.map((item, i) => (
               <motion.div
@@ -141,7 +143,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="flex min-h-[44px] py-3 items-center font-sans text-[10px] tracking-[0.3em] uppercase text-fg-muted hover:text-accent border-b border-fg-muted/8 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className="flex min-h-[44px] py-3 items-center font-sans text-[10px] tracking-[0.3em] uppercase text-fg-muted hover:text-accent border-b border-line transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   {t(item.key)}
                 </Link>

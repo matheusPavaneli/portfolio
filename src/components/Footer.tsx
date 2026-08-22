@@ -7,7 +7,7 @@ export function Footer() {
   const { t } = useLocale();
 
   return (
-    <footer className="relative border-t border-fg-muted/10 bg-surface py-7 sm:py-8 px-6 sm:px-10 md:px-16 lg:px-20 safe-x">
+    <footer className="relative border-t border-line bg-surface py-7 sm:py-8 px-6 sm:px-10 md:px-16 lg:px-20 safe-x">
       <div className="max-w-5xl 2xl:max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="font-sans text-[9px] tracking-[0.25em] uppercase text-fg-muted/50">
           © {new Date().getFullYear()} {profile.name} · {t("footer.rights")}

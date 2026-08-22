@@ -27,6 +27,7 @@ const config: Config = {
         "surface-elevated":"rgb(var(--surface-elevated) / <alpha-value>)",
         fg:                "rgb(var(--fg) / <alpha-value>)",
         "fg-muted":        "rgb(var(--fg-muted) / <alpha-value>)",
+        line:              "rgb(var(--line) / <alpha-value>)",
         "on-accent":       "rgb(var(--on-accent) / <alpha-value>)",
         "color-error":     "rgb(var(--color-error) / <alpha-value>)",
         "color-success":   "rgb(var(--color-success) / <alpha-value>)",

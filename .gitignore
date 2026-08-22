@@ -46,3 +46,6 @@ prompts/
 .claude/
 .cursor/
 .cursor/**/*
+
+# local tooling scratch
+.workflow/

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useLocale } from "@/context/LocaleContext";
 import { profile } from "@/data/profile";
+import { SectionMarker } from "@/components/SectionMarker";
 
 function HeadlineWithAccent({ text }: { text: string }) {
   return (
@@ -26,24 +27,15 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-fg-muted/10 overflow-hidden"
+      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-line overflow-hidden"
     >
       <div className="max-w-5xl 2xl:max-w-6xl">
 
-        {/* Section marker */}
-        <motion.div
-          className="flex items-center gap-4 mb-14 sm:mb-20"
-          initial={{ opacity: 0, x: -16 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="font-sans text-[9px] tracking-[0.4em] text-accent uppercase">
-            {t("about.label")}
-          </span>
-          <span className="w-10 h-px bg-accent/35" />
-          <span className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/40">01</span>
-        </motion.div>
+        <SectionMarker
+          label={t("about.label")}
+          index="01"
+          className="mb-14 sm:mb-20"
+        />
 
         {/* Pull-quote headline */}
         <motion.h2
@@ -64,7 +56,7 @@ export function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="hidden sm:block w-px self-stretch bg-accent/22 shrink-0" />
+          <div className="hidden sm:block w-px self-stretch bg-accent/40 shrink-0" />
           <p className="font-sans text-xs sm:text-sm text-fg-muted leading-[2] max-w-2xl">
             {t("about.body")}
           </p>
@@ -81,7 +73,7 @@ export function About() {
           {profile.aboutTraitKeys.map((key) => (
             <span
               key={key}
-              className="inline-flex items-center gap-2 border border-fg-muted/15 px-3.5 py-1.5 font-sans text-[10px] tracking-[0.25em] uppercase text-fg-muted hover:border-accent/40 hover:text-accent transition-colors duration-300"
+              className="inline-flex items-center gap-2 border border-line px-3.5 py-1.5 font-sans text-[10px] tracking-[0.25em] uppercase text-fg-muted hover:border-accent/40 hover:text-accent transition-colors duration-300"
             >
               <span className="text-accent/50 text-[8px]">◆</span>
               {t(key)}

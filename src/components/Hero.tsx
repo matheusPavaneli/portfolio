@@ -30,11 +30,11 @@ export function Hero() {
 
       {/* Vertical architectural lines */}
       <div
-        className="absolute top-0 right-[18%] w-px h-full bg-fg-muted/6 hidden lg:block pointer-events-none"
+        className="absolute top-0 right-[18%] w-px h-full bg-line/70 hidden lg:block pointer-events-none"
         aria-hidden
       />
       <div
-        className="absolute top-0 right-[36%] w-px h-[60%] bg-fg-muted/4 hidden xl:block pointer-events-none"
+        className="absolute top-0 right-[36%] w-px h-[60%] bg-line/50 hidden xl:block pointer-events-none"
         aria-hidden
       />
 
@@ -137,7 +137,7 @@ export function Hero() {
 
       {/* ── Bottom stats bar ── */}
       <motion.div
-        className="relative z-10 border-t border-fg-muted/12 py-5 sm:py-6 max-w-5xl"
+        className="relative z-10 border-t border-line py-5 sm:py-6 max-w-5xl"
         initial={prefersReduced ? {} : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.15 }}

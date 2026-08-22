@@ -93,9 +93,9 @@ export function FeaturedSealCard() {
                 <span className="relative inline-flex h-[7px] w-[7px] rounded-full bg-accent" />
               </span>
               <span className="font-sans text-[8px] tracking-[0.45em] uppercase text-accent/70">
-                Open Source
+                {t("projects.statusOpenSource")}
               </span>
-              <span className="font-sans text-[8px] tracking-[0.35em] uppercase text-fg-muted/30 pl-2.5 border-l border-fg-muted/15">
+              <span className="font-sans text-[8px] tracking-[0.35em] uppercase text-fg-muted/30 pl-2.5 border-l border-line">
                 Apache-2.0 · AI Infra
               </span>
             </div>
@@ -129,7 +129,7 @@ export function FeaturedSealCard() {
 
           {/* ━━━ The gate — signature visual ━━━ */}
           <div
-            className="relative border border-fg-muted/12 bg-surface-elevated/40 px-4 sm:px-7 py-7 sm:py-8 mb-9"
+            className="relative border border-line bg-surface-elevated/40 px-4 sm:px-7 py-7 sm:py-8 mb-9"
             aria-hidden
           >
             <span className="absolute top-2 left-3 font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30">
@@ -199,7 +199,7 @@ export function FeaturedSealCard() {
             </div>
 
             {/* Hash chain — cresce a cada ciclo aprovado */}
-            <div className="flex items-center gap-1.5 mt-7 pt-4 border-t border-fg-muted/10 flex-wrap">
+            <div className="flex items-center gap-1.5 mt-7 pt-4 border-t border-line flex-wrap">
               <span className="font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30 mr-1">
                 audit
               </span>
@@ -239,7 +239,7 @@ export function FeaturedSealCard() {
           </div>
 
           {/* Stack chips */}
-          <div className="border-t border-fg-muted/10 pt-6 space-y-2.5">
+          <div className="border-t border-line pt-6 space-y-2.5">
             {STACK_GROUPS.map((group, gi) => (
               <div key={group.label} className="flex items-baseline gap-3 flex-wrap">
                 <span className="font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30 w-7 shrink-0">
@@ -263,7 +263,7 @@ export function FeaturedSealCard() {
           </div>
 
           {/* Links */}
-          <div className="border-t border-fg-muted/10 mt-6 pt-5 flex flex-wrap gap-x-7 gap-y-2">
+          <div className="border-t border-line mt-6 pt-5 flex flex-wrap gap-x-7 gap-y-2">
             <CardLink href={LINKS.site} label="useseal.dev" />
             <CardLink href={LINKS.repo} label="useseal/seal" />
             <CardLink href={LINKS.npm} label="npm @seal-dev/sdk" />
@@ -289,7 +289,7 @@ function GateNode({ label }: { label: string }) {
 
 function Track({ active, reduceMotion }: { active: boolean; reduceMotion: boolean }) {
   return (
-    <div className="relative h-px bg-fg-muted/15 mb-5">
+    <div className="relative h-px bg-line mb-5">
       {active && !reduceMotion && (
         <motion.span
           className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-accent"

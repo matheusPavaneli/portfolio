@@ -83,9 +83,9 @@ export function FeaturedAnchorCard() {
                   <span className="relative inline-flex h-[7px] w-[7px] rounded-full bg-accent" />
                 </span>
                 <span className="font-sans text-[8px] tracking-[0.45em] uppercase text-accent/70">
-                  Production
+                  {t("projects.statusProduction")}
                 </span>
-                <span className="font-sans text-[8px] tracking-[0.35em] uppercase text-fg-muted/30 pl-2.5 border-l border-fg-muted/15">
+                <span className="font-sans text-[8px] tracking-[0.35em] uppercase text-fg-muted/30 pl-2.5 border-l border-line">
                   SaaS · B2B
                 </span>
               </div>
@@ -177,7 +177,7 @@ export function FeaturedAnchorCard() {
                   initial={{ opacity: 0, y: 4 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 1.1, duration: 0.35 }}
-                  className="flex items-center gap-2 border border-fg-muted/12 px-3 py-1.5"
+                  className="flex items-center gap-2 border border-line px-3 py-1.5"
                 >
                   <span className="w-[6px] h-[6px] rounded-full bg-[#f59e0b]" aria-hidden />
                   <span className="font-sans text-[7px] tracking-[0.38em] uppercase text-fg-muted/50">
@@ -194,7 +194,7 @@ export function FeaturedAnchorCard() {
             </div>
 
             {/* Stack chips — grouped by category */}
-            <div className="border-t border-fg-muted/10 pt-6 space-y-2.5">
+            <div className="border-t border-line pt-6 space-y-2.5">
               {STACK_GROUPS.map((group, gi) => (
                 <div key={group.label} className="flex items-baseline gap-3 flex-wrap">
                   <span className="font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30 w-7 shrink-0">

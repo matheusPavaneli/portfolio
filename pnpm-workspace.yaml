@@ -1,0 +1,5 @@
+# unrs-resolver ships prebuilt binaries for every platform as optional
+# dependencies, so its install script has nothing left to do here. Recording the
+# decision keeps `pnpm install` from stopping to ask on every machine.
+allowBuilds:
+  unrs-resolver: false

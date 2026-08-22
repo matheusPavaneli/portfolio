@@ -13,7 +13,7 @@ export function LocaleSwitcher() {
 
   return (
     <div
-      className="relative flex items-center rounded-full p-1 bg-fg-muted/10 border border-fg-muted/10"
+      className="relative flex items-center rounded-full p-1 bg-fg-muted/10 border border-line"
       role="group"
       aria-label={t("a11y.selectLanguage")}
     >

@@ -157,10 +157,10 @@ export function FeaturedTechnologyArtCard() {
                 <span className="relative inline-flex h-[7px] w-[7px] rounded-full bg-accent" />
               </span>
               <span className="font-sans text-[8px] tracking-[0.45em] uppercase text-accent/70">
-                Live
+                {t("projects.statusLive")}
               </span>
-              <span className="font-sans text-[8px] tracking-[0.35em] uppercase text-fg-muted/30 pl-2.5 border-l border-fg-muted/15">
-                Essay · WebGL
+              <span className="font-sans text-[8px] tracking-[0.35em] uppercase text-fg-muted/30 pl-2.5 border-l border-line">
+                {t("projects.kindEssay")} · WebGL
               </span>
             </div>
             <a
@@ -169,7 +169,7 @@ export function FeaturedTechnologyArtCard() {
               rel="noopener noreferrer"
               className="font-sans text-[8px] tracking-[0.3em] uppercase text-fg-muted/40 hover:text-accent transition-colors shrink-0"
             >
-              read it ↗
+              {t("projects.readIt")} ↗
             </a>
           </div>
 
@@ -193,7 +193,7 @@ export function FeaturedTechnologyArtCard() {
               {t("profile.project3.description")}
             </p>
 
-            <div className="lg:border-l lg:border-fg-muted/10 lg:pl-8 self-start">
+            <div className="lg:border-l lg:border-line lg:pl-8 self-start">
               <span className="block font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30 mb-4">
                 Lighthouse
               </span>
@@ -220,7 +220,7 @@ export function FeaturedTechnologyArtCard() {
 
           {/* ━━━ The deep-time rail — signature visual ━━━ */}
           <div
-            className="relative border border-fg-muted/12 bg-surface-elevated/40 px-5 sm:px-8 pt-7 pb-9 mb-9"
+            className="relative border border-line bg-surface-elevated/40 px-5 sm:px-8 pt-7 pb-9 mb-9"
             aria-hidden
           >
             <span className="absolute top-2 left-3 font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30">
@@ -233,7 +233,7 @@ export function FeaturedTechnologyArtCard() {
             <div ref={railRef} className="relative mt-6 h-14">
               {/* The rail itself */}
               <motion.span
-                className="absolute left-0 top-4 h-px bg-fg-muted/20 origin-left"
+                className="absolute left-0 top-4 h-px bg-line origin-left"
                 style={{ width: "100%" }}
                 initial={{ scaleX: 0 }}
                 animate={isInView ? { scaleX: 1 } : {}}
@@ -316,7 +316,7 @@ export function FeaturedTechnologyArtCard() {
           </div>
 
           {/* Stack chips — grouped by category */}
-          <div className="border-t border-fg-muted/10 pt-6 space-y-2.5">
+          <div className="border-t border-line pt-6 space-y-2.5">
             {STACK_GROUPS.map((group, gi) => (
               <div key={group.label} className="flex items-baseline gap-3 flex-wrap">
                 <span className="font-sans text-[7px] tracking-[0.4em] uppercase text-fg-muted/30 w-7 shrink-0">
@@ -340,7 +340,7 @@ export function FeaturedTechnologyArtCard() {
           </div>
 
           {/* Links */}
-          <div className="border-t border-fg-muted/10 mt-6 pt-5 flex flex-wrap gap-x-7 gap-y-2">
+          <div className="border-t border-line mt-6 pt-5 flex flex-wrap gap-x-7 gap-y-2">
             <CardLink href={LINKS.site} label="matheuspavaneli.github.io/art" />
             <CardLink href={LINKS.repo} label="matheusPavaneli/art" />
           </div>

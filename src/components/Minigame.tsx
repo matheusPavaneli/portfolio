@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLocale } from "@/context/LocaleContext";
 import { profile } from "@/data/profile";
+import { SectionMarker } from "@/components/SectionMarker";
 
 const W = 320;
 const H = 200;
@@ -453,25 +454,16 @@ export function Minigame() {
   return (
     <section
       id="minigame"
-      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-fg-muted/10 bg-surface-elevated/20 overflow-hidden"
+      className="relative py-24 sm:py-32 md:py-44 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-line bg-surface-elevated/20 overflow-hidden"
     >
       <div className="max-w-5xl 2xl:max-w-6xl">
-        {/* Section marker */}
-        <motion.div
-          className="flex items-center gap-4 mb-10"
-          initial={{ opacity: 0, x: -16 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="font-sans text-[11px] tracking-[0.4em] text-accent uppercase">
-            {t("minigame.label")}
-          </span>
-          <span className="w-10 h-px bg-accent/35" />
-        </motion.div>
+        <SectionMarker
+          label={t("minigame.label")}
+          index="05"
+        />
 
         <motion.div
-          className="relative border border-fg-muted/10 bg-surface min-w-0 overflow-hidden"
+          className="relative border border-line bg-surface min-w-0 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -497,7 +489,7 @@ export function Minigame() {
             {/* Right: game */}
             <div className="min-w-0 flex-1 flex flex-col items-start w-full max-w-full">
               <div
-                className="relative overflow-hidden border border-fg-muted/12 bg-black w-full max-w-[640px]"
+                className="relative overflow-hidden border border-line bg-black w-full max-w-[640px]"
                 style={{ aspectRatio: `${W} / ${H}`, imageRendering: "pixelated" }}
               >
                 <div
@@ -520,7 +512,7 @@ export function Minigame() {
               </div>
 
               {/* Controls bar */}
-              <div className="mt-4 w-full max-w-[640px] flex flex-wrap items-center gap-3 py-3 px-4 border border-fg-muted/10 bg-surface-elevated/40">
+              <div className="mt-4 w-full max-w-[640px] flex flex-wrap items-center gap-3 py-3 px-4 border border-line bg-surface-elevated/40">
                 {gameState === "idle" && (
                   <button
                     type="button"
@@ -564,7 +556,7 @@ export function Minigame() {
                   <button
                     type="button"
                     aria-label="Move left"
-                    className="flex-1 flex items-center justify-center bg-fg-muted/10 border border-fg-muted/15 text-fg font-sans text-lg select-none active:bg-accent/20 transition-colors"
+                    className="flex-1 flex items-center justify-center bg-fg-muted/10 border border-line text-fg font-sans text-lg select-none active:bg-accent/20 transition-colors"
                     style={{ minHeight: TOUCH_BTN_MIN_SIZE }}
                     onTouchStart={(e) => { e.preventDefault(); keysRef.current.left = true; }}
                     onTouchEnd={(e) => { e.preventDefault(); keysRef.current.left = false; }}
@@ -584,7 +576,7 @@ export function Minigame() {
                   <button
                     type="button"
                     aria-label="Move right"
-                    className="flex-1 flex items-center justify-center bg-fg-muted/10 border border-fg-muted/15 text-fg font-sans text-lg select-none active:bg-accent/20 transition-colors"
+                    className="flex-1 flex items-center justify-center bg-fg-muted/10 border border-line text-fg font-sans text-lg select-none active:bg-accent/20 transition-colors"
                     style={{ minHeight: TOUCH_BTN_MIN_SIZE }}
                     onTouchStart={(e) => { e.preventDefault(); keysRef.current.right = true; }}
                     onTouchEnd={(e) => { e.preventDefault(); keysRef.current.right = false; }}
