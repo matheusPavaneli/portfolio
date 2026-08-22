@@ -5,6 +5,7 @@ import { profile } from "@/data/profile";
 import { useLocale } from "@/context/LocaleContext";
 import { FeaturedAnchorCard } from "@/components/FeaturedAnchorCard";
 import { FeaturedSealCard } from "@/components/FeaturedSealCard";
+import { FeaturedTechnologyArtCard } from "@/components/FeaturedTechnologyArtCard";
 import { ProjectList } from "@/components/ProjectList";
 
 export function Projects() {
@@ -54,6 +55,11 @@ export function Projects() {
         <div className="mt-14 sm:mt-16">
           <FeaturedMarker index="02" label={t("projects.featuredLabel")} />
           <FeaturedAnchorCard />
+        </div>
+
+        <div className="mt-14 sm:mt-16">
+          <FeaturedMarker index="03" label={t("projects.featuredLabel")} />
+          <FeaturedTechnologyArtCard />
         </div>
 
         {/* Remaining repositories */}

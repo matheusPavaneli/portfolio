@@ -204,6 +204,9 @@
     "project2": {
       "description": "Approval gateway for AI agents: an API and MCP proxy that pauses risky tool calls until a human approves — declarative policy, approval by exception, and a hash-chained audit trail that verifies offline. Open-core: the local mode ships under Apache-2.0 on npm, the cloud adds multi-reviewer review, Slack and hosted audit."
     },
+    "project3": {
+      "description": "A scroll-led essay on the history of technology, told through eight artefacts — from a struck stone 3.3 million years ago to machines that are learning to judge. One WebGL point cloud is reassembled into every era's form, the interval between two eras sets the height of the silence before it, and a single accent walks the spectrum as you scroll. Lighthouse 100 on desktop and 99 on mobile with the artefact intact: the heavy layers wait for the reader's first move."
+    },
     "about": {
       "t0": "Precision-driven",
       "t1": "Systems thinker",

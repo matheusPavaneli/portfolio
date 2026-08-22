@@ -204,6 +204,9 @@
     "project2": {
       "description": "Gateway de aprovação para agentes de IA: uma API e um proxy MCP que pausam tool calls de risco até um humano aprovar — política declarativa, aprovação por exceção e trilha de auditoria em hash chain verificável offline. Open-core: o modo local é Apache-2.0 publicado no npm, a nuvem adiciona revisão multiusuário, Slack e auditoria hospedada."
     },
+    "project3": {
+      "description": "Ensaio conduzido por scroll sobre a história da tecnologia, contada por oito artefatos — de uma pedra lascada há 3,3 milhões de anos até máquinas que estão aprendendo a julgar. Uma única nuvem de pontos em WebGL é remontada na forma de cada era, o intervalo entre duas eras define a altura do silêncio que as separa, e um só acento percorre o espectro conforme se rola a página. Lighthouse 100 no desktop e 99 no mobile sem abrir mão do artefato: as camadas pesadas esperam o primeiro gesto do leitor."
+    },
     "about": {
       "t0": "Precisão técnica",
       "t1": "Pensamento sistêmico",
