@@ -13,16 +13,21 @@ One route, ten sections, numbered in the order they are read:
 
 | Section | What it holds |
 |---|---|
-| Hero | Name, title, and the line the rest of the page has to earn |
+| Hero | Name, title, and the stack, on the first screen |
 | About | How I work, in four words and a paragraph |
-| Experience | Roles, with what each one actually changed |
-| Education | Degree and certifications |
-| Skills | Grouped by layer, not by logo wall |
-| Minigame | A canvas game where the targets are the skills above |
-| Freelance | What I take on outside full-time work |
-| Principles | Five, and none of them are "passionate about technology" |
 | Projects | Three featured builds, then the smaller repositories |
+| Experience | Roles, with what each one actually changed |
+| Skills | Grouped the way the CV groups them, not as a logo wall |
+| Freelance | What I take on outside full-time work, and what came of it |
+| Principles | Six, and none of them are "passionate about technology" |
+| Education | Degree in progress, and certifications |
+| Minigame | A canvas game where the targets are the skills above |
 | Contact | A form and the three ways to reach me directly |
+
+The order is deliberate. A developer portfolio is scanned, not read: the work
+is the strongest evidence, so it comes before the CV, and the two sections a
+recruiter is least likely to need — a degree still in progress, and a game —
+sit after everything that argues for the hire.
 
 ## The featured projects
 

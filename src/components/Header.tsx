@@ -10,10 +10,10 @@ import { profile } from "@/data/profile";
 
 const navKeys = [
   { href: "#about",      key: "nav.about" },
-  { href: "#experience", key: "nav.experience" },
-  { href: "#education",  key: "nav.education" },
-  { href: "#skills",     key: "nav.skills" },
   { href: "#projects",   key: "nav.projects" },
+  { href: "#experience", key: "nav.experience" },
+  { href: "#skills",     key: "nav.skills" },
+  { href: "#education",  key: "nav.education" },
   { href: "#contact",    key: "nav.contact" },
 ] as const;
 

@@ -29,7 +29,7 @@ export function Experience() {
 
         <SectionMarker
           label={t("experience.title")}
-          index="02"
+          index="03"
           className="mb-10"
         />
 
@@ -75,6 +75,12 @@ export function Experience() {
                   </span>
                 </div>
               </div>
+
+              {"contextKey" in exp && exp.contextKey && (
+                <p className="font-sans text-[9px] tracking-[0.18em] uppercase text-fg-muted/45 -mt-1 mb-3">
+                  {t(exp.contextKey)}
+                </p>
+              )}
 
               {/* Role + location */}
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-5">

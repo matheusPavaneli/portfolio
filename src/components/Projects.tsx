@@ -21,7 +21,7 @@ export function Projects() {
 
         <SectionMarker
           label={t("projects.title")}
-          index="08"
+          index="02"
           className="mb-10"
         />
 

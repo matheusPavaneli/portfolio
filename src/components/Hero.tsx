@@ -89,6 +89,17 @@ export function Hero() {
           style={{ transformOrigin: "left" }}
         />
 
+        {/* The stack, in the first screen: it is the first thing a recruiter
+            scans for and the last thing they should have to hunt for. */}
+        <motion.p
+          className="font-sans text-[10px] sm:text-[11px] tracking-[0.18em] text-fg-muted/70 leading-relaxed mb-8 sm:mb-10 max-w-3xl"
+          initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+        >
+          {t("hero.stack")}
+        </motion.p>
+
         {/* Tagline + CTAs */}
         <div className="flex flex-col sm:flex-row sm:items-end gap-7 sm:gap-16 lg:gap-24">
           <motion.p

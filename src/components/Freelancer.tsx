@@ -44,7 +44,7 @@ export function Freelancer() {
 
         <SectionMarker
           label={t("freelance.label")}
-          index="06"
+          index="05"
           className="mb-10"
         />
 
@@ -66,6 +66,12 @@ export function Freelancer() {
                 {t("freelance.available")}
               </span>
             )}
+            <span className="font-sans text-[8px] tracking-[0.35em] uppercase text-fg-muted/50 border border-line px-2.5 py-1">
+              {t("profile.typeFreelance")}
+            </span>
+            <span className="font-sans text-[10px] text-fg-muted/60 tabular-nums">
+              {profile.freelance.period}
+            </span>
           </div>
           <p className="font-sans text-[9px] tracking-[0.3em] text-fg-muted/60 uppercase">
             {t("freelance.subtitle")}
@@ -73,7 +79,7 @@ export function Freelancer() {
         </motion.div>
 
         {/* How-I-work cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-line mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line mb-12">
           {profile.freelance.highlightKeys.map((key, i) => (
             <motion.div
               key={key}

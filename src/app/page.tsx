@@ -19,13 +19,13 @@ export default function Home() {
     <>
       <Hero />
       <About />
+      <Projects />
       <Experience />
-      <Education />
       <Skills />
-      <Minigame />
       <Freelancer />
       <Principles />
-      <Projects />
+      <Education />
+      <Minigame />
       <Contact />
     </>
   );

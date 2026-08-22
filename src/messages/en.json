@@ -15,18 +15,19 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "Fullstack Developer",
+    "title": "Senior Fullstack Engineer",
     "tagline": "Architecture that holds. Code worth inheriting.",
     "getInTouch": "Get in touch",
     "scroll": "Scroll",
     "companies": "companies",
     "basedIn": "based in",
-    "english": "English"
+    "english": "English",
+    "stack": "TypeScript · Node.js / NestJS · React / Next.js · PostgreSQL · AWS · LLM Systems"
   },
   "about": {
     "label": "Statement",
     "headline": "I care about **craft** and **consequence**—clear architecture, honest tradeoffs, and software that holds up.",
-    "body": "Architecture-first, delivery-focused. I work with clear scope, honest tradeoffs, and a bias toward shipping. I leave codebases better than I found them."
+    "body": "Fullstack engineer building production systems across EdTech, social platforms and SaaS — greenfield architecture and legacy rescue alike. I make the foundational calls: stack selection, API contracts, auth models, deployment strategy. Recent work spans a platform serving 100K+ students, a social network owned end to end, and a multi-provider LLM orchestration layer."
   },
   "experience": {
     "title": "Professional Experience",
@@ -47,13 +48,14 @@
     "titleLine1": "Qualifications",
     "titleLine2": "& Skills",
     "subtitle": "Tools and practices I apply to ship quality software.",
-    "languages": "Languages",
-    "frontend": "Frontend",
-    "backend": "Backend & Testing",
-    "databases": "Databases",
-    "devops": "DevOps & Tools",
-    "messaging": "Messaging",
+    "languages": "Languages & Frameworks",
+    "ai": "AI Engineering",
+    "data": "Data & Messaging",
+    "cloud": "Cloud & Infrastructure",
+    "architecture": "Architecture & APIs",
     "soft": "Soft Skills",
+    "languagesLabel": "Languages",
+    "englishNote": "Used daily in production — sprint ceremonies, code review and technical docs with international teams.",
     "softItems": {
       "effectiveCommunication": "Effective communication",
       "teamwork": "Teamwork",
@@ -148,46 +150,34 @@
     "typeFreelance": "Freelance",
     "typePartTime": "Part-time",
     "exp0": {
+      "context": "EdTech · 100K+ students across Brazil",
       "role": "Software Engineer",
-      "location": "São Paulo, Brazil · Remote",
-      "h1": "Developed and maintained scalable web applications using modern full-stack frameworks, delivering high-performance solutions with clean, modular architectures designed for long-term maintainability.",
-      "h2": "Designed and integrated secure RESTful APIs with advanced data handling and validation, applying SOLID principles and design patterns to ensure robust and extensible backend systems.",
-      "h3": "Implemented token-based authentication and secure session management, strengthening application security and protecting sensitive user data across services.",
-      "h4": "Leveraged strong typing to build robust backend modules, reducing runtime errors and improving system reliability, developer productivity, and code consistency.",
-      "h5": "Improved code quality through peer code reviews and systematic refactoring, enhancing performance, readability, and long-term maintainability of critical components.",
-      "h6": "Established automated testing and CI/CD practices, implementing unit and end-to-end tests and integrating deployment pipelines to accelerate delivery and ensure stable releases for web and mobile applications."
+      "location": "Remote",
+      "h1": "Designed and delivered the company's LLM orchestration architecture: an orchestrator routing requests across specialised agents, provider failover so one vendor outage cannot take the feature down, and a MongoDB layer for document retrieval, agent execution logs and a response cache that cuts repeat inference cost. Picked the provider by benchmarking five LLMs on cost, latency and output quality.",
+      "h2": "Traced a core query's latency to stale planner statistics using EXPLAIN ANALYZE — the divergence between estimated and actual rows exposed a sequential scan chosen over an existing index. Refreshed the statistics, restored correct index usage and tuned autovacuum thresholds so it would not recur: 2s down to about 150ms, then documented the method for the team.",
+      "h3": "Shifted releases from weekly batches to daily continuous deployment by introducing CI/CD with automated test suites — smaller changesets, cheaper rollbacks, lower risk per release.",
+      "h4": "Authored the team's code review standard, now applied across every backend service: named the recurring anti-patterns and gave each one a concrete refactoring path."
     },
     "exp1": {
-      "role": "Fullstack Developer (Senior)",
+      "context": "Software consultancy · Brazilian and international clients",
+      "role": "Fullstack Engineer · Mid-level → Senior",
       "location": "Remote",
-      "h1": "Implemented a scalable Stripe payment integration, enabling reliable transaction processing and increasing the application's payment throughput and operational efficiency.",
-      "h2": "Designed and delivered a secure authentication system supporting email login and third-party providers (Microsoft and Google), strengthening account security and improving user onboarding flexibility.",
-      "h3": "Built a robust identity and access layer using a relational database, incorporating secure password hashing, two-factor authentication (2FA), and password recovery mechanisms to enhance platform security and compliance.",
-      "h4": "Developed full OAuth integration for external services, enabling seamless third-party authentication and expanding the platform's ecosystem connectivity.",
-      "h5": "Optimized frontend containerization using advanced multi-stage Docker builds, reducing image size from 1.9GB to ~210MB, significantly accelerating build times, deployment speed, and infrastructure efficiency."
+      "h1": "Became sole technical owner of the company's greenfield social platform — NestJS, Next.js, PostgreSQL. Shipped 12 feature modules with no senior engineer above me, and set the technical direction the other three engineers on the build worked to.",
+      "h2": "Built the recommendation engine from scratch — TF-IDF vectorisation with cosine similarity over user-generated content, ranking a personalised feed without any third-party ML service.",
+      "h3": "Technical lead on international engagements, with requirements, code review and stakeholder communication conducted in English; drove Brazilian-market delivery directly alongside the Product Owner."
     },
     "exp2": {
-      "role": "Fullstack Developer (Mid-level → Senior)",
-      "location": "Londrina, Paraná, Brazil · Remote",
-      "h1": "Architected and launched the initial technical foundation of a social networking platform, designing a scalable full-stack architecture to support future growth and high user interaction.",
-      "h2": "Developed a highly responsive landing page with fluid animations, optimizing cross-device performance and significantly improving user experience and first-touch engagement.",
-      "h3": "Implemented an interaction-based recommendation algorithm that analyzed user activity and liked posts to surface relevant content, increasing user engagement and content discovery.",
-      "h4": "Enforced strong typing across the entire codebase and applied SOLID principles with dependency injection, creating a modular, maintainable backend architecture that accelerated feature development and reduced technical debt.",
-      "h5": "Leveraged a modern SSR framework for the frontend layer, improving performance, SEO readiness, and secure communication between frontend and backend services.",
-      "h6": "Provided technical leadership across multiple national and international projects, contributing to architecture decisions, mentoring developers, and coordinating implementations to deliver scalable solutions aligned with business objectives."
-    },
-    "exp3": {
-      "role": "Fullstack Developer (Trainee → Junior)",
-      "location": "Paranavaí, Paraná, Brazil · Remote",
-      "h1": "Led the 15-month migration of a legacy dashboard (Nepal) to a modern component-based framework, revitalizing an abandoned codebase by refactoring the frontend architecture and establishing a scalable, maintainable structure for long-term development.",
-      "h2": "Introduced strong typing across the codebase to improve type safety and reliability, reducing runtime errors and production bugs while improving developer productivity and maintainability.",
-      "h3": "Modernized the state management layer by redesigning core actions and updating deprecated libraries, enabling adoption of modern framework features and improving overall application performance and stability.",
-      "h4": "Optimized containerization by redesigning the Docker image, reducing image size by ~60% and significantly improving build efficiency and deployment speed.",
-      "h5": "Implemented automated deployment pipelines using Kubernetes, increasing environment reliability and accelerating the release cycle for faster and more consistent delivery."
+      "context": "Footwear retail · internal financial and administrative systems",
+      "role": "Fullstack Engineer · Trainee → Junior",
+      "location": "Remote",
+      "h1": "Inherited an abandoned financial dashboard — revenue, cost and cash-flow reporting used from the operations floor up to the owners — with no handoff and no documentation. Reverse-engineered it, assessed the debt and set the migration strategy alone. Promoted within six months.",
+      "h2": "Stabilised it on three fronts: eliminated the crashes that made it unreliable, traced and corrected the inconsistent figures it had been reporting, and cut load times — restoring confidence in numbers the business was already making decisions on.",
+      "h3": "Migrated 40+ views to React over 15 months while the system stayed live and in daily use — incremental cutover, no feature freeze, no big-bang rewrite, no interruption to financial reporting.",
+      "h4": "Rolled TypeScript across the full codebase after making the case to non-technical stakeholders, and automated Kubernetes deployments across dev, staging and production."
     },
     "edu0": {
-      "degree": "Bachelor's degree in Engineering",
-      "field": "Computer Software Engineering"
+      "degree": "B.Eng. Software Engineering",
+      "field": "In progress · expected 2029"
     },
     "cert0": {
       "name": "English Certificate (C1)",
@@ -215,19 +205,36 @@
       "t3": "Craftsman"
     },
     "freelance": {
-      "h1": "Scope and deliverables defined before work begins.",
-      "h2": "Estimates grounded in reality. No surprise delays.",
-      "h3": "Clear, regular updates. Always reachable.",
-      "h4": "Structured development — from scope to delivery.",
-      "h5": "Fully remote. Available worldwide."
+      "h1": "Five or more concurrent client engagements through Workana, delivered alongside full-time roles.",
+      "h2": "Cut a frontend Docker image from 1.9 GB to about 210 MB — a 89% reduction — by diagnosing the cause and rebuilding the pipeline with multi-stage builds, with no prior documentation to work from. Smaller artifacts dropped registry and transfer costs by over 60%.",
+      "h3": "Built multi-provider authentication from the ground up — email, Google and Microsoft flows, 2FA, account recovery, PostgreSQL-backed hashing. No auth-related incidents reported post-launch.",
+      "h4": "Shipped production Stripe billing for three client platforms — subscription flows and webhooks built for idempotency, so retries never double-charged."
     },
     "principles": {
-      "p0": { "title": "Clean code", "desc": "Readable, maintainable. No magic." },
-      "p1": { "title": "Ship iteratively", "desc": "Working software over perfect plans." },
-      "p2": { "title": "Clear communication", "desc": "No surprises. Status shared proactively." },
-      "p3": { "title": "Own the outcome", "desc": "Not just tasks — results." },
-      "p4": { "title": "Leave it better", "desc": "Refactor as you go." },
-      "p5": { "title": "Rigor by default", "desc": "Less ambiguity. Fewer surprises. Better systems." }
+      "p0": {
+        "title": "Clean code",
+        "desc": "Readable, maintainable. No magic."
+      },
+      "p1": {
+        "title": "Ship iteratively",
+        "desc": "Working software over perfect plans."
+      },
+      "p2": {
+        "title": "Clear communication",
+        "desc": "No surprises. Status shared proactively."
+      },
+      "p3": {
+        "title": "Own the outcome",
+        "desc": "Not just tasks — results."
+      },
+      "p4": {
+        "title": "Leave it better",
+        "desc": "Refactor as you go."
+      },
+      "p5": {
+        "title": "Rigor by default",
+        "desc": "Less ambiguity. Fewer surprises. Better systems."
+      }
     }
   }
 }

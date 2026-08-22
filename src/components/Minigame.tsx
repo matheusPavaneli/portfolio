@@ -18,10 +18,10 @@ const DROP_SPEED = 2;
 const TOUCH_BTN_MIN_SIZE = 44;
 
 const SKILLS_POOL: string[] = [
-  ...profile.skills.frontend,
-  ...profile.skills.backend,
-  ...profile.skills.databases.slice(0, 4),
-  ...profile.skills.devops.slice(0, 4),
+  ...profile.skills.languages,
+  ...profile.skills.ai.slice(0, 3),
+  ...profile.skills.data.slice(0, 5),
+  ...profile.skills.architecture.slice(0, 4),
 ].slice(0, 24);
 
 function getThemeColors() {
@@ -459,7 +459,7 @@ export function Minigame() {
       <div className="max-w-5xl 2xl:max-w-6xl">
         <SectionMarker
           label={t("minigame.label")}
-          index="05"
+          index="08"
         />
 
         <motion.div

@@ -6,12 +6,12 @@ import { useLocale } from "@/context/LocaleContext";
 import { SectionMarker } from "@/components/SectionMarker";
 
 const categoryKeys: { key: Exclude<keyof typeof profile.skills, "softKeys"> | "soft"; msgKey: string }[] = [
-  { key: "frontend",  msgKey: "skills.frontend"  },
-  { key: "backend",   msgKey: "skills.backend"   },
-  { key: "databases", msgKey: "skills.databases" },
-  { key: "devops",    msgKey: "skills.devops"    },
-  { key: "messaging", msgKey: "skills.messaging" },
-  { key: "soft",      msgKey: "skills.soft"      },
+  { key: "languages",    msgKey: "skills.languages"    },
+  { key: "ai",           msgKey: "skills.ai"           },
+  { key: "data",         msgKey: "skills.data"         },
+  { key: "cloud",        msgKey: "skills.cloud"        },
+  { key: "architecture", msgKey: "skills.architecture" },
+  { key: "soft",         msgKey: "skills.soft"         },
 ];
 
 export function Skills() {
@@ -47,7 +47,7 @@ export function Skills() {
 
         {/* Newspaper column grid — gap-px bg trick for clean column lines */}
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-line"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -87,7 +87,7 @@ export function Skills() {
           className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-2"
         >
           <span className="font-sans text-[8px] tracking-[0.4em] uppercase text-fg-muted/50">
-            {t("skills.languages")}
+            {t("skills.languagesLabel")}
           </span>
           {profile.languages.map((lang) => (
             <span key={lang.nameKey} className="font-sans text-xs text-fg-muted">
@@ -96,6 +96,9 @@ export function Skills() {
               {t(lang.levelKey)}
             </span>
           ))}
+          <span className="font-sans text-[11px] text-fg-muted/60 leading-relaxed basis-full sm:basis-auto sm:max-w-xl">
+            {t("skills.englishNote")}
+          </span>
         </motion.div>
       </div>
     </section>

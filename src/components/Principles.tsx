@@ -51,7 +51,7 @@ export function Principles() {
 
         <SectionMarker
           label={t("principles.label")}
-          index="07"
+          index="06"
           className="mb-10"
         />
 

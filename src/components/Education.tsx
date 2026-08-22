@@ -17,7 +17,7 @@ export function Education() {
 
         <SectionMarker
           label={t("education.title")}
-          index="03"
+          index="07"
           className="mb-10"
         />
 

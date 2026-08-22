@@ -15,18 +15,19 @@
     "contact": "Contato"
   },
   "hero": {
-    "title": "Desenvolvedor Fullstack",
+    "title": "Engenheiro Fullstack Sênior",
     "tagline": "Arquitetura que sustenta. Código que vale a pena herdar.",
     "getInTouch": "Fale comigo",
     "scroll": "Rolagem",
     "companies": "empresas",
     "basedIn": "baseado em",
-    "english": "inglês"
+    "english": "inglês",
+    "stack": "TypeScript · Node.js / NestJS · React / Next.js · PostgreSQL · AWS · Sistemas de LLM"
   },
   "about": {
     "label": "Declaração",
     "headline": "Me importo com **ofício** e **consequência**—arquitetura clara, tradeoffs honestos e software que se sustenta.",
-    "body": "Arquitetura em primeiro lugar, foco na entrega. Escopo claro, tradeoffs honestos e viés para entregar. Deixo o código melhor do que encontrei."
+    "body": "Engenheiro fullstack construindo sistemas em produção em EdTech, plataformas sociais e SaaS — tanto arquitetura greenfield quanto resgate de legado. Tomo as decisões de base: escolha de stack, contratos de API, modelos de autenticação, estratégia de deploy. O trabalho recente inclui uma plataforma que atende mais de 100 mil estudantes, uma rede social sob minha responsabilidade de ponta a ponta e uma camada de orquestração de LLMs multi-provedor."
   },
   "experience": {
     "title": "Experiência Profissional",
@@ -47,13 +48,14 @@
     "titleLine1": "Qualificações",
     "titleLine2": "e Habilidades",
     "subtitle": "Ferramentas e práticas que aplico para entregar com qualidade.",
-    "languages": "Idiomas",
-    "frontend": "Frontend",
-    "backend": "Backend e Testes",
-    "databases": "Bancos de Dados",
-    "devops": "DevOps e Ferramentas",
-    "messaging": "Mensageria",
+    "languages": "Linguagens e Frameworks",
+    "ai": "Engenharia de IA",
+    "data": "Dados e Mensageria",
+    "cloud": "Cloud e Infraestrutura",
+    "architecture": "Arquitetura e APIs",
     "soft": "Soft Skills",
+    "languagesLabel": "Idiomas",
+    "englishNote": "Usado diariamente em produção — cerimônias de sprint, code review e documentação técnica com times internacionais.",
     "softItems": {
       "effectiveCommunication": "Comunicação eficaz",
       "teamwork": "Trabalho em equipe",
@@ -148,46 +150,34 @@
     "typeFreelance": "Freelance",
     "typePartTime": "Meio período",
     "exp0": {
+      "context": "EdTech · mais de 100 mil estudantes no Brasil",
       "role": "Engenheiro de Software",
-      "location": "São Paulo, Brasil · Remoto",
-      "h1": "Desenvolvi e mantive aplicações web escaláveis com frameworks full-stack modernos, entregando soluções de alta performance com arquiteturas limpas e modulares pensadas para manutenção a longo prazo.",
-      "h2": "Projetei e integrei APIs RESTful seguras com tratamento e validação avançados de dados, aplicando princípios SOLID e design patterns para garantir sistemas backend robustos e extensíveis.",
-      "h3": "Implementei autenticação baseada em tokens e gestão segura de sessões, reforçando a segurança da aplicação e a proteção de dados sensíveis entre serviços.",
-      "h4": "Utilizei tipagem estática para construir módulos backend robustos, reduzindo erros em tempo de execução e melhorando confiabilidade, produtividade e consistência do código.",
-      "h5": "Melhorei a qualidade do código por meio de code reviews entre pares e refatoração sistemática, aumentando performance, legibilidade e manutenibilidade a longo prazo de componentes críticos.",
-      "h6": "Estabeleci práticas de testes automatizados e CI/CD, implementando testes unitários e end-to-end e integrando pipelines de deploy para acelerar a entrega e garantir releases estáveis para aplicações web e mobile."
+      "location": "Remoto",
+      "h1": "Desenhei e entreguei a arquitetura de orquestração de LLMs da empresa: um orquestrador que roteia requisições entre agentes especializados, failover de provedor para que a indisponibilidade de um fornecedor não derrube a funcionalidade, e uma camada MongoDB para recuperação de documentos, logs de execução dos agentes e um cache de respostas que corta o custo de inferência repetida. Escolhi o provedor comparando cinco LLMs em custo, latência e qualidade de saída.",
+      "h2": "Rastreei a latência de uma consulta central até estatísticas desatualizadas do planejador com EXPLAIN ANALYZE — a divergência entre linhas estimadas e reais expôs um sequential scan escolhido no lugar de um índice existente. Atualizei as estatísticas, restaurei o uso correto do índice e ajustei os limiares de autovacuum para não se repetir: de 2s para cerca de 150ms, e documentei o método para o time.",
+      "h3": "Mudei as entregas de lotes semanais para deploy contínuo diário com CI/CD e suítes de teste automatizadas — changesets menores, rollbacks mais baratos, menos risco por release.",
+      "h4": "Escrevi o padrão de code review do time, hoje aplicado em todos os serviços de backend: nomeei os anti-padrões recorrentes e dei a cada um um caminho concreto de refatoração."
     },
     "exp1": {
-      "role": "Desenvolvedor Fullstack (Sênior)",
+      "context": "Consultoria de software · clientes brasileiros e internacionais",
+      "role": "Engenheiro Fullstack · Pleno → Sênior",
       "location": "Remoto",
-      "h1": "Implementei integração escalável de pagamentos com Stripe, permitindo processamento confiável de transações e aumento da capacidade e da eficiência operacional da aplicação.",
-      "h2": "Projetei e entreguei um sistema de autenticação seguro com login por email e provedores externos (Microsoft e Google), reforçando a segurança das contas e a flexibilidade de onboarding.",
-      "h3": "Construí uma camada robusta de identidade e acesso com banco de dados relacional, incorporando hashing seguro de senhas, autenticação em dois fatores (2FA) e recuperação de senha para reforçar segurança e conformidade da plataforma.",
-      "h4": "Desenvolvi integração OAuth completa para serviços externos, permitindo autenticação third-party fluida e ampliando a conectividade do ecossistema da plataforma.",
-      "h5": "Otimizei a containerização do frontend com multi-stage builds avançados no Docker, reduzindo o tamanho da imagem de 1,9GB para ~210MB e acelerando tempos de build, deploy e eficiência da infraestrutura."
+      "h1": "Tornei-me o único responsável técnico pela plataforma social greenfield da empresa — NestJS, Next.js, PostgreSQL. Entreguei 12 módulos de funcionalidade sem nenhum engenheiro sênior acima de mim e defini a direção técnica seguida pelos outros três engenheiros do projeto.",
+      "h2": "Construí o motor de recomendação do zero — vetorização TF-IDF com similaridade de cosseno sobre conteúdo gerado por usuários, ranqueando um feed personalizado sem nenhum serviço de ML de terceiros.",
+      "h3": "Líder técnico em contratos internacionais, com levantamento de requisitos, code review e comunicação com stakeholders em inglês; conduzi a entrega no mercado brasileiro diretamente ao lado do Product Owner."
     },
     "exp2": {
-      "role": "Desenvolvedor Fullstack (Pleno → Sênior)",
-      "location": "Londrina, Paraná, Brasil · Remoto",
-      "h1": "Arquitetei e lancei a base técnica inicial de uma plataforma de rede social, desenhando uma arquitetura full-stack escalável para suportar crescimento e alta interação de usuários.",
-      "h2": "Desenvolvi uma landing page altamente responsiva com animações fluidas, otimizando performance entre dispositivos e melhorando a experiência do usuário e o engajamento no primeiro contato.",
-      "h3": "Implementei um algoritmo de recomendação baseado em interações que analisava atividade do usuário e posts curtidos para destacar conteúdo relevante, aumentando engajamento e descoberta de conteúdo.",
-      "h4": "Adotei tipagem estática em toda a base de código e apliquei princípios SOLID com injeção de dependência, criando uma arquitetura backend modular e sustentável que acelerou o desenvolvimento de features e reduziu débito técnico.",
-      "h5": "Utilizei um framework SSR moderno na camada de frontend, melhorando performance, SEO e comunicação segura entre frontend e backend.",
-      "h6": "Exerci liderança técnica em diversos projetos nacionais e internacionais, contribuindo para decisões de arquitetura, mentorando desenvolvedores e coordenando implementações para entregar soluções escaláveis alinhadas aos objetivos de negócio."
-    },
-    "exp3": {
-      "role": "Desenvolvedor Fullstack (Trainee → Júnior)",
-      "location": "Paranavaí, Paraná, Brasil · Remoto",
-      "h1": "Liderei a migração de 15 meses de um dashboard legado (Nepal) para um framework moderno baseado em componentes, revitalizando uma base abandonada ao refatorar a arquitetura frontend e estabelecer uma estrutura escalável e sustentável para desenvolvimento a longo prazo.",
-      "h2": "Introduzi tipagem estática na base de código para melhorar segurança de tipos e confiabilidade, reduzindo erros em tempo de execução e bugs em produção e aumentando produtividade e manutenibilidade.",
-      "h3": "Modernizei a camada de gerenciamento de estado ao redesenhar as actions principais e atualizar bibliotecas obsoletas, permitindo adoção de recursos modernos do framework e melhorando performance e estabilidade da aplicação.",
-      "h4": "Otimizei a containerização ao redesenhar a imagem Docker, reduzindo o tamanho em ~60% e melhorando significativamente a eficiência de build e a velocidade de deploy.",
-      "h5": "Implementei pipelines de deploy automatizados com Kubernetes, aumentando a confiabilidade dos ambientes e acelerando o ciclo de releases para entrega mais rápida e consistente."
+      "context": "Varejo calçadista · sistemas financeiros e administrativos internos",
+      "role": "Engenheiro Fullstack · Trainee → Júnior",
+      "location": "Remoto",
+      "h1": "Herdei um dashboard financeiro abandonado — relatórios de receita, custo e fluxo de caixa usados do chão de operação até os donos — sem repasse e sem documentação. Fiz engenharia reversa, avaliei a dívida e defini sozinho a estratégia de migração. Promovido em seis meses.",
+      "h2": "Estabilizei em três frentes: eliminei os travamentos que o tornavam pouco confiável, rastreei e corrigi os números inconsistentes que vinha reportando e reduzi os tempos de carregamento — devolvendo confiança a dados que o negócio já usava para decidir.",
+      "h3": "Migrei mais de 40 telas para React ao longo de 15 meses com o sistema no ar e em uso diário — corte incremental, sem congelamento de funcionalidades, sem reescrita big-bang, sem interromper o relatório financeiro.",
+      "h4": "Adotei TypeScript em todo o código depois de defender a decisão junto a stakeholders não técnicos, e automatizei os deploys em Kubernetes nos ambientes de dev, staging e produção."
     },
     "edu0": {
-      "degree": "Bacharelado em Engenharia",
-      "field": "Engenharia de Software"
+      "degree": "Bacharelado em Engenharia de Software",
+      "field": "Em andamento · previsão 2029"
     },
     "cert0": {
       "name": "Certificado de Inglês (C1)",
@@ -215,19 +205,36 @@
       "t3": "Artesão do código"
     },
     "freelance": {
-      "h1": "Escopo e entregas definidos antes de começar.",
-      "h2": "Estimativas realistas. Sem atrasos imprevistos.",
-      "h3": "Atualizações claras e frequentes. Sempre acessível.",
-      "h4": "Desenvolvimento estruturado — do escopo à entrega.",
-      "h5": "Totalmente remoto. Disponível em qualquer lugar."
+      "h1": "Cinco ou mais contratos simultâneos via Workana, entregues em paralelo aos cargos em tempo integral.",
+      "h2": "Reduzi uma imagem Docker de frontend de 1,9 GB para cerca de 210 MB — 89% menor — diagnosticando a causa e reconstruindo o pipeline com multi-stage builds, sem nenhuma documentação prévia. Artefatos menores derrubaram os custos de registry e transferência em mais de 60%.",
+      "h3": "Construí autenticação multi-provedor do zero — fluxos de e-mail, Google e Microsoft, 2FA, recuperação de conta e hashing em PostgreSQL. Nenhum incidente de autenticação reportado após o lançamento.",
+      "h4": "Entreguei cobrança com Stripe em produção para três plataformas de clientes — fluxos de assinatura e webhooks construídos para idempotência, de modo que retentativas nunca cobrassem duas vezes."
     },
     "principles": {
-      "p0": { "title": "Código limpo", "desc": "Legível, sustentável. Sem mágica." },
-      "p1": { "title": "Entrega iterativa", "desc": "Software funcionando antes de planos perfeitos." },
-      "p2": { "title": "Comunicação clara", "desc": "Sem surpresas. Status compartilhado antes de ser pedido." },
-      "p3": { "title": "Dono do resultado", "desc": "Não só tarefas — resultados." },
-      "p4": { "title": "Deixe melhor", "desc": "Refatore enquanto desenvolve." },
-      "p5": { "title": "Rigor por padrão", "desc": "Menos ambiguidade. Menos surpresas. Sistemas melhores." }
+      "p0": {
+        "title": "Código limpo",
+        "desc": "Legível, sustentável. Sem mágica."
+      },
+      "p1": {
+        "title": "Entrega iterativa",
+        "desc": "Software funcionando antes de planos perfeitos."
+      },
+      "p2": {
+        "title": "Comunicação clara",
+        "desc": "Sem surpresas. Status compartilhado antes de ser pedido."
+      },
+      "p3": {
+        "title": "Dono do resultado",
+        "desc": "Não só tarefas — resultados."
+      },
+      "p4": {
+        "title": "Deixe melhor",
+        "desc": "Refatore enquanto desenvolve."
+      },
+      "p5": {
+        "title": "Rigor por padrão",
+        "desc": "Menos ambiguidade. Menos surpresas. Sistemas melhores."
+      }
     }
   }
 }
