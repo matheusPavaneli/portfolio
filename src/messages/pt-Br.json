@@ -99,6 +99,18 @@
       "depguard": "CLI de scoring preventivo de risco em dependências npm: metadados do registry, lifecycle scripts, advisories OSV e heurísticas de typosquatting.",
       "envValidator": "Valida process.env na inicialização com schema tipado. Coleta todos os erros de uma vez, com inferência de TypeScript e zero dependências.",
       "azthorize": "API de autenticação com criptografia AES, focada em performance e segurança."
+    },
+    "kindSdk": "SDK",
+    "readDocs": "ver a documentação",
+    "leadLabel": "principal",
+    "openLabel": "abrir",
+    "closeLabel": "fechar",
+    "featuredSetLabel": "Quatro projetos, na ordem do que cada um prova",
+    "kicker": {
+      "anchor": "Inteligência de retenção para agências de performance",
+      "art": "A tecnologia é mais velha que nós — oito artefatos, 3,3 milhões de anos",
+      "nanquim": "Um checkout Pix que o lojista monta na própria página — 12 kB, zero dependências",
+      "seal": "Aprovação como API — human-in-the-loop como infraestrutura"
     }
   },
   "contact": {
@@ -235,6 +247,9 @@
         "title": "Rigor por padrão",
         "desc": "Menos ambiguidade. Menos surpresas. Sistemas melhores."
       }
+    },
+    "project4": {
+      "description": "SDK de checkout Pix embedável e agnóstico de provedor: a superfície de pagamento roda no domínio do próprio lojista, dentro de um Shadow DOM, com zero dependências de runtime no navegador e nenhuma requisição além do backend do lojista. O mercado brasileiro entrega SDKs de backend em cinco a sete linguagens e para no navegador — esse é o componente que faltava. Nenhuma credencial chega ao bundle, porque o SDK recebe funções e não chaves; não existe onSuccess, porque a verdade de um pagamento é um webhook assinado e nunca o navegador. Estados ilegais são irrepresentáveis, o valor prometido é uma invariante, e 12,14 kB gzipped é um gate que o build impõe, não uma promessa."
     }
   }
 }

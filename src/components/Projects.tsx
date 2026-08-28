@@ -1,13 +1,24 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
+import { featuredEntries, type FeaturedEntry } from "@/data/featured";
 import { profile } from "@/data/profile";
 import { useLocale } from "@/context/LocaleContext";
 import { FeaturedAnchorCard } from "@/components/FeaturedAnchorCard";
 import { FeaturedSealCard } from "@/components/FeaturedSealCard";
+import { FeaturedNanquimCard } from "@/components/FeaturedNanquimCard";
+import { FeaturedPlate } from "@/components/FeaturedPlate";
 import { FeaturedTechnologyArtCard } from "@/components/FeaturedTechnologyArtCard";
 import { ProjectList } from "@/components/ProjectList";
 import { SectionMarker } from "@/components/SectionMarker";
+
+const CARDS: Record<FeaturedEntry["id"], ReactNode> = {
+  nanquim: <FeaturedNanquimCard />,
+  seal: <FeaturedSealCard />,
+  anchor: <FeaturedAnchorCard />,
+  art: <FeaturedTechnologyArtCard />,
+};
 
 export function Projects() {
   const { t } = useLocale();
@@ -40,20 +51,31 @@ export function Projects() {
           </p>
         </motion.div>
 
-                <FeaturedMarker index="01" label={t("projects.featuredLabel")} />
-        <FeaturedSealCard />
+                <motion.div
+          className="flex items-center gap-4 mb-2"
+          initial={{ opacity: 0, x: -12 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+        >
+          <span className="font-sans text-[8px] tracking-[0.45em] uppercase text-fg-muted/40">
+            {t("projects.featuredSetLabel")}
+          </span>
+          <span className="flex-1 h-px bg-line" />
+          <span className="font-sans text-[8px] tracking-[0.3em] text-fg-muted/30 tabular-nums">
+            {featuredEntries.length.toString().padStart(2, "0")}
+          </span>
+        </motion.div>
 
-        <div className="mt-14 sm:mt-16">
-          <FeaturedMarker index="02" label={t("projects.featuredLabel")} />
-          <FeaturedAnchorCard />
+        <div className="border-b border-line">
+          {featuredEntries.map((entry, i) => (
+            <FeaturedPlate key={entry.id} entry={entry} lead={i === 0} order={i}>
+              {CARDS[entry.id]}
+            </FeaturedPlate>
+          ))}
         </div>
 
-        <div className="mt-14 sm:mt-16">
-          <FeaturedMarker index="03" label={t("projects.featuredLabel")} />
-          <FeaturedTechnologyArtCard />
-        </div>
-
-                <ProjectList />
+        <ProjectList />
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -78,22 +100,3 @@ export function Projects() {
   );
 }
 
-function FeaturedMarker({ index, label }: { index: string; label: string }) {
-  return (
-    <motion.div
-      className="flex items-center gap-3 mb-4"
-      initial={{ opacity: 0, x: -10 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
-    >
-      <span className="font-sans text-[8px] tracking-[0.3em] text-accent/50 tabular-nums">
-        {index}
-      </span>
-      <span className="w-6 h-px bg-accent/25" />
-      <span className="font-sans text-[8px] tracking-[0.45em] uppercase text-fg-muted/40">
-        {label}
-      </span>
-    </motion.div>
-  );
-}

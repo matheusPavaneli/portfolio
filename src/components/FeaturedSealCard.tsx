@@ -104,20 +104,6 @@ export function FeaturedSealCard() {
               useseal.dev ↗
             </a>
           </div>
-
-                    <a
-            href={LINKS.site}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-block"
-          >
-            <h3 className="font-display text-[clamp(2.6rem,5vw,4rem)] font-light text-fg group-hover:text-accent transition-colors duration-300 tracking-tight leading-[1.0] mb-3">
-              Seal
-            </h3>
-          </a>
-          <p className="font-sans text-[8px] tracking-[0.38em] uppercase text-accent/60 mb-5 leading-relaxed">
-            Approval-as-an-API — human-in-the-loop as infrastructure
-          </p>
           <p className="font-sans text-xs sm:text-sm text-fg-muted leading-[1.9] mb-9 max-w-[56ch]">
             {t("profile.project2.description")}
           </p>

@@ -95,12 +95,6 @@ export function FeaturedAnchorCard() {
                         <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] xl:grid-cols-[1fr_220px] gap-8 lg:gap-14 mb-8">
 
                             <div>
-                <h3 className="font-display text-[clamp(2.6rem,5vw,4rem)] font-light text-fg group-hover:text-accent transition-colors duration-300 tracking-tight leading-[1.0] mb-3">
-                  Anchor
-                </h3>
-                <p className="font-sans text-[8px] tracking-[0.38em] uppercase text-accent/60 mb-5 leading-relaxed">
-                  Retention intelligence for performance agencies
-                </p>
                 <p className="font-sans text-xs sm:text-sm text-fg-muted leading-[1.9] mb-8 max-w-[52ch]">
                   {t("profile.project1.description")}
                 </p>

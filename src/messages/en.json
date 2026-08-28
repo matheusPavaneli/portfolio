@@ -99,6 +99,18 @@
       "depguard": "CLI for preventive npm dependency risk scoring: registry metadata, lifecycle scripts, OSV advisories and typosquatting heuristics.",
       "envValidator": "Validates process.env at startup against a typed schema. Collects every error at once, with TypeScript inference and zero dependencies.",
       "azthorize": "Authentication API with AES encryption, focused on performance and security."
+    },
+    "kindSdk": "SDK",
+    "readDocs": "read the docs",
+    "leadLabel": "lead",
+    "openLabel": "open",
+    "closeLabel": "close",
+    "featuredSetLabel": "Four projects, in order of what they prove",
+    "kicker": {
+      "anchor": "Retention intelligence for performance agencies",
+      "art": "Technology is older than we are — eight artefacts, 3.3 million years",
+      "nanquim": "A Pix checkout the merchant mounts on their own page — 12 kB, zero dependencies",
+      "seal": "Approval-as-an-API — human-in-the-loop as infrastructure"
     }
   },
   "contact": {
@@ -235,6 +247,9 @@
         "title": "Rigor by default",
         "desc": "Less ambiguity. Fewer surprises. Better systems."
       }
+    },
+    "project4": {
+      "description": "An embeddable Pix checkout SDK, provider-agnostic: the payment surface runs on the merchant's own domain, inside a Shadow DOM, with zero runtime dependencies in the browser and no request beyond the merchant's own backend. The Brazilian market ships backend SDKs in five to seven languages and stops at the browser — this is the component that was missing. No credential can reach the bundle, because the SDK takes functions and not keys; there is no onSuccess, because the truth of a payment is a signed webhook and never the browser. Illegal states are unrepresentable, the promised amount is an invariant, and 12.14 kB gzipped is a gate the build enforces, not a claim."
     }
   }
 }
