@@ -6,9 +6,13 @@ import { describe, expect, it } from "vitest";
 import { contrastRatio, parseOklch, type Oklch } from "./color";
 
 /**
- * Reads the tokens out of the stylesheet that actually ships, so a hand-edit to a colour
- * fails here rather than in production. This is the regression test for findings 1–3 of
- * `.unique/audit-baseline.md`.
+ * Reads the tokens out of the stylesheet that actually ships, so a hand-edit to a colour fails
+ * here rather than in production. This is the regression test for the blocking findings in
+ * `.unique/audit-baseline.md`: a primary button whose own label measured 2.81:1, and 97 uses of
+ * muted text between 1.33:1 and 3.00:1.
+ *
+ * The panel has three grounds — the sheet, a module's plate, and the recess a meter face is
+ * sunk into — so every ink is checked against every ground it can actually land on.
  */
 const css = readFileSync(join(process.cwd(), "src/app/globals.css"), "utf8");
 
@@ -37,21 +41,28 @@ function required(tokens: Record<string, Oklch>) {
     return token;
   };
 
+  const page = get("page");
+  const plate = get("plate");
+  const recess = get("recess");
+
   return [
-    { name: "body text on surface", fg: get("text"), bg: get("surface"), min: 4.5 },
-    { name: "body text on raised", fg: get("text"), bg: get("raised"), min: 4.5 },
-    { name: "muted text on surface", fg: get("muted"), bg: get("surface"), min: 4.5 },
-    { name: "muted text on raised", fg: get("muted"), bg: get("raised"), min: 4.5 },
-    { name: "accent text on surface", fg: get("accent"), bg: get("surface"), min: 4.5 },
-    { name: "accent text on raised", fg: get("accent"), bg: get("raised"), min: 4.5 },
-    // The failure that shipped last time: the button's own label against its own fill.
-    { name: "button label on accent", fg: get("on-accent"), bg: get("accent"), min: 4.5 },
-    { name: "alarm text on surface", fg: get("alarm"), bg: get("surface"), min: 4.5 },
-    // Structural boundaries are graphical objects, not decoration: 3:1.
-    { name: "meaningful boundary on surface", fg: get("edge"), bg: get("surface"), min: 3 },
-    { name: "meaningful boundary on raised", fg: get("edge"), bg: get("raised"), min: 3 },
-    { name: "focus ring on surface", fg: get("accent-ui"), bg: get("surface"), min: 3 },
-    { name: "focus ring on raised", fg: get("accent-ui"), bg: get("raised"), min: 3 },
+    { name: "ink on page", fg: get("ink"), bg: page, min: 4.5 },
+    { name: "ink on plate", fg: get("ink"), bg: plate, min: 4.5 },
+    { name: "dim on page", fg: get("dim"), bg: page, min: 4.5 },
+    { name: "dim on plate", fg: get("dim"), bg: plate, min: 4.5 },
+    { name: "signal on page", fg: get("signal"), bg: page, min: 4.5 },
+    { name: "signal on plate", fg: get("signal"), bg: plate, min: 4.5 },
+    { name: "alarm on page", fg: get("alarm"), bg: page, min: 4.5 },
+    { name: "alarm on plate", fg: get("alarm"), bg: plate, min: 4.5 },
+    // The failure that shipped once: a button's own label against its own fill.
+    { name: "button label on signal", fg: get("on-signal"), bg: get("signal"), min: 4.5 },
+    // The recess is a second world with its own ramp.
+    { name: "on-recess on recess", fg: get("on-recess"), bg: recess, min: 4.5 },
+    { name: "dim-recess on recess", fg: get("dim-recess"), bg: recess, min: 4.5 },
+    { name: "signal-recess on recess", fg: get("signal-recess"), bg: recess, min: 4.5 },
+    // A module's edge carries structure, so it is a graphical object and owes 3:1.
+    { name: "edge on page", fg: get("edge"), bg: page, min: 3 },
+    { name: "edge on plate", fg: get("edge"), bg: plate, min: 3 },
   ];
 }
 
@@ -68,18 +79,26 @@ describe.each([
 
 describe("token discipline", () => {
   it("never uses a colour token at an alpha below 1", () => {
-    // Tailwind's `token/NN` shorthand is how 97 sub-AA text uses got into the last build.
-    const sources = collect(join(process.cwd(), "src"));
+    // Tailwind's `token/NN` shorthand is how 97 sub-AA text uses got into an earlier build.
     const offenders: string[] = [];
-    for (const file of sources) {
+    for (const file of collect(join(process.cwd(), "src"))) {
       const text = readFileSync(file, "utf8");
       for (const match of text.matchAll(
-        /(?:text|bg|border|outline|ring|fill|stroke|decoration)-(?:surface|raised|text|muted|rule|edge|accent|accent-ui|on-accent|alarm)\/\d+/g,
+        /(?:text|bg|border|outline|ring|fill|stroke|decoration)-(?:page|plate|recess|ink|dim|edge|signal|alarm|on-signal|on-recess|dim-recess|signal-recess)\/\d+/g,
       )) {
         offenders.push(`${file.replace(process.cwd(), "")}: ${match[0]}`);
       }
     }
     expect(offenders).toEqual([]);
+  });
+
+  it("keeps the dark theme and its no-JS mirror in step", () => {
+    const explicit = block('[data-theme="dark"]');
+    const media = block('html:not([data-theme="light"])');
+    expect(Object.keys(media).sort()).toEqual(Object.keys(explicit).sort());
+    for (const [name, value] of Object.entries(explicit)) {
+      expect(media[name], `--color-${name} drifted between the two dark blocks`).toEqual(value);
+    }
   });
 });
 

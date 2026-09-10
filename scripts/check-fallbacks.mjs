@@ -24,13 +24,13 @@ function check(name, ok, detail = "") {
     await page.goto(base + route, { waitUntil: "domcontentloaded" });
     const seen = await page.evaluate(() => ({
       cases: document.querySelectorAll("article[id^='case-']").length,
-      rows: document.querySelectorAll("table tbody tr").length,
+      meters: document.querySelectorAll("article[id^='case-'] figure").length,
       words: (document.body.innerText || "").split(/\s+/).filter(Boolean).length,
       lang: document.documentElement.lang,
       theme: document.documentElement.getAttribute("data-theme"),
     }));
     check(`no-JS ${route}: 8 cases rendered`, seen.cases === 8, `${seen.cases}`);
-    check(`no-JS ${route}: index has 8 rows`, seen.rows === 8, `${seen.rows}`);
+    check(`no-JS ${route}: every case still posts its reading`, seen.meters === 8, `${seen.meters}`);
     check(`no-JS ${route}: readable text present`, seen.words > 600, `${seen.words} words`);
     check(
       `no-JS ${route}: html lang correct`,

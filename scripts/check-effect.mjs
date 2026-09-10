@@ -25,11 +25,11 @@ const check = (name, ok, detail = "") => {
   const page = await context.newPage();
   const session = await context.newCDPSession(page);
   await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-  await page.locator("#divergence").scrollIntoViewIfNeeded();
+  await page.locator("#instrument").scrollIntoViewIfNeeded();
   await page.waitForTimeout(600);
   await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
 
-  const box = await page.locator("#divergence figure").boundingBox();
+  const box = await page.locator("#instrument figure").boundingBox();
   const cost = await page.evaluate(async () => {
     const frames = [];
     let last = performance.now();
@@ -66,7 +66,7 @@ const check = (name, ok, detail = "") => {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-  await page.locator("#divergence").scrollIntoViewIfNeeded();
+  await page.locator("#instrument").scrollIntoViewIfNeeded();
   await page.waitForTimeout(1600);
   const idle = await page.evaluate(
     () =>
@@ -99,7 +99,7 @@ const check = (name, ok, detail = "") => {
   });
   const page = await context.newPage();
   await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-  await page.locator("#divergence").scrollIntoViewIfNeeded();
+  await page.locator("#instrument").scrollIntoViewIfNeeded();
   await page.waitForTimeout(700);
   const state = await page.evaluate(() => ({
     live: document.querySelector(".u-field")?.getAttribute("data-live"),
@@ -122,7 +122,7 @@ const check = (name, ok, detail = "") => {
   });
   const page = await context.newPage();
   await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-  await page.locator("#divergence").scrollIntoViewIfNeeded();
+  await page.locator("#instrument").scrollIntoViewIfNeeded();
   await page.waitForTimeout(500);
   const fallback = await page.evaluate(() => {
     const holder = document.querySelector(".u-field");

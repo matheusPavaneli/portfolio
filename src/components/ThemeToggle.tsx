@@ -28,10 +28,16 @@ export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: stri
       type="button"
       onClick={toggle}
       // 32 px is the header's declared second control register; the 44 px hit area is padding.
-      className="u-rule -m-1.5 inline-flex h-8 items-center px-1.5 py-1.5 font-mono text-xs uppercase tracking-[0.08em] text-muted hover:text-text"
+      className="lamp legend inline-flex h-8 items-center text-dim hover:text-ink"
     >
-      <span className="u-when-light">{toDark}</span>
-      <span className="u-when-dark">{toLight}</span>
+      <span className="u-when-light">
+        <span className="hidden sm:inline">{toDark}</span>
+        <span className="sr-only sm:hidden">{toDark}</span>
+      </span>
+      <span className="u-when-dark">
+        <span className="hidden sm:inline">{toLight}</span>
+        <span className="sr-only sm:hidden">{toLight}</span>
+      </span>
     </button>
   );
 }

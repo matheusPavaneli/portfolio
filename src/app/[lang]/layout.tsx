@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Zilla_Slab, IBM_Plex_Mono } from "next/font/google";
+import { Anybody, Familjen_Grotesk, Martian_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import "../globals.css";
@@ -9,20 +9,27 @@ import { getMessages, HTML_LANG, isLocale, LOCALES, type Locale } from "@/i18n";
 import { profile } from "@/content/profile";
 
 /**
- * The specification face. `next/font` self-hosts it, subsets it and emits a metric-matched
- * fallback, so a slow font is a slow font and never a layout shift.
+ * The panel face. A real width axis is the point: silkscreened legends on a bezel are
+ * condensed because that is what fits, and the module headings are the same face opened up.
+ * One family, two registers, one download.
  */
-const display = Zilla_Slab({
+const display = Anybody({
   variable: "--face-display",
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
+  axes: ["wdth"],
   display: "swap",
 });
 
-/** The measuring instrument: values, units and labels, and nothing else. */
-const mono = IBM_Plex_Mono({
-  variable: "--face-mono",
+/** Chosen for reading, not for character — the rule for a body face. */
+const body = Familjen_Grotesk({
+  variable: "--face-body",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+/** The readout. Wide, even, tabular: a value on an instrument, not code in a terminal. */
+const readout = Martian_Mono({
+  variable: "--face-readout",
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500"],
   display: "swap",
@@ -102,7 +109,7 @@ export default async function LangLayout({
   return (
     <html
       lang={HTML_LANG[lang]}
-      className={`${display.variable} ${mono.variable}`}
+      className={`${display.variable} ${body.variable} ${readout.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -123,16 +130,16 @@ export default async function LangLayout({
           }}
         />
       </head>
-      <body className="bg-surface text-text antialiased">
+      <body className="bg-page text-ink antialiased">
         <a
           href="#file"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:inline-flex focus:h-11 focus:items-center focus:bg-accent focus:px-4 focus:font-mono focus:text-xs focus:uppercase focus:tracking-[0.08em] focus:text-on-accent"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:inline-flex focus:h-11 focus:items-center focus:rounded-recess focus:bg-signal focus:px-4 focus:text-on-signal legend"
         >
           {t.a11y.skipToContent}
         </a>
         <Header locale={lang} t={t} />
         <main id="file">{children}</main>
-        <Footer locale={lang} t={t} />
+        <Footer t={t} />
       </body>
     </html>
   );

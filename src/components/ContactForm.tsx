@@ -35,11 +35,11 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
 
   if (!endpoint) {
     return (
-      <div className="border border-rule p-6">
-        <p className="m-0 max-w-[46ch] text-sm text-muted">{t.formDisabled}</p>
+      <div className="rounded-plate p-6 ring-1 ring-edge">
+        <p className="m-0 max-w-[46ch] text-sm text-dim">{t.formDisabled}</p>
         <a
           href={`mailto:${email}`}
-          className="mt-5 inline-flex h-11 items-center bg-accent px-5 font-mono text-xs uppercase tracking-[0.08em] text-on-accent"
+          className="mt-5 inline-flex h-11 items-center rounded-recess bg-signal px-5 text-on-signal legend"
         >
           {t.formDisabledCta}
         </a>
@@ -84,7 +84,7 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
 
   if (status.kind === "sent") {
     return (
-      <p role="status" className="border-t-2 border-accent pt-5 text-base text-text">
+      <p role="status" className="rounded-recess bg-plate p-4 text-base text-ink ring-1 ring-edge">
         {t.formSuccess}
       </p>
     );
@@ -132,10 +132,10 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
       <div className="mt-6">
         <label
           htmlFor={`${ids}-message`}
-          className="flex items-baseline gap-2 font-mono text-xs uppercase tracking-[0.08em] text-muted"
+          className="legend flex items-baseline gap-2 text-dim"
         >
           {t.formMessage}
-          <span className="text-muted">{t.required}</span>
+          <span className="text-dim">{t.required}</span>
         </label>
         <textarea
           id={`${ids}-message`}
@@ -146,7 +146,7 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
           disabled={status.kind === "sending"}
           aria-describedby={failed ? errorId : undefined}
           onChange={(event) => setFields((f) => ({ ...f, message: event.target.value }))}
-          className="mt-2 w-full resize-y border-0 border-b border-edge bg-transparent py-2 text-base text-text placeholder:text-muted focus:border-accent focus:outline-none disabled:opacity-60"
+          className="mt-2 w-full resize-y rounded-recess bg-page px-3 py-2 text-base text-ink ring-1 ring-edge placeholder:text-dim focus:outline-none focus:ring-2 focus:ring-signal disabled:opacity-60"
         />
       </div>
 
@@ -159,7 +159,7 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
       <button
         type="submit"
         disabled={status.kind === "sending"}
-        className="mt-7 inline-flex h-11 items-center bg-accent px-6 font-mono text-xs uppercase tracking-[0.08em] text-on-accent disabled:opacity-60"
+        className="mt-7 inline-flex h-11 items-center rounded-recess bg-signal px-6 text-on-signal legend disabled:opacity-60"
       >
         {status.kind === "sending" ? t.formSending : t.formSend}
       </button>
@@ -198,10 +198,10 @@ function Field({
     <div className="mt-6 first:mt-0">
       <label
         htmlFor={id}
-        className="flex items-baseline gap-2 font-mono text-xs uppercase tracking-[0.08em] text-muted"
+        className="legend flex items-baseline gap-2 text-dim"
       >
         {label}
-        <span className="text-muted">{required}</span>
+        <span className="text-dim">{required}</span>
       </label>
       <input
         id={id}
@@ -214,7 +214,7 @@ function Field({
         disabled={disabled}
         aria-describedby={describedBy}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 h-11 w-full border-0 border-b border-edge bg-transparent text-base text-text placeholder:text-muted focus:border-accent focus:outline-none disabled:opacity-60"
+        className="mt-2 h-11 w-full rounded-recess bg-page px-3 text-base text-ink ring-1 ring-edge placeholder:text-dim focus:outline-none focus:ring-2 focus:ring-signal disabled:opacity-60"
       />
     </div>
   );

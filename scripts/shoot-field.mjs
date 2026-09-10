@@ -29,12 +29,12 @@ page.on("console", (m) => {
 page.on("pageerror", (e) => errors.push(e.message));
 
 await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-const band = page.locator("#divergence");
+const band = page.locator("#instrument");
 await band.scrollIntoViewIfNeeded();
 await page.waitForTimeout(900);
 
 console.log("data-live:", await page.locator(".u-field").getAttribute("data-live"));
-const buttons = page.locator("#divergence [role=group] button");
+const buttons = page.locator("#instrument [role=group] button");
 const labels = await buttons.allInnerTexts();
 console.log("controls:", labels.join(" | "));
 

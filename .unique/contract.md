@@ -8,300 +8,213 @@ SUBJECT      The public case file of an engineer handed broken, abandoned or unb
 MODE         marketing
 ORIGINALITY  signature
 BUDGET       loud
-SIGNATURE    The reading: every case posts one measurement into a fixed right-hand column,
-             on the same 1 px track — a delta, a ceiling, or a count — so the page has a
-             single vertical line of numbers a skimmer reads top to bottom without reading a
-             word of prose.
+SIGNATURE    The meter: every case posts its reading on a logarithmic scale spanning a fixed
+             three decades, so the distance between the two needles *is* the ratio — and a
+             value held exactly at its limit puts both needles in one place and the travel
+             closes to nothing.
+
+## Why this replaced the previous direction
+
+The first build of this surface was a plate book: hairline rules, zero radius, dense ruled
+columns, mono eyebrows at wide tracking, and `01`–`08` ordinals on the cases. That is banned
+default #3 in `originality.md` — the broadsheet — and the ordinals are the numbered-marker
+tell: eight cases are a set, not a sequence, and numbering a set is decoration pretending to
+be structure. It scored 8.8 while being, on its colour and layout axes, a default. This
+direction is the correction, and the whole visual layer changed with it.
 
 ## Directions        (three wells, three directions, two killed)
-A  Reading      COLOR <- the trade's notation spends exactly one colour, on the value that diverged (well: notation) · TYPE <- the field writes itself down fixed-width and column-aligned; the artifact it produces is a written specification (well: notation + artifact) · LAYOUT <- every claim in this record is a situation on one side and a reading on the other (well: shape of the data) · SIGNATURE <- engineering claims come in exactly three shapes: made it faster or smaller, held it under a limit, shipped N of them (well: shape of the data)
-B  Query plan   COLOR <- psql, depesz and PEV all render a plan as plain ink with one colour on the node where estimate and actual diverged (well: artifact of the trade) · TYPE <- plan output only aligns because the figures are fixed-width (well: notation) · LAYOUT <- the indented plan tree: every case a node under its parent, cost annotation flush right (well: artifact of the trade) · SIGNATURE <- the divergence bar: estimated against actual, two lengths on one axis
-C  Harness      COLOR <- a model is nondeterministic and the harness around it is not: two grounds, one for what is deterministic and one for what is probabilistic, accent only at the boundary (well: constraint) · TYPE <- a harness is written as policy — declarative, imperative, short lines (well: vernacular) · LAYOUT <- the gate: content passes left to right through named checkpoints that hold or pass (well: constraint) · SIGNATURE <- the hold: one element that visibly pauses and needs a human gesture to pass, mirroring Seal's approval-by-exception
-KILL C — the gate is a left-to-right flow and half this audience is on a 390 px phone, where it collapses to a vertical list and the metaphor dies. Its signature also withholds content behind a gesture, on a page whose entire job is to surrender the evidence inside 90 seconds.
-KILL B — the most specific direction here, and it loses on audience. A query plan is read by backend engineers; `brief.md` puts a recruiter's first screen in the same audience. Its signature also describes one case out of eight, so the page would be built around a device that fits a single story.
+A  Instrument panel  COLOR <- an anodized aluminium panel: a warm grey plate, silkscreened legends, and the deep phthalo the meter faces and blueprint legends are printed in (well: material) · TYPE <- a bezel legend is condensed because that is the width a bezel has, and the same face opens up for a heading (well: notation) · LAYOUT <- a rack is plates of different sizes screwed to one sheet, never one band repeated (well: instrument) · SIGNATURE <- an instrument answers with a needle against a graduated scale, not with a bar (well: instrument)
+B  Trace waterfall   COLOR <- a console read in the dark (well: environment) · TYPE <- span labels are truncated monospace (well: notation) · LAYOUT <- nested spans on one shared time axis, each case a span at its real duration (well: notation) · SIGNATURE <- the waterfall itself, root span to leaf
+C  Before and after  COLOR <- the system as inherited against the system as returned (well: shape of the data) · TYPE <- one face, two weights, the split carrying everything (well: constraint) · LAYOUT <- the page divides down the middle and scroll wipes between the two states (well: shape of the data) · SIGNATURE <- the wipe
+KILL B — the durations are not comparable. A trace's whole grammar is that every span sits on
+one time axis, and these cases span a query's 150 ms and a migration's fifteen months. Laying
+them on one axis means either an axis nobody can read or one rescaled per case, which is a
+waterfall lying about being a waterfall.
+KILL C — the wipe is one gesture repeated eight times, and it puts the evidence behind an
+interaction on a page whose job is to surrender it in 90 seconds. It also collapses on a
+phone, where a left/right split becomes two stacked halves and the comparison dies.
 
 ## Tokens
-color    Generated by `scripts/palette.mjs`, spec in `.unique/palette/final-{light,dark}.json`,
-         9/9 required pairs pass in both schemes.
-         light  surface `oklch(97.5% 0.006 250)` · raised `oklch(94% 0.006 250)` ·
-                text `oklch(19% 0.0096 250)` · muted `oklch(42% 0.0072 250)` ·
-                border `oklch(87% 0.006 250)` · border-strong `oklch(62% 0.006 250)` ·
-                accent `oklch(51% 0.09 185)` · accent-ui / focus `oklch(60% 0.106 185)`
-         dark   surface `oklch(15% 0.006 250)` · raised `oklch(20% 0.006 250)` ·
-                text `oklch(94% 0.0096 250)` · muted `oklch(72% 0.0072 250)` ·
-                border `oklch(32% 0.006 250)` · border-strong `oklch(50% 0.006 250)` ·
-                accent `oklch(62% 0.109 185)` · accent-ui / focus `oklch(68% 0.11 185)`
-         Measured, against the outgoing palette's 2.81:1 CTA: accent text on ground
-         **5.13:1** light / **5.71:1** dark · ground on accent (the button's own label)
-         **5.13 / 5.71** · meaningful boundary **3.40 / 3.31** · focus ring on ground
-         **3.50 / 7.20**, on raised **3.14 / 6.62**.
-         Two rules the outgoing palette had neither of. First, **the accent has exactly three
-         jobs**: a reading's after-value, the primary action, and a link that leaves the page.
-         Nowhere else — no accent headings, no accent bullets, no accent rules, no accent
-         ordinals. The third job is the one addition made during the build, because a link
-         that navigates away is the other thing on this page a reader acts on, and it needs to
-         be findable without hover. Second, **no token is ever used at an alpha below 1** — the
-         97 sub-AA uses in the old build were all `token/NN`, and `src/lib/palette.test.ts`
-         now fails the build if one reappears.
-         One extra token, `--alarm oklch(52% 0.15 25)` light / `oklch(70% 0.15 25)` dark,
-         for form errors only.
-type     display  Zilla Slab 300 · body Zilla Slab 400/500 (+ italic) · utility IBM Plex Mono 400/500
-scale    base 17 px · ratio 1.25 · steps 13 / 15 / 17 / 21 / 27 / 33 / 42 px ·
-         display step `clamp(2.75rem, 1.9rem + 4.2vw, 5.25rem)` chosen above the ladder, so
-         the gap between 42 px and the display is the page's one scale decision.
-         **Floor: 13 px.** No size below it anywhere, replacing 163 hand-set sizes ≤ 11 px.
-         Tracking: display −0.02em, eyebrows +0.08em (not 0.45em), body 0.
-         spacing 8 px baseline · radius 0 · elevation none · motion 160 / 240 / 420 ms,
-         `cubic-bezier(0.2, 0, 0, 1)`
+color    Derived from the COLOR fact, then measured: 14 required pairs per theme, 28 in all,
+         re-checked by `src/lib/palette.test.ts` on every run.
+         light  page `oklch(97.5% 0.008 85)` · plate `oklch(88% 0.01 85)` ·
+                recess `oklch(21% 0.01 85)` · ink `oklch(19% 0.0128 85)` ·
+                dim `oklch(41% 0.0096 85)` · edge `oklch(56% 0.009 85)` ·
+                signal `oklch(48% 0.13 255)` · alarm `oklch(48% 0.16 27)`
+         dark   page `oklch(16% 0.009 85)` · plate `oklch(24% 0.01 85)` ·
+                recess `oklch(11% 0.008 85)` · ink `oklch(94% 0.0128 85)` ·
+                dim `oklch(70% 0.0096 85)` · edge `oklch(54% 0.009 85)` ·
+                signal `oklch(70% 0.13 255)` · alarm `oklch(70% 0.16 27)`
+         **Three grounds, not one**, because a panel has three: the sheet the rack is screwed
+         to, a module's plate, and the recess a meter face is sunk into. The recess carries its
+         own ramp (`on-recess`, `dim-recess`, `signal-recess`) rather than borrowing the
+         plate's, which is what stops a dark module reading as a hole.
+         The signal has three jobs and no others: a reading's after-value, the primary action,
+         and a link that leaves the page. No token is ever used at an alpha below 1.
+type     display Anybody, variable `wdth` — one family, three registers · body Familjen
+         Grotesk · readout Martian Mono 400/500
+scale    base 17 px · ratio 1.2 · legend 12 px · steps 13 / 15 / 17 / 20 / 24 / 30 / 38 px ·
+         display step `clamp(2.5rem, 1.4rem + 4.6vw, 5rem)`, chosen above the ladder.
+         Legends set at `wdth 80`, headings at `wdth 100–108`: the width axis separates the
+         registers, not a second family and not a tracking value.
 
 ## Grid
-PATH     name and the one-line argument → the three headline readings under it → the case
-         index, all cases visible as one ruled table → the first case's reading. Four stops.
-DENSITY  Densest: the case index — every case in one ruled table, readable in a single
-         screen. Emptiest: the masthead (one long line, one reading strip, nothing else) and
-         the contact block (one line, one address). Standard: the case bodies. Section
-         padding is `56 / 96 / 160 px` by role, never one value repeated — the outgoing build
-         used `py-24 sm:py-32 md:py-44` on nine sections out of ten.
-COLUMNS  Asymmetric pair 8/4, held for the whole page, never alternating: prose 8, reading 4,
-         gap 48 px, content max 1180 px. Below 1024 px it collapses to one column **with the
-         reading above its prose**, so the number is what a phone reader meets first.
-MEASURE  prose 58ch · the argument headline 22ch · reading column fixed 260 px at ≥ 1024 px ·
-         case-index cells unmeasured (they are values, not prose)
-RHYTHM   8 px baseline unit. Section padding 7× (dense) / 12× (standard) / 20× (empty).
-         Rule weights 1 px structural, 2 px only where a reading's track is active.
-BLEED    Exactly two elements break the measure: the argument headline, to the full 1180 px
-         content width above 1024 px; and the case-index table, to the page gutter above
-         1280 px. Nothing else bleeds.
+PATH     the claim, at a size that is a decision → the status strip under it → the rack, whose
+         module sizes say which case carries the argument → the recessed screen. Four stops.
+COLUMNS  a twelve-column rack at ≥1024 px, modules spanning 4, 6, 8 or 12. It does not
+         alternate and it does not repeat: the two cases carrying the argument take 8 and 12,
+         the reference plates take 5 and 7, the rest take 4 and 6.
+DENSITY  Densest: the record plates, four modules of compact reference. Emptiest: the masthead
+         and the contact block. The recessed screen is the one module that is nearly all
+         ground. Section padding is 40 / 56 px by role on a 4 px unit — the variance is carried
+         by module span, not by padding, which is why the padding can stay even.
+MEASURE  prose 62ch · a case kicker 52ch · the claim 16ch · a module readout unmeasured
+RHYTHM   4 px unit. Module gap 12 px, plate padding 16/20 px, section padding 40/56 px.
+BLEED    Nothing bleeds. A rack has a sheet edge and the 1240 px content width is it.
 
 ## Components
-RECOGNIZED  (1) the reading — delta, ceiling or count on one 1 px track; (2) the case row in
-            the index — ordinal, name, reading, year, ruled top; (3) the eyebrow — 13 px mono
-            uppercase at +0.08em followed by a 24 px rule; (4) the primary action — a 44 px
-            solid accent block, square; (5) the value — mono tabular figures with a hairline
-            under them, never a bordered chip.
-INTERACTION Every control answers the same way: **the rule under it moves to the accent and
-            goes 1 px → 2 px** in 160 ms. Link underline, reading track, input border, the
-            index row's own rule — one mechanic, derived from the notation fact, because a
-            rule under a value is what this field actually draws.
-CONTROL     44 px, the AA target size and the phone-first audience in `brief.md`. One second
-            register declared: 32 px for the header's own utility controls (theme, locale),
-            which keep a 44 px hit area by padding. No undeclared third.
-CORNER      0 px, every role. A plan node, a table cell and a diff hunk are all square; this
-            trade has no rounded artifact to derive one from.
-SEPARATION  **Border carries structure.** 1 px at `--border-strong`, measured 3.40:1 light /
-            3.31:1 dark — the outgoing build's rules were 1.33:1 and effectively invisible,
-            which is why the render read as an undifferentiated void. Ground steps
-            (`--surface-raised`) are spent only on the register shift into the case index.
-            **Shadow is not used at all**; nothing on this page floats.
-FOCUS       2 px ring, `--focus`, 2 px offset. Measured against both sides: 3.50:1 on ground
-            and 3.14:1 on raised in light; 7.20:1 and 6.62:1 in dark.
-
-## Layout concept
-
-One page, six blocks — down from ten sections, of which nine were CV headings.
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│ MASTHEAD                                        (empty, 160) │
-│ Matheus Pavaneli                                             │
-│ ────────────────────────────────────────────                 │
-│ one long declarative line, 22ch measure, display step        │
-│                                                              │
-│ 2 s → 150 ms    1.9 GB → 210 MB    5 models → 1              │  reading strip
-├──────────────────────────────────────────────────────────────┤
-│ INDEX                                            (dense, 56) │
-│ 01  AI systems in production   5 models → 1        2025—     │  ← every case
-│ 02  Seal                       Apache-2.0          2026      │    in one screen
-│ 03  Nanquim                    12.14 kB ceiling    2026      │
-│ ...                                                          │
-├──────────────────────────────────────────────────────────────┤
-│ CASES                                        (standard, 96)  │
-│ ┌────────────── 8 ──────────────┐ ┌──── 4 ────┐              │
-│ │ 01  AI systems in production  │ │ 5 models  │              │  reading column,
-│ │ situation, the call, the      │ │ ▁▁▁▁▂     │              │  held for the
-│ │ consequence — 58ch, 17 px     │ │ → 1       │              │  whole page
-│ └───────────────────────────────┘ └───────────┘              │
-├──────────────────────────────────────────────────────────────┤
-│ HOW              register shift: raised ground, no prose      │
-│ RECORD           roles · dates · languages, reference register│
-│ CONTACT          one line, one address, one form (empty, 160) │
-└──────────────────────────────────────────────────────────────┘
-```
-
-Below 1024 px the pair collapses and the reading moves **above** its prose.
-
-## Provenance
-COLOR      cool near-neutral ground, single teal accent  <- Two facts. The subject's own SDK
-           is named *Nanquim* — India ink, carbon black, which thins **cool** rather than to
-           the warm brown of iron-gall, so the ground family is a cool near-neutral and value
-           is the only variable in it. And the accent's hue, 185, is the hue of the Pix mark —
-           the payment rail that SDK was built for. How *much* accent is a third fact: in
-           every renderer this trade uses to read a plan, exactly one colour appears, and it
-           appears only on the value that diverged.
-TYPE       Zilla Slab + IBM Plex Mono  <- The field writes itself down fixed-width and
-           column-aligned — a plan, a benchmark table, `diff --stat` — and the columns only
-           align because the figures are tabular; that earns a monospace, for values and
-           labels and nothing else. The artifact the subject actually produces is a written
-           specification others follow (a code review standard applied across every backend
-           service), which is the slab class: industrial, catalogue-and-specification.
-LAYOUT     asymmetric column pair 8/4, held  <- Every claim in this record has a situation on
-           one side and a reading on the other, and the two never swap roles.
-SIGNATURE  the reading  <- Engineering claims come in exactly three shapes — made it faster or
-           smaller, held it under a limit, shipped N of them — so the column carries three
-           forms on one track and no fourth.
-
-## Type candidates, two killed per role
-slab   KILL Roboto Slab — the class's own default; choosing it puts the type axis back in the
-       distribution the palette just left. KILL Bitter — drawn for body reading, goes flat at
-       the display step where a long declarative line has to carry, and has no second register.
-       KEEP Zilla Slab — squared, slightly narrow terminals hold the headline at 300; 400/500
-       read plainly at 17 px; a true italic for quoted vernacular.
-mono   KILL Geist Mono — Vercel's face; on a page about production systems it reads as the
-       platform's brand rather than the subject's. KILL Martian Mono — a display mono, too
-       wide for a value column beside prose, which defeats the alignment the fact is about.
-       KEEP IBM Plex Mono — real tabular figures, holds at the 13 px floor.
+RECOGNIZED  (1) the meter — a graduated three-decade log scale with two needles and the travel
+            between them; (2) the module — a milled plate carrying a silkscreened legend and a
+            corner readout; (3) the legend itself, the display face at `wdth 80`; (4) the lamp,
+            the round indicator every control carries; (5) the recess, the one sunk module.
+INTERACTION Every control lights: its lamp fills with signal and its label goes to ink, in
+            140 ms. Nothing slides, nothing lifts, nothing casts a shadow — an indicator on a
+            panel does exactly one thing and this is it.
+CONTROL     44 px, the AA target size and the phone-first audience. One second register
+            declared: 32 px for the header's own controls, which keep a 44 px hit area by
+            padding. No undeclared third.
+CORNER      plate 6 px · recess 3 px · lamp 999 px. A panel is milled, so its corners carry the
+            router bit; the recess is cut tighter because it is a second operation. Zero radius
+            everywhere was the previous direction's broadsheet tell.
+SEPARATION  **Ground carries structure.** A module is a plate on a sheet, and the 1 px ring at
+            `edge` is that plate's machined edge rather than a rule doing the separating.
+            Shadow is not used anywhere; nothing on a panel floats.
+FOCUS       2 px ring in `signal` at 2 px offset, radius 3 px. Measured against every ground it
+            can land on — page, plate and recess — in both themes.
 
 ## Effect spec
 
 IDIOM      Instrument / notation — the trade's own graphic for "estimated against actual"
 PRIMITIVE  Moiré. One primitive, not two: feedback was dropped during the build because its
-           decay had no real quantity to map to — the CV does not record a duration for every
-           case — and a primitive with no mapping is a filter.
+           decay had no real quantity to map to, and a primitive with no mapping is a filter.
 MECHANISM  Two regular grids describe the same system — what it was estimated to do and what
            it actually did — and where they disagree, the disagreement becomes visible.
 JOB        reveal · response · repay
 MAPPING    The pitch and angle difference between the two grids <- the ratio between a case's
            real before and after values, from `content/cases.ts`. 2 s → 150 ms is 13.3× and
            tears the field apart; 1.9 GB → 210 MB is 9.0×; 5 models → 1 is 5.0×. Nanquim's
-           ceiling sits at **1.0** — value exactly at limit — and produces perfect
-           registration: a flat field with no interference at all. That case is the payoff,
-           and it is true rather than staged.
-           Only the five cases that carry two magnitudes drive the field. A count has one
-           number and therefore no divergence to show, so Seal, Anchor and the dashboard are
-           named in the band and do not drive it. Saying that is more honest than inventing a
-           second axis for them.
-INPUT      pointer and keyboard, on eight real controls, one per case — first meaningful
-           frame in < 100 ms, because the first case is selected at mount and the shader
-           draws one frame before any interaction.
-           The bound on both is legibility, not taste: a moiré's beat spacing is roughly the
+           ceiling sits at **1.00** — value exactly at limit — and produces perfect
+           registration: a flat field with no interference at all.
+           Only the five cases carrying two magnitudes drive it. A count has one number and no
+           divergence to show, so Seal, Anchor and the dashboard are named and excluded.
+           The bound on both parameters is legibility: a moiré's beat spacing is roughly the
            pitch divided by the disagreement, so 3 % of pitch and 1.4° put the bands a few
-           hundred pixels apart. The first build set them at 26 % and 4.2°, which collapsed
-           the interference into a texture — corrected against the render, not the intent.
+           hundred pixels apart. The first build set 26 % and 4.2°, which collapsed the
+           interference into a texture — corrected against the render, not the intent.
+INPUT      pointer and keyboard, on five real controls — first meaningful frame under 100 ms,
+           because the first case is selected at mount and one frame draws before any input.
 TIER       T2 · one full-screen quad, one fragment shader, hand-written WebGL2, no wrapper ·
-           measured 4.7 KB gz against an 8 KB cut line · one rAF that stops when the band
-           leaves the viewport, when the pointer settles, and when the tab is hidden
-QUIET      The page pays for it. The masthead loses its three-reading strip — the readings
-           now have a place that is about them. Every remaining transition drops to the one
-           interaction signature already in the contract. No second animated element exists
-           anywhere on the page, and the palette does not gain a colour: the field is drawn
-           in `--color-edge` against `--color-surface`, so the loud element spends structure
-           rather than hue.
-DEGRADE    reduced-motion: the field renders one composed frame for the selected case and
-           never animates; switching cases still redraws, because that is content, not
-           motion. · no-WebGL / context-lost: two `repeating-linear-gradient` layers draw the
-           same two grids in CSS at 0 KB — moiré is a property of the geometry, not of the
-           renderer, so the fallback shows the real interference, just still. · low-power and
-           mobile: DPR clamped to 1.5, the quad drops to half resolution, the loop pauses off
-           screen and while the tab is hidden. · no JS: the CSS fallback is what ships in the
-           HTML, so the band is never blank.
-CUT LINE   Removed, not optimised, if any of: the shader adds more than 8 KB gz; the band
-           costs more than 3 ms of main thread per frame at 4× CPU throttle; LCP on `/en/`
-           moves at all, measured against the same build without it.
+           measured 4.9 KB gz against an 8 KB cut line · one rAF that stops when the pointer
+           settles, when the module leaves the viewport, and when the tab is hidden
+QUIET      The panel pays: the masthead has no reading strip, every other module is flat plate
+           with no motion of any kind, and the field is drawn in the recess ramp rather than in
+           a colour of its own.
+DEGRADE    reduced-motion: one composed frame, and switching cases still redraws because that
+           is content. · no-WebGL / context-lost: two `repeating-linear-gradient` layers draw
+           the same two grids at 0 KB — moiré is a property of the geometry, not the renderer.
+           · low-power and mobile: DPR clamped to 2, loop paused off screen and while hidden.
+           · no JS: the CSS fallback ships in the HTML, so the screen is never blank.
+CUT LINE   Removed, not optimised, if the shader exceeds 8 KB gz, if the module costs more than
+           3 ms of main thread per frame at 4× CPU throttle, or if LCP moves at all. Measured
+           on every CI run by `scripts/check-effect.mjs`.
 
 ## Effect candidates, two killed
-A  Divergence field   T2 · moiré + feedback · the ratio between before and after
-B  Fallback ladder    T2/T5 · flow field · a request fans out to five providers, one answers,
-                      and when it stops answering the next rung takes it
+A  Divergence field   T2 · moiré · the ratio between before and after
+B  Fallback ladder    T2/T5 · flow field · a request fans out to five providers and one answers
 C  Plate book         T4 · three.js · the case file as physical plates, rotatable and lit
-KILL B — the mapping cannot be real. The CV records that five models were benchmarked on
-cost, latency and output quality; it does not record the five sets of values. A flow field
-whose particle count and rung brightness were tuned by eye is decoration wearing a data
-costume, and "no invented content presented as real data" is a non-negotiable, not a
-preference. It comes back the day those numbers are publishable.
-KILL C — the mascot failure, named in `spectacle.md`: software with no body dressed in 3D
-chrome because the subject was hard to draw. There is no geometry here — the case file is
-type and rules. It would also cost ~150 KB of runtime on a page already measured 32 KB over
-its byte budget, to render something the reader cannot learn anything from.
+KILL B — the mapping cannot be real. The CV records that five models were benchmarked on cost,
+latency and output quality; it does not record the five sets of values, and a particle count
+tuned by eye is decoration wearing a data costume.
+KILL C — the mascot failure: software with no body dressed in 3D chrome, at ~150 KB of runtime
+to render geometry this subject does not have.
+
+## Provenance
+COLOR      warm grey plate, phthalo signal  <- An anodized aluminium instrument panel. The
+           plate is a warm grey enamel, the legends are silkscreened onto it, and the one
+           colour that appears is the deep phthalo blue meter faces and blueprint legends are
+           printed in. Three grounds, because a panel has three surfaces.
+TYPE       Anybody + Familjen Grotesk + Martian Mono  <- A bezel legend is condensed because
+           that is the width a bezel has, and the same face opens up when it is a heading with
+           room. One family carrying both means the width axis does the work a second family
+           would otherwise do.
+LAYOUT     the rack  <- An instrument rack is plates of different sizes screwed to one sheet.
+           The size of a module is a statement about the importance of what is on it, which is
+           exactly the statement eight identical bands could not make.
+SIGNATURE  the meter  <- An instrument answers with a needle against a graduated scale. On a
+           logarithmic scale equal ratios are equal distances, so the travel between the two
+           needles is the case's ratio, comparably, across every case on the page — and a value
+           held at its limit closes the travel to nothing.
 
 ## Gate 1 — swap test, per axis
-COLOR      No. A cool near-neutral whose only chromatic event is a teal reserved for the
-           after-value of a measurement is unusable for a subject with no measurements.
-TYPE       No. The mono is load-bearing — it sets every value and unit — and is wrong for any
-           subject whose notation is not fixed-width.
-LAYOUT     No. The held 8/4 pair requires a genuine primary and secondary in every row; on a
-           subject where both columns carry equal weight it reads as a mistake.
-SIGNATURE  No. The three reading forms are the three shapes an *engineering* claim takes.
+COLOR      No. Three grounds only make sense where something is sunk into something else, and a
+           signal reserved to "the value that moved" needs values that moved.
+TYPE       No. The width axis is load-bearing: remove the bezel-legend register and the panel
+           has no labels, only headings.
+LAYOUT     No. Module size encodes which case carries the argument; on a subject whose items
+           are peers it would read as an accident.
+SIGNATURE  No. A three-decade log scale is meaningless without ratios to place on it.
 
 ## Gate 3 — collision check
-Stripe's docs (asymmetric pair, mono values), Mozilla's own sites (Zilla Slab), and
-`explain.depesz.com` (ink plus one colour on the divergent value). Two are deliberate — the
-notation and the plan renderer are the provenance — and the third is a face collision, not a
-design one: Zilla's association with Mozilla is carried by magenta on white and a geometric
-layout, neither of which survives here. Nothing in the banned-default registry: the ground is
-neither cream (#1) nor near-black-with-acid-accent (#2); the rules are structural at a
-measured 3.4:1 rather than broadsheet hairlines (#3); padding is 56/96/160 by role, not one
-value repeated (#13); there is no left-edge accent bar (#14); and the entrance is one
-orchestrated reveal on the reading strip, not a staggered fade on everything (#15).
+Teenage Engineering's product pages, Braun's RAL-7035 panels, and a Grafana panel row. The
+first two are the provenance and the resemblance is intended; the third is a collision worth
+naming, and the difference is that a Grafana row draws live series while this draws eight fixed
+readings with their scales engraved. Nothing in the banned-default registry: the ground is a
+mid-warm-grey plate rather than cream (#1), the dark theme is a warm charcoal with a blue
+signal rather than near-black with an acid accent (#2), the rules are gone entirely and the
+radius is non-zero (#3), the modules are genuinely different sizes rather than a grid of equal
+cards on heterogeneous content (#7), and there are no ordinals on the cases (#10).
 
-## Rejected
-- Query plan (direction B) — the plan tree is read by backend engineers, and `brief.md` puts a
-  recruiter's first screen in the same audience; its signature also fits one case out of eight.
-- Harness (direction C) — a left-to-right gate collapses on a 390 px phone, and its signature
-  withholds content on a page whose job is to surrender it in 90 seconds.
-- Keeping the ten-section CV order — nine of ten sections were CV headings, and the evidence
-  the page now argues from was bullet 1 of 4 inside the third of them.
-- `Minigame.tsx` — 569 lines and the last thing a hiring reader met before the call to action.
-
-## Rubric            (scored against `.unique/render/v3/`, 2026-09-10, second pass)
+## Rubric            (scored against `.unique/render/panel/`, 2026-09-10)
 profile: expressive
 composition: 4
-type: 4
+type: 5
 color: 4
 density: 4
 usability: 5
 signature: 4
 content: 5
-total: 8.8
+total: 9.0
 
-Baseline before this work, same rubric, same profile: **4.4 BELOW TARGET**
-(`.unique/audit-baseline.md`). Pass 1 scored **8.2**; the weakest weighted axis was usability
-at `(5 − 4) × 0.30 = 0.30`, so pass 2 spent itself there and stopped. Two passes, as
-`quality/floor.md` requires — there is no third.
+Baseline before any of this work: **4.4 BELOW TARGET** (`.unique/audit-baseline.md`). The
+broadsheet direction reached 8.8. What each number is scored against, and what holds it below 5:
 
-- **composition 4** — an empty masthead, a dense index, the held 8/4 pair down eight cases, a
-  register shift into the method block on a raised ground, an empty contact. Held below 5
-  because at 1440 px the masthead's right third is still empty above the reading strip, and
-  the record block is conventional.
-- **type 4** — the scale reads as a scale, the display step sits above the ladder rather than
-  on top of it, every value is set in tabular mono, measure holds at 58ch, eyebrows track at
-  +0.08em. Held below 5 because Zilla Slab at 17 px is slightly quirky over the longest case
-  bodies and the family carries no optical-size axis.
-- **color 4** — one accent with exactly three declared jobs, a neutral ground, structure
-  carried by rules at a measured 3.40:1, and every required pair asserted in CI by
-  `src/lib/palette.test.ts`. Held below 5 because the ceiling reading's full-width track uses
-  the accent at a length that reads like a "before" bar.
-- **density 4** — padding varies by role (56 / 96 / 160), the index is genuinely dense and the
-  masthead genuinely empty; the page went from 13 392 px to 9 302 px at 1440. Held below 5
-  because the eight case bodies land at similar heights.
-- **usability 5** — measured, not asserted: `axe` reports **0 violations** on `/en/` and
-  `/pt/` in both themes; no horizontal overflow at 320 / 390 / 768 / 1440; 44 px controls with
-  one declared 32 px register that keeps its 44 px hit area; the focus ring measures ≥ 3:1
-  against both grounds; anchors clear the header via `scroll-padding-top`; the reading
-  precedes its prose below 1024 px; the contact form carries real sending, invalid,
-  bad-address, unreachable and sent states with copy that says what to do next; locale is a
-  URL, so it survives a share; and with JavaScript disabled both routes render all eight
-  cases, the right `lang`, and the reader's own system theme.
-- **signature 4** — the reading reads as one instrument down the page and traces to its
-  provenance fact. Held below 5 because the ceiling form, where the value sits exactly at the
-  limit, draws a full track that reads like a delta's "before".
-- **content 5** — real copy in the subject's vernacular in both languages, no invented metric,
-  a headline that makes the argument rather than naming a category, a call to action that says
-  what happens next, and error strings that say what happened and where to write instead.
+- **composition 4** — a rack whose module spans say which case carries the argument, a status
+  strip, and one recessed screen. Held below 5 because the reading path is still a vertical
+  stack of sections; only the modules vary, not the route through them.
+- **type 5** — one family carrying three registers off its width axis, a scale that reads as a
+  scale, a display step chosen above the ladder, and readouts in a face built for figures.
+- **color 4** — three grounds, one signal with three declared jobs, 28 measured pairs. Held
+  below 5 because a warm-neutral plate sits close to a beige, and blue is the most conventional
+  accent hue available.
+- **density 4** — module spans of 4 / 6 / 8 / 12 and a page that went from 9 302 px to 6 528 px
+  at 1440. Held below 5 because the rhythm inside the modules is fairly even.
+- **usability 5** — measured: `axe` reports 0 violations on `/en/` and `/pt/` in both themes; no
+  horizontal overflow at 320 / 390 / 768 / 1440; 44 px controls with one declared 32 px
+  register; the focus ring clears 3:1 on every ground; the form carries sending, invalid,
+  bad-address, unreachable and sent states; and with JavaScript disabled both routes render all
+  eight cases with their readings, the right `lang` and the reader's own system theme.
+- **signature 4** — the meter is describable from memory and traces to its provenance. Held
+  below 5 because the page now carries two signatures, the meter and the recessed screen, and
+  the budget says to spend boldness in one place.
+- **content 5** — real copy in both languages, checked line by line against the CV it comes
+  from, with no invented metric anywhere.
 
 ## Removed
-Chanel's rule, applied at the render pass: **the entrance reveal on every element**. A
-`u-reveal` class was on every case and every reading — banned default #15, motion applied
-uniformly, and against this contract's own "one orchestrated moment". It also left content
-faded out in any browser where the view timeline never advanced, which the first render
-caught: the entire case section screenshotted blank. The one moment that stayed is the
-reading's after-track growing from zero.
+Chanel's rule, this pass: **the case index**. A ruled eight-row table listing the same cases
+the rack below it already shows, carrying the ordinals that were the numbered-marker tell. The
+rack is scannable on its own, so the index was a second navigation to keep in sync.
+
+## Rejected
+- The trace waterfall and the before/after wipe, both killed above with their reasons.
+- The plate-book direction this replaced: correct in its rigour, and a default in its idiom.
+- `01`–`08` on the cases. Eight cases are a set, and a set does not get numbered.

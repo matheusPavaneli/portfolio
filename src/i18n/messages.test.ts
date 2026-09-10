@@ -35,6 +35,7 @@ describe("locale catalogues", () => {
       "cases.stack",
       "reading.kindDelta",
       "cases.query.org",
+      "masthead.stripBase",
       "cases.image.org",
       "cases.seal.name",
       "cases.artefacts.name",

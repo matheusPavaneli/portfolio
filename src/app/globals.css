@@ -1,97 +1,110 @@
 @import "tailwindcss";
 
 /*
- * Tokens. Every colour here came out of scripts/palette.mjs from the provenance fact in
- * .unique/contract.md and was contrast-checked before it was written down: 9/9 required
- * pairs pass WCAG 2.2 AA in both schemes. Nothing in this file is used at an alpha below 1.
+ * Tokens, derived from one material fact: an anodized aluminium instrument panel — a warm
+ * grey plate, silkscreened legends, and the deep phthalo blue that meter faces and blueprint
+ * legends are printed in.
+ *
+ * Three grounds, not one, because a panel has three: the sheet the rack sits on, the plate of
+ * a module, and the recess a meter face is sunk into. Every pair below was measured before it
+ * was written down — 25 of them, both themes — and `src/lib/palette.test.ts` re-checks them on
+ * every run. Nothing here is ever used at an alpha below 1.
  */
 @theme {
-  --color-surface: oklch(97.5% 0.006 250);
-  --color-raised: oklch(94% 0.006 250);
-  --color-text: oklch(19% 0.0096 250);
-  --color-muted: oklch(42% 0.0072 250);
-  --color-rule: oklch(87% 0.006 250);
-  --color-edge: oklch(62% 0.006 250);
-  --color-accent: oklch(51% 0.09 185);
-  --color-accent-ui: oklch(60% 0.106 185);
-  --color-on-accent: oklch(97.5% 0.006 250);
-  --color-alarm: oklch(52% 0.15 25);
+  --color-page: oklch(97.5% 0.008 85);
+  --color-plate: oklch(88% 0.01 85);
+  --color-recess: oklch(21% 0.01 85);
+  --color-ink: oklch(19% 0.0128 85);
+  --color-dim: oklch(41% 0.0096 85);
+  --color-edge: oklch(56% 0.009 85);
+  --color-signal: oklch(48% 0.13 255);
+  --color-on-signal: oklch(97.5% 0.008 85);
+  --color-alarm: oklch(48% 0.16 27);
+  /* What sits on a recess: a meter face is read at the other end of the ramp. */
+  --color-on-recess: oklch(95% 0.0128 85);
+  --color-dim-recess: oklch(70% 0.0096 85);
+  --color-signal-recess: oklch(70% 0.13 255);
 
-  --font-display: var(--face-display), Georgia, "Times New Roman", serif;
-  --font-body: var(--face-display), Georgia, "Times New Roman", serif;
-  --font-mono: var(--face-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-display: var(--face-display), "Arial Narrow", system-ui, sans-serif;
+  --font-body: var(--face-body), system-ui, sans-serif;
+  --font-readout: var(--face-readout), ui-monospace, "SFMono-Regular", monospace;
 
-  /* base 17px, ratio 1.25, floor 13px. No size below --text-xs exists on this page. */
+  /* Body 17px, ratio 1.2 — a panel is read close and dense, not at editorial distance. */
+  --text-legend: 0.75rem;
+  --text-legend--line-height: 1.25;
   --text-xs: 0.8125rem;
-  --text-xs--line-height: 1.4;
+  --text-xs--line-height: 1.45;
   --text-sm: 0.9375rem;
   --text-sm--line-height: 1.55;
   --text-base: 1.0625rem;
   --text-base--line-height: 1.6;
-  --text-md: 1.3125rem;
+  --text-md: 1.25rem;
   --text-md--line-height: 1.45;
-  --text-lg: 1.6875rem;
-  --text-lg--line-height: 1.25;
-  --text-xl: 2.0625rem;
-  --text-xl--line-height: 1.15;
-  --text-2xl: 2.625rem;
-  --text-2xl--line-height: 1.08;
-  /* The display step is chosen above the ladder — the gap is the page's one scale decision. */
-  --text-display: clamp(2.75rem, 1.9rem + 4.2vw, 5.25rem);
-  --text-display--line-height: 1.02;
+  --text-lg: 1.5rem;
+  --text-lg--line-height: 1.2;
+  --text-xl: 1.875rem;
+  --text-xl--line-height: 1.12;
+  --text-2xl: 2.375rem;
+  --text-2xl--line-height: 1.05;
+  /* The display step sits above the ladder: it is a composition decision, not a rung. */
+  --text-display: clamp(2.5rem, 1.4rem + 4.6vw, 5rem);
+  --text-display--line-height: 0.96;
 
-  --radius-none: 0px;
+  /* A panel is milled, not guillotined. The plate radius is the router bit, the recess is cut
+     tighter, a lamp is round. Zero radius everywhere was the old build's broadsheet tell. */
+  --radius-plate: 6px;
+  --radius-recess: 3px;
+  --radius-lamp: 999px;
 
-  --ease-out: cubic-bezier(0.2, 0, 0, 1);
-  --duration-fast: 160ms;
+  --ease-panel: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 140ms;
   --duration-mid: 240ms;
-  --duration-slow: 420ms;
 }
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 [data-theme="dark"] {
-  --color-surface: oklch(15% 0.006 250);
-  --color-raised: oklch(20% 0.006 250);
-  --color-text: oklch(94% 0.0096 250);
-  --color-muted: oklch(72% 0.0072 250);
-  --color-rule: oklch(32% 0.006 250);
-  --color-edge: oklch(50% 0.006 250);
-  --color-accent: oklch(62% 0.109 185);
-  --color-accent-ui: oklch(68% 0.11 185);
-  --color-on-accent: oklch(15% 0.006 250);
-  --color-alarm: oklch(70% 0.15 25);
+  --color-page: oklch(16% 0.009 85);
+  --color-plate: oklch(24% 0.01 85);
+  --color-recess: oklch(11% 0.008 85);
+  --color-ink: oklch(94% 0.0128 85);
+  --color-dim: oklch(70% 0.0096 85);
+  --color-edge: oklch(54% 0.009 85);
+  --color-signal: oklch(70% 0.13 255);
+  --color-on-signal: oklch(11% 0.008 85);
+  --color-alarm: oklch(70% 0.16 27);
+  --color-on-recess: oklch(94% 0.0128 85);
+  --color-dim-recess: oklch(70% 0.0096 85);
+  --color-signal-recess: oklch(70% 0.13 255);
 }
 
 /*
- * The no-JS path. With the inline script blocked, no data-theme attribute is set and this
- * block gives the reader the theme their system asked for. With JS on it never applies,
- * because the script stamps data-theme before first paint.
+ * The no-JS path. With the inline script blocked no data-theme is set, and this hands the
+ * reader whatever their system asked for.
  */
 @media (prefers-color-scheme: dark) {
   html:not([data-theme="light"]) {
-    --color-surface: oklch(15% 0.006 250);
-    --color-raised: oklch(20% 0.006 250);
-    --color-text: oklch(94% 0.0096 250);
-    --color-muted: oklch(72% 0.0072 250);
-    --color-rule: oklch(32% 0.006 250);
-    --color-edge: oklch(50% 0.006 250);
-    --color-accent: oklch(62% 0.109 185);
-    --color-accent-ui: oklch(68% 0.11 185);
-    --color-on-accent: oklch(15% 0.006 250);
-    --color-alarm: oklch(70% 0.15 25);
+    --color-page: oklch(16% 0.009 85);
+    --color-plate: oklch(24% 0.01 85);
+    --color-recess: oklch(11% 0.008 85);
+    --color-ink: oklch(94% 0.0128 85);
+    --color-dim: oklch(70% 0.0096 85);
+    --color-edge: oklch(54% 0.009 85);
+    --color-signal: oklch(70% 0.13 255);
+    --color-on-signal: oklch(11% 0.008 85);
+    --color-alarm: oklch(70% 0.16 27);
+    --color-on-recess: oklch(94% 0.0128 85);
+    --color-dim-recess: oklch(70% 0.0096 85);
+    --color-signal-recess: oklch(70% 0.13 255);
   }
 }
 
-
 @layer base {
   html {
-    /* Overridden before paint by the inline script; this is the no-JS value. */
     color-scheme: light dark;
-    background-color: var(--color-surface);
-    color: var(--color-text);
-    /* Every section clears the fixed masthead rule; the old build had no scroll-margin at all. */
-    scroll-padding-top: 6rem;
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    scroll-padding-top: 5.5rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -105,12 +118,11 @@
     font-size: var(--text-base);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
 
-  /* Values are set as values: tabular figures wherever a number is meant to line up. */
-  .font-mono,
-  [class*="tabular"] {
+  /* A readout is read column by column: figures line up or the panel is lying. */
+  .font-readout,
+  .tabular-nums {
     font-variant-numeric: tabular-nums;
   }
 
@@ -118,7 +130,8 @@
   h2,
   h3 {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 700;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
@@ -127,51 +140,75 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent-ui);
+    outline: 2px solid var(--color-signal);
     outline-offset: 2px;
+    border-radius: var(--radius-recess);
   }
 
   ::selection {
-    background: var(--color-accent);
-    color: var(--color-on-accent);
-  }
-
-  :target {
-    scroll-margin-block-start: 6rem;
+    background: var(--color-signal);
+    color: var(--color-on-signal);
   }
 }
 
 @layer components {
   /*
-   * The one interaction signature: the rule under a control moves to the accent and goes
-   * 1px -> 2px. Link underline, reading track, index row, input border — one mechanic.
+   * The silkscreen legend: the small engraved label above every control and every module on a
+   * real panel. Set in the display face at its narrowest width, which is what fits on a bezel.
    */
-  .u-rule {
-    background-image: linear-gradient(var(--color-edge), var(--color-edge));
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 100% 1px;
-    transition: background-size var(--duration-fast) var(--ease-out),
-      background-image var(--duration-fast) var(--ease-out);
+  .legend {
+    font-family: var(--font-display);
+    font-size: var(--text-legend);
+    font-weight: 600;
+    font-variation-settings: "wdth" 80;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
-  /* The theme switch shows the action, and which action it is is a CSS fact. */
-  .u-when-dark {
-    display: none;
+  /*
+   * The one interaction signature: a control lights. Its lamp fills and its label goes to ink,
+   * the way an indicator on a panel does — nothing slides, nothing lifts, nothing shadows.
+   */
+  .lamp {
+    position: relative;
+    padding-left: 1.125rem;
   }
-  [data-theme="dark"] .u-when-dark {
-    display: inline;
-  }
-  [data-theme="dark"] .u-when-light {
-    display: none;
-  }
-  @media (prefers-color-scheme: dark) {
-    html:not([data-theme="light"]) .u-when-dark {
-      display: inline;
+
+  /* At the narrowest widths a control keeps its lamp and drops its word; the accessible name
+     stays, so nothing is lost but the silkscreen. */
+  @media (width < 40rem) {
+    .lamp {
+      padding-left: 0.875rem;
     }
-    html:not([data-theme="light"]) .u-when-light {
-      display: none;
-    }
+  }
+
+  .lamp::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: -0.25rem;
+    border-radius: var(--radius-lamp);
+    border: 1px solid var(--color-edge);
+    background: transparent;
+    transition:
+      background-color var(--duration-fast) var(--ease-panel),
+      border-color var(--duration-fast) var(--ease-panel);
+  }
+
+  .lamp:hover::before,
+  .lamp:focus-visible::before,
+  .lamp[aria-pressed="true"]::before,
+  .lamp[aria-current="true"]::before {
+    background: var(--color-signal);
+    border-color: var(--color-signal);
+  }
+
+  .lamp[aria-pressed="true"],
+  .lamp[aria-current="true"] {
+    color: var(--color-ink);
   }
 
   /* The shader either started or it did not; both states are correct and neither is a flash. */
@@ -180,36 +217,5 @@
   }
   .u-field[data-live="true"] .u-field-fallback {
     display: none;
-  }
-
-  .u-rule:hover,
-  .u-rule:focus-visible {
-    background-image: linear-gradient(var(--color-accent), var(--color-accent));
-    background-size: 100% 2px;
-  }
-
-}
-
-/*
- * The reading's track fill is the one orchestrated moment on the page: the after-length
- * grows from the before-length rather than fading in with everything else.
- */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .u-track-fill {
-      animation: u-track linear both;
-      animation-timeline: view();
-      animation-range: entry 10% entry 80%;
-      transform-origin: left center;
-    }
-  }
-}
-
-@keyframes u-track {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
   }
 }

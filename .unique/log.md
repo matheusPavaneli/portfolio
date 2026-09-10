@@ -3,7 +3,15 @@
 Append-only. Read before planning a surface; never repeat a previous entry's
 `(palette family, display face, layout device)` triple.
 
-## 2026-09-10 — case file (the whole site)
+## 2026-09-10 — case file (instrument panel)
+contract: marketing / signature / loud
+palette: warm anodized aluminium plate with a phthalo signal
+display: Anybody, variable width
+layout device: a twelve-column rack of milled plates at four different spans
+signature: the meter — a three-decade log scale where the travel between two needles is the case's ratio, and a value held at its limit closes it to nothing
+rejected: the trace waterfall (durations that span 150 ms to fifteen months are not one axis) and the before/after wipe (one gesture eight times, and it hides the evidence)
+
+## 2026-09-10 — case file, plate book (superseded)
 contract: marketing / signature / measured
 palette: cool near-neutral ink with a single Pix teal reserved for the value that moved
 display: Zilla Slab 300
