@@ -74,6 +74,13 @@ export const singleValueCaseIds: readonly CaseId[] = cases
  * grid past the point where the interference stops being readable as interference. A ratio
  * of exactly 1 returns the first grid unchanged — no pitch difference, no angle, no moiré.
  */
+/**
+ * The ruling's period in CSS pixels. Shared by the shader and by the CSS fallback, so the two
+ * cannot disagree about what the same grid is. Sized against the recess: finer than this and
+ * the rulings stop reading as rulings and the beat is lost in the mesh.
+ */
+export const GRID_PITCH = 26;
+
 export function gridFor(ratio: number): { pitch: number; angle: number } {
   const spread = Math.log(Math.max(ratio, 1)) / Math.log(16);
   return {

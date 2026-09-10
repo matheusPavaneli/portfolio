@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-import { drivers, gridFor } from "@/lib/divergence";
+import { drivers, gridFor, GRID_PITCH } from "@/lib/divergence";
 
 /**
  * The page's one loud element: two ruled grids describing the same system — what it was
@@ -77,7 +77,6 @@ void main() {
   outColor = vec4(mix(u_ground, u_ink, ink), 1.0);
 }`;
 
-const PITCH = 15.0;
 const WEIGHT = 1.0;
 /** How long the field takes to travel between two cases. The transition is the mechanism. */
 const TRAVEL_MS = 760;
@@ -275,7 +274,7 @@ export function DivergenceField({ active, children }: Props) {
       state.origin.y += (targetY - state.origin.y) * 0.08;
 
       gl!.uniform2f(u.origin, state.origin.x, state.origin.y);
-      gl!.uniform1f(u.pitch, PITCH * state.dpr);
+      gl!.uniform1f(u.pitch, GRID_PITCH * state.dpr);
       gl!.uniform1f(u.pitchRatio, state.pitchRatio);
       gl!.uniform1f(u.angle, (state.angle * Math.PI) / 180);
       gl!.uniform1f(u.weight, WEIGHT * state.dpr);

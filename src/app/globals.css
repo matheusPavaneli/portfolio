@@ -211,6 +211,28 @@
     color: var(--color-ink);
   }
 
+  /*
+   * The theme control shows the action it will take, and which action that is depends on the
+   * theme. Both labels are in the markup; exactly one is ever displayed.
+   */
+  .u-when-dark {
+    display: none;
+  }
+  [data-theme="dark"] .u-when-dark {
+    display: inline;
+  }
+  [data-theme="dark"] .u-when-light {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) .u-when-dark {
+      display: inline;
+    }
+    html:not([data-theme="light"]) .u-when-light {
+      display: none;
+    }
+  }
+
   /* The shader either started or it did not; both states are correct and neither is a flash. */
   .u-field[data-live="false"] canvas {
     opacity: 0;

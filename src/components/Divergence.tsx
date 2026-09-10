@@ -4,10 +4,8 @@ import { useState } from "react";
 
 import { DivergenceField } from "@/components/DivergenceField";
 import { Module } from "@/components/Module";
-import { drivers, gridFor, singleValueCaseIds } from "@/lib/divergence";
+import { drivers, gridFor, GRID_PITCH, singleValueCaseIds } from "@/lib/divergence";
 import type { Messages } from "@/i18n";
-
-const PITCH = 15;
 
 /** The static grids, drawn in CSS so the screen is never blank and never needs WebGL to read. */
 function CssGrids({ ratio }: { ratio: number }) {
@@ -17,8 +15,8 @@ function CssGrids({ ratio }: { ratio: number }) {
   });
   return (
     <>
-      <div className="absolute inset-0" style={rule(PITCH, 90)} />
-      <div className="absolute inset-0" style={rule(PITCH * pitch, 90 + angle)} />
+      <div className="absolute inset-0" style={rule(GRID_PITCH, 90)} />
+      <div className="absolute inset-0" style={rule(GRID_PITCH * pitch, 90 + angle)} />
     </>
   );
 }

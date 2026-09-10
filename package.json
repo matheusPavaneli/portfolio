@@ -17,7 +17,8 @@
     "check:bundle": "node scripts/check-bundle.mjs",
     "check:a11y": "node scripts/check-a11y.mjs",
     "shots": "node scripts/render-shots.mjs",
-    "check:effect": "node scripts/check-effect.mjs"
+    "check:effect": "node scripts/check-effect.mjs",
+    "check:chrome": "node scripts/check-chrome.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.43.0",
