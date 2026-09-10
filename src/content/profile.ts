@@ -4,7 +4,7 @@ export const profile = {
   name: "Matheus Pavaneli",
   initials: "MP",
   email: "matheuspavaneli@proton.me",
-  phone: "+55 44 9775-2680",
+  phone: "+55 44 99775-2680",
   github: "https://github.com/matheusPavaneli",
   linkedin: "https://www.linkedin.com/in/matheuspavaneli/",
   site: "https://matheusPavaneli.github.io/portfolio",
@@ -19,7 +19,7 @@ export type RoleEntry = {
 export const roles: readonly RoleEntry[] = [
   { id: "bernoulli", org: "Bernoulli Educação", period: "Nov 2025 —" },
   { id: "eicode", org: "Eicode", period: "Oct 2024 — Jun 2025" },
-  { id: "freelance", org: "Workana", period: "Jan 2024 — Nov 2025" },
+  { id: "freelance", org: "Independent Contractor via Workana", period: "Jan 2024 — Nov 2025" },
   { id: "jorrovi", org: "Jorrovi Calçados", period: "Apr 2023 — Jun 2025" },
 ];
 

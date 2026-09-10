@@ -30,7 +30,7 @@ export const en = {
     lede: "I take the broken, the abandoned and the not-yet-built — including the LLM systems a company is putting into production for the first time — and hand back an architecture, with the number it moved.",
     readingsLabel: "Three of them",
     cta: "Start a conversation",
-    location: "Maringá, Brazil · remote",
+    location: "Maringá, Brazil (UTC-3) · remote",
     scroll: "The whole file is below",
   },
 
@@ -152,6 +152,14 @@ export const en = {
     eyebrow: "Record",
     title: "The rest of it, compactly.",
     rolesLabel: "Roles",
+    skillsLabel: "Skills",
+    skillGroups: {
+      languages: "Languages & frameworks",
+      ai: "AI engineering",
+      data: "Data & messaging",
+      cloud: "Cloud & infrastructure",
+      architecture: "Architecture & APIs",
+    },
     reposLabel: "Other repositories",
     languagesLabel: "Languages",
     educationLabel: "Education",
@@ -162,17 +170,17 @@ export const en = {
           "LLM orchestration architecture. Weekly release batches to daily continuous deployment with automated test suites. Authored the team's code review standard.",
       },
       eicode: {
-        title: "Fullstack Engineer · mid-level → senior",
+        title: "Senior Fullstack Engineer · promoted from mid-level",
         detail:
           "Sole technical owner of a greenfield social platform: 12 feature modules, no senior above me, and the technical direction three other engineers built to. Recommendation engine written from scratch — TF-IDF with cosine similarity, no third-party ML service. Technical lead on international engagements, in English.",
       },
       freelance: {
-        title: "Freelance · five or more concurrent engagements",
+        title: "Senior Fullstack Engineer · 5+ concurrent engagements",
         detail:
           "Delivered alongside full-time roles. Multi-provider authentication built from the ground up — email, Google and Microsoft, 2FA, recovery — with no auth incident reported post-launch. Production Stripe billing for three client platforms, webhooks built for idempotency so retries never double-charged.",
       },
       jorrovi: {
-        title: "Fullstack Engineer · trainee → junior",
+        title: "Junior Fullstack Engineer · promoted from trainee · part-time",
         detail:
           "The abandoned financial dashboard, above. TypeScript rolled across the codebase after making the case to non-technical stakeholders, and Kubernetes deployments automated across dev, staging and production.",
       },
@@ -185,7 +193,6 @@ export const en = {
       azthorize: "Authentication API with AES encryption, built for throughput.",
     },
     education: "B.Eng. Software Engineering · Cruzeiro do Sul · in progress, expected 2029",
-    certification: "English C1 · Babbel · Jan 2025",
     languages: "Portuguese, native · English, C1 — used daily in production: ceremonies, code review, technical docs.",
   },
 

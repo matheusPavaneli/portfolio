@@ -1,5 +1,6 @@
 import { Eyebrow } from "@/components/Eyebrow";
 import { repos, roles } from "@/content/profile";
+import { skillGroups } from "@/content/skills";
 import type { Messages } from "@/i18n";
 
 /**
@@ -41,6 +42,22 @@ export function Record({ t }: { t: Messages }) {
         </ul>
 
         <h3 className="mt-14 font-mono text-xs font-normal uppercase tracking-[0.08em] text-muted">
+          {t.record.skillsLabel}
+        </h3>
+        <ul className="mt-4 list-none p-0">
+          {skillGroups.map((group) => (
+            <li key={group.id} className="border-t border-rule py-5">
+              <div className="grid grid-cols-1 gap-x-12 gap-y-2 lg:grid-cols-[minmax(0,2fr)_260px]">
+                <p className="m-0 text-base text-muted">{group.terms.join(" · ")}</p>
+                <p className="m-0 font-mono text-xs uppercase tracking-[0.08em] text-muted lg:text-right">
+                  {t.record.skillGroups[group.id]}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="mt-14 font-mono text-xs font-normal uppercase tracking-[0.08em] text-muted">
           {t.record.reposLabel}
         </h3>
         <ul className="mt-4 list-none p-0">
@@ -75,7 +92,6 @@ export function Record({ t }: { t: Messages }) {
               {t.record.educationLabel}
             </h3>
             <p className="mt-3 max-w-[46ch] text-base text-muted">{t.record.education}</p>
-            <p className="mt-2 max-w-[46ch] text-base text-muted">{t.record.certification}</p>
           </div>
           <div>
             <h3 className="font-mono text-xs font-normal uppercase tracking-[0.08em] text-muted">

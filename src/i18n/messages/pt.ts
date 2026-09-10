@@ -32,7 +32,7 @@ export const pt: Messages = {
     lede: "Pego o que está quebrado, o que foi abandonado e o que ainda não existe — inclusive os sistemas de LLM que uma empresa está colocando em produção pela primeira vez — e devolvo uma arquitetura, com o número que ela moveu.",
     readingsLabel: "Três deles",
     cta: "Começar uma conversa",
-    location: "Maringá, Brasil · remoto",
+    location: "Maringá, Brasil (UTC-3) · remoto",
     scroll: "O dossiê inteiro está abaixo",
   },
 
@@ -154,6 +154,14 @@ export const pt: Messages = {
     eyebrow: "Registro",
     title: "O resto, de forma compacta.",
     rolesLabel: "Cargos",
+    skillsLabel: "Competências",
+    skillGroups: {
+      languages: "Linguagens e frameworks",
+      ai: "Engenharia de IA",
+      data: "Dados e mensageria",
+      cloud: "Cloud e infraestrutura",
+      architecture: "Arquitetura e APIs",
+    },
     reposLabel: "Outros repositórios",
     languagesLabel: "Idiomas",
     educationLabel: "Formação",
@@ -164,17 +172,17 @@ export const pt: Messages = {
           "Arquitetura de orquestração de LLM. Releases semanais em lote viraram deploy contínuo diário com suítes automatizadas. Autor do padrão de code review do time.",
       },
       eicode: {
-        title: "Fullstack Engineer · pleno → sênior",
+        title: "Senior Fullstack Engineer · promovido de pleno",
         detail:
           "Dono técnico único de uma plataforma social greenfield: 12 módulos de feature, nenhum sênior acima de mim, e a direção técnica que outros três engenheiros seguiram. Engine de recomendação escrita do zero — TF-IDF com similaridade de cosseno, sem serviço de ML de terceiros. Líder técnico em contas internacionais, em inglês.",
       },
       freelance: {
-        title: "Freelance · cinco ou mais contratos simultâneos",
+        title: "Senior Fullstack Engineer · 5+ contratos simultâneos",
         detail:
           "Entregues em paralelo a posições full-time. Autenticação multi-provider construída do zero — e-mail, Google e Microsoft, 2FA, recuperação — sem nenhum incidente de auth reportado após o lançamento. Cobrança Stripe em produção para três plataformas, com webhooks idempotentes para que retentativas nunca cobrassem duas vezes.",
       },
       jorrovi: {
-        title: "Fullstack Engineer · trainee → júnior",
+        title: "Junior Fullstack Engineer · promovido de trainee · meio período",
         detail:
           "O dashboard financeiro abandonado, acima. TypeScript adotado em toda a base após defender a decisão com stakeholders não técnicos, e deploys Kubernetes automatizados em dev, staging e produção.",
       },
@@ -187,7 +195,6 @@ export const pt: Messages = {
       azthorize: "API de autenticação com criptografia AES, construída para throughput.",
     },
     education: "Bacharelado em Engenharia de Software · Cruzeiro do Sul · em andamento, previsão 2029",
-    certification: "Inglês C1 · Babbel · jan 2025",
     languages: "Português nativo · Inglês C1 — usado diariamente em produção: cerimônias, code review, documentação técnica.",
   },
 
