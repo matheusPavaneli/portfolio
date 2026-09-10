@@ -25,7 +25,7 @@
   --color-dim-recess: oklch(70% 0.0096 85);
   --color-signal-recess: oklch(70% 0.13 255);
 
-  --font-display: var(--face-display), "Arial Narrow", system-ui, sans-serif;
+  --font-display: var(--face-display), "Arial Narrow", "Liberation Sans Narrow", "DejaVu Sans Condensed", system-ui, sans-serif;
   --font-body: var(--face-body), system-ui, sans-serif;
   --font-readout: var(--face-readout), ui-monospace, "SFMono-Regular", monospace;
 

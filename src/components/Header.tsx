@@ -22,7 +22,7 @@ export function Header({ locale, t }: { locale: Locale; t: Messages }) {
           {profile.initials}
         </a>
 
-        <nav aria-label={t.a11y.mainNav} className="hidden md:block">
+        <nav aria-label={t.a11y.mainNav} className="hidden lg:block">
           <ul className="flex items-center gap-5">
             {SECTIONS.map((id) => (
               <li key={id}>
@@ -51,7 +51,7 @@ export function Header({ locale, t }: { locale: Locale; t: Messages }) {
 
           <ThemeToggle toLight={t.a11y.toLight} toDark={t.a11y.toDark} />
 
-          <details className="group relative md:hidden">
+          <details className="group relative lg:hidden">
             <summary className="inline-flex size-11 cursor-pointer list-none items-center justify-center rounded-recess text-dim [&::-webkit-details-marker]:hidden">
               <Menu aria-hidden size={17} strokeWidth={2} />
               <span className="sr-only">{t.a11y.openMenu}</span>

@@ -6,7 +6,7 @@ const LAUNCH = process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}
 
 const base = process.argv[2] ?? "http://localhost:3100";
 const routes = ["/en/", "/pt/"];
-const widths = [320, 390, 768, 1440];
+const widths = [320, 390, 768, 834, 1024, 1440];
 
 const browser = await chromium.launch(LAUNCH);
 let failures = 0;

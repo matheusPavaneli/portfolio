@@ -31,12 +31,12 @@ export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: stri
       className="lamp legend inline-flex h-8 items-center text-dim hover:text-ink"
     >
       <span className="u-when-light">
-        <span className="hidden sm:inline">{toDark}</span>
-        <span className="sr-only sm:hidden">{toDark}</span>
+        <span className="hidden lg:inline">{toDark}</span>
+        <span className="sr-only lg:hidden">{toDark}</span>
       </span>
       <span className="u-when-dark">
-        <span className="hidden sm:inline">{toLight}</span>
-        <span className="sr-only sm:hidden">{toLight}</span>
+        <span className="hidden lg:inline">{toLight}</span>
+        <span className="sr-only lg:hidden">{toLight}</span>
       </span>
     </button>
   );
