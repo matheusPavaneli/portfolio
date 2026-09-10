@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Matheus Pavaneli — engineering case file</title>
+    <link rel="canonical" href="./en/" />
+    <link rel="alternate" hreflang="en" href="./en/" />
+    <link rel="alternate" hreflang="pt-BR" href="./pt/" />
+    <link rel="alternate" hreflang="x-default" href="./en/" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <meta name="robots" content="noindex, follow" />
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        margin: 0;
+        min-height: 100svh;
+        display: grid;
+        place-content: center;
+        gap: 1.5rem;
+        padding: 2rem;
+        background: #f4f7fb;
+        color: #111418;
+        font: 400 17px/1.6 Georgia, "Times New Roman", serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        body { background: #090b0e; color: #e6ecf1; }
+      }
+      p { margin: 0; font: 400 13px/1.4 ui-monospace, SFMono-Regular, monospace;
+          text-transform: uppercase; letter-spacing: 0.08em; color: #4a4d51; }
+      @media (prefers-color-scheme: dark) { p { color: #a1a5a9; } }
+      ul { margin: 0; padding: 0; list-style: none; display: flex; gap: 1.5rem; }
+      a { display: inline-flex; align-items: center; min-height: 44px;
+          color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+      a:focus-visible { outline: 2px solid #00766d; outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <p>Matheus Pavaneli</p>
+    <ul>
+      <li><a href="./en/" hreflang="en">Read it in English</a></li>
+      <li><a href="./pt/" hreflang="pt-BR">Ler em português</a></li>
+    </ul>
+    <script>
+      // A hop, not a gate: the links above are the page, and they work with this script blocked.
+      try {
+        var prefersPortuguese = (navigator.languages || [navigator.language || "en"]).some(
+          function (tag) { return String(tag).toLowerCase().indexOf("pt") === 0; }
+        );
+        location.replace(prefersPortuguese ? "./pt/" : "./en/");
+      } catch (_) {}
+    </script>
+  </body>
+</html>

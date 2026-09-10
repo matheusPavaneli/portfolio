@@ -1,35 +1,18 @@
-"use client";
+import { profile } from "@/content/profile";
+import type { Locale, Messages } from "@/i18n";
 
-import { profile } from "@/data/profile";
-import { useLocale } from "@/context/LocaleContext";
-
-export function Footer() {
-  const { t } = useLocale();
-
+export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
   return (
-    <footer className="relative border-t border-line bg-surface py-7 sm:py-8 px-6 sm:px-10 md:px-16 lg:px-20 safe-x">
-      <div className="max-w-5xl 2xl:max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-sans text-[9px] tracking-[0.25em] uppercase text-fg-muted/50">
-          © {new Date().getFullYear()} {profile.name} · {t("footer.rights")}
+    <footer className="border-t border-rule">
+      <div className="mx-auto flex max-w-[1180px] flex-col gap-4 px-5 py-8 md:flex-row md:items-baseline md:justify-between md:px-8">
+        <p className="m-0 max-w-[52ch] text-sm text-muted">{t.footer.built}</p>
+        <p className="m-0 font-mono text-xs uppercase tracking-[0.08em] text-muted">
+          <span className="tabular-nums">{new Date().getFullYear()}</span> · {profile.name} ·{" "}
+          <a className="u-rule text-muted hover:text-text" href={profile.github} rel="me">
+            {t.footer.source}
+          </a>{" "}
+          · <span lang={locale === "pt" ? "pt-BR" : "en"}>{t.masthead.location}</span>
         </p>
-
-        <div className="flex items-center gap-7">
-          {[
-            { href: profile.github,          label: "GitHub"          },
-            { href: profile.linkedin,         label: "LinkedIn"        },
-            { href: `mailto:${profile.email}`, label: t("nav.contact") },
-          ].map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="font-sans text-[10px] tracking-[0.3em] uppercase text-fg-muted/50 hover:text-accent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
       </div>
     </footer>
   );

@@ -1,178 +1,207 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --color-accent: 184 137 42;
-  --color-accent-hover: 212 165 64;
-  --surface: 245 241 234;
-  --surface-elevated: 237 233 225;
-  --fg: 24 22 14;
-  --fg-muted: 122 112 96;
-  --line: 214 206 192;
-  --pattern-alpha: 0.4;
-  --on-accent: 245 241 234;
-  --color-error: 220 38 38;
-  --color-success: 22 163 74;
-  --color-warning: 202 138 4;
-}
+/*
+ * Tokens. Every colour here came out of scripts/palette.mjs from the provenance fact in
+ * .unique/contract.md and was contrast-checked before it was written down: 9/9 required
+ * pairs pass WCAG 2.2 AA in both schemes. Nothing in this file is used at an alpha below 1.
+ */
+@theme {
+  --color-surface: oklch(97.5% 0.006 250);
+  --color-raised: oklch(94% 0.006 250);
+  --color-text: oklch(19% 0.0096 250);
+  --color-muted: oklch(42% 0.0072 250);
+  --color-rule: oklch(87% 0.006 250);
+  --color-edge: oklch(62% 0.006 250);
+  --color-accent: oklch(51% 0.09 185);
+  --color-accent-ui: oklch(60% 0.106 185);
+  --color-on-accent: oklch(97.5% 0.006 250);
+  --color-alarm: oklch(52% 0.15 25);
 
-.dark {
-  --color-accent: 212 168 83;
-  --color-accent-hover: 226 187 106;
-  --surface: 11 10 9;
-  --surface-elevated: 20 18 16;
-  --fg: 240 235 226;
-  --fg-muted: 138 127 110;
-  --line: 43 39 34;
-  --pattern-alpha: 0.85;
-  --on-accent: 11 10 9;
-}
+  --font-display: var(--face-display), Georgia, "Times New Roman", serif;
+  --font-body: var(--face-display), Georgia, "Times New Roman", serif;
+  --font-mono: var(--face-mono), ui-monospace, "SFMono-Regular", monospace;
 
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  transition:
-    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 300ms cubic-bezier(0.22, 1, 0.36, 1);
-}
+  /* base 17px, ratio 1.25, floor 13px. No size below --text-xs exists on this page. */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.6;
+  --text-md: 1.3125rem;
+  --text-md--line-height: 1.45;
+  --text-lg: 1.6875rem;
+  --text-lg--line-height: 1.25;
+  --text-xl: 2.0625rem;
+  --text-xl--line-height: 1.15;
+  --text-2xl: 2.625rem;
+  --text-2xl--line-height: 1.08;
+  /* The display step is chosen above the ladder — the gap is the page's one scale decision. */
+  --text-display: clamp(2.75rem, 1.9rem + 4.2vw, 5.25rem);
+  --text-display--line-height: 1.02;
 
-body {
-  background-color: rgb(var(--surface));
-  color: rgb(var(--fg));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
-  overflow-x: hidden;
-  min-width: 280px;
-  transition:
-    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  --radius-none: 0px;
+
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 160ms;
+  --duration-mid: 240ms;
+  --duration-slow: 420ms;
 }
 
-:focus-visible {
-  outline: 2px solid rgb(var(--color-accent));
-  outline-offset: 2px;
-}
-:focus:not(:focus-visible) {
-  outline: none;
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+[data-theme="dark"] {
+  --color-surface: oklch(15% 0.006 250);
+  --color-raised: oklch(20% 0.006 250);
+  --color-text: oklch(94% 0.0096 250);
+  --color-muted: oklch(72% 0.0072 250);
+  --color-rule: oklch(32% 0.006 250);
+  --color-edge: oklch(50% 0.006 250);
+  --color-accent: oklch(62% 0.109 185);
+  --color-accent-ui: oklch(68% 0.11 185);
+  --color-on-accent: oklch(15% 0.006 250);
+  --color-alarm: oklch(70% 0.15 25);
 }
 
-.safe-top    { padding-top:    env(safe-area-inset-top,    0); }
-.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
-.safe-x {
-  padding-left:  max(1rem, env(safe-area-inset-left,  0));
-  padding-right: max(1rem, env(safe-area-inset-right, 0));
-}
-
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: rgb(var(--surface)); }
-::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, rgb(var(--color-accent)) 40%, transparent);
-  border-radius: 0;
-}
-::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-accent)); }
-
-::selection {
-  background: color-mix(in srgb, rgb(var(--color-accent)) 28%, transparent);
-  color: rgb(var(--fg));
-}
-
-.pattern-dot {
-  background-image: radial-gradient(
-    rgb(var(--line) / var(--pattern-alpha)) 1px,
-    transparent 1px
-  );
-  background-size: 24px 24px;
-}
-
-.pattern-cross {
-  background-image:
-    linear-gradient(rgb(var(--line) / var(--pattern-alpha)) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--line) / var(--pattern-alpha)) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-
-.ruled-row {
-  border-top: 1px solid rgb(var(--line));
-}
-.ruled-row:last-of-type {
-  border-bottom: 1px solid rgb(var(--line));
-}
-
-.hover-shine {
-  position: relative;
-  overflow: hidden;
-}
-.hover-shine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    transparent 40%,
-    rgba(255,255,255,0.10) 45%,
-    rgba(255,255,255,0.15) 50%,
-    rgba(255,255,255,0.10) 55%,
-    transparent 60%,
-    transparent 100%
-  );
-  transform: translateX(-100%) skewX(-12deg);
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-}
-@media (hover: hover) {
-  .hover-shine:hover::after {
-    transform: translateX(100%) skewX(-12deg);
+/*
+ * The no-JS path. With the inline script blocked, no data-theme attribute is set and this
+ * block gives the reader the theme their system asked for. With JS on it never applies,
+ * because the script stamps data-theme before first paint.
+ */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --color-surface: oklch(15% 0.006 250);
+    --color-raised: oklch(20% 0.006 250);
+    --color-text: oklch(94% 0.0096 250);
+    --color-muted: oklch(72% 0.0072 250);
+    --color-rule: oklch(32% 0.006 250);
+    --color-edge: oklch(50% 0.006 250);
+    --color-accent: oklch(62% 0.109 185);
+    --color-accent-ui: oklch(68% 0.11 185);
+    --color-on-accent: oklch(15% 0.006 250);
+    --color-alarm: oklch(70% 0.15 25);
   }
 }
 
-.nav-link-underline {
-  position: relative;
-}
-.nav-link-underline::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -3px;
-  width: 0;
-  height: 1px;
-  background: rgb(var(--color-accent));
-  transition:
-    width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    left  0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-@media (hover: hover) {
-  .nav-link-underline:hover::after {
-    left: 0;
-    width: 100%;
+
+@layer base {
+  html {
+    /* Overridden before paint by the inline script; this is the no-JS value. */
+    color-scheme: light dark;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    /* Every section clears the fixed masthead rule; the old build had no scroll-margin at all. */
+    scroll-padding-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Values are set as values: tabular figures wherever a number is meant to line up. */
+  .font-mono,
+  [class*="tabular"] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-ui);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  :target {
+    scroll-margin-block-start: 6rem;
   }
 }
 
-.logo-letters {
-  transition: letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+@layer components {
+  /*
+   * The one interaction signature: the rule under a control moves to the accent and goes
+   * 1px -> 2px. Link underline, reading track, index row, input border — one mechanic.
+   */
+  .u-rule {
+    background-image: linear-gradient(var(--color-edge), var(--color-edge));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: background-size var(--duration-fast) var(--ease-out),
+      background-image var(--duration-fast) var(--ease-out);
+  }
+
+  /* The theme switch shows the action, and which action it is is a CSS fact. */
+  .u-when-dark {
+    display: none;
+  }
+  [data-theme="dark"] .u-when-dark {
+    display: inline;
+  }
+  [data-theme="dark"] .u-when-light {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) .u-when-dark {
+      display: inline;
+    }
+    html:not([data-theme="light"]) .u-when-light {
+      display: none;
+    }
+  }
+
+  .u-rule:hover,
+  .u-rule:focus-visible {
+    background-image: linear-gradient(var(--color-accent), var(--color-accent));
+    background-size: 100% 2px;
+  }
+
 }
-@media (hover: hover) {
-  .logo-letters:hover {
-    letter-spacing: 0.28em;
+
+/*
+ * The reading's track fill is the one orchestrated moment on the page: the after-length
+ * grows from the before-length rather than fading in with everything else.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .u-track-fill {
+      animation: u-track linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 80%;
+      transform-origin: left center;
+    }
   }
 }
 
-@keyframes hero-reveal {
-  from { transform: translateY(105%); }
-  to   { transform: translateY(0); }
-}
-
-.font-display {
-  font-optical-sizing: auto;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+@keyframes u-track {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }

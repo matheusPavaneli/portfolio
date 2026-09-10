@@ -1,177 +1,221 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useLocale } from "@/context/LocaleContext";
-import { profile } from "@/data/profile";
+import { useId, useState } from "react";
+import type { Messages } from "@/i18n";
 
-const FORMSPREE_URL = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID
+const ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID
   ? `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID}`
   : null;
 
-const MAX_NAME = 120;
-const MAX_EMAIL = 254;
-const MAX_MESSAGE = 5000;
+const MAX = { name: 120, email: 254, message: 5000 } as const;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function sanitize(str: string, maxLen: number): string {
-  return str
+/** Illegal states unrepresentable: there is no "sending and failed", and no bare error flag. */
+type Status =
+  | { kind: "idle" }
+  | { kind: "sending" }
+  | { kind: "sent" }
+  | { kind: "failed"; reason: "network" | "invalid" | "email" };
+
+/** Collapse whitespace, drop control characters, and bound the length before it leaves. */
+function clean(value: string, max: number): string {
+  return value
     .replace(/\s+/g, " ")
-    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "")
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
     .trim()
-    .slice(0, maxLen);
+    .slice(0, max);
 }
 
-export function ContactForm() {
-  const { t } = useLocale();
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+export function ContactForm({ t, email }: { t: Messages["contact"]; email: string }) {
+  const ids = useId();
+  const [status, setStatus] = useState<Status>({ kind: "idle" });
+  const [fields, setFields] = useState({ name: "", email: "", message: "" });
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!FORMSPREE_URL) {
-      setStatus("error");
-      return;
-    }
-    const name = sanitize(formData.name, MAX_NAME);
-    const email = sanitize(formData.email, MAX_EMAIL);
-    const message = sanitize(formData.message, MAX_MESSAGE);
-    if (!name || !email || !message) {
-      setStatus("error");
-      return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setStatus("error");
-      return;
-    }
-    setStatus("sending");
-    try {
-      const res = await fetch(FORMSPREE_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  }
+  const endpoint = ENDPOINT;
 
-  if (!FORMSPREE_URL) {
+  if (!endpoint) {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="p-6 border border-line bg-surface-elevated/40"
-      >
-        <p className="font-sans text-xs text-fg-muted mb-4 leading-relaxed">
-          {t("contact.formDisabled")}
-        </p>
+      <div className="border border-rule p-6">
+        <p className="m-0 max-w-[46ch] text-sm text-muted">{t.formDisabled}</p>
         <a
-          href={`mailto:${profile.email}`}
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-on-accent font-sans text-[10px] tracking-[0.2em] uppercase hover:bg-accent-dim transition-colors hover-shine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          href={`mailto:${email}`}
+          className="mt-5 inline-flex h-11 items-center bg-accent px-5 font-mono text-xs uppercase tracking-[0.08em] text-on-accent"
         >
-          {t("contact.formDisabledCta")}
+          {t.formDisabledCta}
         </a>
-      </motion.div>
+      </div>
     );
   }
 
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const name = clean(fields.name, MAX.name);
+    const address = clean(fields.email, MAX.email);
+    const message = clean(fields.message, MAX.message);
+
+    if (!name || !address || !message) {
+      setStatus({ kind: "failed", reason: "invalid" });
+      return;
+    }
+    if (!EMAIL.test(address)) {
+      setStatus({ kind: "failed", reason: "email" });
+      return;
+    }
+
+    setStatus({ kind: "sending" });
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name, email: address, message }),
+        signal: AbortSignal.timeout(15_000),
+      });
+      if (!response.ok) {
+        setStatus({ kind: "failed", reason: "network" });
+        return;
+      }
+      setStatus({ kind: "sent" });
+      setFields({ name: "", email: "", message: "" });
+    } catch {
+      setStatus({ kind: "failed", reason: "network" });
+    }
+  };
+
+  if (status.kind === "sent") {
+    return (
+      <p role="status" className="border-t-2 border-accent pt-5 text-base text-text">
+        {t.formSuccess}
+      </p>
+    );
+  }
+
+  const errorId = `${ids}-error`;
+  const failed = status.kind === "failed";
+  const errorText = !failed
+    ? null
+    : status.reason === "network"
+      ? t.formErrorNetwork
+      : status.reason === "email"
+        ? t.formErrorEmail
+        : t.formErrorInvalid;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="max-w-lg"
-    >
-      <h3 className="font-sans text-[11px] tracking-[0.4em] uppercase text-accent mb-6">
-        {t("contact.formTitle")}
-      </h3>
-      {status === "success" ? (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="font-sans text-sm text-accent py-6 leading-relaxed"
+    <form onSubmit={submit} noValidate className="max-w-[46ch]">
+      <Field
+        id={`${ids}-name`}
+        label={t.formName}
+        required={t.required}
+        placeholder={t.formNamePlaceholder}
+        autoComplete="name"
+        value={fields.name}
+        maxLength={MAX.name}
+        disabled={status.kind === "sending"}
+        describedBy={failed ? errorId : undefined}
+        onChange={(value) => setFields((f) => ({ ...f, name: value }))}
+      />
+      <Field
+        id={`${ids}-email`}
+        label={t.formEmail}
+        required={t.required}
+        placeholder={t.formEmailPlaceholder}
+        autoComplete="email"
+        inputMode="email"
+        type="email"
+        value={fields.email}
+        maxLength={MAX.email}
+        disabled={status.kind === "sending"}
+        describedBy={failed ? errorId : undefined}
+        onChange={(value) => setFields((f) => ({ ...f, email: value }))}
+      />
+
+      <div className="mt-6">
+        <label
+          htmlFor={`${ids}-message`}
+          className="flex items-baseline gap-2 font-mono text-xs uppercase tracking-[0.08em] text-muted"
         >
-          {t("contact.formSuccess")}
-        </motion.p>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label htmlFor="contact-name" className="block font-sans text-[11px] tracking-[0.3em] uppercase text-fg-muted mb-2">
-              {t("contact.formName")}
-            </label>
-            <input
-              id="contact-name"
-              type="text"
-              name="name"
-              required
-              maxLength={MAX_NAME + 50}
-              autoComplete="name"
-              value={formData.name}
-              onChange={(e) => setFormData((d) => ({ ...d, name: e.target.value }))}
-              aria-describedby={status === "error" ? "contact-form-error" : undefined}
-              className="w-full min-h-[44px] px-4 py-3 bg-surface border border-line text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors"
-              placeholder={t("contact.formNamePlaceholder")}
-              disabled={status === "sending"}
-            />
-          </div>
-          <div>
-            <label htmlFor="contact-email" className="block font-sans text-[11px] tracking-[0.3em] uppercase text-fg-muted mb-2">
-              {t("contact.formEmail")}
-            </label>
-            <input
-              id="contact-email"
-              type="email"
-              name="email"
-              required
-              maxLength={MAX_EMAIL + 10}
-              autoComplete="email"
-              value={formData.email}
-              onChange={(e) => setFormData((d) => ({ ...d, email: e.target.value }))}
-              aria-describedby={status === "error" ? "contact-form-error" : undefined}
-              className="w-full min-h-[44px] px-4 py-3 bg-surface border border-line text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors"
-              placeholder={t("contact.formEmailPlaceholder")}
-              disabled={status === "sending"}
-            />
-          </div>
-          <div>
-            <label htmlFor="contact-message" className="block font-sans text-[11px] tracking-[0.3em] uppercase text-fg-muted mb-2">
-              {t("contact.formMessage")}
-            </label>
-            <textarea
-              id="contact-message"
-              name="message"
-              required
-              rows={5}
-              maxLength={MAX_MESSAGE + 500}
-              value={formData.message}
-              onChange={(e) => setFormData((d) => ({ ...d, message: e.target.value }))}
-              aria-describedby={status === "error" ? "contact-form-error" : undefined}
-              className="w-full px-4 py-3 bg-surface border border-line text-fg font-sans text-xs placeholder:text-fg-muted/40 focus:outline-none focus:border-accent/50 transition-colors resize-none"
-              placeholder={t("contact.formMessagePlaceholder")}
-              disabled={status === "sending"}
-            />
-          </div>
-          {status === "error" && (
-            <p id="contact-form-error" role="alert" className="font-sans text-xs text-color-error">
-              {t("contact.formError")}
-            </p>
-          )}
-          <motion.button
-            type="submit"
-            disabled={status === "sending"}
-            className="w-full min-h-[44px] px-6 py-3 bg-accent text-on-accent font-sans text-[10px] tracking-[0.2em] uppercase hover:bg-accent-dim disabled:opacity-60 disabled:cursor-not-allowed transition-colors hover-shine relative overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            whileTap={status !== "sending" ? { scale: 0.99 } : {}}
-          >
-            {status === "sending" ? t("contact.formSending") : t("contact.formSend")}
-          </motion.button>
-        </form>
-      )}
-    </motion.div>
+          {t.formMessage}
+          <span className="text-muted">{t.required}</span>
+        </label>
+        <textarea
+          id={`${ids}-message`}
+          rows={5}
+          maxLength={MAX.message}
+          value={fields.message}
+          placeholder={t.formMessagePlaceholder}
+          disabled={status.kind === "sending"}
+          aria-describedby={failed ? errorId : undefined}
+          onChange={(event) => setFields((f) => ({ ...f, message: event.target.value }))}
+          className="mt-2 w-full resize-y border-0 border-b border-edge bg-transparent py-2 text-base text-text placeholder:text-muted focus:border-accent focus:outline-none disabled:opacity-60"
+        />
+      </div>
+
+      {errorText ? (
+        <p id={errorId} role="alert" className="mt-5 max-w-[46ch] text-sm text-alarm">
+          {errorText}
+        </p>
+      ) : null}
+
+      <button
+        type="submit"
+        disabled={status.kind === "sending"}
+        className="mt-7 inline-flex h-11 items-center bg-accent px-6 font-mono text-xs uppercase tracking-[0.08em] text-on-accent disabled:opacity-60"
+      >
+        {status.kind === "sending" ? t.formSending : t.formSend}
+      </button>
+    </form>
+  );
+}
+
+function Field({
+  id,
+  label,
+  required,
+  placeholder,
+  value,
+  maxLength,
+  disabled,
+  describedBy,
+  onChange,
+  type = "text",
+  autoComplete,
+  inputMode,
+}: {
+  id: string;
+  label: string;
+  required: string;
+  placeholder: string;
+  value: string;
+  maxLength: number;
+  disabled: boolean;
+  describedBy: string | undefined;
+  onChange: (value: string) => void;
+  type?: "text" | "email";
+  autoComplete?: string;
+  inputMode?: "email";
+}) {
+  return (
+    <div className="mt-6 first:mt-0">
+      <label
+        htmlFor={id}
+        className="flex items-baseline gap-2 font-mono text-xs uppercase tracking-[0.08em] text-muted"
+      >
+        {label}
+        <span className="text-muted">{required}</span>
+      </label>
+      <input
+        id={id}
+        type={type}
+        value={value}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
+        disabled={disabled}
+        aria-describedby={describedBy}
+        onChange={(event) => onChange(event.target.value)}
+        className="mt-2 h-11 w-full border-0 border-b border-edge bg-transparent text-base text-text placeholder:text-muted focus:border-accent focus:outline-none disabled:opacity-60"
+      />
+    </div>
   );
 }

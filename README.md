@@ -1,142 +1,68 @@
-# Matheus Pavaneli — portfolio
+# Case file
 
-A single-page portfolio: who I am, what I have shipped, and the work I would
-show first.
+The public engineering case file of Matheus Pavaneli — a static, two-language page where every
+claim is a measurement with a before and an after.
 
-**Live:** https://matheuspavaneli.github.io/portfolio
+Live: `https://matheusPavaneli.github.io/portfolio/` → `/en/` or `/pt/`.
 
----
+## What it is
 
-## What is on it
-
-One route, ten sections, numbered in the order they are read:
-
-| Section | What it holds |
-|---|---|
-| Hero | Name, title, and the stack, on the first screen |
-| About | How I work, in four words and a paragraph |
-| Projects | Three featured builds, then the smaller repositories |
-| Experience | Roles, with what each one actually changed |
-| Skills | Grouped the way the CV groups them, not as a logo wall |
-| Freelance | What I take on outside full-time work, and what came of it |
-| Principles | Six, and none of them are "passionate about technology" |
-| Education | Degree in progress, and certifications |
-| Minigame | A canvas game where the targets are the skills above |
-| Contact | A form and the three ways to reach me directly |
-
-The order is deliberate. A developer portfolio is scanned, not read: the work
-is the strongest evidence, so it comes before the CV, and the two sections a
-recruiter is least likely to need — a degree still in progress, and a game —
-sit after everything that argues for the hire.
-
-## The featured projects
-
-Each one gets a bespoke card rather than a slot in a grid, and each card's
-visual comes from what the project actually does:
-
-- **Seal** — approval gateway for AI agents. The card animates the MCP gate:
-  a tool call held, sealed, released, over a hash-chained audit strip.
-- **Anchor** — retention intelligence for performance agencies. The card draws
-  the health-score gauge the product is built around, counting up on entry.
-- **technology-art** — a scroll-led history of technology told through eight
-  artefacts. The card's rail places those eras on the same logarithmic scale
-  the site itself uses to turn the interval between two eras into the height of
-  the silence before it, so the widest gap on the card is the 2,900,000 years
-  the reader actually scrolls.
+One page, six blocks: a masthead, an index of every case, the eight cases themselves, the
+method each one paid for, the reference record, and contact. Every case posts one reading —
+a delta, a ceiling or a count — into a fixed column, so the page can be read top to bottom as
+a column of numbers without reading a word of prose.
 
 ## Stack
 
-- **Next.js 14** (App Router) with `output: "export"` — the whole site is
-  static files
-- **React 18**, **TypeScript**, **Tailwind CSS 3**
-- **framer-motion** for entrance and scroll-triggered motion
-- **next-themes** for the theme toggle
-- **Formspree** for the contact form, so there is no backend to run
+Next.js 16 App Router with `output: "export"`, React 19, Tailwind 4, TypeScript strict with
+`noUncheckedIndexedAccess`. No runtime dependencies beyond React. Deployed as a static
+artifact to GitHub Pages by `.github/workflows/deploy-pages.yml`.
 
-Typography is Cormorant Garamond for display and JetBrains Mono for
-everything else. The ambient layers — a scroll progress rule, a glow that
-follows the pointer, a tilt on the featured cards — are hand-rolled rather
-than pulled in.
-
-## Decisions worth explaining
-
-**Content is typed data, not a CMS.** Every role, skill, principle and project
-lives in `src/data/profile.ts` and `src/data/projects.ts` as `as const`
-objects. Adding a job is a typed edit with autocomplete, and a typo in a key
-fails the build instead of rendering blank.
-
-**Bilingual with no i18n dependency.** `LocaleContext` holds the locale, two
-JSON files hold the strings, and `t("path.to.key")` walks them. The choice
-persists in `localStorage` and the switch fades out and back in — 150 ms out,
-200 ms in — so the page does not flicker through a half-translated frame. No
-route duplication, no library, and both languages ship in the same bundle.
-
-**Colours are channel triples, not hex.** Every token is stored as
-`--fg: 24 22 14` and consumed as `rgb(var(--fg) / <alpha-value>)`, so every
-Tailwind opacity modifier works on every token. That is what lets the whole
-page render in one accent at whatever strength each element needs.
-
-**Hairlines have their own token.** Rules, grid gaps and input borders read
-from `--line` rather than from the text colour at some guessed alpha, because
-the same alpha over ink is a firm rule on the dark ground and nothing at all on
-the cream one. The background patterns carry a second variable,
-`--pattern-alpha`, for the same reason.
-
-**The minigame reads the theme rather than hardcoding it.** It is a canvas
-game, so it cannot use classes; instead it reads the same CSS custom
-properties the rest of the page uses and repaints in the current theme. Its
-targets are the skills listed one section above. It is dynamically imported
-with `ssr: false`, so none of it reaches the first load.
-
-**Motion is opt-out, everywhere.** A global `prefers-reduced-motion` rule
-collapses every animation and transition to nothing, scroll-triggered reveals
-fire once rather than on every pass, and the cards that loop an animation
-check `useReducedMotion` before starting the loop. The one card animating a
-position does it on a transform driven by a motion value, not on `left`, so a
-loop never puts the browser through layout.
-
-**Keyboard and screen reader first.** A skip link opens the tab order, the
-decorative layers are `aria-hidden`, and every string a screen reader needs
-lives in the `a11y` block of both message files rather than being improvised
-per component.
+Two client components exist — the theme switch and the contact form — and everything else is
+server-rendered at build time. Both locale routes are complete documents with JavaScript
+disabled.
 
 ## Running it
 
-Requires Node 18+ and pnpm — the version is pinned by the `packageManager`
-field, so CI and your machine run the same one.
-
 ```bash
 pnpm install
-cp .env.example .env.local   # fill in the Formspree form id
-pnpm dev                     # http://localhost:3000
+pnpm dev                     # http://localhost:3000/en/
+pnpm build                   # static export into ./out
+node scripts/serve-out.mjs   # serve ./out at http://localhost:4173
 ```
+
+Copy `.env.example` to `.env.local` and fill it in. With `NEXT_PUBLIC_FORMSPREE_FORM_ID`
+unset the contact form renders its mail fallback instead, which is a supported state, not a
+broken one.
+
+## The checks
+
+These run in CI on every push and pull request, and they exist because the previous version of
+this site shipped a 2.81:1 primary button and 97 sub-AA text uses that nobody had measured.
 
 ```bash
-pnpm build   # static export into out/
-pnpm lint
+pnpm typecheck
+pnpm test                    # locale key parity + every palette pair against WCAG 2.2 AA
+pnpm check:bundle            # initial JS against the budget in .unique/stack.md
+node scripts/check-a11y.mjs http://localhost:4173        # axe, both locales, both themes, plus reflow
+node scripts/check-fallbacks.mjs http://localhost:4173   # no JS, reduced motion, no form id
 ```
 
-Two environment variables, both public by design:
+`scripts/render-shots.mjs` captures 390 / 768 / 1440 / 320 / 200 %-zoom screenshots, and
+`scripts/make-og.mjs` renders the two Open Graph cards into `public/`. Locally they use the
+installed Edge (`PW_CHANNEL=msedge`); CI uses the bundled Chromium.
 
-| Variable | What it does |
-|---|---|
-| `NEXT_PUBLIC_BASE_PATH` | Subpath the site is served from — `/portfolio` on GitHub Pages, empty locally |
-| `NEXT_PUBLIC_FORMSPREE_FORM_ID` | The Formspree form the contact section posts to |
+## Why it looks like this
 
-## Deployment
+`.unique/` carries the decisions rather than the conclusions:
 
-Pushing to `main` builds the static export and publishes it to GitHub Pages.
-The base path is supplied at build time, which is why local development and
-the deployed site can live at different roots without a conditional in the
-code.
+| File | What it holds |
+| --- | --- |
+| `brief.md` | Subject, audience, the one job, the constraints |
+| `stack.md` | Every technology choice with its rejected alternative, its fallback and its measured cost |
+| `contract.md` | The palette, type, grid and component grammar, each traced to a fact, plus the scored rubric |
+| `log.md` | What has been tried, so the next pass diverges instead of repeating |
+| `audit-baseline.md` | The measured state of the previous version, which is what this one answers |
 
-## Structure
-
-```
-src/
-  app/          layout, the single page, global tokens and styles
-  components/   sections, the featured project cards, and effects/
-  context/      locale provider and the t() helper
-  data/         profile.ts, projects.ts — all site content, typed
-  messages/     en.json, pt-Br.json
-```
+Colours are generated and contrast-checked before they are written down; `src/lib/palette.test.ts`
+re-checks them on every run and fails the build if a pair drops below its floor.

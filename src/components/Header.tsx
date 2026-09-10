@@ -1,151 +1,90 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocale } from "@/context/LocaleContext";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { LocaleSwitcher } from "@/components/LocaleSwitcher";
-import { profile } from "@/data/profile";
+import { profile } from "@/content/profile";
+import { href } from "@/lib/href";
+import { LOCALE_LABEL, LOCALES, type Locale, type Messages } from "@/i18n";
 
-const navKeys = [
-  { href: "#about",      key: "nav.about" },
-  { href: "#projects",   key: "nav.projects" },
-  { href: "#experience", key: "nav.experience" },
-  { href: "#skills",     key: "nav.skills" },
-  { href: "#education",  key: "nav.education" },
-  { href: "#contact",    key: "nav.contact" },
-] as const;
+const SECTIONS = ["index", "cases", "method", "record", "contact"] as const;
 
-export function Header() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("");
-  const { t } = useLocale();
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 64);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const ids = navKeys.map((n) => n.href.slice(1));
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        }
-      },
-      { threshold: 0.4, rootMargin: "-20% 0px -20% 0px" }
-    );
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observerRef.current?.observe(el);
-    });
-    return () => observerRef.current?.disconnect();
-  }, []);
-
+/**
+ * Server component. The mobile disclosure is a native `<details>`, so it is keyboard
+ * operable, findable by find-in-page and open before hydration — the only client code in the
+ * header is the theme switch.
+ */
+export function Header({ locale, t }: { locale: Locale; t: Messages }) {
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto safe-top ${
-        scrolled
-          ? "bg-surface/88 backdrop-blur-md border-b border-line"
-          : ""
-      }`}
-    >
-      <div className="flex items-center justify-between px-6 sm:px-10 md:px-16 lg:px-20 py-4 xs:py-5 max-w-5xl mx-auto">
-
-                <Link
-          href="#hero"
-          aria-label={t("nav.home")}
-          className="logo-letters font-sans text-[10px] tracking-[0.4em] text-fg-muted hover:text-accent transition-colors uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+    <header className="sticky top-0 z-40 border-b border-rule bg-surface">
+      <div className="mx-auto flex max-w-[1180px] items-center justify-between gap-4 px-5 py-3 md:px-8">
+        <a
+          href={href(`/${locale}/`)}
+          className="u-rule font-mono text-xs uppercase tracking-[0.08em] text-text"
         >
-          {profile.name.split(" ").map((n) => n[0]).join("")}
-        </Link>
+          {profile.initials}
+        </a>
 
-                <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label={t("a11y.mainNav")}>
-          {navKeys.map((item) => {
-            const isActive = activeSection === item.href.slice(1);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="nav-link-underline relative font-sans text-[10px] tracking-[0.35em] text-fg-muted hover:text-fg transition-colors duration-200 uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-              >
-                {t(item.key)}
-                {isActive && (
-                  <span
-                    className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent transition-all duration-200"
-                    aria-hidden
-                  />
-                )}
-              </Link>
-            );
-          })}
+        <nav aria-label={t.a11y.mainNav} className="hidden md:block">
+          <ul className="flex items-center gap-6">
+            {SECTIONS.map((id) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  className="u-rule inline-flex h-8 items-center font-mono text-xs uppercase tracking-[0.08em] text-muted hover:text-text"
+                >
+                  {t.nav[id]}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-                <div className="flex items-center gap-4">
-          <LocaleSwitcher />
-          <ThemeToggle />
+        <div className="flex items-center gap-4">
+          <nav aria-label={t.a11y.language} className="flex items-center gap-2">
+            {LOCALES.map((code) => (
+              <a
+                key={code}
+                href={href(`/${code}/`)}
+                hrefLang={code === "pt" ? "pt-BR" : "en"}
+                aria-current={code === locale ? "true" : undefined}
+                className={`u-rule inline-flex h-8 items-center px-1 font-mono text-xs uppercase tracking-[0.08em] ${
+                  code === locale ? "text-text" : "text-muted hover:text-text"
+                }`}
+              >
+                {LOCALE_LABEL[code]}
+              </a>
+            ))}
+          </nav>
 
-                    <button
-            type="button"
-            onClick={() => setOpen((o) => !o)}
-            className="lg:hidden min-w-[44px] min-h-[44px] w-11 h-11 flex flex-col justify-center items-center gap-[5px] text-fg-muted hover:text-fg -mr-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            aria-label={t("a11y.menu")}
-            aria-expanded={open}
-          >
-            <span
-              className={`block w-[18px] h-px bg-current transition-all duration-300 origin-center ${
-                open ? "rotate-45 translate-y-[7px]" : ""
-              }`}
-            />
-            <span
-              className={`block w-[18px] h-px bg-current transition-all duration-300 ${
-                open ? "opacity-0 scale-x-0" : ""
-              }`}
-            />
-            <span
-              className={`block w-[18px] h-px bg-current transition-all duration-300 origin-center ${
-                open ? "-rotate-45 -translate-y-[7px]" : ""
-              }`}
-            />
-          </button>
+          <ThemeToggle toLight={t.a11y.toLight} toDark={t.a11y.toDark} />
+
+          <details className="group relative md:hidden">
+            <summary className="inline-flex h-11 cursor-pointer list-none items-center gap-2 font-mono text-xs uppercase tracking-[0.08em] text-muted [&::-webkit-details-marker]:hidden">
+              {t.a11y.openMenu}
+              <span
+                aria-hidden
+                className="inline-block transition-transform duration-[--duration-fast] group-open:rotate-180 motion-reduce:transition-none"
+              >
+                ▾
+              </span>
+            </summary>
+            <nav
+              aria-label={t.a11y.mainNav}
+              className="absolute right-0 top-full z-50 w-52 border border-rule bg-raised"
+            >
+              <ul>
+                {SECTIONS.map((id) => (
+                  <li key={id} className="border-b border-rule last:border-b-0">
+                    <a
+                      href={`#${id}`}
+                      className="flex h-11 items-center px-4 font-mono text-xs uppercase tracking-[0.08em] text-muted"
+                    >
+                      {t.nav[id]}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </details>
         </div>
       </div>
-
-            <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.18 }}
-            className="lg:hidden bg-surface border-t border-line px-6 pb-8 pt-2 safe-bottom safe-x"
-          >
-            {navKeys.map((item, i) => (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.04 }}
-              >
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="flex min-h-[44px] py-3 items-center font-sans text-[10px] tracking-[0.3em] uppercase text-fg-muted hover:text-accent border-b border-line transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                >
-                  {t(item.key)}
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 }

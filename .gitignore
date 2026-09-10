@@ -48,3 +48,7 @@ prompts/
 
 # local tooling scratch
 .workflow/
+
+# Render evidence: regenerate with `pnpm shots`, do not carry the PNGs in history
+.unique/render/
+.unique/palette/p[0-9]-*.json
