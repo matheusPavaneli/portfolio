@@ -54,6 +54,17 @@ export const en = {
     kindCount: "count",
   },
 
+  divergence: {
+    eyebrow: "The instrument",
+    title: "Estimated against actual, which is the whole job.",
+    lede: "A query plan is two numbers laid over each other — what the planner expected and what actually happened — and the work is reading the gap. Two ruled grids do the same thing here. One is the estimate. The other carries a case's real ratio in its pitch and its angle, and where they disagree the disagreement becomes a pattern. Pick a case. Move the pointer.",
+    estimated: "estimated",
+    actual: "actual",
+    figureLabel: "Two ruled grids, the second carrying the selected case's ratio",
+    controlLabel: "Which case drives the field",
+    excluded: "Three cases carry a single number rather than two, so they have no divergence to draw and do not appear here:",
+  },
+
   cases: {
     eyebrow: "The cases",
     title: "What each one actually was.",

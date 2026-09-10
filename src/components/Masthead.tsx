@@ -1,11 +1,10 @@
-import { ReadingBlock } from "@/components/Reading";
-import { caseById, headlineCaseIds } from "@/content/cases";
 import { profile } from "@/content/profile";
 import type { Messages } from "@/i18n";
 
 /**
  * The emptiest block on the page: one long declarative line at a measure and size that would
- * be wrong anywhere else, and three readings. Nothing else. Section padding here is the 20x
+ * be wrong anywhere else. Nothing else — the three readings that used to sit here moved into
+ * the instrument band, which is what pays for the page's one loud element. Section padding here is the 20x
  * step of the 8 px unit — the page's rhythm is variation over the unit, not repetition of it.
  */
 export function Masthead({ t }: { t: Messages }) {
@@ -47,27 +46,6 @@ export function Masthead({ t }: { t: Messages }) {
           </a>
         </div>
 
-        <div className="mt-16 border-t border-rule pt-8 md:mt-24">
-          <p className="m-0 font-mono text-xs uppercase tracking-[0.08em] text-muted">
-            {t.masthead.readingsLabel}
-          </p>
-          <ul className="mt-6 grid list-none grid-cols-1 gap-x-12 gap-y-10 p-0 sm:grid-cols-3">
-            {headlineCaseIds.map((id) => {
-              const entry = caseById(id);
-              return (
-                <li key={id}>
-                  <p className="m-0 mb-3 text-sm text-text">{t.cases[id].name}</p>
-                  <ReadingBlock
-                    reading={entry.reading}
-                    caption={t.cases[id].caption}
-                    t={t.reading}
-                    compact
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        </div>
       </div>
     </section>
   );

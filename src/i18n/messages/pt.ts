@@ -56,6 +56,17 @@ export const pt: Messages = {
     kindCount: "contagem",
   },
 
+  divergence: {
+    eyebrow: "O instrumento",
+    title: "Estimado contra real, que é o trabalho inteiro.",
+    lede: "Um plano de query são dois números sobrepostos — o que o planner esperava e o que aconteceu de fato — e o trabalho é ler a diferença. Duas grades raiadas fazem o mesmo aqui. Uma é a estimativa. A outra carrega a razão real de um caso no passo e no ângulo, e onde elas discordam a discordância vira padrão. Escolha um caso. Mexa o ponteiro.",
+    estimated: "estimado",
+    actual: "real",
+    figureLabel: "Duas grades raiadas, a segunda carregando a razão do caso selecionado",
+    controlLabel: "Qual caso conduz o campo",
+    excluded: "Três casos carregam um número só em vez de dois, então não têm divergência para desenhar e não aparecem aqui:",
+  },
+
   cases: {
     eyebrow: "Os casos",
     title: "O que cada um foi, de fato.",

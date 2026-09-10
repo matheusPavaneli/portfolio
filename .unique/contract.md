@@ -7,7 +7,7 @@ SUBJECT      The public case file of an engineer handed broken, abandoned or unb
              person can be handed a hard system and be trusted to own the outcome.
 MODE         marketing
 ORIGINALITY  signature
-BUDGET       measured
+BUDGET       loud
 SIGNATURE    The reading: every case posts one measurement into a fixed right-hand column,
              on the same 1 px track — a delta, a ceiling, or a count — so the page has a
              single vertical line of numbers a skimmer reads top to bottom without reading a
@@ -160,6 +160,68 @@ mono   KILL Geist Mono — Vercel's face; on a page about production systems it 
        platform's brand rather than the subject's. KILL Martian Mono — a display mono, too
        wide for a value column beside prose, which defeats the alignment the fact is about.
        KEEP IBM Plex Mono — real tabular figures, holds at the 13 px floor.
+
+## Effect spec
+
+IDIOM      Instrument / notation — the trade's own graphic for "estimated against actual"
+PRIMITIVE  Moiré. One primitive, not two: feedback was dropped during the build because its
+           decay had no real quantity to map to — the CV does not record a duration for every
+           case — and a primitive with no mapping is a filter.
+MECHANISM  Two regular grids describe the same system — what it was estimated to do and what
+           it actually did — and where they disagree, the disagreement becomes visible.
+JOB        reveal · response · repay
+MAPPING    The pitch and angle difference between the two grids <- the ratio between a case's
+           real before and after values, from `content/cases.ts`. 2 s → 150 ms is 13.3× and
+           tears the field apart; 1.9 GB → 210 MB is 9.0×; 5 models → 1 is 5.0×. Nanquim's
+           ceiling sits at **1.0** — value exactly at limit — and produces perfect
+           registration: a flat field with no interference at all. That case is the payoff,
+           and it is true rather than staged.
+           Only the five cases that carry two magnitudes drive the field. A count has one
+           number and therefore no divergence to show, so Seal, Anchor and the dashboard are
+           named in the band and do not drive it. Saying that is more honest than inventing a
+           second axis for them.
+INPUT      pointer and keyboard, on eight real controls, one per case — first meaningful
+           frame in < 100 ms, because the first case is selected at mount and the shader
+           draws one frame before any interaction.
+           The bound on both is legibility, not taste: a moiré's beat spacing is roughly the
+           pitch divided by the disagreement, so 3 % of pitch and 1.4° put the bands a few
+           hundred pixels apart. The first build set them at 26 % and 4.2°, which collapsed
+           the interference into a texture — corrected against the render, not the intent.
+TIER       T2 · one full-screen quad, one fragment shader, hand-written WebGL2, no wrapper ·
+           measured 4.7 KB gz against an 8 KB cut line · one rAF that stops when the band
+           leaves the viewport, when the pointer settles, and when the tab is hidden
+QUIET      The page pays for it. The masthead loses its three-reading strip — the readings
+           now have a place that is about them. Every remaining transition drops to the one
+           interaction signature already in the contract. No second animated element exists
+           anywhere on the page, and the palette does not gain a colour: the field is drawn
+           in `--color-edge` against `--color-surface`, so the loud element spends structure
+           rather than hue.
+DEGRADE    reduced-motion: the field renders one composed frame for the selected case and
+           never animates; switching cases still redraws, because that is content, not
+           motion. · no-WebGL / context-lost: two `repeating-linear-gradient` layers draw the
+           same two grids in CSS at 0 KB — moiré is a property of the geometry, not of the
+           renderer, so the fallback shows the real interference, just still. · low-power and
+           mobile: DPR clamped to 1.5, the quad drops to half resolution, the loop pauses off
+           screen and while the tab is hidden. · no JS: the CSS fallback is what ships in the
+           HTML, so the band is never blank.
+CUT LINE   Removed, not optimised, if any of: the shader adds more than 8 KB gz; the band
+           costs more than 3 ms of main thread per frame at 4× CPU throttle; LCP on `/en/`
+           moves at all, measured against the same build without it.
+
+## Effect candidates, two killed
+A  Divergence field   T2 · moiré + feedback · the ratio between before and after
+B  Fallback ladder    T2/T5 · flow field · a request fans out to five providers, one answers,
+                      and when it stops answering the next rung takes it
+C  Plate book         T4 · three.js · the case file as physical plates, rotatable and lit
+KILL B — the mapping cannot be real. The CV records that five models were benchmarked on
+cost, latency and output quality; it does not record the five sets of values. A flow field
+whose particle count and rung brightness were tuned by eye is decoration wearing a data
+costume, and "no invented content presented as real data" is a non-negotiable, not a
+preference. It comes back the day those numbers are publishable.
+KILL C — the mascot failure, named in `spectacle.md`: software with no body dressed in 3D
+chrome because the subject was hard to draw. There is no geometry here — the case file is
+type and rules. It would also cost ~150 KB of runtime on a page already measured 32 KB over
+its byte budget, to render something the reader cannot learn anything from.
 
 ## Gate 1 — swap test, per axis
 COLOR      No. A cool near-neutral whose only chromatic event is a teal reserved for the

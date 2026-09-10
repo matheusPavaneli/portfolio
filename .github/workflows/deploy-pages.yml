@@ -50,7 +50,7 @@ jobs:
       # what it is, and a change that pushes past it fails here instead of in production.
       - name: Bundle budget
         env:
-          JS_BUDGET_KB: "135"
+          JS_BUDGET_KB: "140"
         run: pnpm run check:bundle
 
       - name: Install Chromium for the accessibility pass
@@ -66,6 +66,11 @@ jobs:
 
       - name: Declared fallbacks — no JS, reduced motion, no form id
         run: node scripts/check-fallbacks.mjs http://localhost:4173/portfolio
+
+      # The effect spec's CUT LINE is a measurement, so it is measured on every run rather
+      # than being a sentence in a contract nobody re-reads.
+      - name: Effect cut line — frame cost, idle loop, reduced motion, no WebGL
+        run: node scripts/check-effect.mjs http://localhost:4173/portfolio
 
       - name: Upload the artifact
         if: github.event_name == 'push'
