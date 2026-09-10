@@ -52,3 +52,7 @@ prompts/
 # Render evidence: regenerate with `pnpm shots`, do not carry the PNGs in history
 .unique/render/
 .unique/palette/p[0-9]-*.json
+
+# Agent rule files the Next installer writes; not part of the deployed site
+AGENTS.md
+CLAUDE.md
