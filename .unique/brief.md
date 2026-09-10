@@ -71,8 +71,10 @@ forbidden: no AI attribution anywhere in commits, PRs or source (repo rule); no 
   no URL)? A case with no link is a claim.
 - Keep the freelance availability block? Its badge currently pulses "available" beside a
   period that ended Nov 2025.
-- Is `NEXT_PUBLIC_FORMSPREE_FORM_ID` actually configured in the repo's Actions secrets, or
-  has the contact form been rendering its mailto fallback in production all along?
+- ~~Is `NEXT_PUBLIC_FORMSPREE_FORM_ID` configured in the repo's Actions secrets?~~ **Answered
+  2026-09-10 against production**: `scripts/check-fallbacks.mjs` run against
+  `matheusPavaneli.github.io/portfolio` reports `form is wired`, so the secret is set and the
+  live contact form posts rather than falling back to mail.
 
 ## Handoff
 
