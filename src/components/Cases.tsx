@@ -10,14 +10,16 @@ import type { Messages } from "@/i18n";
  *
  * Modules of genuinely different sizes on a twelve-column sheet — the cases that carry the
  * argument take eight or twelve columns, the rest take four or six. That is where the density
- * variation comes from, rather than one band repeated eight times with different words in it.
+ * variation comes from, rather than one band repeated nine times with different words in it.
+ * The grid flows in the order of `content/cases.ts`, so that order is the row layout.
  *
- * There is no `01 / 02 / 03` anywhere: eight cases are a set, not a sequence, and numbering a
+ * There is no `01 / 02 / 03` anywhere: nine cases are a set, not a sequence, and numbering a
  * set is decoration pretending to be structure.
  */
 
 const SPAN: Record<Case["id"], string> = {
   orchestration: "lg:col-span-8",
+  rageval: "lg:col-span-12",
   query: "lg:col-span-4",
   seal: "lg:col-span-6",
   nanquim: "lg:col-span-6",

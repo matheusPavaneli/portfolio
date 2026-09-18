@@ -30,6 +30,7 @@ export type CaseLink = {
 
 export type CaseId =
   | "orchestration"
+  | "rageval"
   | "query"
   | "seal"
   | "nanquim"
@@ -71,6 +72,22 @@ export const cases: readonly Case[] = [
     },
     stack: ["PostgreSQL", "EXPLAIN ANALYZE", "autovacuum"],
     links: [],
+  },
+  {
+    id: "rageval",
+    ordinal: "09",
+    year: "2026",
+    // ADR 0007 in the rag-eval repository: mean cited chunk against mean resolved citation.
+    reading: {
+      kind: "delta",
+      before: { n: 847, label: "847 chars" },
+      after: { n: 104, label: "104" },
+    },
+    stack: ["Python", "PostgreSQL", "BM25", "Gemini embeddings", "Cross-encoder reranking", "Astro"],
+    links: [
+      { label: "citation viewer", href: "https://matheuspavaneli.github.io/rag-eval/" },
+      { label: "github", href: "https://github.com/matheusPavaneli/rag-eval" },
+    ],
   },
   {
     id: "seal",

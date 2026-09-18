@@ -40,7 +40,7 @@ export const en = {
 
   index: {
     eyebrow: "The file",
-    title: "Eight cases",
+    title: "Nine cases",
     lede: "Every one of them is somebody else's system, before and after.",
     colCase: "Case",
     colReading: "Reading",
@@ -79,6 +79,13 @@ export const en = {
       kicker: "The company's first AI feature, built so no single vendor can take it down",
       body: "I designed and delivered the orchestration architecture: an orchestrator routing requests across specialised agents, provider failover so one vendor outage cannot take the feature down, and a MongoDB layer carrying document retrieval, agent execution logs and a response cache that cuts the cost of repeat inference. The provider was not chosen by reputation — five models were benchmarked on cost, latency and output quality, and the numbers picked one.",
       caption: "models benchmarked on cost, latency and output quality, before one was chosen",
+    },
+    rageval: {
+      name: "rag-eval",
+      org: "Open source · a RAG pipeline that measures its own retrieval",
+      kicker: "Whether the answer came from the right passage, measured before anything was tuned",
+      body: "Thirty questions over fifty Python Enhancement Proposals, with the ground truth recorded as character spans rather than chunk ids, so changing the chunking cannot quietly rewrite the answer key. Dense, BM25, hybrid and a cross-encoder reranker are compared question by question: the reranker lifted recall to 0.833 and pushed MRR down to 0.490, and the table says so. Every answer quotes its sources, and code resolves each quote to characters in the document — 51 of 52 were found verbatim. CI replays BM25, dense, hybrid and every recorded answer with no key and no network call, and fails on any change.",
+      caption: "characters a reader has to check per citation: the whole chunk, against the quote resolved inside it",
     },
     query: {
       name: "The two-second query",

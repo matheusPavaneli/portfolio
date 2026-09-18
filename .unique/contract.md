@@ -62,8 +62,12 @@ scale    base 17 px · ratio 1.2 · legend 12 px · steps 13 / 15 / 17 / 20 / 24
 PATH     the claim, at a size that is a decision → the status strip under it → the rack, whose
          module sizes say which case carries the argument → the recessed screen. Four stops.
 COLUMNS  a twelve-column rack at ≥1024 px, modules spanning 4, 6, 8 or 12. It does not
-         alternate and it does not repeat: the two cases carrying the argument take 8 and 12,
-         the reference plates take 5 and 7, the rest take 4 and 6.
+         alternate and it does not repeat: the cases carrying the argument take 8 and 12,
+         the reference plates take 5 and 7, the rest take 4 and 6. Nine cases, five rows:
+         orchestration 8 + query 4 · rag-eval 12 · Seal 6 + Nanquim 6 · Anchor 4 + artefacts 4
+         + dashboard 4 · image 12. The rack flows in array order, so the order in
+         `content/cases.ts` is the row layout; rag-eval sits third, not second, or the first
+         row breaks.
 DENSITY  Densest: the record plates, four modules of compact reference. Emptiest: the masthead
          and the contact block. The recessed screen is the one module that is nearly all
          ground. Section padding is 40 / 56 px by role on a 4 px unit — the variance is carried
@@ -102,16 +106,17 @@ MECHANISM  Two regular grids describe the same system — what it was estimated 
 JOB        reveal · response · repay
 MAPPING    The pitch and angle difference between the two grids <- the ratio between a case's
            real before and after values, from `content/cases.ts`. 2 s → 150 ms is 13.3× and
-           tears the field apart; 1.9 GB → 210 MB is 9.0×; 5 models → 1 is 5.0×. Nanquim's
+           tears the field apart; 1.9 GB → 210 MB is 9.0×; a cited chunk of 847 characters →
+           the 104-character quote resolved inside it is 8.1×; 5 models → 1 is 5.0×. Nanquim's
            ceiling sits at **1.00** — value exactly at limit — and produces perfect
            registration: a flat field with no interference at all.
-           Only the five cases carrying two magnitudes drive it. A count has one number and no
+           Only the six cases carrying two magnitudes drive it. A count has one number and no
            divergence to show, so Seal, Anchor and the dashboard are named and excluded.
            The bound on both parameters is legibility: a moiré's beat spacing is roughly the
            pitch divided by the disagreement, so 3 % of pitch and 1.4° put the bands a few
            hundred pixels apart. The first build set 26 % and 4.2°, which collapsed the
            interference into a texture — corrected against the render, not the intent.
-INPUT      pointer and keyboard, on five real controls — first meaningful frame under 100 ms,
+INPUT      pointer and keyboard, on six real controls — first meaningful frame under 100 ms,
            because the first case is selected at mount and one frame draws before any input.
 TIER       T2 · one full-screen quad, one fragment shader, hand-written WebGL2, no wrapper ·
            measured 4.9 KB gz against an 8 KB cut line · one rAF that stops when the pointer
@@ -202,7 +207,7 @@ broadsheet direction reached 8.8. What each number is scored against, and what h
   horizontal overflow at 320 / 390 / 768 / 1440; 44 px controls with one declared 32 px
   register; the focus ring clears 3:1 on every ground; the form carries sending, invalid,
   bad-address, unreachable and sent states; and with JavaScript disabled both routes render all
-  eight cases with their readings, the right `lang` and the reader's own system theme.
+  nine cases with their readings, the right `lang` and the reader's own system theme.
 - **signature 4** — the meter is describable from memory and traces to its provenance. Held
   below 5 because the page now carries two signatures, the meter and the recessed screen, and
   the budget says to spend boldness in one place.
@@ -218,3 +223,40 @@ rack is scannable on its own, so the index was a second navigation to keep in sy
 - The trace waterfall and the before/after wipe, both killed above with their reasons.
 - The plate-book direction this replaced: correct in its rigour, and a default in its idiom.
 - `01`–`08` on the cases. Eight cases are a set, and a set does not get numbered.
+
+## Amendment — 2026-09-18, the ninth case
+
+Entered at step 3 because a ninth module changes the COLUMNS line and a sixth driver changes
+the effect MAPPING; no token, no component, no corner, no interaction and not the signature
+moved. Direction pass run against the official `frontend-design` skill, which asks the same
+two things of an insertion as of a page: does the new part come from the subject, and does it
+spend boldness anywhere but the one place already chosen.
+
+SUBJECT    rag-eval — a RAG pipeline that measures whether the answer came from the right
+           passage. It is the brief's argument ("the LLM systems a company is putting into
+           production for the first time") made public and checkable.
+READING    delta · a cited chunk of 847 characters → the 104-character quote resolved inside
+           it, 8.1× (ADR 0007, "Mean resolved citation / mean cited chunk"). Chosen because it
+           is the claim the project's own viewer demonstrates — evidence narrowed to the
+           character — and because it is a real before and after that goes *down*.
+           Rejected: recall 0.400 → 0.833 and MRR 0.222 → 0.465 go *up*, so as a delta the
+           ratio falls under 1 and the field would draw a flat screen that lies; recall held at
+           its frozen baseline is a second 1.00 beside Nanquim's; "0 network calls" is a second
+           zero beside Seal's. The headline metrics stay in the body, where they have room for
+           the trade the table actually shows (the reranker raised recall and lowered rank).
+SPAN       12, the full row directly under orchestration + query. The meter sits in the wide
+           module's side column. After-label is the bare "104", as orchestration's is "1": at
+           8.1× two unit-bearing labels collided on the track in the first render.
+LINKS      the live citation viewer and the repository — a case with a link is a claim a
+           reader can check, which is the project's whole point.
+REMOVED    Chanel's rule, this pass: a second readout (recall @5) in the module's corner. The
+           corner carries the year like every other module; one case, one reading.
+AUDIT      Re-measured 2026-09-18 against the rendered rack at 1440 (light, en) and 390 (dark,
+           pt): axe 0 violations on both locales and both themes; no overflow at 320–1440;
+           no-JS renders 9 of 9 cases with 9 of 9 readings; effect median 5.6 ms / worst
+           11.9 ms per frame at 4× throttle (`check-effect` PASS); chrome PASS. The first
+           render caught two defects no script did — the rack order breaking the top row, and
+           the two meter labels colliding — both fixed above. Rubric unchanged at 9.0: the
+           insertion moved no axis it is scored on. Bundle: 138.5 kB gz against a 100 kB
+           budget, and `main` measures 138.4 kB on the same machine, so the overage predates
+           this change (+0.1 kB) and is not resolved by it.
