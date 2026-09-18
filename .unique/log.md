@@ -3,6 +3,19 @@
 Append-only. Read before planning a surface; never repeat a previous entry's
 `(palette family, display face, layout device)` triple.
 
+## 2026-09-18 — case file, ninth case (amendment, same surface)
+contract: marketing / signature / loud — unchanged
+palette: unchanged — warm anodized aluminium plate with a phthalo signal
+display: unchanged — Anybody, variable width
+layout device: unchanged — the twelve-column rack, now nine modules in five rows
+note: an insertion into the instrument panel, not a new surface, so its triple is that entry's
+added: rag-eval at span 12 under orchestration + query, posting 847 chars → 104 as a delta and
+driving the field as its sixth control
+learned: the rack's row layout is the array order in `content/cases.ts`; two unit-bearing
+labels collide on the track near 8×
+rejected: recall or MRR as the reading (they rise, so the ratio falls under 1 and the field
+lies), recall held at baseline (a second 1.00), "0 network calls" (a second zero)
+
 ## 2026-09-10 — case file (instrument panel)
 contract: marketing / signature / loud
 palette: warm anodized aluminium plate with a phthalo signal

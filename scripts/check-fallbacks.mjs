@@ -29,8 +29,8 @@ function check(name, ok, detail = "") {
       lang: document.documentElement.lang,
       theme: document.documentElement.getAttribute("data-theme"),
     }));
-    check(`no-JS ${route}: 8 cases rendered`, seen.cases === 8, `${seen.cases}`);
-    check(`no-JS ${route}: every case still posts its reading`, seen.meters === 8, `${seen.meters}`);
+    check(`no-JS ${route}: 9 cases rendered`, seen.cases === 9, `${seen.cases}`);
+    check(`no-JS ${route}: every case still posts its reading`, seen.meters === seen.cases, `${seen.meters} of ${seen.cases}`);
     check(`no-JS ${route}: readable text present`, seen.words > 600, `${seen.words} words`);
     check(
       `no-JS ${route}: html lang correct`,

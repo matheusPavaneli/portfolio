@@ -38,6 +38,7 @@ describe("what drives the field", () => {
     expect(driversFrom().map((driver) => driver.id)).toEqual([
       "orchestration",
       "query",
+      "rageval",
       "nanquim",
       "artefacts",
       "image",

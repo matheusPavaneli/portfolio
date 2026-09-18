@@ -7,7 +7,7 @@ Live: `https://matheusPavaneli.github.io/portfolio/` → `/en/` or `/pt/`.
 
 ## What it is
 
-One page, six blocks: a masthead, an index of every case, the eight cases themselves, the
+One page, six blocks: a masthead, an index of every case, the nine cases themselves, the
 method each one paid for, the reference record, and contact. Every case posts one reading —
 a delta, a ceiling or a count — into a fixed column, so the page can be read top to bottom as
 a column of numbers without reading a word of prose.

@@ -38,6 +38,7 @@ describe("locale catalogues", () => {
       "masthead.stripBase",
       "cases.image.org",
       "cases.seal.name",
+      "cases.rageval.name",
       "cases.artefacts.name",
       "cases.nanquim.name",
       "cases.anchor.name",

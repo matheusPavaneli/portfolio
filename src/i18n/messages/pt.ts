@@ -42,7 +42,7 @@ export const pt: Messages = {
 
   index: {
     eyebrow: "O dossiê",
-    title: "Oito casos",
+    title: "Nove casos",
     lede: "Cada um deles é o sistema de outra pessoa, antes e depois.",
     colCase: "Caso",
     colReading: "Leitura",
@@ -81,6 +81,13 @@ export const pt: Messages = {
       kicker: "A primeira feature de IA da empresa, construída para que nenhum fornecedor sozinho consiga derrubá-la",
       body: "Desenhei e entreguei a arquitetura de orquestração: um orquestrador roteando requisições entre agentes especializados, failover de provider para que a indisponibilidade de um fornecedor não derrube a feature, e uma camada MongoDB carregando retrieval de documentos, logs de execução dos agentes e um cache de resposta que corta o custo de inferência repetida. O provider não foi escolhido por reputação — cinco modelos foram testados em custo, latência e qualidade de saída, e os números escolheram um.",
       caption: "modelos avaliados em custo, latência e qualidade antes de um ser escolhido",
+    },
+    rageval: {
+      name: "rag-eval",
+      org: "Código aberto · um pipeline de RAG que mede o próprio retrieval",
+      kicker: "Se a resposta veio do trecho certo, medido antes de qualquer otimização",
+      body: "Trinta perguntas sobre cinquenta Python Enhancement Proposals, com o gabarito gravado como spans de caracteres e não como ids de chunk — mudar o chunking não reescreve o gabarito em silêncio. Dense, BM25, híbrido e um reranker cross-encoder são comparados pergunta a pergunta: o reranker subiu o recall para 0,833 e derrubou o MRR para 0,490, e a tabela diz isso. Cada resposta cita suas fontes, e o código resolve cada citação em caracteres do documento — 51 de 52 foram encontradas literalmente. O CI reproduz BM25, dense, híbrido e cada resposta gravada sem chave e sem chamada de rede, e falha com qualquer mudança.",
+      caption: "caracteres a conferir por citação: o chunk inteiro, contra o trecho resolvido dentro dele",
     },
     query: {
       name: "A query de dois segundos",
