@@ -42,6 +42,7 @@ export const en = {
     stripBaseValue: "Maringá, Brazil · UTC−3 · remote · English C1",
     stripStatusValue: "Open to roles and to contract work",
     cta: "Start a conversation",
+    cv: "Résumé",
     location: "Maringá, Brazil · UTC−3 · remote",
   },
 

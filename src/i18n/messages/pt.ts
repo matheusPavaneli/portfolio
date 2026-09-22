@@ -44,6 +44,7 @@ export const pt: Messages = {
     stripBaseValue: "Maringá, Brasil · UTC−3 · remoto · inglês C1",
     stripStatusValue: "Aberto a vagas e a contratos",
     cta: "Começar uma conversa",
+    cv: "Currículo",
     location: "Maringá, Brasil · UTC−3 · remoto",
   },
 
