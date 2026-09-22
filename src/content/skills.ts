@@ -1,13 +1,3 @@
-/**
- * The CV's five skill groups, verbatim.
- *
- * The cases are where the work is argued; this is the reference register beside them, so a
- * reader filtering on a term still finds the page. It is deliberately data rather than markup:
- * `content.test.ts` asserts every term the CV lists is here, which is the only thing keeping
- * the two from drifting.
- *
- * Source: Matheus_Pavaneli_Senior_Fullstack_Engineer.pdf, "Technical skills", read 2026-09-10.
- */
 
 export type SkillGroupId = "languages" | "ai" | "data" | "cloud" | "architecture";
 

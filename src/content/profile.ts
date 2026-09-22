@@ -1,5 +1,3 @@
-/** Facts that are the same in both languages. Everything readable lives in `src/i18n`. */
-
 export const profile = {
   name: "Matheus Pavaneli",
   initials: "MP",
@@ -7,20 +5,20 @@ export const profile = {
   phone: "+55 44 99775-2680",
   github: "https://github.com/matheusPavaneli",
   linkedin: "https://www.linkedin.com/in/matheuspavaneli/",
-  site: "https://matheusPavaneli.github.io/portfolio",
 } as const;
 
 export type RoleEntry = {
   readonly id: "bernoulli" | "eicode" | "jorrovi" | "freelance";
   readonly org: string;
-  readonly period: string;
+  readonly from: string;
+  readonly to: string | null;
 };
 
 export const roles: readonly RoleEntry[] = [
-  { id: "bernoulli", org: "Bernoulli Educação", period: "Nov 2025 —" },
-  { id: "eicode", org: "Eicode", period: "Oct 2024 — Jun 2025" },
-  { id: "freelance", org: "Independent Contractor via Workana", period: "Jan 2024 — Nov 2025" },
-  { id: "jorrovi", org: "Jorrovi Calçados", period: "Apr 2023 — Jun 2025" },
+  { id: "bernoulli", org: "Bernoulli Educação", from: "2025-11", to: null },
+  { id: "eicode", org: "Eicode", from: "2024-10", to: "2025-06" },
+  { id: "freelance", org: "Independent Contractor via Workana", from: "2024-01", to: "2025-11" },
+  { id: "jorrovi", org: "Jorrovi Calçados", from: "2023-04", to: "2025-06" },
 ];
 
 export type RepoEntry = {

@@ -1,10 +1,3 @@
-/**
- * GitHub and LinkedIn, drawn rather than imported.
- *
- * `lucide-react@1` dropped its brand icons, and the alternative — a generic glyph standing in
- * for a specific service — reads as a placeholder. Two paths inline cost nothing, carry no
- * dependency, and take `currentColor` like every other mark on the panel.
- */
 export function BrandMark({
   brand,
   size = 15,

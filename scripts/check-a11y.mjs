@@ -1,7 +1,6 @@
 import { chromium } from "playwright";
 import AxeBuilder from "@axe-core/playwright";
 
-/** CI uses the bundled Chromium; set PW_CHANNEL=msedge to use an installed browser instead. */
 const LAUNCH = process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {};
 
 const base = process.argv[2] ?? "http://localhost:3100";
@@ -38,7 +37,6 @@ for (const route of routes) {
   }
 }
 
-// Horizontal overflow, including the 200 % zoom case (720 px viewport at DPR 2).
 for (const route of routes) {
   for (const width of widths) {
     const context = await browser.newContext({ viewport: { width, height: 900 } });

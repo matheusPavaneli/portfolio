@@ -8,19 +8,24 @@ export const pt: Messages = {
     ogAlt: "Matheus Pavaneli — dossiê de engenharia",
   },
 
+  locale: {
+    intl: "pt-BR",
+    present: "hoje",
+  },
+
   a11y: {
-    skipToContent: "Ir para o dossiê",
+    skipToContent: "Ir para o conteúdo",
     mainNav: "Seções",
     openMenu: "Seções",
-    language: "Idioma",
     toLight: "Clarear",
     toDark: "Escurecer",
     externalLink: "abre em nova aba",
+    toOtherLocale: "View this page in English",
   },
 
   nav: {
     cases: "Casos",
-    instrument: "Instrumento",
+    build: "Construção",
     method: "Método",
     record: "Registro",
     contact: "Contato",
@@ -28,51 +33,111 @@ export const pt: Messages = {
 
   masthead: {
     role: "Engenheiro fullstack sênior · forward-deployed AI engineer",
-    headline: "Me dê o sistema que ninguém quer assumir.",
+    headlineLead: "Me dê o sistema",
+    headlineTail: "que ninguém quer assumir.",
     lede: "Pego o que está quebrado, o que foi abandonado e o que ainda não existe — inclusive os sistemas de LLM que uma empresa está colocando em produção pela primeira vez — e devolvo uma arquitetura, com o número que ela moveu.",
-    stripRole: "Disciplina",
-    stripRoleValue: "Fullstack sênior · forward-deployed AI",
-    stripBase: "Base",
-    stripStatus: "Situação",
+    stripNow: "Agora",
+    stripNowValue: "Software Engineer · Bernoulli Educação, EdTech",
+    stripStack: "Stack principal",
+    stripStackValue: "TypeScript · Python · Node/NestJS · React/Next · PostgreSQL · AWS",
+    stripBase: "Trabalha de",
+    stripBaseValue: "Maringá, Brasil · UTC−3 · remoto · inglês C1",
     stripStatusValue: "Aberto a vagas e a contratos",
     cta: "Começar uma conversa",
-    location: "Maringá, Brasil (UTC-3) · remoto",
-    scroll: "O dossiê inteiro está abaixo",
+    location: "Maringá, Brasil · UTC−3 · remoto",
   },
 
   index: {
-    eyebrow: "O dossiê",
-    title: "Nove casos",
+    eyebrow: "Casos",
     lede: "Cada um deles é o sistema de outra pessoa, antes e depois.",
     colCase: "Caso",
+    colOrg: "Onde",
     colReading: "Leitura",
-    colYear: "Ano",
+    colYear: "Quando",
   },
 
-  reading: {
-    before: "antes",
-    after: "depois",
-    heldAt: "parado em",
-    limit: "limite",
-    count: "contagem",
-    kindDelta: "delta",
-    kindCeiling: "teto",
-    kindCount: "contagem",
+  board: {
+    eyebrow: "Leituras",
+    lede: "Cada barra é o quanto um número se moveu, numa única escala logarítmica compartilhada — os comprimentos se comparam entre casos, e nenhum foi reescalado para parecer melhor. Um limite que se manteve, ou um número só, é dito em vez de desenhado.",
+    axisLabel: "Razão, escala log",
+    ratioLabel: "razão",
+    single: "um número só, sem percurso",
+    figureLabel: "Leituras de antes e depois de cada caso, num único eixo logarítmico de razão",
+    held: "mantido",
+    groupMoved: "Movido",
+    groupHeld: "Mantido sob um limite",
+    groupCounted: "Contado",
+    heldNote: "Mantido sob um limite que o build ou a plataforma impõe. Nada a percorrer, de propósito.",
+    countedNote: "Uma grandeza cada, então não há razão a desenhar.",
   },
 
-  divergence: {
-    eyebrow: "O instrumento",
-    title: "Estimado contra real, que é o trabalho inteiro.",
-    lede: "Um plano de query são dois números sobrepostos — o que o planner esperava e o que aconteceu de fato — e o trabalho é ler a diferença. Duas grades raiadas fazem o mesmo aqui. Uma é a estimativa. A outra carrega a razão real de um caso no passo e no ângulo, e onde elas discordam a discordância vira padrão. Escolha um caso. Mexa o ponteiro.",
-    estimated: "estimado",
-    actual: "real",
-    figureLabel: "Duas grades raiadas, a segunda carregando a razão do caso selecionado",
-    controlLabel: "Qual caso conduz o campo",
-    excluded: "Três casos carregam um número só em vez de dois, então não têm divergência para desenhar e não aparecem aqui:",
+
+  build: {
+    eyebrow: "Construção",
+    title: "Toda caixa do diagrama foi um requisito antes.",
+    lede: "Ninguém desenha a arquitetura final no primeiro dia. Ela cresce um requisito por vez, e cada peça nova resolve um problema e começa a cobrar por outro. Aqui estão sete deles, em ordem.",
+    adds: "Adiciona",
+    costs: "Custa",
+    of: "de",
+    pause: "Pausar",
+    play: "Continuar",
+    replay: "Rever",
+    figureLabel: "A arquitetura depois dos sete requisitos: um cliente atrás de um load balancer, instâncias da API sem estado, um cache, um banco primário com duas réplicas de leitura, uma fila e workers chamando um provedor por um circuit breaker com reserva, e telemetria de todas as partes.",
+    nodes: {
+      client: "Cliente",
+      lb: "Load balancer",
+      api: "API",
+      cache: "Cache",
+      db: "Banco",
+      replicaA: "Réplica",
+      replicaB: "Réplica",
+      queue: "Fila",
+      workers: "Workers",
+      breaker: "Circuit breaker",
+      provider: "Provedor",
+      fallback: "Reserva",
+      telemetry: "Logs · métricas · traces",
+    },
+    steps: {
+      serve: {
+        need: "Atender usuários.",
+        adds: "Uma API, um banco.",
+        costs: "Nada ainda — uma coisa pra publicar, uma pra fazer backup.",
+      },
+      latency: {
+        need: "Leituras abaixo de 200 ms no p95.",
+        adds: "Um cache.",
+        costs: "Toda escrita agora precisa invalidar alguma coisa.",
+      },
+      traffic: {
+        need: "Dez vezes o tráfego.",
+        adds: "Um load balancer e instâncias da API sem estado.",
+        costs: "A sessão não pode mais morar no processo.",
+      },
+      reads: {
+        need: "Leituras superam em muito as escritas.",
+        adds: "Réplicas de leitura.",
+        costs: "Uma leitura pode chegar atrás da escrita anterior.",
+      },
+      slow: {
+        need: "Trabalho lento não pode segurar a requisição.",
+        adds: "Uma fila e workers.",
+        costs: "Jobs falham longe dos olhos, então pedem retry e dead-letter queue.",
+      },
+      outage: {
+        need: "Queda de um provedor não pode nos derrubar.",
+        adds: "Um circuit breaker e um provedor reserva.",
+        costs: "Duas integrações pra manter honestas em vez de uma.",
+      },
+      observe: {
+        need: "Saber que quebrou antes do usuário.",
+        adds: "Logs, métricas e traces de cada caixa.",
+        costs: "Uma fatura, e alguém de plantão pra ler.",
+      },
+    },
   },
 
   cases: {
-    eyebrow: "Os casos",
     title: "O que cada um foi, de fato.",
     stack: "Stack",
     orchestration: {
@@ -144,6 +209,7 @@ export const pt: Messages = {
     eyebrow: "Método",
     title: "O que eu faço quando me entregam um sistema.",
     lede: "Seis regras, cada uma paga por um caso acima.",
+    paidBy: "Pago por",
     items: {
       instrument: {
         rule: "Leia o instrumento antes de chutar.",
@@ -244,7 +310,7 @@ export const pt: Messages = {
   },
 
   footer: {
-    built: "Feito em Next.js como export estático. Paleta gerada e verificada em contraste antes de ser escrita.",
+    built: "Next.js, exportado estático. Todo par de cores da página tem o contraste verificado no CI.",
     source: "Código",
   },
 };

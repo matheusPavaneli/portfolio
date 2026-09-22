@@ -2,12 +2,11 @@ import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 
-/** CI uses the bundled Chromium; set PW_CHANNEL=msedge to use an installed browser instead. */
 const LAUNCH = process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {};
 
 const url = process.argv[2] ?? "http://localhost:3001";
 const outDir = process.argv[3] ?? ".unique/render";
-const theme = process.argv[4] ?? null; // "light" | "dark" | null
+const theme = process.argv[4] ?? null;
 
 const shots = [
   { label: "390", width: 390, height: 844, scale: 1 },
@@ -39,7 +38,6 @@ for (const shot of shots) {
     );
   }
   await page.goto(url, { waitUntil: "networkidle", timeout: 60000 });
-  // let whileInView animations settle: scroll the whole page, then return
   await page.evaluate(async () => {
     const step = window.innerHeight * 0.8;
     for (let y = 0; y < document.body.scrollHeight; y += step) {

@@ -1,22 +1,9 @@
-/**
- * The structural half of a case: its ordinal, its year, and its one reading.
- *
- * Prose lives in `src/i18n/messages/*`. Numbers live here, once, so the two languages cannot
- * disagree about what happened — the outgoing build kept four hardcoded English kickers next
- * to a translated card and they had already drifted.
- *
- * Every number below traces to something that happened. Nothing here is illustrative.
- */
-
 export type ReadingValue = {
-  /** The magnitude, in one unit per reading, used to draw the track to scale. */
   readonly n: number;
-  /** What the number is called on the page, unit included. */
   readonly label: string;
 };
 
 export type Reading =
-  /** Made it faster, smaller, or fewer. */
   | { readonly kind: "delta"; readonly before: ReadingValue; readonly after: ReadingValue }
   /** Held it under a limit the build or the platform enforces. */
   | { readonly kind: "ceiling"; readonly value: ReadingValue; readonly limit: ReadingValue }
@@ -27,6 +14,8 @@ export type CaseLink = {
   readonly label: string;
   readonly href: string;
 };
+
+export type Years = readonly [from: number, to: number | null];
 
 export type CaseId =
   | "orchestration"
@@ -41,8 +30,7 @@ export type CaseId =
 
 export type Case = {
   readonly id: CaseId;
-  readonly ordinal: string;
-  readonly year: string;
+  readonly years: Years;
   readonly reading: Reading;
   readonly stack: readonly string[];
   readonly links: readonly CaseLink[];
@@ -51,33 +39,17 @@ export type Case = {
 export const cases: readonly Case[] = [
   {
     id: "orchestration",
-    ordinal: "01",
-    year: "2025—",
+    years: [2025, null],
     reading: {
-      kind: "delta",
-      before: { n: 5, label: "5 models" },
-      after: { n: 1, label: "1" },
+      kind: "count",
+      value: { n: 5, label: "5 models" },
     },
     stack: ["LLM orchestration", "Multi-agent routing", "Provider failover", "MongoDB", "NestJS"],
     links: [],
   },
   {
-    id: "query",
-    ordinal: "02",
-    year: "2026",
-    reading: {
-      kind: "delta",
-      before: { n: 2000, label: "2 s" },
-      after: { n: 150, label: "150 ms" },
-    },
-    stack: ["PostgreSQL", "EXPLAIN ANALYZE", "autovacuum"],
-    links: [],
-  },
-  {
     id: "rageval",
-    ordinal: "09",
-    year: "2026",
-    // ADR 0007 in the rag-eval repository: mean cited chunk against mean resolved citation.
+    years: [2026, 2026],
     reading: {
       kind: "delta",
       before: { n: 847, label: "847 chars" },
@@ -90,12 +62,22 @@ export const cases: readonly Case[] = [
     ],
   },
   {
+    id: "query",
+    years: [2026, 2026],
+    reading: {
+      kind: "delta",
+      before: { n: 2000, label: "2 s" },
+      after: { n: 150, label: "150 ms" },
+    },
+    stack: ["PostgreSQL", "EXPLAIN ANALYZE", "autovacuum"],
+    links: [],
+  },
+  {
     id: "seal",
-    ordinal: "03",
-    year: "2026",
+    years: [2026, 2026],
     reading: {
       kind: "count",
-      value: { n: 0, label: "0" },
+      value: { n: 0, label: "0 lines" },
     },
     stack: ["MCP", "Hono", "Drizzle", "PostgreSQL", "Apache-2.0"],
     links: [
@@ -106,8 +88,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "nanquim",
-    ordinal: "04",
-    year: "2026",
+    years: [2026, 2026],
     reading: {
       kind: "ceiling",
       value: { n: 12.14, label: "12.14 kB" },
@@ -118,8 +99,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "anchor",
-    ordinal: "05",
-    year: "2026",
+    years: [2026, 2026],
     reading: {
       kind: "count",
       value: { n: 8, label: "6–10 weeks" },
@@ -129,8 +109,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "artefacts",
-    ordinal: "06",
-    year: "2026",
+    years: [2026, 2026],
     reading: {
       kind: "ceiling",
       value: { n: 99, label: "99" },
@@ -141,8 +120,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "dashboard",
-    ordinal: "07",
-    year: "2023—2025",
+    years: [2023, 2025],
     reading: {
       kind: "count",
       value: { n: 40, label: "40+ views" },
@@ -152,8 +130,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "image",
-    ordinal: "08",
-    year: "2024—2025",
+    years: [2024, 2025],
     reading: {
       kind: "delta",
       before: { n: 1900, label: "1.9 GB" },
@@ -164,11 +141,4 @@ export const cases: readonly Case[] = [
   },
 ];
 
-/** The three readings the masthead posts before a reader has scrolled anywhere. */
-export const headlineCaseIds = ["orchestration", "query", "nanquim"] as const satisfies readonly CaseId[];
-
-export function caseById(id: CaseId): Case {
-  const found = cases.find((entry) => entry.id === id);
-  if (!found) throw new Error(`no case with id "${id}"`);
-  return found;
-}
+export const headlineCaseIds = ["orchestration", "rageval", "query"] as const satisfies readonly CaseId[];

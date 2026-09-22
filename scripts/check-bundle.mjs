@@ -1,10 +1,3 @@
-/**
- * The budget in .unique/stack.md, asserted rather than observed.
- *
- * Counts the gzipped bytes of every script the built page loads for a modern browser —
- * `noModule` chunks are legacy polyfills and are excluded, the same way Next's own
- * First Load JS number excludes them.
- */
 import { gzipSync } from "node:zlib";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";

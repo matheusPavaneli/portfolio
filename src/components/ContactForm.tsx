@@ -10,14 +10,12 @@ const ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID
 const MAX = { name: 120, email: 254, message: 5000 } as const;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** Illegal states unrepresentable: there is no "sending and failed", and no bare error flag. */
 type Status =
   | { kind: "idle" }
   | { kind: "sending" }
   | { kind: "sent" }
   | { kind: "failed"; reason: "network" | "invalid" | "email" };
 
-/** Collapse whitespace, drop control characters, and bound the length before it leaves. */
 function clean(value: string, max: number): string {
   return value
     .replace(/\s+/g, " ")
@@ -35,11 +33,11 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
 
   if (!endpoint) {
     return (
-      <div className="rounded-plate p-6 ring-1 ring-edge">
-        <p className="m-0 max-w-[46ch] text-sm text-dim">{t.formDisabled}</p>
+      <div className="rounded-md border border-line bg-surface p-6">
+        <p className="m-0 max-w-[46ch] text-body text-text-muted">{t.formDisabled}</p>
         <a
           href={`mailto:${email}`}
-          className="mt-5 inline-flex h-11 items-center rounded-recess bg-signal px-5 text-on-signal legend"
+          className="label mt-5 inline-flex h-11 items-center rounded-sm bg-accent-fill px-5 text-on-accent transition-colors duration-(--duration-tint) hover:bg-accent-fill-hover"
         >
           {t.formDisabledCta}
         </a>
@@ -84,7 +82,7 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
 
   if (status.kind === "sent") {
     return (
-      <p role="status" className="rounded-recess bg-plate p-4 text-base text-ink ring-1 ring-edge">
+      <p role="status" className="measure m-0 rounded-md border border-line bg-surface p-5 text-body text-text">
         {t.formSuccess}
       </p>
     );
@@ -132,10 +130,10 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
       <div className="mt-6">
         <label
           htmlFor={`${ids}-message`}
-          className="legend flex items-baseline gap-2 text-dim"
+          className="label flex items-baseline gap-2 text-text-muted"
         >
           {t.formMessage}
-          <span className="text-dim">{t.required}</span>
+          <span className="text-text-muted">{t.required}</span>
         </label>
         <textarea
           id={`${ids}-message`}
@@ -146,12 +144,12 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
           disabled={status.kind === "sending"}
           aria-describedby={failed ? errorId : undefined}
           onChange={(event) => setFields((f) => ({ ...f, message: event.target.value }))}
-          className="mt-2 w-full resize-y rounded-recess bg-page px-3 py-2 text-base text-ink ring-1 ring-edge placeholder:text-dim focus:outline-none focus:ring-2 focus:ring-signal disabled:opacity-60"
+          className="mt-2 w-full resize-y rounded-sm border border-line-control bg-surface-raised px-3 py-2 text-body text-text transition-colors duration-(--duration-tint) placeholder:text-text-muted hover:border-text-muted disabled:opacity-60"
         />
       </div>
 
       {errorText ? (
-        <p id={errorId} role="alert" className="mt-5 max-w-[46ch] text-sm text-alarm">
+        <p id={errorId} role="alert" className="m-0 mt-5 max-w-[46ch] text-body text-danger">
           {errorText}
         </p>
       ) : null}
@@ -159,7 +157,7 @@ export function ContactForm({ t, email }: { t: Messages["contact"]; email: strin
       <button
         type="submit"
         disabled={status.kind === "sending"}
-        className="mt-7 inline-flex h-11 items-center rounded-recess bg-signal px-6 text-on-signal legend disabled:opacity-60"
+        className="label mt-8 inline-flex h-11 items-center rounded-sm bg-accent-fill px-6 text-on-accent transition-colors duration-(--duration-tint) hover:bg-accent-fill-hover disabled:opacity-60"
       >
         {status.kind === "sending" ? t.formSending : t.formSend}
       </button>
@@ -198,10 +196,10 @@ function Field({
     <div className="mt-6 first:mt-0">
       <label
         htmlFor={id}
-        className="legend flex items-baseline gap-2 text-dim"
+        className="label flex items-baseline gap-2 text-text-muted"
       >
         {label}
-        <span className="text-dim">{required}</span>
+        <span className="text-text-muted">{required}</span>
       </label>
       <input
         id={id}
@@ -214,7 +212,7 @@ function Field({
         disabled={disabled}
         aria-describedby={describedBy}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 h-11 w-full rounded-recess bg-page px-3 text-base text-ink ring-1 ring-edge placeholder:text-dim focus:outline-none focus:ring-2 focus:ring-signal disabled:opacity-60"
+        className="mt-2 h-11 w-full rounded-sm border border-line-control bg-surface-raised px-3 text-body text-text transition-colors duration-(--duration-tint) placeholder:text-text-muted hover:border-text-muted disabled:opacity-60"
       />
     </div>
   );

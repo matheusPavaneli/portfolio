@@ -1,110 +1,125 @@
 @import "tailwindcss";
 
-/*
- * Tokens, derived from one material fact: an anodized aluminium instrument panel — a warm
- * grey plate, silkscreened legends, and the deep phthalo blue that meter faces and blueprint
- * legends are printed in.
- *
- * Three grounds, not one, because a panel has three: the sheet the rack sits on, the plate of
- * a module, and the recess a meter face is sunk into. Every pair below was measured before it
- * was written down — 25 of them, both themes — and `src/lib/palette.test.ts` re-checks them on
- * every run. Nothing here is ever used at an alpha below 1.
- */
 @theme {
-  --color-page: oklch(97.5% 0.008 85);
-  --color-plate: oklch(88% 0.01 85);
-  --color-recess: oklch(21% 0.01 85);
-  --color-ink: oklch(19% 0.0128 85);
-  --color-dim: oklch(41% 0.0096 85);
-  --color-edge: oklch(56% 0.009 85);
-  --color-signal: oklch(48% 0.13 255);
-  --color-on-signal: oklch(97.5% 0.008 85);
-  --color-alarm: oklch(48% 0.16 27);
-  /* What sits on a recess: a meter face is read at the other end of the ramp. */
-  --color-on-recess: oklch(95% 0.0128 85);
-  --color-dim-recess: oklch(70% 0.0096 85);
-  --color-signal-recess: oklch(70% 0.13 255);
+  --color-ink: #0c0c0b;
+  --color-carbon: #161614;
+  --color-graphite: #1e1d1b;
+  --color-hairline: #2a2925;
+  --color-flint: #6a655b;
+  --color-ash: #8c877d;
+  --color-bone: #ece7dd;
+  --color-signal: #c8f03c;
+  --color-signal-bright: #d6f76a;
+  --color-oxide: #ff6a3d;
 
-  --font-display: var(--face-display), "Arial Narrow", "Liberation Sans Narrow", "DejaVu Sans Condensed", system-ui, sans-serif;
-  --font-body: var(--face-body), system-ui, sans-serif;
-  --font-readout: var(--face-readout), ui-monospace, "SFMono-Regular", monospace;
+  --color-bg: #0c0c0b;
+  --color-surface: #161614;
+  --color-surface-raised: #1e1d1b;
+  --color-line: #2a2925;
+  --color-line-control: #6a655b;
+  --color-text: #ece7dd;
+  --color-text-muted: #8c877d;
+  --color-accent: #c8f03c;
+  --color-accent-fill: #c8f03c;
+  --color-accent-fill-hover: #d6f76a;
+  --color-accent-soft: rgba(200, 240, 60, 0.12);
+  --color-on-accent: #0c0c0b;
+  --color-spice: #ff6a3d;
+  --color-danger: #ff6b5e;
+  --color-warning: #f2b84b;
+  --color-focus: #c8f03c;
 
-  /* Body 17px, ratio 1.2 — a panel is read close and dense, not at editorial distance. */
-  --text-legend: 0.75rem;
-  --text-legend--line-height: 1.25;
-  --text-xs: 0.8125rem;
-  --text-xs--line-height: 1.45;
-  --text-sm: 0.9375rem;
-  --text-sm--line-height: 1.55;
-  --text-base: 1.0625rem;
-  --text-base--line-height: 1.6;
-  --text-md: 1.25rem;
-  --text-md--line-height: 1.45;
-  --text-lg: 1.5rem;
-  --text-lg--line-height: 1.2;
-  --text-xl: 1.875rem;
-  --text-xl--line-height: 1.12;
-  --text-2xl: 2.375rem;
-  --text-2xl--line-height: 1.05;
-  /* The display step sits above the ladder: it is a composition decision, not a rung. */
-  --text-display: clamp(2.5rem, 1.4rem + 4.6vw, 5rem);
-  --text-display--line-height: 0.96;
+  --font-sans: var(--face-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--face-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  /* A panel is milled, not guillotined. The plate radius is the router bit, the recess is cut
-     tighter, a lamp is round. Zero radius everywhere was the old build's broadsheet tell. */
-  --radius-plate: 6px;
-  --radius-recess: 3px;
-  --radius-lamp: 999px;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --text-label--letter-spacing: 0.04em;
+  --text-small: 0.8125rem;
+  --text-small--line-height: 1.25rem;
+  --text-code: 0.8125rem;
+  --text-code--line-height: 1.375rem;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.5rem;
+  --text-body-lg: 1.0625rem;
+  --text-body-lg--line-height: 1.75rem;
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 1.625rem;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 2rem;
+  --text-h2--letter-spacing: -0.02em;
+  --text-metric: 1.75rem;
+  --text-metric--line-height: 2rem;
+  --text-metric--letter-spacing: -0.02em;
+  --text-h1: 2rem;
+  --text-h1--line-height: 2.5rem;
+  --text-h1--letter-spacing: -0.03em;
+  --text-display: clamp(2rem, 1.2rem + 4vw, 3rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.04em;
+  --text-display-xl: clamp(2.5rem, 1.1rem + 7vw, 4.5rem);
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.045em;
 
-  --ease-panel: cubic-bezier(0.2, 0, 0, 1);
-  --duration-fast: 140ms;
-  --duration-mid: 240ms;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+
+  --container-shell: 1120px;
+
+  --ease-signal: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration-tint: 150ms;
+  --duration-build: 360ms;
 }
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 
-[data-theme="dark"] {
-  --color-page: oklch(16% 0.009 85);
-  --color-plate: oklch(24% 0.01 85);
-  --color-recess: oklch(11% 0.008 85);
-  --color-ink: oklch(94% 0.0128 85);
-  --color-dim: oklch(70% 0.0096 85);
-  --color-edge: oklch(54% 0.009 85);
-  --color-signal: oklch(70% 0.13 255);
-  --color-on-signal: oklch(11% 0.008 85);
-  --color-alarm: oklch(70% 0.16 27);
-  --color-on-recess: oklch(94% 0.0128 85);
-  --color-dim-recess: oklch(70% 0.0096 85);
-  --color-signal-recess: oklch(70% 0.13 255);
+[data-theme="light"] {
+  --color-bg: #f3efe7;
+  --color-surface: #eae5da;
+  --color-surface-raised: #fbf9f4;
+  --color-line: #ddd6c8;
+  --color-line-control: #8f8676;
+  --color-text: #141311;
+  --color-text-muted: #655f55;
+  --color-accent: #3f5a00;
+  --color-accent-fill: #c8f03c;
+  --color-accent-fill-hover: #b8e02a;
+  --color-accent-soft: rgba(63, 90, 0, 0.1);
+  --color-on-accent: #141311;
+  --color-spice: #c24a22;
+  --color-danger: #b42318;
+  --color-warning: #8a5a00;
+  --color-focus: #3f5a00;
 }
 
-/*
- * The no-JS path. With the inline script blocked no data-theme is set, and this hands the
- * reader whatever their system asked for.
- */
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --color-page: oklch(16% 0.009 85);
-    --color-plate: oklch(24% 0.01 85);
-    --color-recess: oklch(11% 0.008 85);
-    --color-ink: oklch(94% 0.0128 85);
-    --color-dim: oklch(70% 0.0096 85);
-    --color-edge: oklch(54% 0.009 85);
-    --color-signal: oklch(70% 0.13 255);
-    --color-on-signal: oklch(11% 0.008 85);
-    --color-alarm: oklch(70% 0.16 27);
-    --color-on-recess: oklch(94% 0.0128 85);
-    --color-dim-recess: oklch(70% 0.0096 85);
-    --color-signal-recess: oklch(70% 0.13 255);
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) {
+    --color-bg: #f3efe7;
+    --color-surface: #eae5da;
+    --color-surface-raised: #fbf9f4;
+    --color-line: #ddd6c8;
+    --color-line-control: #8f8676;
+    --color-text: #141311;
+    --color-text-muted: #655f55;
+    --color-accent: #3f5a00;
+    --color-accent-fill: #c8f03c;
+    --color-accent-fill-hover: #b8e02a;
+    --color-accent-soft: rgba(63, 90, 0, 0.1);
+    --color-on-accent: #141311;
+    --color-spice: #c24a22;
+    --color-danger: #b42318;
+    --color-warning: #8a5a00;
+    --color-focus: #3f5a00;
   }
 }
 
 @layer base {
   html {
-    color-scheme: light dark;
-    background-color: var(--color-page);
-    color: var(--color-ink);
-    scroll-padding-top: 5.5rem;
+    color-scheme: dark light;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    scroll-padding-top: 3.5rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -114,24 +129,17 @@
   }
 
   body {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    line-height: 1.6;
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
     -webkit-font-smoothing: antialiased;
-  }
-
-  /* A readout is read column by column: figures line up or the panel is lying. */
-  .font-readout,
-  .tabular-nums {
-    font-variant-numeric: tabular-nums;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.015em;
+    font-weight: 500;
     text-wrap: balance;
   }
 
@@ -139,105 +147,374 @@
     text-wrap: pretty;
   }
 
+  .font-mono,
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--color-signal);
+    outline: 2px solid transparent;
     outline-offset: 2px;
-    border-radius: var(--radius-recess);
+    box-shadow:
+      0 0 0 2px var(--color-bg),
+      0 0 0 4px var(--color-focus);
+  }
+
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline-color: Highlight;
+    }
   }
 
   ::selection {
-    background: var(--color-signal);
-    color: var(--color-on-signal);
+    background: var(--color-accent-fill);
+    color: var(--color-on-accent);
   }
 }
 
 @layer components {
-  /*
-   * The silkscreen legend: the small engraved label above every control and every module on a
-   * real panel. Set in the display face at its narrowest width, which is what fits on a bezel.
-   */
-  .legend {
-    font-family: var(--font-display);
-    font-size: var(--text-legend);
-    font-weight: 600;
-    font-variation-settings: "wdth" 80;
-    letter-spacing: 0.14em;
+  .label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    line-height: var(--text-label--line-height);
+    font-weight: 500;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
   }
 
-  /*
-   * The one interaction signature: a control lights. Its lamp fills and its label goes to ink,
-   * the way an indicator on a panel does — nothing slides, nothing lifts, nothing shadows.
-   */
-  .lamp {
-    position: relative;
-    padding-left: 1.125rem;
+  .measure {
+    max-width: 65ch;
   }
 
-  /* At the narrowest widths a control keeps its lamp and drops its word; the accessible name
-     stays, so nothing is lost but the silkscreen. */
-  @media (width < 40rem) {
-    .lamp {
-      padding-left: 0.875rem;
-    }
+  .measure-tight {
+    max-width: 60ch;
   }
 
-  .lamp::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-top: -0.25rem;
-    border-radius: var(--radius-lamp);
-    border: 1px solid var(--color-edge);
-    background: transparent;
+  .control {
+    border: 1px solid var(--color-line-control);
     transition:
-      background-color var(--duration-fast) var(--ease-panel),
-      border-color var(--duration-fast) var(--ease-panel);
+      border-color var(--duration-tint) ease,
+      color var(--duration-tint) ease,
+      background-color var(--duration-tint) ease;
   }
 
-  .lamp:hover::before,
-  .lamp:focus-visible::before,
-  .lamp[aria-pressed="true"]::before,
-  .lamp[aria-current="true"]::before {
-    background: var(--color-signal);
-    border-color: var(--color-signal);
+  .control:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
   }
 
-  .lamp[aria-pressed="true"],
-  .lamp[aria-current="true"] {
-    color: var(--color-ink);
+  .link {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-line-control);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition:
+      text-decoration-color var(--duration-tint) ease,
+      color var(--duration-tint) ease;
   }
 
-  /*
-   * The theme control shows the action it will take, and which action that is depends on the
-   * theme. Both labels are in the markup; exactly one is ever displayed.
-   */
-  .u-when-dark {
+  .link:hover {
+    text-decoration-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    padding-inline: 0.5rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+  }
+
+  .nav-item {
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+    transition:
+      color var(--duration-tint) ease,
+      border-color var(--duration-tint) ease;
+  }
+
+  .nav-item:hover {
+    color: var(--color-text);
+  }
+
+  .nav-item[aria-current="true"] {
+    color: var(--color-text);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .when-dark {
     display: none;
   }
-  [data-theme="dark"] .u-when-dark {
-    display: inline;
+
+  .when-light {
+    display: contents;
   }
-  [data-theme="dark"] .u-when-light {
+
+  [data-theme="dark"] .when-dark {
+    display: contents;
+  }
+
+  [data-theme="dark"] .when-light {
     display: none;
   }
+
   @media (prefers-color-scheme: dark) {
-    html:not([data-theme="light"]) .u-when-dark {
-      display: inline;
+    html:not([data-theme="light"]) .when-dark {
+      display: contents;
     }
-    html:not([data-theme="light"]) .u-when-light {
+
+    html:not([data-theme="light"]) .when-light {
       display: none;
     }
   }
 
-  /* The shader either started or it did not; both states are correct and neither is a flash. */
-  .u-field[data-live="false"] canvas {
+  .board-bar {
+    transform-origin: left center;
+  }
+
+  .board-label {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .board-bar {
+      animation: board-sweep 620ms var(--ease-signal) both;
+    }
+
+    .board-label {
+      animation: board-settle 420ms var(--ease-signal) both;
+      animation-delay: calc(var(--board-delay, 0ms) + 260ms);
+    }
+  }
+
+  @keyframes board-sweep {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes board-settle {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .board-row {
+    transition: background-color var(--duration-tint) ease;
+  }
+
+  .board-row:hover,
+  .board-row:focus-visible {
+    background-color: var(--color-accent-soft);
+  }
+
+  .ledger-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ledger-summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .ledger-caret {
+    transition: transform var(--duration-tint) ease;
+  }
+
+  [open] > .ledger-summary .ledger-caret {
+    transform: rotate(90deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ledger-caret {
+      transition: none;
+    }
+  }
+
+  .build-body {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .build-stage {
+    overflow: hidden;
+  }
+
+  .build-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .build-wide {
+    display: none;
+  }
+
+  .build-steps {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .build-step {
+    max-width: 40ch;
+  }
+
+  .build-cost {
+    color: var(--color-text);
+  }
+
+  .build-feed-window {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 19rem;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent, black 35%);
+  }
+
+  .build-feed {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .build-feed .build-step:not([data-current]) {
+    color: var(--color-text-muted);
+  }
+
+  .build-feed .build-step:not([data-current]) .build-cost {
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 80rem) {
+    .build-body {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .build-stage {
+      grid-column: 5 / span 8;
+      grid-row: 1;
+    }
+
+    .build-steps,
+    .build-feed-window {
+      grid-column: 1 / span 4;
+      grid-row: 1;
+    }
+
+    .build-feed-window {
+      height: auto;
+      contain: size;
+    }
+
+    .build-wide {
+      display: block;
+    }
+
+    .build-tall {
+      display: none;
+    }
+  }
+
+  .build-node rect {
+    fill: var(--color-surface-raised);
+    stroke: var(--color-line-control);
+    stroke-width: 1.4;
+  }
+
+  .build-tall .build-node rect {
+    stroke-width: 1;
+  }
+
+  .build-node text {
+    fill: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 17px;
+  }
+
+  .build-tall .build-node text {
+    font-size: 12px;
+  }
+
+  .build-tap {
+    fill: var(--color-line-control);
+  }
+
+  .build-edge {
+    fill: none;
+    stroke: var(--color-line-control);
+    stroke-width: 1.4;
+  }
+
+  .build-tall .build-edge {
+    stroke-width: 1;
+  }
+
+  .build-edge[data-async] {
+    stroke-dasharray: 5 4;
+  }
+
+  .build-node[data-state="added"] rect,
+  .build-edge[data-state="added"] {
+    stroke: var(--color-accent);
+  }
+
+  .build-node[data-state="added"] text,
+  .build-tap[data-state="added"] {
+    fill: var(--color-accent);
+  }
+
+  .build-edge[data-state="removed"] {
+    stroke: var(--color-spice);
+  }
+
+  .build-node[data-state="hidden"],
+  .build-edge[data-state="hidden"],
+  .build-tap[data-state="hidden"] {
     opacity: 0;
   }
-  .u-field[data-live="true"] .u-field-fallback {
-    display: none;
+
+  @media (prefers-reduced-motion: no-preference) {
+    .build[data-live] .build-node,
+    .build[data-live] .build-tap {
+      transition: opacity var(--duration-build) var(--ease-signal);
+    }
+
+    .build[data-live] .build-node rect,
+    .build[data-live] .build-node text {
+      transition:
+        stroke var(--duration-tint) ease,
+        fill var(--duration-tint) ease;
+    }
+
+    .build[data-live] .build-edge:not([data-async]) {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 0;
+      transition:
+        stroke-dashoffset var(--duration-build) var(--ease-signal),
+        stroke var(--duration-tint) ease,
+        opacity var(--duration-tint) ease;
+    }
+
+    .build[data-live] .build-edge:not([data-async])[data-state="hidden"] {
+      stroke-dashoffset: 1;
+    }
+
+    .build[data-live] .build-edge[data-async] {
+      transition:
+        opacity var(--duration-build) var(--ease-signal),
+        stroke var(--duration-tint) ease;
+    }
   }
 }

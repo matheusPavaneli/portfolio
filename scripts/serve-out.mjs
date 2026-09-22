@@ -1,11 +1,9 @@
-/** Serves the static export exactly as a file host would, so the export itself can be tested. */
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { extname, join, normalize, resolve, sep } from "node:path";
 
 const root = resolve(process.argv[2] ?? "out");
 const port = Number(process.argv[3] ?? 4173);
-/** Mirrors `basePath`, so the export can be tested at the path it will actually be served from. */
 const prefix = (process.argv[4] ?? "").replace(/\/+$/, "");
 
 const TYPES = new Map([
@@ -20,7 +18,6 @@ const TYPES = new Map([
   [".json", "application/json; charset=utf-8"],
 ]);
 
-/** Resolve inside `root` only: a path that escapes it is a 404, not a file read. */
 async function locate(pathname) {
   const requested = normalize(join(root, decodeURIComponent(pathname)));
   if (requested !== root && !requested.startsWith(root + sep)) return null;

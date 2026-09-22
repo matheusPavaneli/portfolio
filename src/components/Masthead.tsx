@@ -1,77 +1,81 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { BrandMark } from "@/components/BrandMark";
-import { Module } from "@/components/Module";
+import { DeltaBoard } from "@/components/DeltaBoard";
 import { profile } from "@/content/profile";
 import type { Messages } from "@/i18n";
 
-/**
- * The top of the rack.
- *
- * The thesis is the claim, set at a size that is a decision, with the panel's own status strip
- * under it: three plates reporting what this is, where it is, and what it is open to. No stat
- * tiles and no gradient — legends and readouts, which is what a panel actually says about
- * itself.
- */
 export function Masthead({ t }: { t: Messages }) {
-  const strip = [
-    { legend: t.masthead.stripRole, value: t.masthead.stripRoleValue, live: false },
-    { legend: t.masthead.stripBase, value: t.masthead.location, live: false },
-    { legend: t.masthead.stripStatus, value: t.masthead.stripStatusValue, live: true },
+  const facts = [
+    { label: t.masthead.stripNow, value: t.masthead.stripNowValue },
+    { label: t.masthead.stripStack, value: t.masthead.stripStackValue },
+    { label: t.masthead.stripBase, value: t.masthead.stripBaseValue },
   ];
 
   return (
-    <section className="px-4 pb-10 pt-14 md:px-8 md:pb-14 md:pt-20">
-      <div className="mx-auto max-w-[1240px]">
-        <h1
-          className="m-0 max-w-[16ch] text-display font-bold"
-          style={{ fontVariationSettings: '"wdth" 108' }}
-        >
-          {t.masthead.headline}
+    <section className="px-4 pb-16 pt-10 md:px-8 md:pb-24 md:pt-16">
+      <div className="mx-auto max-w-shell">
+        <p className="m-0 text-h3 text-text">{profile.name}</p>
+        <p className="label m-0 mt-1 text-text-muted">{t.masthead.role}</p>
+
+        <h1 className="m-0 mt-8 max-w-[15ch] text-display-xl text-text">
+          {t.masthead.headlineLead}{" "}
+          <span className="text-text-muted">{t.masthead.headlineTail}</span>
         </h1>
 
-        <p className="mt-7 max-w-[54ch] text-md text-dim">{t.masthead.lede}</p>
+        <p className="measure m-0 mt-6 text-body-lg text-text-muted">{t.masthead.lede}</p>
 
-        <div className="mt-9 flex flex-wrap items-center gap-3">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
             href="#contact"
-            className="legend inline-flex h-11 items-center gap-2 rounded-recess bg-signal px-5 text-on-signal"
+            className="label inline-flex h-11 items-center gap-2 rounded-sm bg-accent-fill px-5 text-on-accent transition-colors duration-(--duration-tint) hover:bg-accent-fill-hover"
           >
             {t.masthead.cta}
-            <ArrowUpRight aria-hidden size={14} strokeWidth={2.25} />
+            <ArrowRight aria-hidden size={14} strokeWidth={1.75} />
           </a>
           <a
             href={profile.github}
             target="_blank"
             rel="noreferrer noopener"
-            className="legend inline-flex h-11 items-center gap-2 rounded-recess px-3 text-dim ring-1 ring-edge hover:text-ink"
+            className="control label inline-flex h-11 items-center gap-2 rounded-sm px-4 text-text-muted"
           >
             <BrandMark brand="github" size={14} />
             GitHub
+            <span className="sr-only">({t.a11y.externalLink})</span>
           </a>
           <a
             href={profile.linkedin}
             target="_blank"
             rel="noreferrer noopener"
-            className="legend inline-flex h-11 items-center gap-2 rounded-recess px-3 text-dim ring-1 ring-edge hover:text-ink"
+            className="control label inline-flex h-11 items-center gap-2 rounded-sm px-4 text-text-muted"
           >
             <BrandMark brand="linkedin" size={14} />
             LinkedIn
+            <span className="sr-only">({t.a11y.externalLink})</span>
           </a>
         </div>
 
-        <ul className="mt-12 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-3">
-          {strip.map((item) => (
-            <Module as="li" key={item.legend} legend={item.legend}>
-              <p className="m-0 flex items-center gap-2 text-base text-ink">
-                {item.live ? (
-                  <span aria-hidden className="inline-block size-2 shrink-0 rounded-lamp bg-signal" />
-                ) : null}
-                {item.value}
-              </p>
-            </Module>
+        <p className="m-0 mt-6 flex items-center gap-2 sm:hidden">
+          <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-accent-fill" />
+          <span className="label text-text-muted">{t.masthead.stripStatusValue}</span>
+        </p>
+
+        <dl className="m-0 mt-10 grid grid-cols-1 border-t border-line md:grid-cols-3">
+          {facts.map((fact) => (
+            <div
+              key={fact.label}
+              className="border-b border-line px-0 py-4 md:border-r md:px-5 md:first:pl-0 md:last:border-r-0"
+            >
+              <dt className="label m-0 text-text-muted">{fact.label}</dt>
+              <dd className="m-0 mt-2 text-body text-text">{fact.value}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
+
+        <div className="mt-12 md:mt-14">
+          <DeltaBoard t={t} />
+          <p className="measure m-0 mt-4 text-small text-text-muted">{t.board.lede}</p>
+        </div>
       </div>
     </section>
   );

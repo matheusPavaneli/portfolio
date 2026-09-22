@@ -30,22 +30,26 @@ describe("locale catalogues", () => {
   });
 
   it("does not leave an English string sitting in the Portuguese catalogue", () => {
-    // Deliberate exceptions: proper nouns, terms of art and identifiers that stay in English.
     const allowed = new Set([
       "cases.stack",
-      "reading.kindDelta",
       "cases.query.org",
-      "masthead.stripBase",
+      "masthead.stripStackValue",
       "cases.image.org",
       "cases.seal.name",
-      "cases.rageval.name",
       "cases.artefacts.name",
       "cases.nanquim.name",
       "cases.anchor.name",
+      "cases.rageval.name",
+      "masthead.stripNowValue",
       "record.roles.bernoulli.title",
       "record.roles.eicode.title",
       "record.roles.freelance.title",
       "record.roles.jorrovi.title",
+      "build.nodes.lb",
+      "build.nodes.api",
+      "build.nodes.cache",
+      "build.nodes.workers",
+      "build.nodes.breaker",
     ]);
 
     const identical = paths(en).filter((path) => {
