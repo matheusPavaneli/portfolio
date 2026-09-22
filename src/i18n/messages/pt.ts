@@ -338,6 +338,19 @@ export const pt: Messages = {
     required: "obrigatório",
   },
 
+  machine: {
+    status: "Situação",
+    phone: "Telefone",
+    links: "Endereços",
+    page: "Página",
+    markdown: "Este perfil em Markdown",
+    otherMarkdown: "Versão em inglês",
+    resumeJson: "Currículo em JSON Resume",
+    resumePdf: "Currículo em PDF",
+    cited: "Traços citados",
+    footer: "Para ferramentas",
+  },
+
   footer: {
     built: "Next.js, exportado estático. Todo par de cores da página tem o contraste verificado no CI.",
     source: "Código",

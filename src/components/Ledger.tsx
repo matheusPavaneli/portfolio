@@ -2,7 +2,7 @@ import { ArrowUpRight, ChevronRight } from "lucide-react";
 
 import { Section } from "@/components/Section";
 import { cases, headlineCaseIds, type Case } from "@/content/cases";
-import { formatRatio, rows } from "@/lib/board";
+import { formatRatio, readingText, rows } from "@/lib/board";
 import { formatYears } from "@/lib/dates";
 import type { Messages } from "@/i18n";
 
@@ -32,13 +32,7 @@ export function Ledger({ t }: { t: Messages }) {
               key={entry.id}
               entry={entry}
               t={t}
-              reading={
-                row === undefined || row.from === null
-                  ? (row?.to ?? "")
-                  : row.group === "held"
-                    ? `${row.to} ≤ ${row.from}`
-                    : `${row.from} → ${row.to}`
-              }
+              reading={row === undefined ? "" : readingText(row)}
               ratio={
                 row?.group === "moved" && row.ratio !== null
                   ? formatRatio(row.ratio)

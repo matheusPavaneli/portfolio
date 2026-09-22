@@ -14,7 +14,9 @@ const TYPES = new Map([
   [".woff2", "font/woff2"],
   [".xml", "application/xml; charset=utf-8"],
   [".txt", "text/plain; charset=utf-8"],
+  [".md", "text/markdown; charset=utf-8"],
   [".png", "image/png"],
+  [".pdf", "application/pdf"],
   [".json", "application/json; charset=utf-8"],
 ]);
 

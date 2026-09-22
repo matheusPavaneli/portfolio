@@ -335,6 +335,19 @@ export const en = {
     required: "required",
   },
 
+  machine: {
+    status: "Status",
+    phone: "Phone",
+    links: "Links",
+    page: "Web page",
+    markdown: "This profile as Markdown",
+    otherMarkdown: "Portuguese version",
+    resumeJson: "Résumé as JSON Resume",
+    resumePdf: "Résumé as PDF",
+    cited: "Traits cited",
+    footer: "For tools",
+  },
+
   footer: {
     built: "Next.js, exported static. Every colour pair on the page is contrast-checked in CI.",
     source: "Source",
