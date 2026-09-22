@@ -37,6 +37,12 @@ export function formatRatio(ratio: number): string {
   return `${ratio >= 10 ? ratio.toFixed(1) : ratio.toFixed(2)}×`;
 }
 
+/** The reading as the ledger states it: "2 s → 150 ms", "12.14 kB ≤ the gate", or the one figure. */
+export function readingText(row: BoardRow): string {
+  if (row.from === null) return row.to;
+  return row.group === "held" ? `${row.to} ≤ ${row.from}` : `${row.from} → ${row.to}`;
+}
+
 function rowFor(entry: Case): BoardRow {
   const { reading } = entry;
 

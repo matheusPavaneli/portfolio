@@ -1,7 +1,8 @@
 import { profile } from "@/content/profile";
-import type { Messages } from "@/i18n";
+import type { Locale, Messages } from "@/i18n";
+import { href } from "@/lib/href";
 
-export function Footer({ t }: { t: Messages }) {
+export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
   return (
     <footer className="border-t border-line px-4 py-8 md:px-8">
       <div className="mx-auto flex max-w-shell flex-col gap-3 md:flex-row md:items-baseline md:justify-between">
@@ -14,6 +15,19 @@ export function Footer({ t }: { t: Messages }) {
             rel="me"
           >
             {t.footer.source}
+          </a>
+          <br />
+          {t.machine.footer}:{" "}
+          <a className="link text-text-muted" href={href("/llms.txt")} type="text/plain">
+            llms.txt
+          </a>{" "}
+          ·{" "}
+          <a className="link text-text-muted" href={href(`/${locale}/index.md`)} type="text/markdown">
+            Markdown
+          </a>{" "}
+          ·{" "}
+          <a className="link text-text-muted" href={href("/resume.json")} type="application/json">
+            JSON Resume
           </a>
         </p>
       </div>

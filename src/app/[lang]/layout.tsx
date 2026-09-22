@@ -6,7 +6,7 @@ import "../globals.css";
 import { Rail } from "@/components/Rail";
 import { Footer } from "@/components/Footer";
 import { getMessages, HTML_LANG, isLocale, LOCALES, type Locale } from "@/i18n";
-import { profile } from "@/content/profile";
+import { inlineJson, jsonLd } from "@/lib/machine";
 
 const sans = Geist({
   variable: "--face-sans",
@@ -46,6 +46,10 @@ export async function generateMetadata({
         en: `${BASE}/en/`,
         "pt-BR": `${BASE}/pt/`,
         "x-default": `${BASE}/en/`,
+      },
+      types: {
+        "text/markdown": `${BASE}/${lang}/index.md`,
+        "application/json": `${BASE}/resume.json`,
       },
     },
     openGraph: {
@@ -96,18 +100,7 @@ export default async function LangLayout({
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: profile.name,
-              jobTitle: t.masthead.role,
-              email: `mailto:${profile.email}`,
-              url: `${ORIGIN}${BASE}/${lang}/`,
-              sameAs: [profile.github, profile.linkedin],
-              address: { "@type": "PostalAddress", addressLocality: "Maringá", addressCountry: "BR" },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: inlineJson(jsonLd(lang)) }}
         />
       </head>
       <body className="bg-bg text-text antialiased">
@@ -119,7 +112,7 @@ export default async function LangLayout({
         </a>
         <Rail locale={lang} t={t} />
         <main id="file">{children}</main>
-        <Footer t={t} />
+        <Footer locale={lang} t={t} />
       </body>
     </html>
   );
