@@ -1,7 +1,6 @@
 export const CLAIMS = ["hard", "ownership", "cause", "clarity", "team", "learning"] as const;
 export type ClaimId = (typeof CLAIMS)[number];
 
-/** A run of the statement, either plain or a passage marked as backing one trait. */
 export type Segment = string | { readonly text: string; readonly claim: ClaimId };
 
 export type ReferenceEntry = {
@@ -12,7 +11,6 @@ export type ReferenceEntry = {
   readonly relation: "managed" | "team";
   readonly org: string;
   readonly date: string;
-  /** Paragraphs, verbatim as posted on LinkedIn. Marks only annotate; they never edit. */
   readonly body: readonly (readonly Segment[])[];
 };
 
@@ -81,7 +79,6 @@ export const references: readonly ReferenceEntry[] = [
   },
 ];
 
-/** The section's title: a verbatim run of Gleyver's statement, the page's claim said by someone else. */
 export const pullQuote = "someone you can trust implicitly to unblock the toughest challenges.";
 
 export const recommendationsHref = "https://www.linkedin.com/in/matheuspavaneli/details/recommendations/";
@@ -92,7 +89,6 @@ export function passages(entry: ReferenceEntry, claim: ClaimId): number {
 
 export type PassageWords = { readonly none: string; readonly one: string; readonly other: string };
 
-/** "no passages" · "1 passage" · "2 passages" — zero is its own case, since CLDR puts pt's 0 in "one". */
 export function countPassages(n: number, intl: string, words: PassageWords): string {
   if (n === 0) return words.none;
   const form = new Intl.PluralRules(intl).select(n) === "one" ? words.one : words.other;

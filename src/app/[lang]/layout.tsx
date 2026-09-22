@@ -6,7 +6,7 @@ import "../globals.css";
 import { Rail } from "@/components/Rail";
 import { Footer } from "@/components/Footer";
 import { getMessages, HTML_LANG, isLocale, LOCALES, type Locale } from "@/i18n";
-import { inlineJson, jsonLd } from "@/lib/machine";
+import { scriptSafeJson, jsonLd } from "@/lib/machine";
 
 const sans = Geist({
   variable: "--face-sans",
@@ -100,7 +100,7 @@ export default async function LangLayout({
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: inlineJson(jsonLd(lang)) }}
+          dangerouslySetInnerHTML={{ __html: scriptSafeJson(jsonLd(lang)) }}
         />
       </head>
       <body className="bg-bg text-text antialiased">
