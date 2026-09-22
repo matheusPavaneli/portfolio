@@ -25,12 +25,15 @@ const CV_TERMS: Record<SkillGroupId, readonly string[]> = {
   languages: [
     "TypeScript",
     "JavaScript",
+    "Python",
     "PHP",
     "React",
     "Next.js",
     "Vue.js",
     "Node.js",
     "NestJS",
+    "FastAPI",
+    "Django / DRF",
     "Fastify",
     "Express",
     "Laravel",
@@ -43,6 +46,11 @@ const CV_TERMS: Record<SkillGroupId, readonly string[]> = {
     "response caching",
     "model evaluation",
     "MongoDB retrieval",
+    "LangChain",
+    "Pydantic structured output",
+    "embeddings & vector search (pgvector)",
+    "scikit-learn",
+    "NumPy",
   ],
   data: [
     "PostgreSQL",
@@ -54,6 +62,9 @@ const CV_TERMS: Record<SkillGroupId, readonly string[]> = {
     "Kafka",
     "RabbitMQ",
     "BullMQ",
+    "Celery",
+    "SQLAlchemy / Alembic",
+    "pandas",
   ],
   cloud: [
     "EC2",
@@ -76,6 +87,7 @@ const CV_TERMS: Record<SkillGroupId, readonly string[]> = {
     "Linux",
     "Git",
     "CI/CD",
+    "boto3",
   ],
   architecture: [
     "Clean Architecture",
@@ -89,6 +101,8 @@ const CV_TERMS: Record<SkillGroupId, readonly string[]> = {
     "REST",
     "GraphQL",
     "Jest",
+    "pytest",
+    "mypy / Ruff",
   ],
 };
 
