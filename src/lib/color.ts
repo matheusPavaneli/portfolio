@@ -1,41 +1,5 @@
-/**
- * Just enough colour maths to assert the palette in CI.
- *
- * The outgoing build shipped a 2.81:1 primary call to action and 97 sub-AA muted-text uses,
- * because nothing ever computed a ratio. This is the thing that computes it.
- */
-
-export type Oklch = { l: number; c: number; h: number };
 export type Rgb = { r: number; g: number; b: number };
-
-const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
-
-/** OKLCH (l in 0..1) to sRGB 0..255, gamut-clipped per channel. */
-export function oklchToRgb({ l, c, h }: Oklch): Rgb {
-  const hr = (h * Math.PI) / 180;
-  const a = c * Math.cos(hr);
-  const bb = c * Math.sin(hr);
-
-  const l_ = l + 0.3963377774 * a + 0.2158037573 * bb;
-  const m_ = l - 0.1055613458 * a - 0.0638541728 * bb;
-  const s_ = l - 0.0894841775 * a - 1.291485548 * bb;
-
-  const L = l_ * l_ * l_;
-  const M = m_ * m_ * m_;
-  const S = s_ * s_ * s_;
-
-  const lr = +4.0767416621 * L - 3.3077115913 * M + 0.2309699292 * S;
-  const lg = -1.2684380046 * L + 2.6097574011 * M - 0.3413193965 * S;
-  const lb = -0.0041960863 * L - 0.7034186147 * M + 1.707614701 * S;
-
-  const encode = (v: number) => {
-    const x = clamp01(v);
-    const srgb = x <= 0.0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055;
-    return Math.round(clamp01(srgb) * 255);
-  };
-
-  return { r: encode(lr), g: encode(lg), b: encode(lb) };
-}
+export type Rgba = Rgb & { a: number };
 
 function relativeLuminance({ r, g, b }: Rgb): number {
   const channel = (value: number) => {
@@ -45,23 +9,44 @@ function relativeLuminance({ r, g, b }: Rgb): number {
   return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
 }
 
-/** WCAG 2.2 contrast ratio, 1..21. */
-export function contrastRatio(a: Oklch, b: Oklch): number {
-  const la = relativeLuminance(oklchToRgb(a));
-  const lb = relativeLuminance(oklchToRgb(b));
+export function contrast(a: Rgb, b: Rgb): number {
+  const la = relativeLuminance(a);
+  const lb = relativeLuminance(b);
   const [hi, lo] = la > lb ? [la, lb] : [lb, la];
   return (hi + 0.05) / (lo + 0.05);
 }
 
-/** Parse `oklch(97.5% 0.006 250)` as it is written in `globals.css`. */
-export function parseOklch(value: string): Oklch {
-  const match = value
-    .trim()
-    .match(/^oklch\(\s*([\d.]+)%\s+([\d.]+)\s+([\d.]+)\s*\)$/);
-  if (!match) throw new Error(`not an oklch() value this parser handles: "${value}"`);
-  const [, l, c, h] = match;
-  if (l === undefined || c === undefined || h === undefined) {
-    throw new Error(`incomplete oklch() value: "${value}"`);
+export function parseColor(value: string): Rgba {
+  const input = value.trim();
+
+  const hex = input.match(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/);
+  if (hex?.[1]) {
+    const digits =
+      hex[1].length === 3
+        ? hex[1]
+            .split("")
+            .map((d) => d + d)
+            .join("")
+        : hex[1];
+    const n = Number.parseInt(digits, 16);
+    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255, a: 1 };
   }
-  return { l: Number(l) / 100, c: Number(c), h: Number(h) };
+
+  const rgba = input.match(
+    /^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:\s*[,/]\s*([\d.]+))?\s*\)$/,
+  );
+  if (rgba) {
+    const [, r, g, b, a] = rgba;
+    if (r === undefined || g === undefined || b === undefined) {
+      throw new Error(`incomplete rgb() value: "${value}"`);
+    }
+    return { r: Number(r), g: Number(g), b: Number(b), a: a === undefined ? 1 : Number(a) };
+  }
+
+  throw new Error(`not a colour this parser handles: "${value}"`);
+}
+
+export function composite(over: Rgba, ground: Rgb): Rgb {
+  const mix = (f: number, b: number) => Math.round(f * over.a + b * (1 - over.a));
+  return { r: mix(over.r, ground.r), g: mix(over.g, ground.g), b: mix(over.b, ground.b) };
 }

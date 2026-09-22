@@ -1,10 +1,5 @@
-/**
- * Every FALLBACK declared in .unique/stack.md, actually exercised. A declared fallback that
- * was never run is not a fallback.
- */
 import { chromium } from "playwright";
 
-/** CI uses the bundled Chromium; set PW_CHANNEL=msedge to use an installed browser instead. */
 const LAUNCH = process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {};
 
 const base = process.argv[2] ?? "http://localhost:3100";
@@ -16,21 +11,25 @@ function check(name, ok, detail = "") {
   console.log(`${ok ? "ok  " : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
 }
 
-// 1. No JS at all: both locale routes are complete documents.
 {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   for (const route of ["/en/", "/pt/"]) {
     await page.goto(base + route, { waitUntil: "domcontentloaded" });
     const seen = await page.evaluate(() => ({
-      cases: document.querySelectorAll("article[id^='case-']").length,
-      meters: document.querySelectorAll("article[id^='case-'] figure").length,
+      cases: document.querySelectorAll("details[id^='case-']").length,
+      indexed: document.querySelectorAll("figure a[href^='#case-']").length,
+      meters: document.querySelectorAll("details[id^='case-'] [data-reading]").length,
       words: (document.body.innerText || "").split(/\s+/).filter(Boolean).length,
       lang: document.documentElement.lang,
       theme: document.documentElement.getAttribute("data-theme"),
     }));
-    check(`no-JS ${route}: 9 cases rendered`, seen.cases === 9, `${seen.cases}`);
-    check(`no-JS ${route}: every case still posts its reading`, seen.meters === seen.cases, `${seen.meters} of ${seen.cases}`);
+    check(
+      `no-JS ${route}: every case on the board is rendered in the ledger`,
+      seen.cases > 0 && seen.cases === seen.indexed,
+      `${seen.cases} of ${seen.indexed}`,
+    );
+    check(`no-JS ${route}: every case still posts its reading`, seen.meters === seen.cases, `${seen.meters}`);
     check(`no-JS ${route}: readable text present`, seen.words > 600, `${seen.words} words`);
     check(
       `no-JS ${route}: html lang correct`,
@@ -42,7 +41,6 @@ function check(name, ok, detail = "") {
   await context.close();
 }
 
-// 2. Reduced motion: nothing is animating, and nothing is left hidden by an animation.
 {
   const context = await browser.newContext({ reducedMotion: "reduce" });
   const page = await context.newPage();
@@ -62,7 +60,6 @@ function check(name, ok, detail = "") {
   await context.close();
 }
 
-// 3. The root chooser works without its script: two real links.
 {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
@@ -74,7 +71,6 @@ function check(name, ok, detail = "") {
   await context.close();
 }
 
-// 4. The contact form's own fallback: no form id configured means a mail route, not a dead form.
 {
   const context = await browser.newContext();
   const page = await context.newPage();

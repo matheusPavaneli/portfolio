@@ -11,41 +11,89 @@
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <meta name="robots" content="noindex, follow" />
     <style>
-      :root { color-scheme: light dark; }
+      /* Ink & Signal, inlined: this file ships before the stylesheet exists. */
+      :root {
+        color-scheme: dark light;
+        --bg: #0c0c0b;
+        --text: #ece7dd;
+        --muted: #8c877d;
+        --line: #2a2925;
+        --accent: #c8f03c;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f3efe7;
+          --text: #141311;
+          --muted: #655f55;
+          --line: #ddd6c8;
+          --accent: #3f5a00;
+        }
+      }
       body {
         margin: 0;
         min-height: 100svh;
         display: grid;
         place-content: center;
-        gap: 1.5rem;
+        gap: 1.75rem;
         padding: 2rem;
-        background: #f4f7fb;
-        color: #111418;
-        font: 400 17px/1.6 Georgia, "Times New Roman", serif;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          400 17px/1.6 system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
       }
-      @media (prefers-color-scheme: dark) {
-        body { background: #090b0e; color: #e6ecf1; }
+      p {
+        margin: 0;
+        font:
+          500 12px/1.33 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted);
       }
-      p { margin: 0; font: 400 13px/1.4 ui-monospace, SFMono-Regular, monospace;
-          text-transform: uppercase; letter-spacing: 0.08em; color: #4a4d51; }
-      @media (prefers-color-scheme: dark) { p { color: #a1a5a9; } }
-      ul { margin: 0; padding: 0; list-style: none; display: flex; gap: 1.5rem; }
-      a { display: inline-flex; align-items: center; min-height: 44px;
-          color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-      a:focus-visible { outline: 2px solid #00766d; outline-offset: 2px; }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        color: inherit;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+        text-decoration-color: var(--line);
+      }
+      a:hover {
+        text-decoration-color: var(--accent);
+      }
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
     </style>
   </head>
   <body>
-    <p>Matheus Pavaneli</p>
+    <p>Matheus Pavaneli — senior fullstack &amp; forward-deployed AI engineer</p>
     <ul>
       <li><a href="./en/" hreflang="en">Read it in English</a></li>
-      <li><a href="./pt/" hreflang="pt-BR">Ler em português</a></li>
+      <li><a href="./pt/" hreflang="pt-BR" lang="pt-BR">Ler em português</a></li>
     </ul>
     <script>
       // A hop, not a gate: the links above are the page, and they work with this script blocked.
       try {
         var prefersPortuguese = (navigator.languages || [navigator.language || "en"]).some(
-          function (tag) { return String(tag).toLowerCase().indexOf("pt") === 0; }
+          function (tag) {
+            return String(tag).toLowerCase().indexOf("pt") === 0;
+          },
         );
         location.replace(prefersPortuguese ? "./pt/" : "./en/");
       } catch (_) {}

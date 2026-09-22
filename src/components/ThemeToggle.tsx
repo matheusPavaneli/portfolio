@@ -1,15 +1,9 @@
 "use client";
 
+import { Moon, Sun } from "lucide-react";
+
 const STORAGE_KEY = "case-file-theme";
 
-/**
- * The only interactive chrome on the page, and it holds no React state.
- *
- * Which label is showing is decided by CSS from the `data-theme` attribute the inline script
- * already set before paint, so there is nothing to read into state on mount and nothing to
- * re-render. The visible text is the action, which is also the accessible name — no
- * `aria-label` overriding what a reader can see.
- */
 export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: string }) {
   function toggle() {
     const root = document.documentElement;
@@ -27,16 +21,15 @@ export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: stri
     <button
       type="button"
       onClick={toggle}
-      // 32 px is the header's declared second control register; the 44 px hit area is padding.
-      className="lamp legend inline-flex h-8 items-center text-dim hover:text-ink"
+      className="control inline-flex size-10 items-center justify-center rounded-sm text-text-muted"
     >
-      <span className="u-when-light">
-        <span className="hidden lg:inline">{toDark}</span>
-        <span className="sr-only lg:hidden">{toDark}</span>
+      <span className="when-light">
+        <Moon aria-hidden size={16} strokeWidth={1.5} />
+        <span className="sr-only">{toDark}</span>
       </span>
-      <span className="u-when-dark">
-        <span className="hidden lg:inline">{toLight}</span>
-        <span className="sr-only lg:hidden">{toLight}</span>
+      <span className="when-dark">
+        <Sun aria-hidden size={16} strokeWidth={1.5} />
+        <span className="sr-only">{toLight}</span>
       </span>
     </button>
   );

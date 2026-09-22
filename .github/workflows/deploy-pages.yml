@@ -46,8 +46,6 @@ jobs:
           NEXT_PUBLIC_FORMSPREE_FORM_ID: ${{ secrets.NEXT_PUBLIC_FORMSPREE_FORM_ID }}
         run: pnpm run build
 
-      # The budget is asserted, not observed. `.unique/stack.md` records why the number is
-      # what it is, and a change that pushes past it fails here instead of in production.
       - name: Bundle budget
         env:
           JS_BUDGET_KB: "140"
@@ -67,14 +65,9 @@ jobs:
       - name: Declared fallbacks — no JS, reduced motion, no form id
         run: node scripts/check-fallbacks.mjs http://localhost:4173/portfolio
 
-      # Written after a theme control shipped reading "GO DARKGO LIGHT": a class whose rule
-      # was dropped in a refactor is invisible to the build, the types, axe and the reflow
-      # pass. This one looks at the chrome.
       - name: Chrome — one label per control, anchors clear the bezel, no orphan classes
         run: node scripts/check-chrome.mjs http://localhost:4173/portfolio
 
-      # The effect spec's CUT LINE is a measurement, so it is measured on every run rather
-      # than being a sentence in a contract nobody re-reads.
       - name: Effect cut line — frame cost, idle loop, reduced motion, no WebGL
         run: node scripts/check-effect.mjs http://localhost:4173/portfolio
 

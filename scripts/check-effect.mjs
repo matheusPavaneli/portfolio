@@ -1,16 +1,8 @@
-/**
- * The effect spec's CUT LINE, measured rather than asserted.
- *
- * `.unique/contract.md` says the band is removed, not optimised, if it costs more than 3 ms
- * of main thread per frame at 4× CPU throttle, or if it survives after a context loss, or if
- * it keeps a frame loop running when nothing is moving. This is where those are checked.
- */
 import { chromium } from "playwright";
 
 const base = process.argv[2] ?? "http://localhost:4173";
 const browser = await chromium.launch({
   ...(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}),
-  args: ["--enable-unsafe-swiftshader"],
 });
 
 let failures = 0;
@@ -19,41 +11,83 @@ const check = (name, ok, detail = "") => {
   console.log(`${ok ? "ok  " : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
 };
 
-// 1. Frame cost with the CPU throttled 4×.
+const stepOf = (page) =>
+  page.evaluate(() => {
+    const svg = Array.from(document.querySelectorAll("#build .build-svg")).find(
+      (el) => getComputedStyle(el).display !== "none",
+    );
+    const states = svg
+      ? Array.from(svg.querySelectorAll("[data-state]")).map((el) => el.getAttribute("data-state"))
+      : [];
+    return {
+      fed: document.querySelectorAll("#build .build-feed > li").length,
+      added: states.filter((s) => s === "added").length,
+      removed: states.filter((s) => s === "removed").length,
+    };
+  });
+
+{
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await context.newPage();
+  await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
+  const canvases = await page.locator("#build canvas").count();
+  check("the band draws no canvas", canvases === 0, `${canvases}`);
+  await context.close();
+}
+
+{
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await context.newPage();
+  await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
+  await page.waitForTimeout(1500);
+  const unseen = await stepOf(page);
+  check("nothing plays before the band is seen", unseen.fed === 1, JSON.stringify(unseen));
+
+  await page.locator("#build figure").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(3600);
+  const started = await stepOf(page);
+  check("seeing the band starts it", started.fed >= 2, JSON.stringify(started));
+
+  await page.waitForTimeout(3000);
+  const third = await stepOf(page);
+  check("requirement 3 replaces the direct line", third.fed === 3 && third.removed === 1, JSON.stringify(third));
+
+  await page.locator("#build button").click();
+  const held = (await stepOf(page)).fed;
+  await page.waitForTimeout(3200);
+  const after = (await stepOf(page)).fed;
+  check("pause holds the step", held === after, `${held} -> ${after}`);
+  await context.close();
+}
+
 {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   const session = await context.newCDPSession(page);
   await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-  await page.locator("#instrument").scrollIntoViewIfNeeded();
-  await page.waitForTimeout(600);
+  await page.locator("#build figure").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(300);
   await session.send("Emulation.setCPUThrottlingRate", { rate: 4 });
 
-  const box = await page.locator("#instrument figure").boundingBox();
-  const cost = await page.evaluate(async () => {
-    const frames = [];
-    let last = performance.now();
-    return await new Promise((resolve) => {
-      const tick = (now) => {
-        frames.push(now - last);
-        last = now;
-        if (frames.length < 90) requestAnimationFrame(tick);
-        else resolve(frames);
-      };
-      requestAnimationFrame(tick);
-    });
-  });
-  // Keep the pointer moving so the loop is actually running while it is measured.
-  if (box) {
-    for (let i = 0; i < 20; i += 1) {
-      await page.mouse.move(box.x + (box.width * i) / 20, box.y + box.height * 0.5);
-    }
-  }
-  const sorted = [...cost].sort((a, b) => a - b);
+  const frames = await page.evaluate(
+    () =>
+      new Promise((resolve) => {
+        const out = [];
+        let last = performance.now();
+        const tick = (now) => {
+          out.push(now - last);
+          last = now;
+          if (out.length < 90) requestAnimationFrame(tick);
+          else resolve(out);
+        };
+        requestAnimationFrame(tick);
+      }),
+  );
+  const sorted = [...frames].sort((a, b) => a - b);
   const median = sorted[Math.floor(sorted.length / 2)] ?? 0;
   const worst = sorted[sorted.length - 1] ?? 0;
   check(
-    "frame budget at 4x CPU throttle",
+    "frame budget while it plays, at 4x CPU throttle",
     median <= 20,
     `median ${median.toFixed(1)} ms, worst ${worst.toFixed(1)} ms across 90 frames`,
   );
@@ -61,37 +95,6 @@ const check = (name, ok, detail = "") => {
   await context.close();
 }
 
-// 2. The loop stops when nothing is moving, and when the band is off screen.
-{
-  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
-  const page = await context.newPage();
-  await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-  await page.locator("#instrument").scrollIntoViewIfNeeded();
-  await page.waitForTimeout(1600);
-  const idle = await page.evaluate(
-    () =>
-      new Promise((resolve) => {
-        let count = 0;
-        const tick = () => {
-          count += 1;
-          if (count < 40) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        // rAF only advances if something scheduled it; this measures ours indirectly by
-        // watching whether the canvas is being redrawn at all.
-        const canvas = document.querySelector(".u-field canvas");
-        const before = canvas ? canvas.toDataURL().length : 0;
-        setTimeout(() => {
-          const after = canvas ? canvas.toDataURL().length : 0;
-          resolve({ stable: before === after });
-        }, 700);
-      }),
-  );
-  check("the field stops redrawing once it has settled", idle.stable === true);
-  await context.close();
-}
-
-// 3. Reduced motion: the band still renders, and nothing animates.
 {
   const context = await browser.newContext({
     viewport: { width: 1440, height: 900 },
@@ -99,46 +102,36 @@ const check = (name, ok, detail = "") => {
   });
   const page = await context.newPage();
   await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-  await page.locator("#instrument").scrollIntoViewIfNeeded();
-  await page.waitForTimeout(700);
-  const state = await page.evaluate(() => ({
-    live: document.querySelector(".u-field")?.getAttribute("data-live"),
-    running: document.getAnimations().filter((a) => a.playState === "running").length,
-  }));
-  check("reduced motion still draws the field", state.live === "true", `data-live=${state.live}`);
+  await page.locator("#build").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(400);
+  const state = await page.evaluate(() => {
+    const svg = Array.from(document.querySelectorAll("#build .build-svg")).find(
+      (el) => getComputedStyle(el).display !== "none",
+    );
+    const nodes = svg ? Array.from(svg.querySelectorAll(".build-node")) : [];
+    return {
+      live: document.querySelector("#build")?.hasAttribute("data-live"),
+      nodes: nodes.length,
+      shown: nodes.filter((el) => getComputedStyle(el).opacity === "1").length,
+      running: document.getAnimations().filter((a) => a.playState === "running").length,
+    };
+  });
+  check("reduced motion does not go live", state.live === false);
+  check("reduced motion draws every node", state.nodes > 0 && state.shown === state.nodes, `${state.shown}/${state.nodes}`);
   check("reduced motion runs no animation", state.running === 0, `${state.running}`);
   await context.close();
 }
 
-// 4. No WebGL at all: the CSS grids are what the reader gets, and they are real grids.
 {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
-  await context.addInitScript(() => {
-    const original = HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext = function (type, ...rest) {
-      if (String(type).startsWith("webgl")) return null;
-      return original.call(this, type, ...rest);
-    };
-  });
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   await page.goto(`${base}/en/`, { waitUntil: "networkidle" });
-  await page.locator("#instrument").scrollIntoViewIfNeeded();
-  await page.waitForTimeout(500);
-  const fallback = await page.evaluate(() => {
-    const holder = document.querySelector(".u-field");
-    const layers = Array.from(document.querySelectorAll(".u-field-fallback > *"));
-    return {
-      live: holder?.getAttribute("data-live"),
-      layers: layers.length,
-      gradients: layers.every((el) =>
-        getComputedStyle(el).backgroundImage.includes("repeating-linear-gradient"),
-      ),
-      visible: layers.length > 0 && getComputedStyle(layers[0]).display !== "none",
-    };
-  });
-  check("no WebGL leaves the band drawn in CSS", fallback.live === "false", `data-live=${fallback.live}`);
-  check("the fallback is two real rulings", fallback.layers === 2 && fallback.gradients === true);
-  check("the fallback is visible, not merely present", fallback.visible === true);
+  const shown = await page.evaluate(() =>
+    Array.from(document.querySelectorAll("#build .build-svg"))
+      .filter((el) => getComputedStyle(el).display !== "none")
+      .map((el) => el.getAttribute("viewBox")),
+  );
+  check("390 px shows only the portrait diagram", shown.length === 1 && shown[0] === "0 0 360 432", JSON.stringify(shown));
   await context.close();
 }
 

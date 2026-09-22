@@ -1,37 +1,22 @@
 import type { Metadata } from "next";
-import { Anybody, Familjen_Grotesk, Martian_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import "../globals.css";
-import { Header } from "@/components/Header";
+import { Rail } from "@/components/Rail";
 import { Footer } from "@/components/Footer";
 import { getMessages, HTML_LANG, isLocale, LOCALES, type Locale } from "@/i18n";
 import { profile } from "@/content/profile";
 
-/**
- * The panel face. A real width axis is the point: silkscreened legends on a bezel are
- * condensed because that is what fits, and the module headings are the same face opened up.
- * One family, two registers, one download.
- */
-const display = Anybody({
-  variable: "--face-display",
-  subsets: ["latin", "latin-ext"],
-  axes: ["wdth"],
-  display: "swap",
-});
-
-/** Chosen for reading, not for character — the rule for a body face. */
-const body = Familjen_Grotesk({
-  variable: "--face-body",
+const sans = Geist({
+  variable: "--face-sans",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
-/** The readout. Wide, even, tabular: a value on an instrument, not code in a terminal. */
-const readout = Martian_Mono({
-  variable: "--face-readout",
+const mono = Geist_Mono({
+  variable: "--face-mono",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -87,11 +72,6 @@ export const viewport = {
   viewportFit: "cover" as const,
 };
 
-/**
- * Runs before first paint, so the theme is never wrong for a frame. This is the whole reason
- * `next-themes` is not installed: the provider it needs at the root of the tree is what turned
- * 31 of 39 files in the outgoing build into client components.
- */
 const THEME_SCRIPT = `(function(){try{var k="case-file-theme";var s=localStorage.getItem(k);var t=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");var e=document.documentElement;e.setAttribute("data-theme",t);e.style.colorScheme=t;}catch(_){}})();`;
 
 export default async function LangLayout({
@@ -109,7 +89,7 @@ export default async function LangLayout({
   return (
     <html
       lang={HTML_LANG[lang]}
-      className={`${display.variable} ${body.variable} ${readout.variable}`}
+      className={`${sans.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -130,14 +110,14 @@ export default async function LangLayout({
           }}
         />
       </head>
-      <body className="bg-page text-ink antialiased">
+      <body className="bg-bg text-text antialiased">
         <a
           href="#file"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:inline-flex focus:h-11 focus:items-center focus:rounded-recess focus:bg-signal focus:px-4 focus:text-on-signal legend"
+          className="label sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:inline-flex focus:h-11 focus:items-center focus:rounded-sm focus:bg-accent-fill focus:px-4 focus:text-on-accent"
         >
           {t.a11y.skipToContent}
         </a>
-        <Header locale={lang} t={t} />
+        <Rail locale={lang} t={t} />
         <main id="file">{children}</main>
         <Footer t={t} />
       </body>

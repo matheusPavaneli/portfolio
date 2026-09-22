@@ -3,25 +3,15 @@ import { describe, expect, it } from "vitest";
 import { profile, roles } from "./profile";
 import { skillGroups, type SkillGroupId } from "./skills";
 
-/**
- * The page's facts against the CV they come from.
- *
- * Source: Matheus_Pavaneli_Senior_Fullstack_Engineer.pdf, read 2026-09-10. The site had been
- * carrying a phone number one digit short of the CV's, which meant the number on the contact
- * block did not dial. Nothing here is a style check — every assertion is a fact that was wrong
- * or could silently go wrong again.
- */
 
 describe("contact facts", () => {
   it("carries the phone number exactly as the CV prints it", () => {
-    // Regression: the previous value was "+55 44 9775-2680" — one 9 short, and undiallable.
     expect(profile.phone).toBe("+55 44 99775-2680");
   });
 
   it("carries a phone number that survives being turned into a tel: href", () => {
     const dialable = profile.phone.replace(/[^\d+]/g, "");
     expect(dialable).toBe("+5544997752680");
-    // Brazilian mobile: country code, two-digit area code, nine digits starting with 9.
     expect(dialable).toMatch(/^\+55\d{2}9\d{8}$/);
   });
 
@@ -31,11 +21,6 @@ describe("contact facts", () => {
   });
 });
 
-/**
- * Every term the CV's "Technical skills" section lists. The redesign dissolved the old
- * keyword grid into the cases, which cost keyword findability; this list is what the
- * reference block in `Record` puts back, and this test is what stops it drifting from the CV.
- */
 const CV_TERMS: Record<SkillGroupId, readonly string[]> = {
   languages: [
     "TypeScript",

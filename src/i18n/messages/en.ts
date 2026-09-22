@@ -6,19 +6,24 @@ export const en = {
     ogAlt: "Matheus Pavaneli — engineering case file",
   },
 
+  locale: {
+    intl: "en-US",
+    present: "now",
+  },
+
   a11y: {
-    skipToContent: "Skip to the case file",
+    skipToContent: "Skip to content",
     mainNav: "Sections",
     openMenu: "Sections",
-    language: "Language",
     toLight: "Go light",
     toDark: "Go dark",
     externalLink: "opens in a new tab",
+    toOtherLocale: "Ver esta página em português",
   },
 
   nav: {
     cases: "Cases",
-    instrument: "Instrument",
+    build: "Build",
     method: "Method",
     record: "Record",
     contact: "Contact",
@@ -26,51 +31,110 @@ export const en = {
 
   masthead: {
     role: "Senior fullstack engineer · forward-deployed AI engineer",
-    headline: "Hand me the system nobody wants to own.",
+    headlineLead: "Hand me the system",
+    headlineTail: "nobody wants to own.",
     lede: "I take the broken, the abandoned and the not-yet-built — including the LLM systems a company is putting into production for the first time — and hand back an architecture, with the number it moved.",
-    stripRole: "Discipline",
-    stripRoleValue: "Senior fullstack · forward-deployed AI",
-    stripBase: "Base",
-    stripStatus: "Status",
+    stripNow: "Now",
+    stripNowValue: "Software Engineer · Bernoulli Educação, EdTech",
+    stripStack: "Core stack",
+    stripStackValue: "TypeScript · Python · Node/NestJS · React/Next · PostgreSQL · AWS",
+    stripBase: "Works from",
+    stripBaseValue: "Maringá, Brazil · UTC−3 · remote · English C1",
     stripStatusValue: "Open to roles and to contract work",
     cta: "Start a conversation",
-    location: "Maringá, Brazil (UTC-3) · remote",
-    scroll: "The whole file is below",
+    location: "Maringá, Brazil · UTC−3 · remote",
   },
 
   index: {
-    eyebrow: "The file",
-    title: "Nine cases",
+    eyebrow: "Cases",
     lede: "Every one of them is somebody else's system, before and after.",
     colCase: "Case",
+    colOrg: "Where",
     colReading: "Reading",
-    colYear: "Year",
+    colYear: "When",
   },
 
-  reading: {
-    before: "before",
-    after: "after",
-    heldAt: "held at",
-    limit: "limit",
-    count: "count",
-    kindDelta: "delta",
-    kindCeiling: "ceiling",
-    kindCount: "count",
+  board: {
+    eyebrow: "Readings",
+    lede: "Each bar is how far a number moved, on one shared logarithmic scale — so the lengths compare across cases, and none has been rescaled to look good. A limit that held, or a single figure, is stated rather than drawn.",
+    axisLabel: "Ratio, log scale",
+    ratioLabel: "ratio",
+    single: "one figure, no travel",
+    figureLabel: "Before-and-after readings for every case, on one shared logarithmic ratio axis",
+    held: "held",
+    groupMoved: "Moved",
+    groupHeld: "Held under a limit",
+    groupCounted: "Counted",
+    heldNote: "Kept under a limit the build or the platform enforces. Nothing to travel, by design.",
+    countedNote: "One magnitude each, so there is no ratio to draw.",
   },
 
-  divergence: {
-    eyebrow: "The instrument",
-    title: "Estimated against actual, which is the whole job.",
-    lede: "A query plan is two numbers laid over each other — what the planner expected and what actually happened — and the work is reading the gap. Two ruled grids do the same thing here. One is the estimate. The other carries a case's real ratio in its pitch and its angle, and where they disagree the disagreement becomes a pattern. Pick a case. Move the pointer.",
-    estimated: "estimated",
-    actual: "actual",
-    figureLabel: "Two ruled grids, the second carrying the selected case's ratio",
-    controlLabel: "Which case drives the field",
-    excluded: "Three cases carry a single number rather than two, so they have no divergence to draw and do not appear here:",
+  build: {
+    eyebrow: "Build",
+    title: "Every box on the diagram was a requirement first.",
+    lede: "Nobody draws the final architecture on day one. It grows one requirement at a time, and each thing added solves one problem and starts charging for another. Here are seven of them, in order.",
+    adds: "Adds",
+    costs: "Costs",
+    of: "of",
+    pause: "Pause",
+    play: "Play",
+    replay: "Replay",
+    figureLabel: "The architecture after all seven requirements: a client behind a load balancer, stateless API instances, a cache, a primary database with two read replicas, a queue and workers calling a provider through a circuit breaker with a fallback, and telemetry from every part.",
+    nodes: {
+      client: "Client",
+      lb: "Load balancer",
+      api: "API",
+      cache: "Cache",
+      db: "Database",
+      replicaA: "Replica",
+      replicaB: "Replica",
+      queue: "Queue",
+      workers: "Workers",
+      breaker: "Circuit breaker",
+      provider: "Provider",
+      fallback: "Fallback",
+      telemetry: "Logs · metrics · traces",
+    },
+    steps: {
+      serve: {
+        need: "Serve users.",
+        adds: "One API, one database.",
+        costs: "Nothing yet — one thing to deploy, one to back up.",
+      },
+      latency: {
+        need: "Reads under 200 ms at p95.",
+        adds: "A cache.",
+        costs: "Every write now has to invalidate something.",
+      },
+      traffic: {
+        need: "Ten times the traffic.",
+        adds: "A load balancer and stateless API instances.",
+        costs: "Session state can no longer live in the process.",
+      },
+      reads: {
+        need: "Reads far outnumber writes.",
+        adds: "Read replicas.",
+        costs: "A read can now lag the write before it.",
+      },
+      slow: {
+        need: "Slow work can't hold the request.",
+        adds: "A queue and workers.",
+        costs: "Jobs fail out of sight, so they need retries and a dead-letter queue.",
+      },
+      outage: {
+        need: "A provider outage can't take us down.",
+        adds: "A circuit breaker and a fallback provider.",
+        costs: "Two integrations to keep honest instead of one.",
+      },
+      observe: {
+        need: "Know it broke before users do.",
+        adds: "Logs, metrics and traces from every box.",
+        costs: "A bill, and someone on call to read it.",
+      },
+    },
   },
 
   cases: {
-    eyebrow: "The cases",
     title: "What each one actually was.",
     stack: "Stack",
     orchestration: {
@@ -142,6 +206,7 @@ export const en = {
     eyebrow: "Method",
     title: "What I do when I am handed a system.",
     lede: "Six rules, each one paid for by a case above.",
+    paidBy: "Paid for by",
     items: {
       instrument: {
         rule: "Read the instrument before guessing.",
@@ -242,10 +307,9 @@ export const en = {
   },
 
   footer: {
-    built: "Built with Next.js as a static export. Palette generated and contrast-checked before it was written down.",
+    built: "Next.js, exported static. Every colour pair on the page is contrast-checked in CI.",
     source: "Source",
   },
 };
 
-/** Widened on purpose: the keys are the contract between the locales, not the strings. */
 export type Messages = typeof en;
