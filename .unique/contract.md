@@ -2,261 +2,276 @@
 
 SUBJECT      The public case file of an engineer handed broken, abandoned or unbuilt systems —
              including the LLM systems a company is putting into production for the first
-             time. Read once, in 60–120 s, by a hiring lead with four other tabs open, half
-             the time on a phone. The one job: make it decidable at skim depth that this
-             person can be handed a hard system and be trusted to own the outcome.
+             time. Read once, in 60–120 s, by a hiring lead or a recruiter with four other tabs
+             open, half the time on a phone. The one job: make it decidable at skim depth that
+             this person can be handed a hard system and be trusted to own the outcome.
 MODE         marketing
-ORIGINALITY  signature
-BUDGET       loud
-SIGNATURE    The meter: every case posts its reading on a logarithmic scale spanning a fixed
-             three decades, so the distance between the two needles *is* the ratio — and a
-             value held exactly at its limit puts both needles in one place and the travel
-             closes to nothing.
+ORIGINALITY  benchmark(Linear)
+BUDGET       measured
+SIGNATURE    The readings board: every case that moved a number is a bar on one shared
+             logarithmic ratio axis, so the lengths compare across cases — and what held under a
+             limit, or is a single figure, is stated rather than drawn.
 
-## Why this replaced the previous direction
+## Why this contract was rewritten (2026-09-22)
 
-The first build of this surface was a plate book: hairline rules, zero radius, dense ruled
-columns, mono eyebrows at wide tracking, and `01`–`08` ordinals on the cases. That is banned
-default #3 in `originality.md` — the broadsheet — and the ordinals are the numbered-marker
-tell: eight cases are a set, not a sequence, and numbering a set is decoration pretending to
-be structure. It scored 8.8 while being, on its colour and layout axes, a default. This
-direction is the correction, and the whole visual layer changed with it.
+The file described an instrument panel — Anybody, Familjen Grotesk, a phthalo signal on a
+warm grey plate, a moiré screen — that no longer exists in the code. The code had moved to
+the Ink & Signal system (`src/app/globals.css`) and only the 2026-09-22 build amendment below
+said so. A contract that describes a different page is the "decision that left no trace"
+failure, so the top is replaced to match what ships.
+
+Ink & Signal sits on banned default #2 (near-black ground, one acid accent, mono labels) and
+leans on #12 (Geist + Geist Mono). That was put to the owner on 2026-09-22 with a recommended
+new signature direction; the owner chose to keep Ink & Signal and refine it. ORIGINALITY is
+therefore `benchmark(Linear)`, not `signature`: Linear supplies the bar — spacing rhythm,
+contrast discipline, one accent spent sparingly, copy density — never the look. The colour
+axis is scored with that default counted against it.
 
 ## Directions        (three wells, three directions, two killed)
-A  Instrument panel  COLOR <- an anodized aluminium panel: a warm grey plate, silkscreened legends, and the deep phthalo the meter faces and blueprint legends are printed in (well: material) · TYPE <- a bezel legend is condensed because that is the width a bezel has, and the same face opens up for a heading (well: notation) · LAYOUT <- a rack is plates of different sizes screwed to one sheet, never one band repeated (well: instrument) · SIGNATURE <- an instrument answers with a needle against a graduated scale, not with a bar (well: instrument)
-B  Trace waterfall   COLOR <- a console read in the dark (well: environment) · TYPE <- span labels are truncated monospace (well: notation) · LAYOUT <- nested spans on one shared time axis, each case a span at its real duration (well: notation) · SIGNATURE <- the waterfall itself, root span to leaf
-C  Before and after  COLOR <- the system as inherited against the system as returned (well: shape of the data) · TYPE <- one face, two weights, the split carrying everything (well: constraint) · LAYOUT <- the page divides down the middle and scroll wipes between the two states (well: shape of the data) · SIGNATURE <- the wipe
-KILL B — the durations are not comparable. A trace's whole grammar is that every span sits on
-one time axis, and these cases span a query's 150 ms and a migration's fifteen months. Laying
-them on one axis means either an axis nobody can read or one rescaled per case, which is a
-waterfall lying about being a waterfall.
-KILL C — the wipe is one gesture repeated eight times, and it puts the evidence behind an
-interaction on a page whose job is to surrender it in 90 seconds. It also collapses on a
-phone, where a left/right split becomes two stacked halves and the comparison dies.
+A  Ink & Signal, refined  COLOR <- the owner's adopted system, contrast-checked in CI (well: constraint) · TYPE <- figures must line up in columns, so one mono face carries every number (well: notation) · LAYOUT <- a ledger: rows a reader scans for what, where, how much, when (well: notation) · SIGNATURE <- a log ratio axis, the trade's way of comparing improvements of different units (well: instrument)
+B  Instrument panel       COLOR <- anodized aluminium plate with a phthalo legend (well: material) · TYPE <- a bezel legend is condensed (well: notation) · LAYOUT <- a rack of plates at four spans (well: instrument) · SIGNATURE <- two needles on a three-decade scale
+C  New signature pass     COLOR <- re-derived from the subject's material world (well: material) · TYPE <- re-derived five-step face choice (well: notation) · LAYOUT <- re-derived (well: shape of the data) · SIGNATURE <- re-derived
+KILL B — superseded by the owner's adoption of Ink & Signal on 2026-09-22; it survives only as
+the stale text this rewrite removes, and rebuilding it would reverse a recorded owner decision.
+KILL C — declined by the owner on 2026-09-22 when offered as the recommendation; the brief's
+job is served by fixing the evidence and the naming, which C would have delayed.
 
 ## Tokens
-color    Derived from the COLOR fact, then measured: 14 required pairs per theme, 28 in all,
-         re-checked by `src/lib/palette.test.ts` on every run.
-         light  page `oklch(97.5% 0.008 85)` · plate `oklch(88% 0.01 85)` ·
-                recess `oklch(21% 0.01 85)` · ink `oklch(19% 0.0128 85)` ·
-                dim `oklch(41% 0.0096 85)` · edge `oklch(56% 0.009 85)` ·
-                signal `oklch(48% 0.13 255)` · alarm `oklch(48% 0.16 27)`
-         dark   page `oklch(16% 0.009 85)` · plate `oklch(24% 0.01 85)` ·
-                recess `oklch(11% 0.008 85)` · ink `oklch(94% 0.0128 85)` ·
-                dim `oklch(70% 0.0096 85)` · edge `oklch(54% 0.009 85)` ·
-                signal `oklch(70% 0.13 255)` · alarm `oklch(70% 0.16 27)`
-         **Three grounds, not one**, because a panel has three: the sheet the rack is screwed
-         to, a module's plate, and the recess a meter face is sunk into. The recess carries its
-         own ramp (`on-recess`, `dim-recess`, `signal-recess`) rather than borrowing the
-         plate's, which is what stops a dark module reading as a hole.
-         The signal has three jobs and no others: a reading's after-value, the primary action,
-         and a link that leaves the page. No token is ever used at an alpha below 1.
-type     display Anybody, variable `wdth` — one family, three registers · body Familjen
-         Grotesk · readout Martian Mono 400/500
-scale    base 17 px · ratio 1.2 · legend 12 px · steps 13 / 15 / 17 / 20 / 24 / 30 / 38 px ·
-         display step `clamp(2.5rem, 1.4rem + 4.6vw, 5rem)`, chosen above the ladder.
-         Legends set at `wdth 80`, headings at `wdth 100–108`: the width axis separates the
-         registers, not a second family and not a tracking value.
+color    Ink & Signal, copied verbatim, re-checked by `src/lib/palette.test.ts` on every run.
+         dark   bg `#0c0c0b` (oklch(14.5% 0.002 106)) · surface `#161614` · raised `#1e1d1b` ·
+                line `#2a2925` · line-control `#6a655b` · text `#ece7dd` · muted `#8c877d` ·
+                accent `#c8f03c` (oklch(90% 0.2 124)) · spice `#ff6a3d`
+         light  bg `#f3efe7` · surface `#eae5da` · raised `#fbf9f4` · line `#ddd6c8` ·
+                line-control `#8f8676` · text `#141311` · muted `#655f55` · accent `#3f5a00` ·
+                accent-fill `#c8f03c` · spice `#c24a22`
+         The accent has four jobs and no others: a reading, the primary action, the status
+         lamp, and the current nav mark. Chips, rules and method evidence are neutral.
+type     sans Geist (language) · mono Geist Mono (every figure, every label)
+scale    label 12 · small 13 · body 15 · body-lg 17 · h3 18 · h2 24 · metric 28 · h1 32 px ·
+         display-xl `clamp(2.5rem, 1.1rem + 7vw, 4.5rem)`
+motion   tint 150 ms on colour and border · build 360 ms · board sweep 620 ms, once
 
 ## Grid
-PATH     the claim, at a size that is a decision → the status strip under it → the rack, whose
-         module sizes say which case carries the argument → the recessed screen. Four stops.
-COLUMNS  a twelve-column rack at ≥1024 px, modules spanning 4, 6, 8 or 12. It does not
-         alternate and it does not repeat: the cases carrying the argument take 8 and 12,
-         the reference plates take 5 and 7, the rest take 4 and 6. Nine cases, five rows:
-         orchestration 8 + query 4 · rag-eval 12 · Seal 6 + Nanquim 6 · Anchor 4 + artefacts 4
-         + dashboard 4 · image 12. The rack flows in array order, so the order in
-         `content/cases.ts` is the row layout; rag-eval sits third, not second, or the first
-         row breaks.
-DENSITY  Densest: the record plates, four modules of compact reference. Emptiest: the masthead
-         and the contact block. The recessed screen is the one module that is nearly all
-         ground. Section padding is 40 / 56 px by role on a 4 px unit — the variance is carried
-         by module span, not by padding, which is why the padding can stay even.
-MEASURE  prose 62ch · a case kicker 52ch · the claim 16ch · a module readout unmeasured
-RHYTHM   4 px unit. Module gap 12 px, plate padding 16/20 px, section padding 40/56 px.
-BLEED    Nothing bleeds. A rack has a sheet edge and the 1240 px content width is it.
+PATH     name and role → the claim → the filled action and the résumé → the spec strip (now,
+         stack, where) → the readings board, whose top is inside the first 900 px fold at
+         1440 → the ledger with three cases open → build → method → record → contact.
+COLUMNS  shell 1120 px; spec strip 3 columns at ≥768, 1 below; board
+         17rem / 1fr / 4.75rem; ledger 1fr / 11rem / 10rem / 6.5rem; build 4 + 8 of 12.
+DENSITY  Densest: the board and the record's skill register. Emptiest: the masthead and
+         contact. Section padding 64 / 96 px; the variance is carried by the rows, not the
+         padding.
+MEASURE  prose 65ch · kicker 60ch · display 15ch · method evidence 60ch
+RHYTHM   4 px unit. Heading → lede 16 px, lede → body 48 px, row padding 20 px, chip 24 px.
+BLEED    Nothing bleeds. The rail and every section share one inner edge: padding outside,
+         `max-w-shell` inside — the rail had it the other way round and sat 32 px inside.
 
 ## Components
-RECOGNIZED  (1) the meter — a graduated three-decade log scale with two needles and the travel
-            between them; (2) the module — a milled plate carrying a silkscreened legend and a
-            corner readout; (3) the legend itself, the display face at `wdth 80`; (4) the lamp,
-            the round indicator every control carries; (5) the recess, the one sunk module.
-INTERACTION Every control lights: its lamp fills with signal and its label goes to ink, in
-            140 ms. Nothing slides, nothing lifts, nothing casts a shadow — an indicator on a
-            panel does exactly one thing and this is it.
-CONTROL     44 px, the AA target size and the phone-first audience. One second register
-            declared: 32 px for the header's own controls, which keep a 44 px hit area by
-            padding. No undeclared third.
-CORNER      plate 6 px · recess 3 px · lamp 999 px. A panel is milled, so its corners carry the
-            router bit; the recess is cut tighter because it is a second operation. Zero radius
-            everywhere was the previous direction's broadsheet tell.
-SEPARATION  **Ground carries structure.** A module is a plate on a sheet, and the 1 px ring at
-            `edge` is that plate's machined edge rather than a rule doing the separating.
-            Shadow is not used anywhere; nothing on a panel floats.
-FOCUS       2 px ring in `signal` at 2 px offset, radius 3 px. Measured against every ground it
-            can land on — page, plate and recess — in both themes.
-
-## Effect spec
-
-IDIOM      Instrument / notation — the trade's own graphic for "estimated against actual"
-PRIMITIVE  Moiré. One primitive, not two: feedback was dropped during the build because its
-           decay had no real quantity to map to, and a primitive with no mapping is a filter.
-MECHANISM  Two regular grids describe the same system — what it was estimated to do and what
-           it actually did — and where they disagree, the disagreement becomes visible.
-JOB        reveal · response · repay
-MAPPING    The pitch and angle difference between the two grids <- the ratio between a case's
-           real before and after values, from `content/cases.ts`. 2 s → 150 ms is 13.3× and
-           tears the field apart; 1.9 GB → 210 MB is 9.0×; a cited chunk of 847 characters →
-           the 104-character quote resolved inside it is 8.1×; 5 models → 1 is 5.0×. Nanquim's
-           ceiling sits at **1.00** — value exactly at limit — and produces perfect
-           registration: a flat field with no interference at all.
-           Only the six cases carrying two magnitudes drive it. A count has one number and no
-           divergence to show, so Seal, Anchor and the dashboard are named and excluded.
-           The bound on both parameters is legibility: a moiré's beat spacing is roughly the
-           pitch divided by the disagreement, so 3 % of pitch and 1.4° put the bands a few
-           hundred pixels apart. The first build set 26 % and 4.2°, which collapsed the
-           interference into a texture — corrected against the render, not the intent.
-INPUT      pointer and keyboard, on six real controls — first meaningful frame under 100 ms,
-           because the first case is selected at mount and one frame draws before any input.
-TIER       T2 · one full-screen quad, one fragment shader, hand-written WebGL2, no wrapper ·
-           measured 4.9 KB gz against an 8 KB cut line · one rAF that stops when the pointer
-           settles, when the module leaves the viewport, and when the tab is hidden
-QUIET      The panel pays: the masthead has no reading strip, every other module is flat plate
-           with no motion of any kind, and the field is drawn in the recess ramp rather than in
-           a colour of its own.
-DEGRADE    reduced-motion: one composed frame, and switching cases still redraws because that
-           is content. · no-WebGL / context-lost: two `repeating-linear-gradient` layers draw
-           the same two grids at 0 KB — moiré is a property of the geometry, not the renderer.
-           · low-power and mobile: DPR clamped to 2, loop paused off screen and while hidden.
-           · no JS: the CSS fallback ships in the HTML, so the screen is never blank.
-CUT LINE   Removed, not optimised, if the shader exceeds 8 KB gz, if the module costs more than
-           3 ms of main thread per frame at 4× CPU throttle, or if LCP moves at all. Measured
-           on every CI run by `scripts/check-effect.mjs`.
-
-## Effect candidates, two killed
-A  Divergence field   T2 · moiré · the ratio between before and after
-B  Fallback ladder    T2/T5 · flow field · a request fans out to five providers and one answers
-C  Plate book         T4 · three.js · the case file as physical plates, rotatable and lit
-KILL B — the mapping cannot be real. The CV records that five models were benchmarked on cost,
-latency and output quality; it does not record the five sets of values, and a particle count
-tuned by eye is decoration wearing a data costume.
-KILL C — the mascot failure: software with no body dressed in 3D chrome, at ~150 KB of runtime
-to render geometry this subject does not have.
+RECOGNIZED  (1) the readings board — log axis, graduations named once, bar then dot;
+            (2) the ledger row — a native `<details>` with what / where / ratio / when;
+            (3) the mono label; (4) the status lamp; (5) the build diagram node.
+INTERACTION Colour and border only, 150 ms. Links move their underline from `line-control` to
+            the accent; controls move their border to `muted`. Nothing lifts or casts a shadow.
+CONTROL     44 px for the page's controls; one declared second register of 40 px for every
+            control in the rail (language, theme, menu) — previously 40 and 44 mixed there.
+CORNER      Two radii, by role: 6 px (`radius-sm`) for anything touched or inline — controls,
+            fields, chips, board rows, diagram nodes; 10 px (`radius-md`) for containers —
+            board, stage, menu, form panel. `rounded-full` only for data marks and the lamp.
+            The 4 px third radius (`radius-xs`) is removed.
+SEPARATION  Tone and 1 px `line` rules. No shadow anywhere.
+FOCUS       2 px `focus` ring over 2 px of `bg`, drawn as box-shadow so it follows either radius;
+            outline kept for forced-colors.
 
 ## Provenance
-COLOR      warm grey plate, phthalo signal  <- An anodized aluminium instrument panel. The
-           plate is a warm grey enamel, the legends are silkscreened onto it, and the one
-           colour that appears is the deep phthalo blue meter faces and blueprint legends are
-           printed in. Three grounds, because a panel has three surfaces.
-TYPE       Anybody + Familjen Grotesk + Martian Mono  <- A bezel legend is condensed because
-           that is the width a bezel has, and the same face opens up when it is a heading with
-           room. One family carrying both means the width axis does the work a second family
-           would otherwise do.
-LAYOUT     the rack  <- An instrument rack is plates of different sizes screwed to one sheet.
-           The size of a module is a statement about the importance of what is on it, which is
-           exactly the statement eight identical bands could not make.
-SIGNATURE  the meter  <- An instrument answers with a needle against a graduated scale. On a
-           logarithmic scale equal ratios are equal distances, so the travel between the two
-           needles is the case's ratio, comparably, across every case on the page — and a value
-           held at its limit closes the travel to nothing.
+COLOR      Ink & Signal  <- the owner adopted this system on 2026-09-22 and it is re-measured in
+           CI; kept as a recorded owner decision against banned default #2.
+TYPE       Geist + Geist Mono  <- every number on the page is compared down a column, so the
+           figures need one tabular face; Geist is the system's pairing.
+LAYOUT     the ledger  <- a reader filters on what, where, how much and when, and a row with
+           those four columns answers it without opening anything.
+SIGNATURE  the readings board  <- on a log axis equal ratios are equal lengths, so a 13.3×
+           query fix and an 8.1× citation cut are comparable though their units differ.
 
-## Gate 1 — swap test, per axis
-COLOR      No. Three grounds only make sense where something is sunk into something else, and a
-           signal reserved to "the value that moved" needs values that moved.
-TYPE       No. The width axis is load-bearing: remove the bezel-legend register and the panel
-           has no labels, only headings.
-LAYOUT     No. Module size encodes which case carries the argument; on a subject whose items
-           are peers it would read as an accident.
-SIGNATURE  No. A three-decade log scale is meaningless without ratios to place on it.
+## Borrowed / invented
+BORROWED  one accent spent on state and action only, never on decoration, from Linear
+BORROWED  every control one of two declared heights, and one inner edge shared by chrome and content, from Linear
+BORROWED  copy that states the number before the adjective, from Linear
+INVENTED  the readings board and its moved / held / counted split, from the log-axis provenance fact
+INVENTED  the ledger's what / where / ratio / when row, from the layout provenance fact
+INVENTED  method rules that link to the case that paid for them, from the case file's claim
 
-## Gate 3 — collision check
-Teenage Engineering's product pages, Braun's RAL-7035 panels, and a Grafana panel row. The
-first two are the provenance and the resemblance is intended; the third is a collision worth
-naming, and the difference is that a Grafana row draws live series while this draws eight fixed
-readings with their scales engraved. Nothing in the banned-default registry: the ground is a
-mid-warm-grey plate rather than cream (#1), the dark theme is a warm charcoal with a blue
-signal rather than near-black with an acid accent (#2), the rules are gone entirely and the
-radius is non-zero (#3), the modules are genuinely different sizes rather than a grid of equal
-cards on heterogeneous content (#7), and there are no ordinals on the cases (#10).
+RISK      The first fold's only filled accent is the call to action, not the evidence: arguable
+          against Ink & Signal's "the board owns the fold", defended by the brief's reader, who
+          may have decided before scrolling and should not have to hunt for the way to act.
 
-## Rubric            (scored against `.unique/render/panel/`, 2026-09-10)
+## Rubric            (scored against `.unique/render/v6/` and `v6pt/`, 2026-09-22)
 profile: expressive
 composition: 4
-type: 5
-color: 4
+type: 4
+color: 3
 density: 4
 usability: 5
-signature: 4
+signature: 3
 content: 5
-total: 9.0
+total: 8.2
 
-Baseline before any of this work: **4.4 BELOW TARGET** (`.unique/audit-baseline.md`). The
-broadsheet direction reached 8.8. What each number is scored against, and what holds it below 5:
-
-- **composition 4** — a rack whose module spans say which case carries the argument, a status
-  strip, and one recessed screen. Held below 5 because the reading path is still a vertical
-  stack of sections; only the modules vary, not the route through them.
-- **type 5** — one family carrying three registers off its width axis, a scale that reads as a
-  scale, a display step chosen above the ladder, and readouts in a face built for figures.
-- **color 4** — three grounds, one signal with three declared jobs, 28 measured pairs. Held
-  below 5 because a warm-neutral plate sits close to a beige, and blue is the most conventional
-  accent hue available.
-- **density 4** — module spans of 4 / 6 / 8 / 12 and a page that went from 9 302 px to 6 528 px
-  at 1440. Held below 5 because the rhythm inside the modules is fairly even.
-- **usability 5** — measured: `axe` reports 0 violations on `/en/` and `/pt/` in both themes; no
-  horizontal overflow at 320 / 390 / 768 / 1440; 44 px controls with one declared 32 px
-  register; the focus ring clears 3:1 on every ground; the form carries sending, invalid,
-  bad-address, unreachable and sent states; and with JavaScript disabled both routes render all
-  nine cases with their readings, the right `lang` and the reader's own system theme.
-- **signature 4** — the meter is describable from memory and traces to its provenance. Held
-  below 5 because the page now carries two signatures, the meter and the recessed screen, and
-  the budget says to spend boldness in one place.
-- **content 5** — real copy in both languages, checked line by line against the CV it comes
-  from, with no invented metric anywhere.
+- **composition 4** — the first fold now carries identity, action, the recruiter's four
+  filters and the top of the evidence. Held below 5: at 1440 the right half of the masthead
+  is empty ground.
+- **type 4** — display line with real optical tracking, a mono face that lines figures up.
+  Held below 5 by the Geist pairing reflex (#12).
+- **color 3** — disciplined accent and 28 measured pairs, but the palette is banned default
+  #2, kept by owner decision.
+- **density 4** — board, ledger and register are dense; masthead and contact are quiet.
+- **usability 5** — measured: `check-a11y` PASS (axe, both locales, both themes, no overflow
+  from 320 to 1440), `check-chrome` PASS (every anchor clears the rail), `check-effect` PASS
+  (median 5.6 ms/frame at 4× throttle), `check-fallbacks` PASS (no-JS renders every case).
+- **signature 3** — the board is real and honest now, but the build band is a generic
+  system-design walk the owner chose knowingly (see its risk clause).
+- **content 5** — every number traces to the CV or a public repo; the fake 5.00× and 1.00×
+  ratios are gone; rag-eval, the strongest checkable AI evidence, is in.
 
 ## Removed
-Chanel's rule, this pass: **the case index**. A ruled eight-row table listing the same cases
-the rack below it already shows, carrying the ordinals that were the numbered-marker tell. The
-rack is scannable on its own, so the index was a second navigation to keep in sync.
+Chanel's rule, this pass: **the ratio on everything**. "5 models → 1" was drawn as a 5.00×
+improvement and two held ceilings posted 1.00× and 1.01× beside a dot on zero. Benchmarking is
+a count, and a ceiling that held is stated as value ≤ limit.
 
 ## Rejected
-- The trace waterfall and the before/after wipe, both killed above with their reasons.
-- The plate-book direction this replaced: correct in its rigour, and a default in its idiom.
-- `01`–`08` on the cases. Eight cases are a set, and a set does not get numbered.
+- The instrument panel and a new signature pass, killed above with the owner's reasons.
+- `01`–`08` ordinals: the `ordinal` field is removed from the data, not just hidden.
+- Filled accent chips under every case: five lime fills per open row outshouted the readings.
+- The accent bar down the left of each method rule (#14): replaced by a link to the case
+  that paid for it.
 
-## Amendment — 2026-09-18, the ninth case
+## Open for the owner
+- The current title is "Software Engineer" while the page's role line says senior; the
+  strip states the title as the CV has it.
 
-Entered at step 3 because a ninth module changes the COLUMNS line and a sixth driver changes
-the effect MAPPING; no token, no component, no corner, no interaction and not the signature
-moved. Direction pass run against the official `frontend-design` skill, which asks the same
-two things of an insertion as of a page: does the new part come from the subject, and does it
-spend boldness anywhere but the one place already chosen.
+## Amendment — 2026-09-22, the build
 
-SUBJECT    rag-eval — a RAG pipeline that measures whether the answer came from the right
-           passage. It is the brief's argument ("the LLM systems a company is putting into
-           production for the first time") made public and checkable.
-READING    delta · a cited chunk of 847 characters → the 104-character quote resolved inside
-           it, 8.1× (ADR 0007, "Mean resolved citation / mean cited chunk"). Chosen because it
-           is the claim the project's own viewer demonstrates — evidence narrowed to the
-           character — and because it is a real before and after that goes *down*.
-           Rejected: recall 0.400 → 0.833 and MRR 0.222 → 0.465 go *up*, so as a delta the
-           ratio falls under 1 and the field would draw a flat screen that lies; recall held at
-           its frozen baseline is a second 1.00 beside Nanquim's; "0 network calls" is a second
-           zero beside Seal's. The headline metrics stay in the body, where they have room for
-           the trade the table actually shows (the reranker raised recall and lowered rank).
-SPAN       12, the full row directly under orchestration + query. The meter sits in the wide
-           module's side column. After-label is the bare "104", as orchestration's is "1": at
-           8.1× two unit-bearing labels collided on the track in the first render.
-LINKS      the live citation viewer and the repository — a case with a link is a claim a
-           reader can check, which is the project's whole point.
-REMOVED    Chanel's rule, this pass: a second readout (recall @5) in the module's corner. The
-           corner carries the year like every other module; one case, one reading.
-AUDIT      Re-measured 2026-09-18 against the rendered rack at 1440 (light, en) and 390 (dark,
-           pt): axe 0 violations on both locales and both themes; no overflow at 320–1440;
-           no-JS renders 9 of 9 cases with 9 of 9 readings; effect median 5.6 ms / worst
-           11.9 ms per frame at 4× throttle (`check-effect` PASS); chrome PASS. The first
-           render caught two defects no script did — the rack order breaking the top row, and
-           the two meter labels colliding — both fixed above. Rubric unchanged at 9.0: the
-           insertion moved no axis it is scored on. Bundle: 138.5 kB gz against a 100 kB
-           budget, and `main` measures 138.4 kB on the same machine, so the overage predates
-           this change (+0.1 kB) and is not resolved by it.
+Entered at step 4 (signature) because it replaces the effect and nothing else. Tokens are
+Ink & Signal's (`src/app/globals.css`), unchanged: no colour, face or radius is added, and the
+one new value is the motion exception declared below. Direction pass run against the official
+`frontend-design` skill and `shared/design/spectacle.md`. Decisions confirmed by the owner on
+2026-09-22: generic system, scroll-driven sticky, copy rewritten, SVG on the site's tokens.
+
+SUBJECT    The #build band stops measuring a gap and starts showing the job: an
+           architecture drawn from nothing, one requirement at a time. Each requirement adds
+           the least structure that satisfies it, and names the cost that structure brings.
+           The cost line is the point — the page's claim is "trusted to own the outcome", and
+           owning it means knowing what every box will charge you later.
+IDIOM      Notation — the whiteboard system-design walk, drawn the way the trade draws it:
+           boxes, directed edges, nothing illustrated.
+PRIMITIVE  State sequence on a fixed graph. Every node and edge has a lifespan
+           `[since, until)` in steps; a step is a set difference, never a relayout.
+MECHANISM  Seven requirements, in order:
+           1 serve users → client, API, database
+           2 p95 reads < 200 ms → cache beside the database
+           3 ten times the traffic → load balancer, three stateless API instances
+             (the client→API edge is *removed*; client→LB→API replaces it)
+           4 reads far outnumber writes → two read replicas
+           5 slow work cannot hold the request → queue and workers
+           6 a provider outage cannot take us down → circuit breaker, fallback provider
+           7 know it broke before users do → telemetry band every node reports into
+JOB        reveal (how a system grows) · response (scroll drives it) · repay (each stop
+           returns a requirement, a decision and its cost — three facts per stop)
+MAPPING    step index <- which requirement block holds the reading band (viewport 40–60 %).
+           Visible at step n = lifespan contains n. Added at n = `since == n`; removed at
+           n = `until == n`. Pure function, tested; the diagram never decides anything.
+INPUT      Native scroll. No scroll-jacking, no snapping, no smooth-scroll library: the
+           requirement blocks are ordinary flow content rising past a sticky diagram.
+TIER       T0 · inline SVG + CSS transitions + one `IntersectionObserver`. 0 KB of dependency.
+           Removes the WebGL2 field (4.9 KB gz shader and its rAF loop).
+
+### Layout
+CONCEPT    A  Column left, diagram right: requirements rise in a 4-col column, the diagram is
+              sticky in 8 cols. Chosen — it is what the owner described, and the text stays
+              on the reading side.
+           B  Diagram full width, one requirement ticker beneath it. Killed — the text becomes
+              a caption and loses the cost line, and a ticker is a marquee.
+           ≥1024
+           | head: eyebrow · counter "3 / 7" | title | lede                            |
+           | req 1 (flow, 70svh)  | [ sticky: top 12vh, h 76svh                     ] |
+           | req 2                | [   diagram, viewBox 960×560, landscape         ] |
+           | …       (4 cols)     | [   (8 cols)                                    ] |
+           <1024
+           | head                                                                    |
+           | [ sticky: top 64px, h 52svh — diagram, viewBox 360×480, portrait ]      |
+           | requirement blocks rise underneath, 60svh each, full width              |
+           Two coordinate sets, one graph: positions are per layout, lifespans are shared.
+           At 390 px a landscape viewBox scales labels to ~6 px, so portrait is required.
+PATH       title → current requirement → the box it added (accent) → its cost line.
+COLUMNS    12 at ≥1024 (4 + 8, gap 32) · single column below.
+MEASURE    requirement 28ch · adds and costs 40ch · lede 62ch.
+RHYTHM     4 px unit; block padding 24 px; node labels at `text-small`, never under 12 px as
+           rendered at 320 px (the portrait viewBox is sized so they hold).
+BLEED      None; the shell's 1120 px is the edge.
+
+### Components
+NODE       Rect, `radius-xs`, fill `surface-raised`, 1 px `line-control` ring, label in sans
+           `text-small` / `text` — not mono: mono small labels are banned default #5, and the
+           site already spends mono on readouts.
+EDGE       1 px `line-control`, arrowhead at the target. The queue→worker edge is dashed;
+           asynchronous is the only thing a dash means here.
+NEW        The step's added nodes and edges take `accent` for ring, label and stroke; the
+           rest return to `line-control`. One accent at a time — the Ink & Signal budget.
+REMOVED    The one removed edge (step 3) exits in `spice` and is gone when the step settles.
+REQUIRE    Block: the requirement as the heading (`h3`), then two lines, "Adds" and "Costs".
+           The cost sits in `text`, not muted, because it is the argument. Current block in
+           `text`; passed blocks `text-muted`.
+COUNTER    "n / 7" in the band's corner, where the ratio readout was. The steps are a real
+           sequence, so a number is information here, not the ordinal tell.
+MOTION     The declared exception to "150 ms on colour, no entrance": an added element draws
+           in (edge `stroke-dashoffset`, node ring then label) over 360 ms on `ease-signal`;
+           colour settles in `duration-tint`. One new token, `--duration-build: 360ms`.
+           Scrolling back reverses the same transitions. Nothing else on the page moves.
+
+### Degrade
+reduced-motion  No sticky, no stepping: the final architecture drawn once, all seven
+                requirements beneath it as a numbered list, every element in `line-control`.
+no JS           The server renders that same final frame and list — the band is never blank
+                and never needs the observer to be read.
+low-power       Nothing runs per frame; the observer only swaps a step index.
+a11y            SVG `role="img"` with a caption naming the final architecture. The requirement
+                blocks are the accessible content, so no live region (announcing on scroll is
+                noise). Nothing in the band is focusable; it is read, not operated.
+
+### Gates (spectacle A–D, originality 1 and 3)
+A          Passes reveal and repay. The tour risk is real ("a scroll sequence explaining what
+           a paragraph explains faster"); answered by native scroll only, and by every stop
+           returning a cost that a paragraph would bury.
+B          A portfolio, visited once: the effect may be large. Below the fold, never in LCP.
+C          T0 is the lowest tier that expresses it. Canvas or WebGL would buy nothing.
+D          Quiet: the moiré's shader and rAF leave; the masthead board stays the one filled
+           accent.
+SWAP (1)   LAYOUT passes — the column/diagram pairing is the owner's brief. SIGNATURE is at
+           risk: a generic architecture could sit on any backend portfolio, and the owner
+           chose generic knowingly. It is held to this page only by the cost line, which is
+           the case file's claim restated. RISK CLAUSE: cut the cost lines and this is
+           wallpaper.
+COLLISION  ByteByteGo diagrams, AWS reference-architecture animations, system-design-interview
+           scrollytelling. Difference: no vendor logos, no icon set, one accent, and every box
+           arrives with its bill.
+
+### Copy (EN draft; PT in the plan)
+eyebrow    The build
+title      Every box on the diagram was a requirement first.
+lede       Nobody draws the final architecture on day one. It grows one requirement at a
+           time, and each thing added solves one problem and starts charging for another.
+           Scroll through seven of them.
+1  Serve users.                           Adds: one API, one database.
+                                          Costs: nothing yet — one thing to deploy, one to back up.
+2  Reads under 200 ms at p95.             Adds: a cache.
+                                          Costs: every write now has to invalidate something.
+3  Ten times the traffic.                 Adds: a load balancer, stateless API instances.
+                                          Costs: session state can no longer live in the process.
+4  Reads far outnumber writes.            Adds: read replicas.
+                                          Costs: a read can now lag the write before it.
+5  Slow work can't hold the request.      Adds: a queue and workers.
+                                          Costs: jobs fail out of sight, so they need retries and a dead-letter queue.
+6  A provider outage can't take us down.  Adds: a circuit breaker and a fallback provider.
+                                          Costs: two integrations to keep honest instead of one.
+7  Know it broke before users do.         Adds: logs, metrics and traces from every box.
+                                          Costs: a bill, and someone on call to read it.
+
+### Rubric
+not rendered — pending build; scored with `render.mjs` after implementation.
