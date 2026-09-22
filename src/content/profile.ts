@@ -24,7 +24,7 @@ export const roles: readonly RoleEntry[] = [
 ];
 
 export type RepoEntry = {
-  readonly id: "depguard" | "envValidator" | "azthorize";
+  readonly id: "depguard" | "envValidator";
   readonly name: string;
   readonly href: string;
   readonly stack: readonly string[];
@@ -42,12 +42,6 @@ export const repos: readonly RepoEntry[] = [
     name: "env-validator",
     href: "https://github.com/matheusPavaneli/env-validator",
     stack: ["TypeScript", "Zero deps"],
-  },
-  {
-    id: "azthorize",
-    name: "Azthorize-Auth",
-    href: "https://github.com/matheusPavaneli/Azthorize-Auth",
-    stack: ["Node.js", "AES", "JWT"],
   },
 ];
 

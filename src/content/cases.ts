@@ -11,7 +11,7 @@ export type Reading =
   | { readonly kind: "count"; readonly value: ReadingValue }
   | { readonly kind: "reduction"; readonly percent: number; readonly label: string };
 
-export type ProjectStatus = "published" | "prototype";
+export type ProjectStatus = "published";
 
 export type Origin =
   | { readonly kind: "production" }
@@ -102,7 +102,7 @@ export const cases: readonly Case[] = [
   {
     id: "nanquim",
     years: [2026, 2026],
-    origin: { kind: "own", status: "prototype" },
+    origin: { kind: "own", status: "published" },
     reading: {
       kind: "ceiling",
       value: { n: 12.14, label: "12.14 kB" },
@@ -114,7 +114,7 @@ export const cases: readonly Case[] = [
   {
     id: "anchor",
     years: [2026, 2026],
-    origin: { kind: "own", status: "prototype" },
+    origin: { kind: "own", status: "published" },
     reading: {
       kind: "count",
       value: { n: 8, label: "6–10 weeks" },
@@ -125,7 +125,7 @@ export const cases: readonly Case[] = [
   {
     id: "artefacts",
     years: [2026, 2026],
-    origin: { kind: "own", status: "prototype" },
+    origin: { kind: "own", status: "published" },
     reading: {
       kind: "ceiling",
       value: { n: 99, label: "99" },
