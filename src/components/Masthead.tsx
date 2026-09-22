@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 
 import { BrandMark } from "@/components/BrandMark";
 import { DeltaBoard } from "@/components/DeltaBoard";
@@ -32,6 +32,16 @@ export function Masthead({ t }: { t: Messages }) {
           >
             {t.masthead.cta}
             <ArrowRight aria-hidden size={14} strokeWidth={1.75} />
+          </a>
+          <a
+            href={profile.cv}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="control label inline-flex h-11 items-center gap-2 rounded-sm px-4 text-text"
+          >
+            <FileText aria-hidden size={14} strokeWidth={1.75} />
+            {t.masthead.cv}
+            <span className="sr-only">({t.a11y.externalLink})</span>
           </a>
           <a
             href={profile.github}

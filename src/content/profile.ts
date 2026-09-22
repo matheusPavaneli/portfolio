@@ -5,6 +5,7 @@ export const profile = {
   phone: "+55 44 99775-2680",
   github: "https://github.com/matheusPavaneli",
   linkedin: "https://www.linkedin.com/in/matheuspavaneli/",
+  cv: "https://drive.google.com/file/d/1d23kox6oNXPHlDxqFH84jkN9Px5Z5cDf/view?usp=drive_link",
 } as const;
 
 export type RoleEntry = {

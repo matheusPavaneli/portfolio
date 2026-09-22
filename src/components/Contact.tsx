@@ -1,4 +1,4 @@
-import { ArrowUpRight, AtSign, Phone } from "lucide-react";
+import { ArrowUpRight, AtSign, FileText, Phone } from "lucide-react";
 
 import { BrandMark } from "@/components/BrandMark";
 import { ContactForm } from "@/components/ContactForm";
@@ -16,6 +16,7 @@ export function Contact({ t }: { t: Messages }) {
       href: `tel:${profile.phone.replace(/[^\d+]/g, "")}`,
       external: false,
     },
+    { icon: FileText, brand: null, label: t.masthead.cv, href: profile.cv, external: true },
     { icon: null, brand: "linkedin" as const, label: "LinkedIn", href: profile.linkedin, external: true },
     { icon: null, brand: "github" as const, label: "GitHub", href: profile.github, external: true },
   ];
