@@ -4,6 +4,7 @@ import { BrandMark } from "@/components/BrandMark";
 import { ContactForm } from "@/components/ContactForm";
 import { Section } from "@/components/Section";
 import { profile } from "@/content/profile";
+import { href } from "@/lib/href";
 import type { Messages } from "@/i18n";
 
 export function Contact({ t }: { t: Messages }) {
@@ -16,7 +17,7 @@ export function Contact({ t }: { t: Messages }) {
       href: `tel:${profile.phone.replace(/[^\d+]/g, "")}`,
       external: false,
     },
-    { icon: FileText, brand: null, label: t.masthead.cv, href: profile.cv, external: true },
+    { icon: FileText, brand: null, label: t.masthead.cv, href: href(profile.cv), external: true },
     { icon: null, brand: "linkedin" as const, label: "LinkedIn", href: profile.linkedin, external: true },
     { icon: null, brand: "github" as const, label: "GitHub", href: profile.github, external: true },
   ];

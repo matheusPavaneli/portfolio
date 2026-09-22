@@ -5,7 +5,8 @@ export const profile = {
   phone: "+55 44 99775-2680",
   github: "https://github.com/matheusPavaneli",
   linkedin: "https://www.linkedin.com/in/matheuspavaneli/",
-  cv: "https://drive.google.com/file/d/1d23kox6oNXPHlDxqFH84jkN9Px5Z5cDf/view?usp=drive_link",
+  /** Served from public/, so tools read the text layer instead of a Drive viewer. Resolve with href(). */
+  cv: "/matheus-pavaneli-resume.pdf",
 } as const;
 
 export type RoleEntry = {
@@ -49,3 +50,24 @@ export const repos: readonly RepoEntry[] = [
     stack: ["Node.js", "AES", "JWT"],
   },
 ];
+
+/** The facts the prose states, held as data so machine-readable copies cannot drift from it. */
+export const place = {
+  city: "Maringá",
+  region: "Paraná",
+  countryCode: "BR",
+  country: "Brazil",
+  timezone: "America/Sao_Paulo",
+} as const;
+
+export const spokenLanguages = [
+  { code: "pt-BR", name: "Portuguese", fluency: "Native" },
+  { code: "en", name: "English", fluency: "C1" },
+] as const;
+
+export const education = {
+  institution: "Cruzeiro do Sul",
+  studyType: "B.Eng.",
+  area: "Software Engineering",
+  expected: "2029",
+} as const;

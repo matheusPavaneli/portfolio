@@ -3,6 +3,7 @@ import { ArrowRight, FileText } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { DeltaBoard } from "@/components/DeltaBoard";
 import { profile } from "@/content/profile";
+import { href } from "@/lib/href";
 import type { Messages } from "@/i18n";
 
 export function Masthead({ t }: { t: Messages }) {
@@ -34,7 +35,8 @@ export function Masthead({ t }: { t: Messages }) {
             <ArrowRight aria-hidden size={14} strokeWidth={1.75} />
           </a>
           <a
-            href={profile.cv}
+            href={href(profile.cv)}
+            type="application/pdf"
             target="_blank"
             rel="noreferrer noopener"
             className="control label inline-flex h-11 items-center gap-2 rounded-sm px-4 text-text"
