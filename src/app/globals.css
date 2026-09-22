@@ -218,6 +218,41 @@
     color: var(--color-text);
   }
 
+  /* A passage marked as backing a trait: lifted from muted to text; underlined only when lit. */
+  .ref-mark {
+    background: transparent;
+    color: var(--color-text);
+    text-decoration-line: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    scroll-margin-top: 6rem;
+    transition:
+      text-decoration-color var(--duration-tint) ease,
+      color var(--duration-tint) ease;
+  }
+
+  .ref-mark:target {
+    text-decoration-color: var(--color-accent);
+  }
+
+  .refs-row {
+    transition: background-color var(--duration-tint) ease;
+  }
+
+  .refs-row:is(:hover, :focus-within) {
+    background-color: var(--color-surface);
+  }
+
+  .refs-dot {
+    background-color: var(--color-text);
+    transition: background-color var(--duration-tint) ease;
+  }
+
+  .refs-row:is(:hover, :focus-within) .refs-dot {
+    background-color: var(--color-accent);
+  }
+
   .chip {
     display: inline-flex;
     align-items: center;

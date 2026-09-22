@@ -54,7 +54,8 @@ motion   tint 150 ms on colour and border · build 360 ms · board sweep 620 ms,
 ## Grid
 PATH     name and role → the claim → the filled action and the résumé → the spec strip (now,
          stack, where) → the readings board, whose top is inside the first 900 px fold at
-         1440 → the ledger with three cases open → build → method → record → contact.
+         1440 → the ledger with three cases open → build → method → record → references
+         → contact.
 COLUMNS  shell 1120 px; spec strip 3 columns at ≥768, 1 below; board
          17rem / 1fr / 4.75rem; ledger 1fr / 11rem / 10rem / 6.5rem; build 4 + 8 of 12.
 DENSITY  Densest: the board and the record's skill register. Emptiest: the masthead and
@@ -68,7 +69,8 @@ BLEED    Nothing bleeds. The rail and every section share one inner edge: paddin
 ## Components
 RECOGNIZED  (1) the readings board — log axis, graduations named once, bar then dot;
             (2) the ledger row — a native `<details>` with what / where / ratio / when;
-            (3) the mono label; (4) the status lamp; (5) the build diagram node.
+            (3) the mono label; (4) the status lamp; (5) the build diagram node;
+            (6) the corroboration index — traits × referees, one dot per marked passage.
 INTERACTION Colour and border only, 150 ms. Links move their underline from `line-control` to
             the accent; controls move their border to `muted`. Nothing lifts or casts a shadow.
 CONTROL     44 px for the page's controls; one declared second register of 40 px for every
@@ -275,3 +277,64 @@ lede       Nobody draws the final architecture on day one. It grows one requirem
 
 ### Rubric
 not rendered — pending build; scored with `render.mjs` after implementation.
+
+## Amendment — 2026-09-22, the references
+
+Entered at step 3, not the short path: a new section is a new component and a new stop in
+PATH (conditions 2 and 4 fail). Step 2 skipped — no capability from `stack-route`'s list. No
+token, face, radius or duration is added; the band spends Ink & Signal as it stands. Direction
+also run against the official `frontend-design` skill.
+
+SUBJECT    Two LinkedIn recommendations — Gleyver Coutinho Castro (managed me at Bernoulli,
+           2026-08-23) and Kevin Blair (same team at Bernoulli, 2026-06-08). The band's job: let the
+           skimming lead hear the masthead's claim from someone else, and verify it in one
+           gesture, without the page editing a word of what they wrote.
+IDEA       A case file keeps statements verbatim and indexes them. The page reads the
+           statements; it does not rewrite them into pull-quote cards.
+
+### Directions
+A  The corroboration index  <- a case file quotes witnesses in full and indexes the passages
+   that bear on the claim (well: notation). Chosen.
+B  Testimonial cards        <- avatar, giant quote glyph, one card each. KILL — the SaaS
+   testimonial default; no photos exist, and a card per quote is decoration, not evidence.
+C  Pull-quote only          <- one curated line per referee. KILL — cutting a statement to its
+   best sentence reads as spin, and this page's ethos is that every claim traces to source.
+
+### Layout
+≥1024      | eyebrow References · 2 · 11                                                  |
+           | h2: “…someone you can trust implicitly to unblock the toughest challenges.”   |
+           | lede: attribution + how the index works                                      |
+           | index (19rem, sticky top 6rem) | statement · Castro (1fr)                     |
+           |  trait × Castro × Blair        | statement · Blair                            |
+<1024      index, then the statements, single column.
+PATH       the quote as title → who said it → the index → the passage it lights.
+MEASURE    statements 65ch · index cells 44 px tall (the page's control height).
+
+### Components
+INDEX      A `<table>`: row header = trait, one column per referee, a cell = one dot per
+           passage, linking to the first passage (`:target` underlines it in accent). An
+           empty cell is an en dash with a screen-reader "0 passages".
+MARK       `<mark>` — the element that means "highlighted for relevance". At rest it only
+           rises from `text-muted` to `text`. Pointing at or focusing a trait row quiets every
+           other mark and underlines that trait's passages in `accent`; that row's dots take
+           `accent` (a reading — inside the accent's four jobs). Pure CSS off `:has()`, rules
+           generated from `CLAIMS` so index and rules cannot drift.
+TITLE      The h2 is a verbatim run of Gleyver's statement, `lang="en"` on both locales; a
+           test asserts it is a substring of the original.
+PT         Statements stay in the original English (`lang="en"`) and the lede says so; a
+           translated quote would be words nobody wrote.
+
+### Degrade
+no JS / reduced motion  Nothing depends on either: static HTML, colour transitions only.
+touch                   No hover: the cells are links, so a tap jumps to the passage.
+
+### Rubric            (section scored against `.unique/render/refs/`, 2026-09-22)
+- signature 4 for the band — the index is specific to a case file and to these two
+  statements; held below 5 because it lives inside the page's system, not beyond it.
+- usability 5 — `check-a11y` PASS (both locales, both themes, 320–1440, no overflow),
+  `check-chrome` PASS including `#references`.
+- Page rubric above unchanged; not re-scored for one band.
+
+### Removed
+Chanel's rule: the resting underline on every marked passage. Eleven underlines read as
+eleven links; the lift from muted to text carries the rest state alone.

@@ -28,6 +28,7 @@ export const pt: Messages = {
     build: "Construção",
     method: "Método",
     record: "Registro",
+    references: "Referências",
     contact: "Contato",
   },
 
@@ -285,6 +286,33 @@ export const pt: Messages = {
     },
     education: "Bacharelado em Engenharia de Software · Cruzeiro do Sul · em andamento, previsão 2029",
     languages: "Português nativo · Inglês C1 — usado diariamente em produção: cerimônias, code review, documentação técnica.",
+  },
+
+  references: {
+    eyebrow: "Referências",
+    lede: "Gleyver Coutinho Castro, meu gestor na Bernoulli. Uma linha das duas recomendações abaixo, citadas na íntegra e no original em inglês. O índice liga cada traço ao trecho que o afirma; aponte para um e ele acende.",
+    indexLabel: "Índice",
+    indexHint: "Um ponto por trecho",
+    traitLabel: "Traço",
+    passages: {
+      none: "nenhum trecho",
+      one: "1 trecho",
+      other: "{n} trechos",
+    },
+    claims: {
+      hard: "Recebe o problema difícil",
+      ownership: "Assume de ponta a ponta",
+      cause: "Acha a causa antes da correção",
+      clarity: "Deixa o problema claro",
+      team: "Eleva o time",
+      learning: "Segue aprendendo",
+    },
+    relations: {
+      managed: "Foi meu gestor direto",
+      team: "Mesmo time",
+    },
+    source: "Publicada no LinkedIn",
+    original: "Citadas literalmente, como publicadas. Os trechos marcados são meu índice, não ênfase deles.",
   },
 
   contact: {

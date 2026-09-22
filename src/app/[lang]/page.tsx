@@ -4,6 +4,7 @@ import { Ledger } from "@/components/Ledger";
 import { Masthead } from "@/components/Masthead";
 import { Method } from "@/components/Method";
 import { Record } from "@/components/Record";
+import { References } from "@/components/References";
 import { getMessages, isLocale } from "@/i18n";
 import { notFound } from "next/navigation";
 
@@ -19,6 +20,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <SystemBuild t={t} />
       <Method t={t} />
       <Record t={t} />
+      <References t={t} />
       <Contact t={t} />
     </>
   );
