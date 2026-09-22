@@ -5,6 +5,7 @@ export function Section({
   eyebrow,
   readout,
   title,
+  titleLang,
   lede,
   children,
   className = "",
@@ -13,6 +14,7 @@ export function Section({
   eyebrow: string;
   readout?: string;
   title: string;
+  titleLang?: string;
   lede?: string;
   children: ReactNode;
   className?: string;
@@ -27,7 +29,9 @@ export function Section({
           ) : null}
         </div>
 
-        <h2 className="measure-tight m-0 mt-8 text-h1 text-text">{title}</h2>
+        <h2 lang={titleLang} className="measure-tight m-0 mt-8 text-h1 text-text">
+          {title}
+        </h2>
         {lede ? <p className="measure m-0 mt-4 text-body-lg text-text-muted">{lede}</p> : null}
 
         <div className="mt-12">{children}</div>

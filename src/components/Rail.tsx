@@ -5,7 +5,7 @@ import { profile } from "@/content/profile";
 import { href } from "@/lib/href";
 import { LOCALE_LABEL, otherLocale, type Locale, type Messages } from "@/i18n";
 
-const SECTIONS = ["cases", "build", "method", "record", "contact"] as const;
+const SECTIONS = ["cases", "build", "method", "record", "references", "contact"] as const;
 
 export function Rail({ locale, t }: { locale: Locale; t: Messages }) {
   const other = otherLocale(locale);

@@ -12,7 +12,7 @@ const check = (name, ok, detail = "") => {
   console.log(`${ok ? "ok  " : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
 };
 
-const SECTIONS = ["cases", "build", "method", "record", "contact"];
+const SECTIONS = ["cases", "build", "method", "record", "references", "contact"];
 
 for (const route of ["/en/", "/pt/"]) {
   for (const theme of ["light", "dark"]) {

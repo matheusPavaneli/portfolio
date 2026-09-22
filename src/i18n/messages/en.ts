@@ -26,6 +26,7 @@ export const en = {
     build: "Build",
     method: "Method",
     record: "Record",
+    references: "References",
     contact: "Contact",
   },
 
@@ -282,6 +283,33 @@ export const en = {
     },
     education: "B.Eng. Software Engineering · Cruzeiro do Sul · in progress, expected 2029",
     languages: "Portuguese, native · English, C1 — used daily in production: ceremonies, code review, technical docs.",
+  },
+
+  references: {
+    eyebrow: "References",
+    lede: "Gleyver Coutinho Castro, who managed me at Bernoulli. One line of the two recommendations below, both quoted in full. The index maps each trait to the passage that says it; point at one to light it.",
+    indexLabel: "Index",
+    indexHint: "One dot per passage",
+    traitLabel: "Trait",
+    passages: {
+      none: "no passages",
+      one: "1 passage",
+      other: "{n} passages",
+    },
+    claims: {
+      hard: "Trusted with the hard problem",
+      ownership: "Owns it end to end",
+      cause: "Finds the cause before the fix",
+      clarity: "Makes the problem clear",
+      team: "Raises the team",
+      learning: "Keeps learning",
+    },
+    relations: {
+      managed: "Managed me directly",
+      team: "Same team",
+    },
+    source: "Posted on LinkedIn",
+    original: "Quoted verbatim, as posted. Marked passages are my index, not their emphasis.",
   },
 
   contact: {

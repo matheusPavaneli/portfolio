@@ -3,6 +3,16 @@
 Append-only. Read before planning a surface; never repeat a previous entry's
 `(palette family, display face, layout device)` triple.
 
+## 2026-09-22 — case file, references (amendment, same surface)
+contract: marketing / benchmark(Linear) / measured — unchanged
+palette: unchanged — near-black ink with a single lime signal, warm bone text
+display: unchanged — Geist 500 at display tracking
+layout device: unchanged — a ledger of native disclosure rows under a log-scale readings board
+note: an insertion into the case file, not a new surface, so its triple is that entry's
+added: a corroboration index (trait × referee, one dot per passage) beside two statements
+quoted verbatim; pointing at a trait lights its passages
+rejected: testimonial cards with avatars and a quote glyph (the default), pull-quote only (spin)
+
 ## 2026-09-22 — case file (Ink & Signal, refined)
 contract: marketing / benchmark(Linear) / measured
 palette: near-black ink with a single lime signal, warm bone text (owner-adopted system)
