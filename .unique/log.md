@@ -3,6 +3,14 @@
 Append-only. Read before planning a surface; never repeat a previous entry's
 `(palette family, display face, layout device)` triple.
 
+## 2026-09-22 — case file (Ink & Signal, refined)
+contract: marketing / benchmark(Linear) / measured
+palette: near-black ink with a single lime signal, warm bone text (owner-adopted system)
+display: Geist 500 at display tracking
+layout device: a ledger of native disclosure rows under a log-scale readings board
+signature: the readings board — only what moved is plotted on one shared ratio axis; held limits and single figures are stated
+rejected: the instrument panel (superseded by the owner's adoption of Ink & Signal) and a new signature pass (declined by the owner)
+
 ## 2026-09-18 — case file, ninth case (amendment, same surface)
 contract: marketing / signature / loud — unchanged
 palette: unchanged — warm anodized aluminium plate with a phthalo signal
