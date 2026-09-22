@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Section } from "@/components/Section";
 import { repos, roles } from "@/content/profile";
-import { skillGroups } from "@/content/skills";
+import { coreSkills, skillGroups } from "@/content/skills";
 import { formatMonths } from "@/lib/dates";
 import type { Messages } from "@/i18n";
 
@@ -30,7 +30,9 @@ export function Record({ t }: { t: Messages }) {
                     {formatMonths(role.from, role.to, t.locale.intl, t.locale.present)}
                   </p>
                 </div>
-                <p className="label m-0 mt-2 text-text-muted">{t.record.roles[role.id].title}</p>
+                <p className="label m-0 mt-2 text-text-muted">
+                  {t.record.roles[role.id].title} · {t.record.load[role.load]}
+                </p>
                 <p className="measure m-0 mt-3 text-body text-text-muted">
                   {t.record.roles[role.id].detail}
                 </p>
@@ -49,11 +51,24 @@ export function Record({ t }: { t: Messages }) {
                 <li key={group.id} className="border-b border-line py-4">
                   <p className="label m-0 text-text-muted">{t.record.skillGroups[group.id]}</p>
                   <p className="m-0 mt-2 font-mono text-code text-text">
-                    {group.terms.join(" · ")}
+                    {coreSkills[group.id].join(" · ")}
                   </p>
                 </li>
               ))}
             </ul>
+            <details className="mt-4">
+              <summary className="ledger-summary link label inline-flex min-h-11 items-center text-text-muted">
+                {t.record.fullSkills.replace("{n}", String(terms))}
+              </summary>
+              <ul className="m-0 list-none p-0">
+                {skillGroups.map((group) => (
+                  <li key={group.id} className="border-b border-line py-4">
+                    <p className="label m-0 text-text-muted">{t.record.skillGroups[group.id]}</p>
+                    <p className="m-0 mt-2 font-mono text-code text-text">{group.terms.join(" · ")}</p>
+                  </li>
+                ))}
+              </ul>
+            </details>
           </div>
 
           <div>

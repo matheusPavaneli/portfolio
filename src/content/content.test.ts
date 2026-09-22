@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 
+import { cases, ownProjects, productionCases } from "./cases";
 import { profile, roles } from "./profile";
-import { skillGroups, type SkillGroupId } from "./skills";
+import { coreSkills, skillGroups, type SkillGroupId } from "./skills";
 
 
 describe("contact facts", () => {
@@ -129,5 +130,65 @@ describe("skills reference", () => {
   it("keeps Azure Service Bus, which the page had dropped entirely", () => {
     const everything = skillGroups.flatMap((group) => group.terms).join(" · ");
     expect(everything).toContain("Service Bus");
+  });
+});
+
+describe("working load", () => {
+  it("states which roles were part-time, so overlapping dates read as what they were", () => {
+    const load = new Map(roles.map((role) => [role.id, role.load]));
+    expect(load.get("bernoulli")).toBe("full-time");
+    expect(load.get("eicode")).toBe("full-time");
+    expect(load.get("jorrovi")).toBe("part-time");
+    expect(load.get("freelance")).toBe("part-time");
+  });
+
+  it("never has two full-time roles running in the same month", () => {
+    const full = roles.filter((role) => role.load === "full-time");
+    for (const a of full) {
+      for (const b of full) {
+        if (a === b) continue;
+        const overlap = a.from <= (b.to ?? "9999-12") && b.from <= (a.to ?? "9999-12");
+        expect(overlap, `${a.id} overlaps ${b.id}`).toBe(false);
+      }
+    }
+  });
+});
+
+describe("production and own projects", () => {
+  it("puts every case in exactly one set", () => {
+    expect(productionCases.length + ownProjects.length).toBe(cases.length);
+  });
+
+  it("stamps the own projects with no public artifact as prototypes", () => {
+    const status = new Map(
+      ownProjects.map((entry) => [entry.id, entry.origin.kind === "own" ? entry.origin.status : null]),
+    );
+    expect(status.get("nanquim")).toBe("prototype");
+    expect(status.get("anchor")).toBe("prototype");
+    expect(status.get("artefacts")).toBe("prototype");
+    expect(status.get("seal")).toBe("published");
+    expect(status.get("rageval")).toBe("published");
+  });
+
+  it("gives every published project a public link", () => {
+    for (const entry of ownProjects) {
+      if (entry.origin.kind === "own" && entry.origin.status === "published") {
+        expect(entry.links.length, entry.id).toBeGreaterThan(0);
+      }
+    }
+  });
+});
+
+describe("the compact skills register", () => {
+  it.each(Object.entries(coreSkills))("keeps only %s terms the full CV list carries", (id, terms) => {
+    const full = skillGroups.find((group) => group.id === id)?.terms ?? [];
+    expect(terms.filter((term) => !full.includes(term))).toEqual([]);
+  });
+
+  it("is a register a reader can take in, not the whole CV", () => {
+    const core = Object.values(coreSkills).flat().length;
+    const all = skillGroups.flatMap((group) => group.terms).length;
+    expect(core).toBeLessThanOrEqual(30);
+    expect(core).toBeLessThan(all / 2);
   });
 });

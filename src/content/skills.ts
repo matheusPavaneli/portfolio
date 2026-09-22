@@ -97,3 +97,18 @@ export const skillGroups: readonly SkillGroup[] = [
     ],
   },
 ];
+
+export const coreSkills: Readonly<Record<SkillGroupId, readonly string[]>> = {
+  languages: ["TypeScript", "Python", "Node.js", "NestJS", "FastAPI", "React", "Next.js"],
+  ai: [
+    "LLM orchestration",
+    "Multi-agent routing",
+    "Provider failover",
+    "Model evaluation",
+    "Embeddings & vector search (pgvector)",
+    "LangChain",
+  ],
+  data: ["PostgreSQL", "MongoDB", "Redis", "RabbitMQ", "BullMQ"],
+  cloud: ["AWS EC2 · Lambda · S3", "Azure App Service · Functions", "Docker", "Kubernetes", "CI/CD"],
+  architecture: ["Event-Driven", "Microservices", "REST", "GraphQL", "Jest", "pytest"],
+};

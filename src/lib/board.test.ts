@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { cases } from "@/content/cases";
-import { AXIS_MAX, boardRows, formatRatio, grouped, position, ratioOf } from "./board";
+import { AXIS_MAX, boardRows, formatRatio, grouped, position, ratioOf, readingRow } from "./board";
 
 describe("the axis", () => {
   it("puts a ratio of 1 at the origin and the maximum at the far end", () => {
@@ -51,12 +51,12 @@ describe("the rows", () => {
   });
 
   it("groups by the kind of evidence the reading actually is", () => {
-    const byId = new Map(boardRows().map((row) => [row.id, row.group]));
+    const byId = new Map(cases.map((entry) => [entry.id, readingRow(entry).group]));
     expect(byId.get("query")).toBe("moved");
     expect(byId.get("rageval")).toBe("moved");
     expect(byId.get("nanquim")).toBe("held");
     expect(byId.get("seal")).toBe("counted");
-    expect(byId.get("orchestration")).toBe("counted");
+    expect(byId.get("orchestration")).toBe("moved");
   });
 
   it("plots only what moved; a held ceiling is stated, not drawn at the origin", () => {
@@ -88,9 +88,25 @@ describe("ratioOf", () => {
   });
 
   it("refuses a count, because one number has no ratio", () => {
-    for (const id of ["seal", "anchor", "dashboard", "orchestration"] as const) {
+    for (const id of ["seal", "anchor", "dashboard"] as const) {
       const entry = cases.find((c) => c.id === id);
       expect(ratioOf(entry!.reading), `${id} should have no ratio`).toBeNull();
     }
+  });
+});
+
+describe("a reduction", () => {
+  it("turns a 90% latency cut into a 10x ratio, not an invented before and after", () => {
+    const orchestration = cases.find((entry) => entry.id === "orchestration");
+    expect(orchestration).toBeDefined();
+    expect(ratioOf(orchestration!.reading)).toBeCloseTo(10, 9);
+    const row = readingRow(orchestration!);
+    expect(row.from).toBeNull();
+    expect(row.to).toBe("−90% latency");
+  });
+
+  it("refuses a reduction of 0% or 100%, which has no finite ratio", () => {
+    expect(ratioOf({ kind: "reduction", percent: 0, label: "" })).toBeNull();
+    expect(ratioOf({ kind: "reduction", percent: 100, label: "" })).toBeNull();
   });
 });

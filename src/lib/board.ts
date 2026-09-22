@@ -5,6 +5,10 @@ export function ratioOf(reading: Reading): number | null {
     if (reading.after.n <= 0 || reading.before.n <= 0) return null;
     return reading.before.n / reading.after.n;
   }
+  if (reading.kind === "reduction") {
+    if (reading.percent <= 0 || reading.percent >= 100) return null;
+    return 100 / (100 - reading.percent);
+  }
   if (reading.kind === "ceiling") {
     if (reading.limit.n <= 0 || reading.value.n <= 0) return null;
     return Math.max(reading.value.n, reading.limit.n) / Math.min(reading.value.n, reading.limit.n);
@@ -42,7 +46,7 @@ export function readingText(row: BoardRow): string {
   return row.group === "held" ? `${row.to} ≤ ${row.from}` : `${row.from} → ${row.to}`;
 }
 
-function rowFor(entry: Case): BoardRow {
+export function readingRow(entry: Case): BoardRow {
   const { reading } = entry;
 
   if (reading.kind === "count") {
@@ -59,6 +63,18 @@ function rowFor(entry: Case): BoardRow {
 
   const ratio = ratioOf(reading);
   if (ratio === null) throw new Error(`case "${entry.id}" has a reading with no ratio`);
+
+  if (reading.kind === "reduction") {
+    return {
+      id: entry.id,
+      group: "moved",
+      ratio,
+      position: position(ratio),
+      from: null,
+      to: reading.label,
+      years: entry.years,
+    };
+  }
 
   if (reading.kind === "ceiling") {
     return {
@@ -87,7 +103,7 @@ const ORDER: Record<BoardGroup, number> = { moved: 0, held: 1, counted: 2 };
 
 export function boardRows(entries: readonly Case[] = cases): readonly BoardRow[] {
   return entries
-    .map(rowFor)
+    .map(readingRow)
     .sort((a, b) => ORDER[a.group] - ORDER[b.group] || (b.ratio ?? 0) - (a.ratio ?? 0));
 }
 
