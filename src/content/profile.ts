@@ -13,13 +13,14 @@ export type RoleEntry = {
   readonly org: string;
   readonly from: string;
   readonly to: string | null;
+  readonly load: "full-time" | "part-time";
 };
 
 export const roles: readonly RoleEntry[] = [
-  { id: "bernoulli", org: "Bernoulli Educação", from: "2025-11", to: null },
-  { id: "eicode", org: "Eicode", from: "2024-10", to: "2025-06" },
-  { id: "freelance", org: "Independent Contractor via Workana", from: "2024-01", to: "2025-11" },
-  { id: "jorrovi", org: "Jorrovi Calçados", from: "2023-04", to: "2025-06" },
+  { id: "bernoulli", org: "Bernoulli Educação", from: "2025-11", to: null, load: "full-time" },
+  { id: "eicode", org: "Eicode", from: "2024-10", to: "2025-06", load: "full-time" },
+  { id: "freelance", org: "Independent Contractor via Workana", from: "2024-01", to: "2025-11", load: "part-time" },
+  { id: "jorrovi", org: "Jorrovi Calçados", from: "2023-04", to: "2025-06", load: "part-time" },
 ];
 
 export type RepoEntry = {

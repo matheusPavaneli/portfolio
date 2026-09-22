@@ -67,7 +67,7 @@ export function Masthead({ t }: { t: Messages }) {
           </a>
         </div>
 
-        <p className="m-0 mt-6 flex items-center gap-2 sm:hidden">
+        <p className="m-0 mt-6 flex items-center gap-2">
           <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-accent-fill" />
           <span className="label text-text-muted">{t.masthead.stripStatusValue}</span>
         </p>

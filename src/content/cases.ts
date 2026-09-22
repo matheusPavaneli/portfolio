@@ -8,7 +8,14 @@ export type Reading =
   /** Held it under a limit the build or the platform enforces. */
   | { readonly kind: "ceiling"; readonly value: ReadingValue; readonly limit: ReadingValue }
   /** Shipped N of them, or needed none. */
-  | { readonly kind: "count"; readonly value: ReadingValue };
+  | { readonly kind: "count"; readonly value: ReadingValue }
+  | { readonly kind: "reduction"; readonly percent: number; readonly label: string };
+
+export type ProjectStatus = "published" | "prototype";
+
+export type Origin =
+  | { readonly kind: "production" }
+  | { readonly kind: "own"; readonly status: ProjectStatus };
 
 export type CaseLink = {
   readonly label: string;
@@ -31,6 +38,7 @@ export type CaseId =
 export type Case = {
   readonly id: CaseId;
   readonly years: Years;
+  readonly origin: Origin;
   readonly reading: Reading;
   readonly stack: readonly string[];
   readonly links: readonly CaseLink[];
@@ -40,9 +48,11 @@ export const cases: readonly Case[] = [
   {
     id: "orchestration",
     years: [2025, null],
+    origin: { kind: "production" },
     reading: {
-      kind: "count",
-      value: { n: 5, label: "5 models" },
+      kind: "reduction",
+      percent: 90,
+      label: "−90% latency",
     },
     stack: ["LLM orchestration", "Multi-agent routing", "Provider failover", "MongoDB", "NestJS"],
     links: [],
@@ -50,6 +60,7 @@ export const cases: readonly Case[] = [
   {
     id: "rageval",
     years: [2026, 2026],
+    origin: { kind: "own", status: "published" },
     reading: {
       kind: "delta",
       before: { n: 847, label: "847 chars" },
@@ -64,6 +75,7 @@ export const cases: readonly Case[] = [
   {
     id: "query",
     years: [2026, 2026],
+    origin: { kind: "production" },
     reading: {
       kind: "delta",
       before: { n: 2000, label: "2 s" },
@@ -75,6 +87,7 @@ export const cases: readonly Case[] = [
   {
     id: "seal",
     years: [2026, 2026],
+    origin: { kind: "own", status: "published" },
     reading: {
       kind: "count",
       value: { n: 0, label: "0 lines" },
@@ -89,6 +102,7 @@ export const cases: readonly Case[] = [
   {
     id: "nanquim",
     years: [2026, 2026],
+    origin: { kind: "own", status: "prototype" },
     reading: {
       kind: "ceiling",
       value: { n: 12.14, label: "12.14 kB" },
@@ -100,6 +114,7 @@ export const cases: readonly Case[] = [
   {
     id: "anchor",
     years: [2026, 2026],
+    origin: { kind: "own", status: "prototype" },
     reading: {
       kind: "count",
       value: { n: 8, label: "6–10 weeks" },
@@ -110,6 +125,7 @@ export const cases: readonly Case[] = [
   {
     id: "artefacts",
     years: [2026, 2026],
+    origin: { kind: "own", status: "prototype" },
     reading: {
       kind: "ceiling",
       value: { n: 99, label: "99" },
@@ -121,6 +137,7 @@ export const cases: readonly Case[] = [
   {
     id: "dashboard",
     years: [2023, 2025],
+    origin: { kind: "production" },
     reading: {
       kind: "count",
       value: { n: 40, label: "40+ views" },
@@ -131,6 +148,7 @@ export const cases: readonly Case[] = [
   {
     id: "image",
     years: [2024, 2025],
+    origin: { kind: "production" },
     reading: {
       kind: "delta",
       before: { n: 1900, label: "1.9 GB" },
@@ -141,4 +159,8 @@ export const cases: readonly Case[] = [
   },
 ];
 
-export const headlineCaseIds = ["orchestration", "rageval", "query"] as const satisfies readonly CaseId[];
+export const headlineCaseIds = ["orchestration", "query"] as const satisfies readonly CaseId[];
+
+export const productionCases: readonly Case[] = cases.filter((entry) => entry.origin.kind === "production");
+
+export const ownProjects: readonly Case[] = cases.filter((entry) => entry.origin.kind === "own");

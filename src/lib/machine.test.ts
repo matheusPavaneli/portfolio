@@ -49,6 +49,25 @@ describe("the Markdown profile", () => {
   }
 });
 
+describe("the hiring facts a screening tool reads", () => {
+  for (const lang of LOCALES) {
+    const t = getMessages(lang);
+    const md = profileMarkdown(lang);
+
+    it(`states availability, contract model and US hours in the ${lang} Markdown`, () => {
+      expect(md).toContain(t.masthead.stripStatusValue);
+    });
+
+    it(`marks every ${lang} role as full-time or part-time`, () => {
+      for (const role of roles) expect(md).toContain(t.record.load[role.load]);
+    });
+  }
+
+  it("puts availability in llms.txt", () => {
+    expect(llmsIndex()).toContain(getMessages("en").masthead.stripStatusValue);
+  });
+});
+
 describe("llms.txt", () => {
   const txt = llmsIndex();
 

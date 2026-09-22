@@ -83,7 +83,7 @@ function Row({ row, t, delay }: { row: BoardRow; t: Messages; delay: number }) {
         <span className="block truncate text-body text-text">{copy.name}</span>
         {row.group === "moved" ? (
           <span className="mt-0.5 block font-mono text-small text-text-muted">
-            {row.from} → {row.to}
+            {row.from === null ? row.to : `${row.from} → ${row.to}`}
           </span>
         ) : null}
       </span>

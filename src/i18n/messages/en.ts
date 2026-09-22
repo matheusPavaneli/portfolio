@@ -36,12 +36,12 @@ export const en = {
     headlineTail: "nobody wants to own.",
     lede: "I take the broken, the abandoned and the not-yet-built — including the LLM systems a company is putting into production for the first time — and hand back an architecture, with the number it moved.",
     stripNow: "Now",
-    stripNowValue: "Software Engineer · Bernoulli Educação, EdTech",
+    stripNowValue: "Senior Software Engineer · Bernoulli Educação, EdTech",
     stripStack: "Core stack",
     stripStackValue: "TypeScript · Python · Node/NestJS · React/Next · PostgreSQL · AWS",
     stripBase: "Works from",
-    stripBaseValue: "Maringá, Brazil · UTC−3 · remote · English C1",
-    stripStatusValue: "Open to roles and to contract work",
+    stripBaseValue: "Maringá, Brazil · UTC−3 · remote · any US time zone · English C1",
+    stripStatusValue: "Available in 7–14 days · contractor, EOR or direct hire · any US time zone",
     cta: "Start a conversation",
     cv: "Résumé",
     location: "Maringá, Brazil · UTC−3 · remote",
@@ -49,7 +49,11 @@ export const en = {
 
   index: {
     eyebrow: "Cases",
-    lede: "Every one of them is somebody else's system, before and after.",
+    lede: "Production work first, then my own projects. Each one before and after.",
+    production: "In production",
+    own: "Own projects",
+    published: "Published",
+    prototype: "Prototype, no users yet",
     colCase: "Case",
     colOrg: "Where",
     colReading: "Reading",
@@ -143,8 +147,8 @@ export const en = {
       name: "LLM systems in production",
       org: "Bernoulli Educação · EdTech, 100K+ students",
       kicker: "The company's first AI feature, built so no single vendor can take it down",
-      body: "I designed and delivered the orchestration architecture: an orchestrator routing requests across specialised agents, provider failover so one vendor outage cannot take the feature down, and a MongoDB layer carrying document retrieval, agent execution logs and a response cache that cuts the cost of repeat inference. The provider was not chosen by reputation — five models were benchmarked on cost, latency and output quality, and the numbers picked one.",
-      caption: "models benchmarked on cost, latency and output quality, before one was chosen",
+      body: "I designed and delivered the orchestration architecture: an orchestrator routing requests across specialised agents, provider failover so one vendor outage cannot take the feature down, and a MongoDB layer carrying document retrieval, agent execution logs and a response cache that cuts the cost of repeat inference. The provider was not chosen by reputation — five models were benchmarked on cost, latency and output quality, and the numbers picked one. In production it serves 100K+ users, with latency down 90% and cost down 40%.",
+      caption: "latency in production, alongside a 40% cut in inference cost, on a system 100K+ users rely on",
     },
     rageval: {
       name: "rag-eval",
@@ -179,7 +183,7 @@ export const en = {
       org: "B2B SaaS · retention intelligence for performance agencies",
       kicker: "Churn is visible in the ad accounts weeks before anybody cancels",
       body: "A platform that scores client health from Google Ads and Meta Ads signals, learns the weights per client rather than applying one model to everybody, and writes a weekly brief an account manager can act on. Multi-tenant with row-level security, Stripe billing gates, and observability built in from the first deploy rather than added after the first incident.",
-      caption: "of warning before a client churns",
+      caption: "of warning before a client churns: the design target, not yet measured on live clients",
     },
     artefacts: {
       name: "technology-art",
@@ -241,6 +245,8 @@ export const en = {
     eyebrow: "Record",
     title: "The rest of it, compactly.",
     rolesLabel: "Roles",
+    load: { "full-time": "full-time", "part-time": "part-time" },
+    fullSkills: "Full list from the résumé, {n} terms",
     skillsLabel: "Skills",
     skillGroups: {
       languages: "Languages & frameworks",
@@ -254,7 +260,7 @@ export const en = {
     educationLabel: "Education",
     roles: {
       bernoulli: {
-        title: "Software Engineer",
+        title: "Senior Software Engineer",
         detail:
           "LLM orchestration architecture. Weekly release batches to daily continuous deployment with automated test suites. Authored the team's code review standard.",
       },
@@ -269,7 +275,7 @@ export const en = {
           "Delivered alongside full-time roles. Multi-provider authentication built from the ground up — email, Google and Microsoft, 2FA, recovery — with no auth incident reported post-launch. Production Stripe billing for three client platforms, webhooks built for idempotency so retries never double-charged.",
       },
       jorrovi: {
-        title: "Junior Fullstack Engineer · promoted from trainee · part-time",
+        title: "Junior Fullstack Engineer · promoted from trainee",
         detail:
           "The abandoned financial dashboard, above. TypeScript rolled across the codebase after making the case to non-technical stakeholders, and Kubernetes deployments automated across dev, staging and production.",
       },

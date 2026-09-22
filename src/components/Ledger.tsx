@@ -1,7 +1,7 @@
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 
 import { Section } from "@/components/Section";
-import { cases, headlineCaseIds, type Case } from "@/content/cases";
+import { cases, headlineCaseIds, ownProjects, productionCases, type Case } from "@/content/cases";
 import { formatRatio, readingText, rows } from "@/lib/board";
 import { formatYears } from "@/lib/dates";
 import type { Messages } from "@/i18n";
@@ -25,25 +25,33 @@ export function Ledger({ t }: { t: Messages }) {
           <p className="label m-0 text-right text-text-muted">{t.index.colYear}</p>
         </div>
 
-        {cases.map((entry) => {
-          const row = readings.get(entry.id);
-          return (
-            <Row
-              key={entry.id}
-              entry={entry}
-              t={t}
-              reading={row === undefined ? "" : readingText(row)}
-              ratio={
-                row?.group === "moved" && row.ratio !== null
-                  ? formatRatio(row.ratio)
-                  : row?.group === "held"
-                    ? t.board.held
-                    : "—"
-              }
-              open={(headlineCaseIds as readonly string[]).includes(entry.id)}
-            />
-          );
-        })}
+        {[
+          { label: t.index.production, set: productionCases },
+          { label: t.index.own, set: ownProjects },
+        ].map((group) => (
+          <div key={group.label}>
+            <h3 className="label m-0 border-b border-line px-2 pb-3 pt-8 text-text-muted">{group.label}</h3>
+            {group.set.map((entry) => {
+              const row = readings.get(entry.id);
+              return (
+                <Row
+                  key={entry.id}
+                  entry={entry}
+                  t={t}
+                  reading={row === undefined ? "" : readingText(row)}
+                  ratio={
+                    row?.group === "moved" && row.ratio !== null
+                      ? formatRatio(row.ratio)
+                      : row?.group === "held"
+                        ? t.board.held
+                        : "—"
+                  }
+                  open={(headlineCaseIds as readonly string[]).includes(entry.id)}
+                />
+              );
+            })}
+          </div>
+        ))}
       </div>
     </Section>
   );
@@ -79,7 +87,12 @@ function Row({
             className="ledger-caret mt-1 shrink-0 text-text-muted"
           />
           <div className="min-w-0">
-            <h3 className="m-0 text-h3 text-text">{copy.name}</h3>
+            <h4 className="m-0 flex flex-wrap items-center gap-x-3 gap-y-1 text-h3 font-medium text-text">
+              {copy.name}
+              {entry.origin.kind === "own" ? (
+                <span className="chip label">{t.index[entry.origin.status]}</span>
+              ) : null}
+            </h4>
             <p className="measure-tight m-0 mt-1.5 text-body text-text-muted">{copy.kicker}</p>
           </div>
         </div>

@@ -67,8 +67,9 @@ export function profileMarkdown(lang: Locale): string {
     if (entry.links.length > 0) {
       facts.push(`- ${t.machine.links}: ${entry.links.map((l) => `[${l.label}](${l.href})`).join(", ")}`);
     }
+    const status = entry.origin.kind === "own" ? ` (${t.index[entry.origin.status]})` : "";
     blocks.push(
-      `### ${copy.name}`,
+      `### ${copy.name}${status}`,
       `${copy.org} · ${formatYears(entry.years, t.locale.present)}`,
       `*${copy.kicker}*`,
       copy.body,
@@ -81,7 +82,7 @@ export function profileMarkdown(lang: Locale): string {
     const copy = t.record.roles[role.id];
     blocks.push(
       `### ${role.org} — ${copy.title}`,
-      formatMonths(role.from, role.to, t.locale.intl, t.locale.present),
+      `${formatMonths(role.from, role.to, t.locale.intl, t.locale.present)} · ${t.record.load[role.load]}`,
       copy.detail,
     );
   }

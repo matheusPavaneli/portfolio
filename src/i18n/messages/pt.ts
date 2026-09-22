@@ -38,12 +38,12 @@ export const pt: Messages = {
     headlineTail: "que ninguém quer assumir.",
     lede: "Pego o que está quebrado, o que foi abandonado e o que ainda não existe — inclusive os sistemas de LLM que uma empresa está colocando em produção pela primeira vez — e devolvo uma arquitetura, com o número que ela moveu.",
     stripNow: "Agora",
-    stripNowValue: "Software Engineer · Bernoulli Educação, EdTech",
+    stripNowValue: "Senior Software Engineer · Bernoulli Educação, EdTech",
     stripStack: "Stack principal",
     stripStackValue: "TypeScript · Python · Node/NestJS · React/Next · PostgreSQL · AWS",
     stripBase: "Trabalha de",
-    stripBaseValue: "Maringá, Brasil · UTC−3 · remoto · inglês C1",
-    stripStatusValue: "Aberto a vagas e a contratos",
+    stripBaseValue: "Maringá, Brasil · UTC−3 · remoto · qualquer fuso dos EUA · inglês C1",
+    stripStatusValue: "Disponível em 7 a 14 dias · contractor, EOR ou contratação direta · qualquer fuso dos EUA",
     cta: "Começar uma conversa",
     cv: "Currículo",
     location: "Maringá, Brasil · UTC−3 · remoto",
@@ -51,7 +51,11 @@ export const pt: Messages = {
 
   index: {
     eyebrow: "Casos",
-    lede: "Cada um deles é o sistema de outra pessoa, antes e depois.",
+    lede: "Primeiro o trabalho em produção, depois os meus projetos. Cada um com antes e depois.",
+    production: "Em produção",
+    own: "Projetos próprios",
+    published: "Publicado",
+    prototype: "Protótipo, sem usuários ainda",
     colCase: "Caso",
     colOrg: "Onde",
     colReading: "Leitura",
@@ -146,8 +150,8 @@ export const pt: Messages = {
       name: "Sistemas de LLM em produção",
       org: "Bernoulli Educação · EdTech, mais de 100 mil alunos",
       kicker: "A primeira feature de IA da empresa, construída para que nenhum fornecedor sozinho consiga derrubá-la",
-      body: "Desenhei e entreguei a arquitetura de orquestração: um orquestrador roteando requisições entre agentes especializados, failover de provider para que a indisponibilidade de um fornecedor não derrube a feature, e uma camada MongoDB carregando retrieval de documentos, logs de execução dos agentes e um cache de resposta que corta o custo de inferência repetida. O provider não foi escolhido por reputação — cinco modelos foram testados em custo, latência e qualidade de saída, e os números escolheram um.",
-      caption: "modelos avaliados em custo, latência e qualidade antes de um ser escolhido",
+      body: "Desenhei e entreguei a arquitetura de orquestração: um orquestrador roteando requisições entre agentes especializados, failover de provider para que a indisponibilidade de um fornecedor não derrube a feature, e uma camada MongoDB carregando retrieval de documentos, logs de execução dos agentes e um cache de resposta que corta o custo de inferência repetida. O provider não foi escolhido por reputação — cinco modelos foram testados em custo, latência e qualidade de saída, e os números escolheram um. Em produção atende mais de 100 mil usuários, com latência 90% menor e custo 40% menor.",
+      caption: "de latência em produção, junto com 40% a menos de custo de inferência, num sistema usado por mais de 100 mil pessoas",
     },
     rageval: {
       name: "rag-eval",
@@ -182,7 +186,7 @@ export const pt: Messages = {
       org: "SaaS B2B · inteligência de retenção para agências de performance",
       kicker: "O churn aparece nas contas de anúncio semanas antes de alguém cancelar",
       body: "Uma plataforma que pontua a saúde do cliente a partir de sinais do Google Ads e do Meta Ads, aprende os pesos por cliente em vez de aplicar um modelo único a todo mundo, e escreve um brief semanal que o gestor de contas consegue executar. Multi-tenant com row-level security, cobrança via Stripe com gates de plano, e observabilidade desde o primeiro deploy — não depois do primeiro incidente.",
-      caption: "de antecedência antes de um cliente cancelar",
+      caption: "de antecedência antes de um cliente cancelar: a meta de projeto, ainda não medida em clientes reais",
     },
     artefacts: {
       name: "technology-art",
@@ -244,6 +248,8 @@ export const pt: Messages = {
     eyebrow: "Registro",
     title: "O resto, de forma compacta.",
     rolesLabel: "Cargos",
+    load: { "full-time": "tempo integral", "part-time": "meio período" },
+    fullSkills: "Lista completa do currículo, {n} termos",
     skillsLabel: "Competências",
     skillGroups: {
       languages: "Linguagens e frameworks",
@@ -257,7 +263,7 @@ export const pt: Messages = {
     educationLabel: "Formação",
     roles: {
       bernoulli: {
-        title: "Software Engineer",
+        title: "Senior Software Engineer",
         detail:
           "Arquitetura de orquestração de LLM. Releases semanais em lote viraram deploy contínuo diário com suítes automatizadas. Autor do padrão de code review do time.",
       },
@@ -272,7 +278,7 @@ export const pt: Messages = {
           "Entregues em paralelo a posições full-time. Autenticação multi-provider construída do zero — e-mail, Google e Microsoft, 2FA, recuperação — sem nenhum incidente de auth reportado após o lançamento. Cobrança Stripe em produção para três plataformas, com webhooks idempotentes para que retentativas nunca cobrassem duas vezes.",
       },
       jorrovi: {
-        title: "Junior Fullstack Engineer · promovido de trainee · meio período",
+        title: "Junior Fullstack Engineer · promovido de trainee",
         detail:
           "O dashboard financeiro abandonado, acima. TypeScript adotado em toda a base após defender a decisão com stakeholders não técnicos, e deploys Kubernetes automatizados em dev, staging e produção.",
       },
