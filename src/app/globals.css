@@ -218,7 +218,6 @@
     color: var(--color-text);
   }
 
-  /* A passage marked as backing a trait: lifted from muted to text; underlined only when lit. */
   .ref-mark {
     background: transparent;
     color: var(--color-text);

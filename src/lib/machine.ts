@@ -9,12 +9,6 @@ import { formatRatio, readingText, rows, type BoardRow } from "@/lib/board";
 import { formatMonths, formatYears } from "@/lib/dates";
 import { absolute } from "@/lib/href";
 
-/*
- * Every machine-readable copy of the page — llms.txt, the Markdown profile, the JSON Resume and
- * the JSON-LD — is built here from the same content and catalogues the page renders, so a
- * recruiter's tool reads exactly what a person reads, and neither can drift from the other.
- */
-
 export const pageUrl = (lang: Locale) => absolute(`/${lang}/`);
 export const markdownUrl = (lang: Locale) => absolute(`/${lang}/index.md`);
 export const resumeUrl = () => absolute("/resume.json");
@@ -152,7 +146,6 @@ export function profileMarkdown(lang: Locale): string {
   return `${blocks.join("\n\n")}\n`;
 }
 
-/** The llms.txt index (llmstxt.org): what this is, then where the full text lives. */
 export function llmsIndex(): string {
   const t = getMessages("en");
   const pt = getMessages("pt");
@@ -184,7 +177,6 @@ export function llmsIndex(): string {
   ].join("\n\n")}\n`;
 }
 
-/** jsonresume.org schema v1.0.0 — the format ATS importers and résumé tools already parse. */
 export function jsonResume() {
   const t = getMessages("en");
 
@@ -251,7 +243,6 @@ export function jsonResume() {
   };
 }
 
-/** schema.org graph for the page head: the page, and the person it is about. */
 export function jsonLd(lang: Locale) {
   const t = getMessages(lang);
   const person = `${absolute("/")}#person`;
@@ -322,7 +313,6 @@ export function jsonLd(lang: Locale) {
   };
 }
 
-/** JSON for an inline script: `<` escaped so no string in the content can close the tag. */
-export function inlineJson(value: unknown): string {
+export function scriptSafeJson(value: unknown): string {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }

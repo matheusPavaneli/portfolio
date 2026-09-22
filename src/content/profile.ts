@@ -5,7 +5,6 @@ export const profile = {
   phone: "+55 44 99775-2680",
   github: "https://github.com/matheusPavaneli",
   linkedin: "https://www.linkedin.com/in/matheuspavaneli/",
-  /** Served from public/, so tools read the text layer instead of a Drive viewer. Resolve with href(). */
   cv: "/matheus-pavaneli-resume.pdf",
 } as const;
 
@@ -51,7 +50,6 @@ export const repos: readonly RepoEntry[] = [
   },
 ];
 
-/** The facts the prose states, held as data so machine-readable copies cannot drift from it. */
 export const place = {
   city: "Maringá",
   region: "Paraná",

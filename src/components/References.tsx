@@ -14,11 +14,7 @@ import type { Messages } from "@/i18n";
 
 const markId = (entry: ReferenceEntry, claim: string) => `ref-${entry.id}-${claim}`;
 
-/*
- * Pointing at a trait in the index lights exactly the passages that back it and quiets the
- * rest. Pure CSS off `:has()`; generated from CLAIMS so the index and the rules cannot drift.
- */
-const lightRules = [
+const claimHighlightRules = [
   "#references:has(.refs-row:is(:hover,:focus-within)) .ref-mark{color:var(--color-text-muted);text-decoration-color:transparent}",
   ...CLAIMS.map(
     (claim) =>
@@ -44,7 +40,7 @@ export function References({ t }: { t: Messages }) {
       lede={r.lede}
     >
       <style href="references-light" precedence="default">
-        {lightRules}
+        {claimHighlightRules}
       </style>
 
       <div className="grid grid-cols-1 gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,19rem)_minmax(0,1fr)]">

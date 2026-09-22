@@ -5,7 +5,7 @@ import { profile, repos, roles } from "@/content/profile";
 import { plainText, references } from "@/content/references";
 import { skillGroups } from "@/content/skills";
 import { getMessages, LOCALES } from "@/i18n";
-import { cvUrl, inlineJson, jsonLd, jsonResume, llmsIndex, profileMarkdown } from "./machine";
+import { cvUrl, scriptSafeJson, jsonLd, jsonResume, llmsIndex, profileMarkdown } from "./machine";
 
 describe("the Markdown profile", () => {
   for (const lang of LOCALES) {
@@ -97,6 +97,6 @@ describe("JSON-LD", () => {
   });
 
   it("cannot close its own script tag", () => {
-    expect(inlineJson({ s: "</script><script>alert(1)</script>" })).not.toContain("<");
+    expect(scriptSafeJson({ s: "</script><script>alert(1)</script>" })).not.toContain("<");
   });
 });
