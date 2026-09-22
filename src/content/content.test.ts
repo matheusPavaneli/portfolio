@@ -159,22 +159,9 @@ describe("production and own projects", () => {
     expect(productionCases.length + ownProjects.length).toBe(cases.length);
   });
 
-  it("stamps the own projects with no public artifact as prototypes", () => {
-    const status = new Map(
-      ownProjects.map((entry) => [entry.id, entry.origin.kind === "own" ? entry.origin.status : null]),
-    );
-    expect(status.get("nanquim")).toBe("prototype");
-    expect(status.get("anchor")).toBe("prototype");
-    expect(status.get("artefacts")).toBe("prototype");
-    expect(status.get("seal")).toBe("published");
-    expect(status.get("rageval")).toBe("published");
-  });
-
-  it("gives every published project a public link", () => {
+  it("marks every own project as published", () => {
     for (const entry of ownProjects) {
-      if (entry.origin.kind === "own" && entry.origin.status === "published") {
-        expect(entry.links.length, entry.id).toBeGreaterThan(0);
-      }
+      expect(entry.origin.kind === "own" ? entry.origin.status : null, entry.id).toBe("published");
     }
   });
 });

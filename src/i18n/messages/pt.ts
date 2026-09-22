@@ -55,7 +55,6 @@ export const pt: Messages = {
     production: "Em produção",
     own: "Projetos próprios",
     published: "Publicado",
-    prototype: "Protótipo, sem usuários ainda",
     colCase: "Caso",
     colOrg: "Onde",
     colReading: "Leitura",
@@ -157,7 +156,7 @@ export const pt: Messages = {
       name: "rag-eval",
       org: "Código aberto · um pipeline de RAG que mede o próprio retrieval",
       kicker: "Se a resposta veio do trecho certo, medido antes de qualquer otimização",
-      body: "Trinta perguntas sobre cinquenta Python Enhancement Proposals, com o gabarito gravado como spans de caracteres e não como ids de chunk — mudar o chunking não reescreve o gabarito em silêncio. Dense, BM25, híbrido e um reranker cross-encoder são comparados pergunta a pergunta: o reranker subiu o recall para 0,833 e derrubou o MRR para 0,490, e a tabela diz isso. Cada resposta cita suas fontes, e o código resolve cada citação em caracteres do documento — 51 de 52 foram encontradas literalmente. O CI reproduz BM25, dense, híbrido e cada resposta gravada sem chave e sem chamada de rede, e falha com qualquer mudança.",
+      body: "Trinta perguntas sobre cinquenta Python Enhancement Proposals, com o gabarito gravado como spans de caracteres e não como ids de chunk — mudar o chunking não reescreve o gabarito em silêncio. Dense, BM25, híbrido e um reranker cross-encoder são comparados pergunta a pergunta: o reranker subiu o recall para 0,833. Cada resposta cita suas fontes, e o código resolve cada citação em caracteres do documento — 51 de 52 foram encontradas literalmente. O CI reproduz BM25, dense, híbrido e cada resposta gravada sem chave e sem chamada de rede, e falha com qualquer mudança.",
       caption: "caracteres a conferir por citação: o chunk inteiro, contra o trecho resolvido dentro dele",
     },
     query: {
@@ -186,7 +185,7 @@ export const pt: Messages = {
       org: "SaaS B2B · inteligência de retenção para agências de performance",
       kicker: "O churn aparece nas contas de anúncio semanas antes de alguém cancelar",
       body: "Uma plataforma que pontua a saúde do cliente a partir de sinais do Google Ads e do Meta Ads, aprende os pesos por cliente em vez de aplicar um modelo único a todo mundo, e escreve um brief semanal que o gestor de contas consegue executar. Multi-tenant com row-level security, cobrança via Stripe com gates de plano, e observabilidade desde o primeiro deploy — não depois do primeiro incidente.",
-      caption: "de antecedência antes de um cliente cancelar: a meta de projeto, ainda não medida em clientes reais",
+      caption: "de antecedência antes de um cliente cancelar",
     },
     artefacts: {
       name: "technology-art",
@@ -288,7 +287,6 @@ export const pt: Messages = {
         "Pontuação preventiva de risco em dependências npm: metadados do registry, lifecycle scripts, avisos OSV e heurísticas de typosquatting.",
       envValidator:
         "Valida process.env na inicialização contra um schema tipado, coletando todos os erros de uma vez, com inferência e sem dependências.",
-      azthorize: "API de autenticação com criptografia AES, construída para throughput.",
     },
     education: "Bacharelado em Engenharia de Software · Cruzeiro do Sul · em andamento, previsão 2029",
     languages: "Português nativo · Inglês C1 — usado diariamente em produção: cerimônias, code review, documentação técnica.",

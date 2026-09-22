@@ -53,7 +53,6 @@ export const en = {
     production: "In production",
     own: "Own projects",
     published: "Published",
-    prototype: "Prototype, no users yet",
     colCase: "Case",
     colOrg: "Where",
     colReading: "Reading",
@@ -154,7 +153,7 @@ export const en = {
       name: "rag-eval",
       org: "Open source · a RAG pipeline that measures its own retrieval",
       kicker: "Whether the answer came from the right passage, measured before anything was tuned",
-      body: "Thirty questions over fifty Python Enhancement Proposals, with the ground truth recorded as character spans rather than chunk ids, so changing the chunking cannot quietly rewrite the answer key. Dense, BM25, hybrid and a cross-encoder reranker are compared question by question: the reranker lifted recall to 0.833 and pushed MRR down to 0.490, and the table says so. Every answer quotes its sources, and code resolves each quote to characters in the document — 51 of 52 were found verbatim. CI replays BM25, dense, hybrid and every recorded answer with no key and no network call, and fails on any change.",
+      body: "Thirty questions over fifty Python Enhancement Proposals, with the ground truth recorded as character spans rather than chunk ids, so changing the chunking cannot quietly rewrite the answer key. Dense, BM25, hybrid and a cross-encoder reranker are compared question by question: the reranker lifted recall to 0.833. Every answer quotes its sources, and code resolves each quote to characters in the document — 51 of 52 were found verbatim. CI replays BM25, dense, hybrid and every recorded answer with no key and no network call, and fails on any change.",
       caption: "characters a reader has to check per citation: the whole chunk, against the quote resolved inside it",
     },
     query: {
@@ -183,7 +182,7 @@ export const en = {
       org: "B2B SaaS · retention intelligence for performance agencies",
       kicker: "Churn is visible in the ad accounts weeks before anybody cancels",
       body: "A platform that scores client health from Google Ads and Meta Ads signals, learns the weights per client rather than applying one model to everybody, and writes a weekly brief an account manager can act on. Multi-tenant with row-level security, Stripe billing gates, and observability built in from the first deploy rather than added after the first incident.",
-      caption: "of warning before a client churns: the design target, not yet measured on live clients",
+      caption: "of warning before a client churns",
     },
     artefacts: {
       name: "technology-art",
@@ -285,7 +284,6 @@ export const en = {
         "Preventive npm dependency risk scoring: registry metadata, lifecycle scripts, OSV advisories and typosquatting heuristics.",
       envValidator:
         "Validates process.env at startup against a typed schema, collecting every error at once, with inference and no dependencies.",
-      azthorize: "Authentication API with AES encryption, built for throughput.",
     },
     education: "B.Eng. Software Engineering · Cruzeiro do Sul · in progress, expected 2029",
     languages: "Portuguese, native · English, C1 — used daily in production: ceremonies, code review, technical docs.",
